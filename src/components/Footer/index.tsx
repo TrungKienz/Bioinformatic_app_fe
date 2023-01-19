@@ -22,19 +22,19 @@ const Footer: React.FC = () => {
         {
           key: 'Ant Design Pro',
           title: 'Ant Design Pro',
-          href: 'https://pro.ant.design',
+          href: '',
           blankTarget: true,
         },
         {
           key: 'github',
           title: <GithubOutlined />,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          href: 'https://github.com/TrungKienz/Bioinformatics_lab',
           blankTarget: true,
         },
         {
           key: 'Ant Design',
           title: 'Ant Design',
-          href: 'https://ant.design',
+          href: '',
           blankTarget: true,
         },
       ]}

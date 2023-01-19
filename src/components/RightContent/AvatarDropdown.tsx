@@ -1,9 +1,9 @@
 import { outLogin } from '@/services/ant-design-pro/api';
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { setAlpha } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { history, useModel } from '@umijs/max';
 import { Avatar, Spin } from 'antd';
-import { setAlpha } from '@ant-design/pro-components';
 import { stringify } from 'querystring';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import React, { useCallback } from 'react';
@@ -56,7 +56,7 @@ const AvatarLogo = () => {
 
 const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   /**
-   * 退出登录，并且将当前的 url 保存
+   * Logout，and save the current url
    */
   const loginOut = async () => {
     await outLogin();
@@ -149,7 +149,12 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
     {
       key: 'logout',
       icon: <LogoutOutlined />,
-      label: '退出登录',
+      label: 'Đăng xuất',
+    },
+    {
+      key: 'accountManager',
+      icon: <LogoutOutlined />,
+      label: 'Thông tin tài khoản',
     },
   ];
 
