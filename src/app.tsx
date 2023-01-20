@@ -8,12 +8,11 @@ import { history, Link } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
-import React from 'react';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
 /**
- * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
+ * @see https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
@@ -32,7 +31,7 @@ export async function getInitialState(): Promise<{
     }
     return undefined;
   };
-  // 如果不是登录页面，执行
+  // If it is not a login page, execute
   const { location } = history;
   if (location.pathname !== loginPath) {
     const currentUser = await fetchUserInfo();
@@ -48,17 +47,17 @@ export async function getInitialState(): Promise<{
   };
 }
 
-// ProLayout 支持的api https://procomponents.ant.design/components/layout
+// APIs supported by ProLayout https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   return {
     rightContentRender: () => <RightContent />,
-    waterMarkProps: {
-      content: initialState?.currentUser?.name,
-    },
+    //  waterMarkProps: {
+    //    content: initialState?.currentUser?.name,
+    //  },
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
-      // 如果没有登录，重定向到 login
+      // If not logged in, redirect to login page
       if (!initialState?.currentUser && location.pathname !== loginPath) {
         history.push(loginPath);
       }
@@ -87,14 +86,14 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       ? [
           <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
             <LinkOutlined />
-            <span>OpenAPI 文档</span>
+            <span>OpenAPI Documentation</span>
           </Link>,
         ]
       : [],
     menuHeaderRender: undefined,
-    // 自定义 403 页面
+    // custom 403 page
     // unAccessible: <div>unAccessible</div>,
-    // 增加一个 loading 的状态
+    // add a loading state
     childrenRender: (children) => {
       // if (initialState?.loading) return <PageLoading />;
       return (
@@ -119,9 +118,9 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
 };
 
 /**
- * @name request 配置，可以配置错误处理
- * 它基于 axios 和 ahooks 的 useRequest 提供了一套统一的网络请求和错误处理方案。
- * @doc https://umijs.org/docs/max/request#配置
+ * @name request configuration, you can configure error handling
+ * It provides a unified network request and error handling scheme based on the useRequest of axios and ahooks.
+ * @doc https://umijs.org/docs/max/request#Configuration
  */
 export const request = {
   ...errorConfig,
