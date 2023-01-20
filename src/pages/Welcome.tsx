@@ -4,7 +4,7 @@ import { Card, theme } from 'antd';
 import React from 'react';
 
 /**
- * 每个单独的卡片，为了复用样式抽成了组件
+ * For each individual card, components are extracted for reusable styles
  * @param param0
  * @returns
  */
