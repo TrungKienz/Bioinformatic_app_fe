@@ -26,12 +26,48 @@ const CancerInformation: React.FC = () => {
     setCurrent(e.key);
   };
 
-  return (
-    <PageContainer>
-      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
-      <h1>This is top gene page</h1>
-    </PageContainer>
-  );
+  if (current === 'topGene') {
+    return (
+      <PageContainer>
+        <Menu
+          style={{}}
+          onClick={onClick}
+          selectedKeys={[current]}
+          mode="horizontal"
+          items={items}
+        />
+        <h1>topGene page</h1>
+      </PageContainer>
+    );
+  } else if (current === 'mutatedGenes') {
+    return (
+      <PageContainer>
+        <Menu
+          style={{}}
+          onClick={onClick}
+          selectedKeys={[current]}
+          mode="horizontal"
+          items={items}
+        />
+        <h1>mutatedGenes page</h1>
+      </PageContainer>
+    );
+  } else if (current === 'normalGenes') {
+    return (
+      <PageContainer>
+        <Menu
+          style={{}}
+          onClick={onClick}
+          selectedKeys={[current]}
+          mode="horizontal"
+          items={items}
+        />
+        <h1>normalGenes page</h1>
+      </PageContainer>
+    );
+  } else {
+    return <h1>Error</h1>;
+  }
 };
 
 export default CancerInformation;
