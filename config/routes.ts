@@ -50,22 +50,22 @@ export default [
       {
         path: '/cancer/liver-cancer',
         name: 'Ung thư gan',
-        component: './Admin',
+        component: './CancerInformation',
       },
       {
         path: '/cancer/breast-cancer',
         name: 'Ung thư vú',
-        component: './Admin',
+        component: './CancerInformation',
       },
       {
         path: '/cancer/thyroid-cancer',
         name: 'Ung thư tuyến giáp',
-        component: './Admin',
+        component: './CancerInformation',
       },
       {
         path: '/cancer/colorectal-cancer',
         name: 'Ung thư trực tràng',
-        component: './Admin',
+        component: './CancerInformation',
       },
     ],
   },
@@ -74,18 +74,7 @@ export default [
     name: 'Xét nghiệm',
     icon: 'https://icon-library.com/images/test-tube-icon/test-tube-icon-23.jpg',
     access: 'canAdmin',
-    routes: [
-      {
-        path: '/test/list-test',
-        name: 'Danh sách xét nghiệm',
-        component: './Admin',
-      },
-      {
-        path: '/test/add-test',
-        name: 'Thêm xét nghiệm',
-        component: './Admin',
-      },
-    ],
+    component: './TestList',
   },
   {
     path: '/drug',
