@@ -95,11 +95,38 @@ export default [
     ],
   },
   {
+    name: 'Quản lý bệnh nhân',
+    icon: '',
+    path: '/patient-management',
+    access: 'canAdmin',
+    routes: [
+      {
+        path: '/patient-management/patient-information',
+        name: 'Thêm thông tin bệnh nhân',
+        access: 'canAdmin',
+        component: './PatientManagement',
+      },
+      {
+        path: '/patient-management/patient-list',
+        name: 'Danh sách bệnh nhân',
+        access: 'canAdmin',
+        component: '',
+      },
+    ],
+  },
+  {
     name: 'Gen và đột biến',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
     path: '/gene-and-mutation',
     access: 'canAdmin',
-    component: './TableList',
+    component: './GeneAndMutationList',
+  },
+  {
+    name: 'Thông tin nhóm phát triển',
+    icon: '',
+    path: '/gene-and-mutation',
+    access: 'canAdmin',
+    component: './GeneAndMutationList',
   },
   {
     path: '*',

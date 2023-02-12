@@ -10,7 +10,7 @@ const Settings: ProLayoutProps & {
   navTheme: 'light',
   colorPrimary: '#1890ff',
   layout: 'top',
-  contentWidth: 'Fixed',
+  contentWidth: 'Fluid',
   fixedHeader: true,
   fixSiderbar: true,
   colorWeak: false,
