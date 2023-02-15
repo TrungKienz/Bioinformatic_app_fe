@@ -12,116 +12,116 @@ const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
 /**
- * @see https://umijs.org/zh-CN/plugins/plugin-initial-state
- * */
+  * @see https://umijs.org/zh-CN/plugins/plugin-initial-state
+  * */
 export async function getInitialState(): Promise<{
-  settings?: Partial<LayoutSettings>;
+   settings?: Partial<LayoutSettings>;
   currentUser?: API.CurrentUser;
-  loading?: boolean;
+   loading?: boolean;
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
-  const fetchUserInfo = async () => {
-    try {
-      const msg = await queryCurrentUser({
-        skipErrorHandler: true,
-      });
-      return msg.data;
-    } catch (error) {
-      history.push(loginPath);
-    }
-    return undefined;
-  };
-  // If it is not a login page, execute
-  const { location } = history;
+   const fetchUserInfo = async () => {
+     try {
+       const msg = await queryCurrentUser({
+         skipErrorHandler: true,
+       });
+       return msg.data;
+     } catch (error) {
+       history.push(loginPath);
+     }
+     return undefined;
+   };
+   // If it is not a login page, execute
+   const { location } = history;
   if (location.pathname !== loginPath) {
-    const currentUser = await fetchUserInfo();
-    return {
-      fetchUserInfo,
-      currentUser,
-      settings: defaultSettings as Partial<LayoutSettings>,
-    };
-  }
-  return {
-    fetchUserInfo,
-    settings: defaultSettings as Partial<LayoutSettings>,
-  };
+     const currentUser = await fetchUserInfo();
+     return {
+       fetchUserInfo,
+       currentUser,
+       settings: defaultSettings as Partial<LayoutSettings>,
+     };
+   }
+   return {
+     fetchUserInfo,
+     settings: defaultSettings as Partial<LayoutSettings>,
+   };
 }
 
 // APIs supported by ProLayout https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
-  return {
-    rightContentRender: () => <RightContent />,
+   return {
+     rightContentRender: () => <RightContent />,
     //  waterMarkProps: {
     //    content: initialState?.currentUser?.name,
     //  },
-    footerRender: () => <Footer />,
-    onPageChange: () => {
-      const { location } = history;
-      // If not logged in, redirect to login page
-      if (!initialState?.currentUser && location.pathname !== loginPath) {
-        history.push(loginPath);
-      }
-    },
-    layoutBgImgList: [
-      {
-        src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/D2LWSqNny4sAAAAAAAAAAAAAFl94AQBr',
-        left: 85,
-        bottom: 100,
-        height: '303px',
-      },
-      {
-        src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/C2TWRpJpiC0AAAAAAAAAAAAAFl94AQBr',
-        bottom: -68,
-        right: -45,
-        height: '303px',
-      },
-      {
-        src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/F6vSTbj8KpYAAAAAAAAAAAAAFl94AQBr',
-        bottom: 0,
-        left: 0,
-        width: '331px',
-      },
-    ],
-    links: isDev
-      ? [
-          <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
-            <LinkOutlined />
-            <span>OpenAPI Documentation</span>
-          </Link>,
-        ]
-      : [],
-    menuHeaderRender: undefined,
-    // custom 403 page
-    // unAccessible: <div>unAccessible</div>,
-    // add a loading state
-    childrenRender: (children) => {
-      // if (initialState?.loading) return <PageLoading />;
-      return (
-        <>
-          {children}
-          <SettingDrawer
-            disableUrlParams
-            enableDarkTheme
-            settings={initialState?.settings}
-            onSettingChange={(settings) => {
-              setInitialState((preInitialState) => ({
-                ...preInitialState,
-                settings,
-              }));
-            }}
-          />
-        </>
-      );
-    },
-    ...initialState?.settings,
-  };
+     footerRender: () => <Footer />,
+     onPageChange: () => {
+       const { location } = history;
+       // If not logged in, redirect to login page
+       if (!initialState?.currentUser && location.pathname !== loginPath) {
+         history.push(loginPath);
+       }
+     },
+     layoutBgImgList: [
+       {
+         src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/D2LWSqNny4sAAAAAAAAAAAAAFl94AQBr',
+         left: 85,
+         bottom: 100,
+         height: '303px',
+       },
+       {
+         src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/C2TWRpJpiC0AAAAAAAAAAAAAFl94AQBr',
+         bottom: -68,
+         right: -45,
+         height: '303px',
+       },
+       {
+         src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/F6vSTbj8KpYAAAAAAAAAAAAAFl94AQBr',
+         bottom: 0,
+         left: 0,
+         width: '331px',
+       },
+     ],
+     links: isDev
+       ? [
+           <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
+             <LinkOutlined />
+             <span>OpenAPI Documentation</span>
+           </Link>,
+         ]
+       : [],
+     menuHeaderRender: undefined,
+     // custom 403 page
+     // unAccessible: <div>unAccessible</div>,
+     // add a loading state
+     childrenRender: (children) => {
+       // if (initialState?.loading) return <PageLoading />;
+       return (
+         <>
+           {children}
+           <SettingDrawer
+             disableUrlParams
+             enableDarkTheme
+             settings={initialState?.settings}
+             onSettingChange={(settings) => {
+               setInitialState((preInitialState) => ({
+                 ...preInitialState,
+                 settings,
+               }));
+             }}
+           />
+         </>
+       );
+     },
+     ...initialState?.settings,
+   };
 };
 
 /**
- * @name request configuration, you can configure error handling
- * It provides a unified network request and error handling scheme based on the useRequest of axios and ahooks.
- * @doc https://umijs.org/docs/max/request#Configuration
- */
+  * @name request configuration, you can configure error handling
+  * It provides a unified network request and error handling scheme based on the useRequest of axios and ahooks.
+  * @doc https://umijs.org/docs/max/request#Configuration
+  */
 export const request = {
-  ...errorConfig,
+   ...errorConfig,
 };

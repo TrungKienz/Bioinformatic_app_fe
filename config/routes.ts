@@ -124,7 +124,7 @@ export default [
   {
     name: 'Thông tin nhóm phát triển',
     icon: '',
-    path: '/gene-and-mutation',
+    path: '',
     access: 'canAdmin',
     component: './GeneAndMutationList',
   },

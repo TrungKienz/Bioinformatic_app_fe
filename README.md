@@ -12,7 +12,5 @@ Note:
         🌐 locale(compiler): Made a small contribution to internationalization
 
         Other commit types: refactor, perf, workflow, build, CI, typos, tests, types, wip, release, dep
-
         See https://github.com/vuejs/core/blob/main/.github/commit-convention.md
-
 </div>

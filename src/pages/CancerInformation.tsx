@@ -1,8 +1,11 @@
-import { Column } from '@ant-design/plots';
 import { PageContainer } from '@ant-design/pro-components';
-import type { MenuProps } from 'antd';
+import { MenuProps } from 'antd';
 import { Menu } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import NormalGene from './CancerInformationPages/LungCancer/NormalGene';
+import MutanGene from './CancerInformationPages/LungCancer/MutanGene';
+import TopGene from './CancerInformationPages/LungCancer/TopGene';
+import NoFoundPage from './404';
 
 const items: MenuProps['items'] = [
   {
@@ -27,32 +30,6 @@ const CancerInformation: React.FC = () => {
     setCurrent(e.key);
   };
 
-  const [data, setData] = useState([]);
-
-  const asyncFetch = () => {
-    fetch('http://localhost:3000/lung-cancer-information/lung_informations.json')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('fetch data failed', error);
-      });
-  };
-
-  useEffect(() => {
-    asyncFetch();
-  }, []);
-
-  const config = {
-    data,
-    xField: 'name',
-    yField: 'value',
-    seriesField: 'type',
-    isGroup: true,
-    columnStyle: {
-      radius: [5, 5, 0, 0],
-    },
-  };
-
   if (current === 'topGene') {
     return (
       <PageContainer>
@@ -63,7 +40,7 @@ const CancerInformation: React.FC = () => {
           mode="horizontal"
           items={items}
         />
-        <Column {...config} />
+        <TopGene />
       </PageContainer>
     );
   } else if (current === 'mutatedGenes') {
@@ -76,7 +53,7 @@ const CancerInformation: React.FC = () => {
           mode="horizontal"
           items={items}
         />
-        <h1>mutatedGenes page</h1>
+        <MutanGene/>
       </PageContainer>
     );
   } else if (current === 'normalGenes') {
@@ -89,11 +66,11 @@ const CancerInformation: React.FC = () => {
           mode="horizontal"
           items={items}
         />
-        <h1>normalGenes page</h1>
+       <NormalGene/>
       </PageContainer>
     );
   } else {
-    return <h1>Error</h1>;
+    return <NoFoundPage/>;
   }
 };
 

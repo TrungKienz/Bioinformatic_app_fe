@@ -18,13 +18,13 @@ const Footer: React.FC = () => {
       copyright={`${currentYear} ${defaultMessage}`}
       links={[
         {
-          key: 'Ant Design',
+          key: 'Hust',
           title: 'Lab Bioinformatics, BK.AI, SoICT, Trường ĐHBKHN',
           href: 'https://hust.edu.vn/',
           blankTarget: true,
         },
         {
-          key: 'Ant Design',
+          key: 'Hmu',
           title: 'và Trường ĐHY Hà Nội',
           href: 'https://hmu.edu.vn/',
           blankTarget: true,
