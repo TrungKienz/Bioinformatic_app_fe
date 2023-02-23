@@ -17,7 +17,7 @@ const MutanGene = () => {
   const columns: ProColumns[] = [
     {
       title: 'TÊN GEN',
-      dataIndex: 'geneName',
+      dataIndex: 'gene_name',
       filteredValue:[searchTerm],
       onFilter: (value, record) => {
         return String(record.geneName).toLowerCase().includes(String(value).toLowerCase());
@@ -29,21 +29,21 @@ const MutanGene = () => {
     },
     {
       title: 'TRƯỜNG HỢP MANG ĐỘT BIẾN',
-      dataIndex: 'mutatedSamples',
+      dataIndex: 'mutated_samples',
       sorter: (a, b) => a.mutatedSamples - b.mutatedSamples,
       hideInSearch: true,
       align: 'center',
     },
     {
       title: 'TỔNG SỐ MẪU',
-      dataIndex: 'samplesTested',
+      dataIndex: 'samples_tested',
       sorter: (a, b) => a.samplesTested - b.samplesTested,
       hideInSearch: true,
       align: 'center',
     },
     {
       title: 'TỶ LỆ TRƯỜNG HỢP MANG ĐỘT BIẾN',
-      render: (_, row) => ((row.mutatedSamples / row.samplesTested)*100).toFixed(2)+'%',
+      render: (_, row) => ((row.mutated_samples / row.samples_tested)*100).toFixed(2)+'%',
       hideInSearch: true,
       align: 'center',
     },

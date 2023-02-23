@@ -81,18 +81,7 @@ export default [
     name: 'Thông tin thuốc',
     icon: 'https://icon-library.com/images/drug-icon/drug-icon-18.jpg',
     access: 'canAdmin',
-    routes: [
-      {
-        path: '/drug/update-drug',
-        name: 'Cập nhật thông tin thuốc',
-        component: './Admin',
-      },
-      {
-        path: '/drug/find-drug',
-        name: 'Tìm kiếm thông tin thuốc',
-        component: './Admin',
-      },
-    ],
+    component: './DrugInformation',
   },
   {
     name: 'Quản lý bệnh nhân',
