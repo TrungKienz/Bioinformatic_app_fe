@@ -1,23 +1,20 @@
 import Footer from '@/components/Footer';
 import RightContent from '@/components/RightContent';
-import { LinkOutlined } from '@ant-design/icons';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
-import { SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
-import { history, Link } from '@umijs/max';
+import { history } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
-const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
 /**
   * @see https://umijs.org/zh-CN/plugins/plugin-initial-state
   * */
 export async function getInitialState(): Promise<{
-   settings?: Partial<LayoutSettings>;
+  settings?: Partial<LayoutSettings>;
   currentUser?: API.CurrentUser;
-   loading?: boolean;
+  loading?: boolean;
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
    const fetchUserInfo = async () => {
@@ -51,9 +48,6 @@ export async function getInitialState(): Promise<{
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
    return {
      rightContentRender: () => <RightContent />,
-    //  waterMarkProps: {
-    //    content: initialState?.currentUser?.name,
-    //  },
      footerRender: () => <Footer />,
      onPageChange: () => {
        const { location } = history;
@@ -82,14 +76,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
          width: '331px',
        },
      ],
-     links: isDev
-       ? [
-           <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
-             <LinkOutlined />
-             <span>OpenAPI Documentation</span>
-           </Link>,
-         ]
-       : [],
      menuHeaderRender: undefined,
      // custom 403 page
      // unAccessible: <div>unAccessible</div>,
@@ -99,17 +85,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
        return (
          <>
            {children}
-           <SettingDrawer
-             disableUrlParams
-             enableDarkTheme
-             settings={initialState?.settings}
-             onSettingChange={(settings) => {
-               setInitialState((preInitialState) => ({
-                 ...preInitialState,
-                 settings,
-               }));
-             }}
-           />
          </>
        );
      },

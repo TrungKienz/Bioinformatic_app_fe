@@ -1,4 +1,5 @@
-import { Column } from "@ant-design/charts";
+import { Column, DualAxes } from "@ant-design/charts";
+import { LeftCircleFilled } from "@ant-design/icons";
 import { useEffect, useState } from "react";
     
 const data = [

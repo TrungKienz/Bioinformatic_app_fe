@@ -26,7 +26,7 @@ for (let i = 0; i < 10; i += 1) {
 
 const columns: ProColumns<TableListItem>[] = [
   {
-    title: 'Mã bệnh nhân',
+    title: 'Mã xét nghiệm',
     dataIndex: 'containers',
     sorter: (a, b) => a.containers - b.containers,
     render: (_) => <a>{_}</a>,

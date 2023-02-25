@@ -2,15 +2,40 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import React, { useState } from 'react';
 
-const MutanGene = () => {
+const lungCancerPage = '/cancer/lung-cancer';
+const liverCancerPage = '/cancer/liver-cancer';
+const breastCancerPage = '/cancer/breast-cancer';
+const thyroidCancerPage = '/cancer/thyroid-cancer';
+const colorectalCancerPage = '/cancer/colorectal-cancer';
 
+const MutanGene = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const fetchData = async (params: any, sort: any, filter: any) => {
-    const response = await fetch('http://localhost:3000/mutation-lung-gene');
+    let URL = '';
+
+    if (location.pathname === lungCancerPage){
+      URL = 'http://localhost:3000/mutation-lung-gene';
+    } 
+    else if (location.pathname === liverCancerPage) {
+      URL = 'http://localhost:3000/mutation-liver-gene';
+    } 
+    else if (location.pathname === breastCancerPage) {
+      URL = 'http://localhost:3000/mutation-breast-gene';
+    } 
+    else if (location.pathname === thyroidCancerPage) {
+      URL = 'http://localhost:3000/mutation-thyroid-gene';
+    } 
+    else if (location.pathname === colorectalCancerPage) {
+      URL = 'http://localhost:3000/mutation-colorectal-gene';
+    }
+    else {
+      URL = ''
+    }
+    const response = await fetch(URL);
     const data = await response.json();
     return {
-      data: data.filter((row: { geneName: string; }) => row.geneName.toLowerCase().includes(searchTerm.toLowerCase())),
+      data: data.filter((row: { gene_name: string; }) => row.gene_name.toLowerCase().includes(searchTerm.toLowerCase())),
     };
   };
   
@@ -20,11 +45,11 @@ const MutanGene = () => {
       dataIndex: 'gene_name',
       filteredValue:[searchTerm],
       onFilter: (value, record) => {
-        return String(record.geneName).toLowerCase().includes(String(value).toLowerCase());
+        return String(record.gene_name).toLowerCase().includes(String(value).toLowerCase());
       },
       render: (_, record) => {
-        const genName = record.geneName;
-        return <a href={`https://cancer.sanger.ac.uk/cosmic/gene/analysis?all_data=n&in=t&ln=${genName}&sn=liver&src=tissue&wgs=off`}>{genName}</a>
+        const gene_name = record.gene_name;
+        return <a href={`https://cancer.sanger.ac.uk/cosmic/gene/analysis?all_data=n&in=t&ln=${gene_name}&sn=liver&src=tissue&wgs=off`}>{gene_name}</a>
       },
     },
     {
