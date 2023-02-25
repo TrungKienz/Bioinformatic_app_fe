@@ -1,9 +1,8 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import React, { useState } from 'react';
-import { Button, Modal, message, Upload, UploadProps } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { Button, message, Modal, Upload, UploadProps } from 'antd';
+import { useState } from 'react';
 
 export type TableListItem = {
   key: number;
@@ -13,7 +12,13 @@ export type TableListItem = {
 };
 const tableListDataSource: TableListItem[] = [];
 
-const creators = ['CHP2-UT08VIET-FFPE-S-69', 'CHP2-UT09THANG-FFPE-S-70', 'HCC1395_FD', 'HCC1395_FD1', 'HCC1395_FD1'];
+const creators = [
+  'CHP2-UT08VIET-FFPE-S-69',
+  'CHP2-UT09THANG-FFPE-S-70',
+  'HCC1395_FD',
+  'HCC1395_FD1',
+  'HCC1395_FD1',
+];
 
 for (let i = 0; i < 10; i += 1) {
   tableListDataSource.push({
@@ -44,9 +49,7 @@ const columns: ProColumns<TableListItem>[] = [
     title: 'Chi tiết',
     width: 120,
     valueType: 'option',
-    render: () => [
-      <a key="link">Chi tiết</a>,
-    ],
+    render: () => [<a key="link">Chi tiết</a>],
   },
 ];
 
@@ -58,8 +61,8 @@ const props: UploadProps = {
     authorization: 'authorization-text',
   },
   beforeUpload(file) {
-    console.log({file});
-    return false;      
+    console.log({ file });
+    return false;
   },
   onChange(info) {
     if (info.file.status !== 'uploading') {
@@ -88,7 +91,6 @@ export default () => {
     setIsModalOpen(false);
   };
   return (
-    
     <ProTable<TableListItem>
       columns={columns}
       request={(params, sorter, filter) => {
@@ -106,17 +108,20 @@ export default () => {
           },
         },
         actions: [
-          <Button
-            key="key"
-            type="primary"
-            onClick={showModal}
-          >
+          <Button key="key" type="primary" onClick={showModal}>
             <PlusOutlined />
             Thêm xét nghiệm mới
           </Button>,
-          <Modal title="Thêm thông tin xét nghiệm" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+          <Modal
+            title="Thêm thông tin xét nghiệm"
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
             <Upload {...props}>
-              <Button key="key" icon={<UploadOutlined />}>Chọn file</Button>
+              <Button key="key" icon={<UploadOutlined />}>
+                Chọn file
+              </Button>
             </Upload>
           </Modal>,
         ],
@@ -125,6 +130,5 @@ export default () => {
       rowKey="key"
       search={false}
     />
-    
   );
 };

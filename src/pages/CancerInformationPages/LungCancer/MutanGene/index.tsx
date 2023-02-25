@@ -1,6 +1,6 @@
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const lungCancerPage = '/cancer/lung-cancer';
 const liverCancerPage = '/cancer/liver-cancer';
@@ -14,42 +14,45 @@ const MutanGene = () => {
   const fetchData = async (params: any, sort: any, filter: any) => {
     let URL = '';
 
-    if (location.pathname === lungCancerPage){
+    if (location.pathname === lungCancerPage) {
       URL = 'http://localhost:3000/mutation-lung-gene';
-    } 
-    else if (location.pathname === liverCancerPage) {
+    } else if (location.pathname === liverCancerPage) {
       URL = 'http://localhost:3000/mutation-liver-gene';
-    } 
-    else if (location.pathname === breastCancerPage) {
+    } else if (location.pathname === breastCancerPage) {
       URL = 'http://localhost:3000/mutation-breast-gene';
-    } 
-    else if (location.pathname === thyroidCancerPage) {
+    } else if (location.pathname === thyroidCancerPage) {
       URL = 'http://localhost:3000/mutation-thyroid-gene';
-    } 
-    else if (location.pathname === colorectalCancerPage) {
+    } else if (location.pathname === colorectalCancerPage) {
       URL = 'http://localhost:3000/mutation-colorectal-gene';
-    }
-    else {
-      URL = ''
+    } else {
+      URL = '';
     }
     const response = await fetch(URL);
     const data = await response.json();
     return {
-      data: data.filter((row: { gene_name: string; }) => row.gene_name.toLowerCase().includes(searchTerm.toLowerCase())),
+      data: data.filter((row: { gene_name: string }) =>
+        row.gene_name.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
     };
   };
-  
+
   const columns: ProColumns[] = [
     {
       title: 'TÊN GEN',
       dataIndex: 'gene_name',
-      filteredValue:[searchTerm],
+      filteredValue: [searchTerm],
       onFilter: (value, record) => {
         return String(record.gene_name).toLowerCase().includes(String(value).toLowerCase());
       },
       render: (_, record) => {
         const gene_name = record.gene_name;
-        return <a href={`https://cancer.sanger.ac.uk/cosmic/gene/analysis?all_data=n&in=t&ln=${gene_name}&sn=liver&src=tissue&wgs=off`}>{gene_name}</a>
+        return (
+          <a
+            href={`https://cancer.sanger.ac.uk/cosmic/gene/analysis?all_data=n&in=t&ln=${gene_name}&sn=liver&src=tissue&wgs=off`}
+          >
+            {gene_name}
+          </a>
+        );
       },
     },
     {
@@ -68,7 +71,7 @@ const MutanGene = () => {
     },
     {
       title: 'TỶ LỆ TRƯỜNG HỢP MANG ĐỘT BIẾN',
-      render: (_, row) => ((row.mutated_samples / row.samples_tested)*100).toFixed(2)+'%',
+      render: (_, row) => ((row.mutated_samples / row.samples_tested) * 100).toFixed(2) + '%',
       hideInSearch: true,
       align: 'center',
     },
@@ -81,17 +84,16 @@ const MutanGene = () => {
       toolbar={{
         title: 'Gen đột biến',
         search: {
-            onSearch: value => setSearchTerm(value),
-            onChange: e => setSearchTerm(e.target.value),
+          onSearch: (value) => setSearchTerm(value),
+          onChange: (e) => setSearchTerm(e.target.value),
         },
-        
+
         settings: [],
       }}
       rowKey="key"
-      search = {false}
+      search={false}
       pagination={{ pageSize: 10 }}
     />
-    
   );
 };
 

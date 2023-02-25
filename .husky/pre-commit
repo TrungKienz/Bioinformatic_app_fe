@@ -1,5 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-git config advice.ignoredHook false
 npx --no-install lint-staged

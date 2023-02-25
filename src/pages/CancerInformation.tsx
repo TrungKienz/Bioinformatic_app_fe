@@ -1,11 +1,10 @@
-import { FieldRender, PageContainer } from '@ant-design/pro-components';
-import { MenuProps } from 'antd';
-import { Menu } from 'antd';
+import { PageContainer } from '@ant-design/pro-components';
+import { Menu, MenuProps } from 'antd';
 import React, { useState } from 'react';
-import NormalGene from './CancerInformationPages/LungCancer/NormalGene';
-import MutanGene from './CancerInformationPages/LungCancer/MutanGene';
-import TopGene from './CancerInformationPages/LungCancer/TopGene';
 import NoFoundPage from './404';
+import MutanGene from './CancerInformationPages/LungCancer/MutanGene';
+import NormalGene from './CancerInformationPages/LungCancer/NormalGene';
+import TopGene from './CancerInformationPages/LungCancer/TopGene';
 
 const items: MenuProps['items'] = [
   {
@@ -53,7 +52,7 @@ const CancerInformation: React.FC = () => {
           mode="horizontal"
           items={items}
         />
-        <MutanGene/>
+        <MutanGene />
       </PageContainer>
     );
   } else if (current === 'normalGenes') {
@@ -66,11 +65,11 @@ const CancerInformation: React.FC = () => {
           mode="horizontal"
           items={items}
         />
-       <NormalGene/>
+        <NormalGene />
       </PageContainer>
     );
   } else {
-    return <NoFoundPage/>;
+    return <NoFoundPage />;
   }
 };
 
