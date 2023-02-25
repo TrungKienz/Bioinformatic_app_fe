@@ -1,15 +1,17 @@
 <h1 align="center">Bioinformatic_app</h1>
 
-<div align="center">
-Note:
+<div align="left">
+Lưu ý:
 1: Commit rules: 
-        [<emoji>] [revert: ?]<type>[(scope)?]: <message>
+        <type>[optional scope]: <description>
 
-        🐛 fix(compiler): fix some bug
-        📝 docs(compiler): add some docs
-        🌷 UI(compiler): better styles
-        🏰 chore(compiler): Made some changes to the scaffolding
-        🌐 locale(compiler): Made a small contribution to internationalization
+        - feat: Thêm chức năng mới
+        - fix: Sửa lỗi
+        - docs: Thay đổi tài liệu
+        - style: Thay đổi giao diện hoặc kiểu chữ
+        - refactor: Sửa đổi mã nguồn không thay đổi tính năng
+        - test: Thêm hoặc cải thiện bài kiểm tra
+        - chore: Thay đổi công cụ, cấu hình, tài liệu hoặc nhiệm vụ không phải là mã nguồn
 
         Other commit types: refactor, perf, workflow, build, CI, typos, tests, types, wip, release, dep
         See https://github.com/vuejs/core/blob/main/.github/commit-convention.md
