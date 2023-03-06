@@ -1,68 +1,79 @@
 import { Column } from '@ant-design/charts';
+import { useState } from 'react';
 
-const data = [
-  { name: 'EGFR', type: 'MUTANSAMPLE', value: 27294 },
-  { name: 'EGFR', type: 'ALLSAMPLE', value: 103963 },
-  { name: 'KRAS', type: 'MUTANSAMPLE', value: 6507 },
-  { name: 'KRAS', type: 'ALLSAMPLE', value: 45776 },
-  { name: 'TP53', type: 'MUTANSAMPLE', value: 5581 },
-  { name: 'TP53', type: 'ALLSAMPLE', value: 13431 },
-  { name: 'TTN', type: 'MUTANSAMPLE', value: 1444 },
-  { name: 'TTN', type: 'ALLSAMPLE', value: 2899 },
-  { name: 'PCDHGA1', type: 'MUTANSAMPLE', value: 1034 },
-  { name: 'PCDHGA1', type: 'ALLSAMPLE', value: 2848 },
-  { name: 'MUC16', type: 'MUTANSAMPLE', value: 1028 },
-  { name: 'MUC16', type: 'ALLSAMPLE', value: 2888 },
-  { name: 'CSMD3', type: 'MUTANSAMPLE', value: 1025 },
-  { name: 'CSMD3', type: 'ALLSAMPLE', value: 2976 },
-  { name: 'PCDHA1', type: 'MUTANSAMPLE', value: 1000 },
-  { name: 'PCDHA1', type: 'ALLSAMPLE', value: 2816 },
-  { name: 'PCDHGA2', type: 'MUTANSAMPLE', value: 993 },
-  { name: 'PCDHGA2', type: 'ALLSAMPLE', value: 2848 },
-  { name: 'PCDHA2', type: 'MUTANSAMPLE', value: 941 },
-  { name: 'PCDHA2', type: 'ALLSAMPLE', value: 2860 },
-  { name: 'LRP1B', type: 'MUTANSAMPLE', value: 936 },
-  { name: 'LRP1B', type: 'ALLSAMPLE', value: 3195 },
-  { name: 'PCDHGA3', type: 'MUTANSAMPLE', value: 931 },
-  { name: 'PCDHGA3', type: 'ALLSAMPLE', value: 2848 },
-  { name: 'USH2A', type: 'MUTANSAMPLE', value: 899 },
-  { name: 'USH2A', type: 'ALLSAMPLE', value: 2864 },
-  { name: 'PCDHA3', type: 'MUTANSAMPLE', value: 892 },
-  { name: 'PCDHA3', type: 'ALLSAMPLE', value: 2860 },
-  { name: 'RYR2', type: 'MUTANSAMPLE', value: 888 },
-  { name: 'RYR2', type: 'ALLSAMPLE', value: 2756 },
-  { name: 'PIK3CA', type: 'MUTANSAMPLE', value: 886 },
-  { name: 'PIK3CA', type: 'ALLSAMPLE', value: 17726 },
-  { name: 'PCDHGB1', type: 'MUTANSAMPLE', value: 877 },
-  { name: 'PCDHGB1', type: 'ALLSAMPLE', value: 2772 },
-  { name: 'PCDHGA4', type: 'MUTANSAMPLE', value: 852 },
-  { name: 'PCDHGA4', type: 'ALLSAMPLE', value: 2845 },
-  { name: 'PCDHA4', type: 'MUTANSAMPLE', value: 843 },
-  { name: 'PCDHA4', type: 'ALLSAMPLE', value: 2860 },
-  { name: 'PCDHGB2', type: 'MUTANSAMPLE', value: 815 },
-  { name: 'PCDHGB2', type: 'ALLSAMPLE', value: 2770 },
-];
+const lungCancerPage = '/cancer/lung-cancer';
+const liverCancerPage = '/cancer/liver-cancer';
+const breastCancerPage = '/cancer/breast-cancer';
+const thyroidCancerPage = '/cancer/thyroid-cancer';
+const colorectalCancerPage = '/cancer/colorectal-cancer';
+
+let URL = '';
+
+if (location.pathname === lungCancerPage) {
+URL = 'http://localhost:3000/mutation-lung-gene';
+} else if (location.pathname === liverCancerPage) {
+URL = 'http://localhost:3000/mutation-liver-gene';
+} else if (location.pathname === breastCancerPage) {
+URL = 'http://localhost:3000/mutation-breast-gene';
+} else if (location.pathname === thyroidCancerPage) {
+URL = 'http://localhost:3000/mutation-thyroid-gene';
+} else if (location.pathname === colorectalCancerPage) {
+URL = 'http://localhost:3000/mutation-colorectal-gene';
+} else {
+URL = '';
+}
+const asyncFetch = async () => {
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+    const top20MutatedSamples = data
+      .sort((a: any, b: any) => b.mutated_samples - a.mutated_samples)
+      .slice(0, 20)
+      .map((obj: any) => ({
+        gene_name: obj.gene_name,
+        mutated_samples: obj.mutated_samples,
+        samples_tested: obj.samples_tested,
+      }));
+
+    // Remove duplicates
+    const uniqueTop20MutatedSamples = Array.from(new Set(top20MutatedSamples.map((obj: any) => JSON.stringify(obj))))
+      .map(str => JSON.parse(str));
+
+    return uniqueTop20MutatedSamples;
+  } catch (error) {
+    console.error(error);
+    return []; // return an empty array if there's an error
+  }
+};
+
+const data3: { gene_name: string, value: number, type: string }[] = [];
+asyncFetch()
+  .then(myArray => {
+    for (let i = 0; i < myArray.length; i++) {
+      let currentObject = myArray[i];
+      const newDataObject1 = {
+        gene_name: currentObject.gene_name,
+        value: currentObject.mutated_samples,
+        type: 'mutated_samples',
+      };
+      const newDataObject2 = {
+        gene_name: currentObject.gene_name,
+        value: currentObject.samples_tested,
+        type: 'samples_tested',
+      };
+      data3.push(newDataObject1, newDataObject2); 
+    }
+    return data3;
+  })
+  .catch(error => console.error(error));
 
 const TopGene = () => {
-  // const [data, setData] = useState([]);
-
-  // const asyncFetch = () => {
-  //     fetch('http://localhost:3000/mutation-lung-gene')
-  //         .then((response) => response.json())
-  //         .then((json) => setData(json))
-  //         .catch((error) => {
-  //         console.log('fetch data failed', error);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //     asyncFetch();
-  // }, []);
+  console.log(data3)
 
   const config = {
-    data,
-    xField: 'name',
-    yField: 'value',
+    data: data3.map(data3 => ({ x: data3.gene_name, y: data3.value, type: data3.type })),
+    xField: 'x',
+    yField: 'y',
     seriesField: 'type',
     isGroup: true,
     columnStyle: {
