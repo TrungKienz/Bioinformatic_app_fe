@@ -70,18 +70,30 @@ export default [
     ],
   },
   {
-    path: '/test',
+    path: '/tests',
     name: 'Xét nghiệm',
     icon: 'https://icon-library.com/images/test-tube-icon/test-tube-icon-23.jpg',
     access: 'canAdmin',
     component: './TestList',
   },
   {
+    path: '/tests/:id',
+    access: 'canAdmin',
+    component: './DetailTest',
+    hideInMenu: true, 
+  },
+  {
     path: '/drug',
     name: 'Thông tin thuốc',
     icon: 'https://icon-library.com/images/drug-icon/drug-icon-18.jpg',
     access: 'canAdmin',
-    component: './DrugInformation',
+    component: './DrugInformation/drugInfor',
+  },
+  {
+    path: '/drug/:id',
+    access: 'canAdmin',
+    component: './DrugInformation/articles',
+    hideInMenu: true,
   },
   {
     name: 'Quản lý bệnh nhân',

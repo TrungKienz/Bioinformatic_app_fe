@@ -35,18 +35,18 @@ const asyncFetch = async () => {
         samples_tested: obj.samples_tested,
       }));
 
-    // Remove duplicates
-    const uniqueTop20MutatedSamples = Array.from(new Set(top20MutatedSamples.map((obj: any) => JSON.stringify(obj))))
+      // Remove duplicates
+      const uniqueTop20MutatedSamples = Array.from(new Set(top20MutatedSamples.map((obj: any) => JSON.stringify(obj))))
       .map(str => JSON.parse(str));
+      
+      return uniqueTop20MutatedSamples;
+    } catch (error) {
+      console.error(error);
+      return []; // return an empty array if there's an error
+    }
+  };
 
-    return uniqueTop20MutatedSamples;
-  } catch (error) {
-    console.error(error);
-    return []; // return an empty array if there's an error
-  }
-};
-
-const data3: { gene_name: string, value: number, type: string }[] = [];
+const dataTopGene: { gene_name: string, value: number, type: string }[] = [];
 asyncFetch()
   .then(myArray => {
     for (let i = 0; i < myArray.length; i++) {
@@ -61,22 +61,20 @@ asyncFetch()
         value: currentObject.samples_tested,
         type: 'samples_tested',
       };
-      data3.push(newDataObject1, newDataObject2); 
+      dataTopGene.push(newDataObject1, newDataObject2); 
     }
-    return data3;
+    return dataTopGene;
   })
   .catch(error => console.error(error));
-
-const TopGene = () => {
-  console.log(data3)
-
-  const config = {
-    data: data3.map(data3 => ({ x: data3.gene_name, y: data3.value, type: data3.type })),
-    xField: 'x',
-    yField: 'y',
-    seriesField: 'type',
-    isGroup: true,
-    columnStyle: {
+  
+  const TopGene = () => {
+    const config = {
+      data: dataTopGene.map(dataTopGene => ({ x: dataTopGene.gene_name, y: dataTopGene.value, type: dataTopGene.type })),
+      xField: 'x',
+      yField: 'y',
+      seriesField: 'type',
+      isGroup: true,
+      columnStyle: {
       radius: [5, 5, 0, 0],
     },
   };

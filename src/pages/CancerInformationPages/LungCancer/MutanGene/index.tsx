@@ -10,23 +10,23 @@ const colorectalCancerPage = '/cancer/colorectal-cancer';
 
 const MutanGene = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  let URL = '';
 
+  if (location.pathname === lungCancerPage) {
+    URL = 'http://localhost:3000/mutation-lung-gene';
+  } else if (location.pathname === liverCancerPage) {
+    URL = 'http://localhost:3000/mutation-liver-gene';
+  } else if (location.pathname === breastCancerPage) {
+    URL = 'http://localhost:3000/mutation-breast-gene';
+  } else if (location.pathname === thyroidCancerPage) {
+    URL = 'http://localhost:3000/mutation-thyroid-gene';
+  } else if (location.pathname === colorectalCancerPage) {
+    URL = 'http://localhost:3000/mutation-colorectal-gene';
+  } else {
+    URL = '';
+  }
+  
   const fetchData = async (params: any, sort: any, filter: any) => {
-    let URL = '';
-
-    if (location.pathname === lungCancerPage) {
-      URL = 'http://localhost:3000/mutation-lung-gene';
-    } else if (location.pathname === liverCancerPage) {
-      URL = 'http://localhost:3000/mutation-liver-gene';
-    } else if (location.pathname === breastCancerPage) {
-      URL = 'http://localhost:3000/mutation-breast-gene';
-    } else if (location.pathname === thyroidCancerPage) {
-      URL = 'http://localhost:3000/mutation-thyroid-gene';
-    } else if (location.pathname === colorectalCancerPage) {
-      URL = 'http://localhost:3000/mutation-colorectal-gene';
-    } else {
-      URL = '';
-    }
     const response = await fetch(URL);
     const data = await response.json();
     return {
@@ -49,6 +49,7 @@ const MutanGene = () => {
         return (
           <a
             href={`https://cancer.sanger.ac.uk/cosmic/gene/analysis?all_data=n&in=t&ln=${gene_name}&sn=liver&src=tissue&wgs=off`}
+            target= '_blank'
           >
             {gene_name}
           </a>
@@ -58,14 +59,14 @@ const MutanGene = () => {
     {
       title: 'TRƯỜNG HỢP MANG ĐỘT BIẾN',
       dataIndex: 'mutated_samples',
-      sorter: (a, b) => a.mutatedSamples - b.mutatedSamples,
+      sorter: (a, b) => a.mutated_samples - b.mutated_samples,
       hideInSearch: true,
       align: 'center',
     },
     {
       title: 'TỔNG SỐ MẪU',
       dataIndex: 'samples_tested',
-      sorter: (a, b) => a.samplesTested - b.samplesTested,
+      sorter: (a, b) => a.samples_tested - b.samples_tested,
       hideInSearch: true,
       align: 'center',
     },

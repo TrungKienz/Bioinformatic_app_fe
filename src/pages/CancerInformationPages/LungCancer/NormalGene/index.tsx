@@ -10,25 +10,24 @@ const colorectalCancerPage = '/cancer/colorectal-cancer';
 
 const NormalGenes = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  let URL = '';
+
+  if (location.pathname === lungCancerPage) {
+    URL = 'http://localhost:3000/normal-lung-gene';
+  } else if (location.pathname === liverCancerPage) {
+    URL = 'http://localhost:3000/normal-liver-gene';
+  } else if (location.pathname === breastCancerPage) {
+    URL = 'http://localhost:3000/normal-breast-gene';
+  } else if (location.pathname === thyroidCancerPage) {
+    URL = 'http://localhost:3000/normal-thyroid-gene';
+  } else if (location.pathname === colorectalCancerPage) {
+    URL = 'http://localhost:3000/normal-colorectal-gene';
+  } else {
+    URL = '';
+  }
 
   const fetchData = async (params: any, sort: any, filter: any) => {
-    let URL = '';
-
-    if (location.pathname === lungCancerPage) {
-      URL = 'http://localhost:3000/normal-lung-gene';
-    } else if (location.pathname === liverCancerPage) {
-      URL = 'http://localhost:3000/normal-liver-gene';
-    } else if (location.pathname === breastCancerPage) {
-      URL = 'http://localhost:3000/normal-breast-gene';
-    } else if (location.pathname === thyroidCancerPage) {
-      URL = 'http://localhost:3000/normal-thyroid-gene';
-    } else if (location.pathname === colorectalCancerPage) {
-      URL = 'http://localhost:3000/normal-colorectal-gene';
-    } else {
-      URL = '';
-    }
     const response = await fetch(URL);
-
     const data = await response.json();
     return {
       data: data.filter((row: { gene_name: string }) =>
@@ -50,6 +49,7 @@ const NormalGenes = () => {
         return (
           <a
             href={`https://cancer.sanger.ac.uk/cosmic/gene/analysis?all_data=n&in=t&ln=${gene_name}&sn=liver&src=tissue&wgs=off`}
+            target='_blank'
           >
             {gene_name}
           </a>
@@ -71,6 +71,7 @@ const NormalGenes = () => {
     },
   ];
 
+
   return (
     <ProTable
       columns={columns}
@@ -81,16 +82,6 @@ const NormalGenes = () => {
           onSearch: (value) => setSearchTerm(value),
           onChange: (e) => setSearchTerm(e.target.value),
         },
-
-        // actions: [
-        //   <Button
-        //     key="key"
-        //     type="primary"
-        //   >
-        //     <SearchOutlined />
-        //     Tìm kiếm
-        //   </Button>,
-        // ],
         settings: [],
       }}
       rowKey="key"

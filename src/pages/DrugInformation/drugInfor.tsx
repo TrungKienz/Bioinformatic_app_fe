@@ -1,4 +1,5 @@
 import { ProColumns, ProTable } from '@ant-design/pro-components';
+import { Link } from '@umijs/max';
 import { AutoComplete, Button, Form, Input, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 
@@ -25,6 +26,10 @@ const NormalGenes = () => {
     );
     setFilteredData(filteredData);
   };
+
+  const handleID = (id: String) => {
+    console.log(id);
+  }
 
   const columns: ProColumns[] = [
     {
@@ -76,7 +81,9 @@ const NormalGenes = () => {
       dataIndex: 'articles',
       hideInSearch: true,
       align: 'center',
-      render: (articles: any) => articles.length,
+      render: ( articles: any,data) => (
+          <Link key="showDetail" style={{textDecoration: 'underline'}}  to={`/drug/${data._id}`}>{articles.length}</Link>
+      ),
     },
   ];
 
@@ -134,7 +141,7 @@ const NormalGenes = () => {
 
       <ProTable
         columns={columns}
-        dataSource={filteredData}
+        dataSource={filteredData.length?filteredData:data}
         toolbar={{
           title: 'Thông tin thuốc',
           settings: [],

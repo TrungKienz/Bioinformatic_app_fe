@@ -1,105 +1,101 @@
+import { placeOrder } from '@/services/swagger/store';
+import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { AutoComplete, Form, Input } from 'antd';
+import { Link } from '@umijs/max';
+import { Button, message, Modal, Space, Tag, Upload, UploadProps } from 'antd';
+import { useEffect, useState } from 'react';
 
-export type TableListItem = {
-  key: number;
-  name: string;
-  containers: string;
-  creator: string;
-};
-const tableListDataSource: TableListItem[] = [];
-
-const creators = [
-  'CHP2-UT08VIET-FFPE-S-69',
-  'CHP2-UT09THANG-FFPE-S-70',
-  'HCC1395_FD',
-  'HCC1395_FD1',
-  'HCC1395_FD1',
-];
-const containers = ['F317I', 'L248V', 'F359C', 'Q252H	', 'G250E'];
-for (let i = 0; i < 10; i += 1) {
-  tableListDataSource.push({
-    key: i,
-    name: 'Resistance',
-    containers: containers[Math.floor(Math.random() * creators.length)],
-    creator: creators[Math.floor(Math.random() * creators.length)],
-  });
-}
-
-const columns: ProColumns<TableListItem>[] = [
-  {
-    title: 'BIẾN ĐỔI',
-    dataIndex: 'containers',
-  },
-  {
-    title: 'ONCOGENIC',
-    dataIndex: 'name',
-    align: 'left',
-  },
-  {
-    title: 'MUTATION EFFECT',
-    dataIndex: 'creator',
-  },
-  {
-    title: 'DẪN CHỨNG',
-    width: 120,
-    valueType: 'option',
-    render: () => [<a key="link">Chi tiết</a>],
-  },
-];
-
-const renderItem = (title: string, count: number) => ({
-  value: title,
-  label: (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      {title}
-    </div>
-  ),
-});
-
-const options = [
-  {
-    label: 'Gene name',
-    options: [renderItem('AntDesign', 10000), renderItem('AntDesign UI', 10600)],
-  },
-];
 
 export default () => {
-  return (
-    <>
-      <Form.Item name="note" label="Tìm kiếm theo Gene: " rules={[{ required: true }]}>
-        <AutoComplete
-          popupClassName="certain-category-search-dropdown"
-          dropdownMatchSelectWidth={500}
-          style={{ width: 510 }}
-          options={options}
-        >
-          <Input.Search size="middle" placeholder="input here" />
-        </AutoComplete>
-      </Form.Item>
+  const [searchTerm, setSearchTerm] = useState('');
+  const [data, setData] = useState([]);
 
-      <ProTable<TableListItem>
-        columns={columns}
-        request={(params, sorter, filter) => {
-          console.log(params, sorter, filter);
-          return Promise.resolve({
-            data: tableListDataSource,
-            success: true,
-          });
-        }}
-        toolbar={{
-          title: 'Danh sách gene đột biến',
-          settings: [],
-        }}
-        rowKey="key"
-        search={false}
-      />
-    </>
+  let URL = 'http://localhost:3000/mutation';
+
+
+  const fetchData = async () => {
+    const response = await fetch(URL);
+    const data = await response.json();
+    const mutation = data.map((obj: any) => ({
+      id: obj._id,
+      gene_name: obj.variant.gene.hugoSymbol,
+      alteration_name: obj.variant.name,
+      oncogenic: obj.oncogenic,
+      mutation_effect: obj.mutationEffect,
+      articles: obj.variant.gene.geneAliases,
+    }));
+    setData(mutation);
+  };
+
+  console.log(data);
+
+  useEffect(() => {
+    fetchData().catch((error) => console.error(error));
+  }, []);
+
+  const columns: ProColumns[] = [
+    {
+      key: 'geneName',
+      title: 'Gene',
+      dataIndex: 'gene_name',
+      align: 'left',
+      filteredValue: [searchTerm], 
+      onFilter: (value, record) => {
+        return String(record.gene_name).toLowerCase().includes(String(value).toLowerCase());
+      }, 
+      width: '20%',
+    },
+    {
+      key: 'alterationName',
+      title: 'Đột biến',
+      dataIndex: 'alteration_name',
+      align: 'left',
+      width: '20%',
+    },
+    {
+      key: 'oncogenic',
+      title: 'Oncogenic',
+      dataIndex: 'oncogenic',
+      width: '20%',
+    },
+    {
+      key: 'mutationEffect',
+      title: 'Mutation Effect',
+      dataIndex: 'mutation_effect',
+      width: '20%',
+    },
+    {
+      title: 'DẪN CHỨNG',
+      dataIndex: 'articles',
+      hideInSearch: true,
+      align: 'center',
+      render: (articles: any) => (
+        <Link key="showDetail" style={{textDecoration: 'underline'}} to={'/'}>{articles.length}</Link>
+      ),
+      width: '20%',
+    },
+  ];
+  
+
+  return (
+    <ProTable
+      columns={columns}
+      dataSource={data}
+      toolbar={{
+        title: 'Danh sách gen đột biến',
+        search: {
+          onSearch: (value) => setSearchTerm(value),
+          onChange: (e) => setSearchTerm(e.target.value),
+          style: {width: '350px'},
+          placeholder: 'Nhập tên gene',
+          
+        },
+        settings: [],
+      }}
+      rowKey="key"
+      search={false}
+      pagination={{ pageSize: 10 }}
+    />
   );
 };
