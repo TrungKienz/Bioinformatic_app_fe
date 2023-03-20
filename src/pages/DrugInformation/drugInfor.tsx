@@ -1,6 +1,6 @@
 import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
-import { AutoComplete, Button, Form, Input, Tag } from 'antd';
+import { AutoComplete, Button, Col, Form, Input, Row, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 
 const NormalGenes = () => {
@@ -26,10 +26,6 @@ const NormalGenes = () => {
     );
     setFilteredData(filteredData);
   };
-
-  const handleID = (id: String) => {
-    console.log(id);
-  }
 
   const columns: ProColumns[] = [
     {
@@ -99,13 +95,12 @@ const NormalGenes = () => {
     };
   });
 
-  const uniqueDrugOptions = [...new Set(data.map((item) => item.drug))].map((drug) => {
-    const item = data.find((d) => d.drug === drug);
+  const uniqueDrugOptions = [...new Set(data.flatMap((item) => item.drug))].map((drug) => {
     return {
-      value: `${item.drug}`,
+      value: drug,
       label: (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <span>{item.drug}</span>
+          <span>{drug}</span>
         </div>
       ),
     };
@@ -123,21 +118,39 @@ const NormalGenes = () => {
 
   return (
     <>
-      <Form.Item name="note" label="Tìm kiếm theo Gene: " rules={[{ required: true }]}>
-        <AutoComplete
-          options={uniqueGeneOptions}
-          value={autoCompleteValue}
-          onSelect={handleAutoCompleteSelect}
-          onSearch={handleAutoCompleteSearch}
-          style={{ width: 200 }}
-        >
-          <Input allowClear placeholder="Search" />
-        </AutoComplete>
-
-        <Button type="primary" onClick={handleSearch}>
-          Search
-        </Button>
-      </Form.Item>
+      <Row>
+        <Col span={8}>
+          <Form.Item name="note" label="Tìm kiếm theo Gene:" >
+            <AutoComplete
+              options={uniqueGeneOptions}
+              value={autoCompleteValue}
+              onSelect={handleAutoCompleteSelect}
+              onSearch={handleAutoCompleteSearch}
+              style={{ width: 400 }}
+            >
+              <Input allowClear placeholder="Search" />
+            </AutoComplete>
+          </Form.Item>
+        </Col> 
+        <Col span={8}>
+          <Form.Item name="note" label="Tìm kiếm theo tên thuốc:">
+            <AutoComplete
+              options={uniqueDrugOptions}
+              value={autoCompleteValue}
+              onSelect={handleAutoCompleteSelect}
+              onSearch={handleAutoCompleteSearch}
+              style={{ width: 400 }}
+            >
+              <Input allowClear placeholder="Search" />
+            </AutoComplete>
+          </Form.Item>
+        </Col> 
+        <Col span={8}>
+            <Button type="primary" onClick={handleSearch}>
+              Search
+            </Button> 
+        </Col>
+      </Row>
 
       <ProTable
         columns={columns}

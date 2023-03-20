@@ -1,15 +1,15 @@
 import { placeOrder } from '@/services/swagger/store';
-import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { ContainerFilled, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
-import { Button, message, Modal, Space, Tag, Upload, UploadProps } from 'antd';
+import { Button, Descriptions, message, Modal, Row, Space, Tag, Upload, UploadProps } from 'antd';
 import { useEffect, useState } from 'react';
 
 
 export default () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [data, setData] = useState([]);
+  const [dataMutation, setDataMutation] = useState([]);
 
   let URL = 'http://localhost:3000/mutation';
 
@@ -17,7 +17,7 @@ export default () => {
   const fetchData = async () => {
     const response = await fetch(URL);
     const data = await response.json();
-    const mutation = data.map((obj: any) => ({
+    const mutationData = data.map((obj: any) => ({
       id: obj._id,
       gene_name: obj.variant.gene.hugoSymbol,
       alteration_name: obj.variant.name,
@@ -25,10 +25,10 @@ export default () => {
       mutation_effect: obj.mutationEffect,
       articles: obj.variant.gene.geneAliases,
     }));
-    setData(mutation);
+    setDataMutation(mutationData);
   };
 
-  console.log(data);
+  console.log(dataMutation);
 
   useEffect(() => {
     fetchData().catch((error) => console.error(error));
@@ -70,8 +70,8 @@ export default () => {
       dataIndex: 'articles',
       hideInSearch: true,
       align: 'center',
-      render: (articles: any) => (
-        <Link key="showDetail" style={{textDecoration: 'underline'}} to={'/'}>{articles.length}</Link>
+      render: (articles: any, dataMutation) => (
+        <Link key="showDetail" style={{textDecoration: 'underline'}} to={`/gene-and-mutation/${dataMutation.id}`}>{articles.length}</Link>
       ),
       width: '20%',
     },
@@ -79,23 +79,23 @@ export default () => {
   
 
   return (
-    <ProTable
-      columns={columns}
-      dataSource={data}
-      toolbar={{
-        title: 'Danh sách gen đột biến',
-        search: {
-          onSearch: (value) => setSearchTerm(value),
-          onChange: (e) => setSearchTerm(e.target.value),
-          style: {width: '350px'},
-          placeholder: 'Nhập tên gene',
-          
-        },
-        settings: [],
-      }}
-      rowKey="key"
-      search={false}
-      pagination={{ pageSize: 10 }}
-    />
+      <ProTable
+        columns={columns}
+        dataSource={dataMutation}
+        toolbar={{
+          title: 'Danh sách gen đột biến',
+          search: {
+            onSearch: (value) => setSearchTerm(value),
+            onChange: (e) => setSearchTerm(e.target.value),
+            style: {width: '350px'},
+            placeholder: 'Nhập tên gene',
+            
+          },
+          settings: [],
+        }}
+        rowKey="key"
+        search={false}
+        pagination={{ pageSize: 10 }}
+      />
   );
 };

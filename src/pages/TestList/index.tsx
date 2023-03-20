@@ -1,53 +1,64 @@
 import { ExclamationCircleOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, message, Modal, Space, Upload, UploadProps } from 'antd';
-import { useEffect, useState } from 'react';
+import { Button, message, Modal, Space, Upload, UploadFile, UploadProps } from 'antd';
+import { SetStateAction, useEffect, useState } from 'react';
 import { Link } from 'umi';
 
 const { confirm } = Modal;
 
-const props: UploadProps = {
-  name: 'file',
-  action: 'http://localhost:3000/test-case/add/',
-  accept: '.json,.txt',
-  headers: {
-    authorization: 'authorization-text',
-  },
-  beforeUpload(file) {
-    console.log({ file });
-    return false;
-  },
-  onChange(info) {
-    if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
+// const props: UploadProps = {
+//   name: 'file',
+//   action: 'http://localhost:3000/test-case/add',
+//   accept: '.json,.txt',
+//   headers: {
+//     authorization: 'authorization-text',
+//   },
+//   beforeUpload(file) {
+//     console.log({ file });
+//     return false;
+//   },
+//   onChange(info) {
+//     if (info.file.status !== 'uploading') {
+//       console.log(info.file, info.fileList);
+//     }
+//     if (info.file.status === 'done') {
+//       message.success(`${info.file.name} file uploaded successfully`);
+//     } else if (info.file.status === 'error') {
+//       message.error(`${info.file.name} file upload failed.`);
+//     }
+//   },
+// };
 
 export default () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
-  const [dataTest, setDataTest] = useState<Array<{
-    runID: any;
-    finishDate: any;
-    totalReads: any;
-    usableReads: any;
-    status: any;
-    totalBases: any;
-    modeLength: any;
-    meanLength: any;
-    ISPLoadingPic: any;
-    qualityPic: any;
-    lengthPic: any;
-  }>>([]);
+  const [fileList, setFileList] = useState<Array<UploadFile<any>>>([]);
 
+  const props = {
+    name: 'file',
+    accept: '.json',
+      action: 'http://localhost:3000/test-case/add',
+    headers: {
+      authorization: 'Bearer my-token',
+    },
+    beforeUpload(file) {
+      const reader = new FileReader();
+
+      reader.onload = e => {
+          console.log(e.target?.result);
+      };
+      reader.readAsText(file);
+      return false;
+    },
+    fileList,
+    
+    onChange(info: { file: any; fileList: SetStateAction<UploadFile<any>[]>; }) {
+      console.log(info.file, info.fileList);
+      setFileList(info.fileList);
+    },
+  };
 
   let URL = 'http://localhost:3000/test-case';
     
@@ -67,35 +78,42 @@ export default () => {
     fetchData().catch((error) => console.error(error));
   }, []);
 
-
-  const fetchDataTest = async (id: String) => {
-    const response = await fetch(`http://localhost:3000/test-case/find/${id}`);
-    const data = await response.json();
-    const testCase = [{
-      runID: data.run.runId,
-      finishDate: data.run.finishDate,
-      totalReads: data.run.totalReads,
-      usableReads: data.run.usableReads,
-      status: data.run.status,
-      totalBases: data.run.totalBases,
-      modeLength: data.run.modeLength,
-      meanLength: data.run.meanLength,
-      ISPLoadingPic: data.run.ISPLoadingPic,
-      qualityPic: data.run.qualityPic,
-      lengthPic: data.run.lengthPic,
-    }];
-    setDataTest(testCase);  
-    console.log(testCase);
-  };
-  
-
-
   const showModal = () => {
     setIsModalOpen(true);
   };
 
   const handleOk = () => {
-    handleCancel();
+    if (fileList.length === 0) {
+      message.error('Please select a file to upload');
+      return;
+    }
+
+    const formData = new FormData();
+    fileList.forEach(file => {
+      console.log('Appending file:', file);
+      formData.append('file', file.originFileObj as File);
+    });
+
+    fetch('http://localhost:3000/test-case/add', {
+      method: 'POST',
+      headers: {
+        authorization: 'Bearer my-token',
+      },
+      body: formData,
+    })
+    .then(response => {
+      if (response.ok) {
+        message.success('File uploaded successfully');
+        setFileList([]);
+      } else {
+        message.error('File upload failed');
+      }
+    })
+    .catch(error => {
+      console.error('Error uploading file:', error);
+      message.error('Error uploading file');
+    });
+    console.log(formData)
   };
 
   const handleCancel = () => {
@@ -172,7 +190,7 @@ export default () => {
       render: (text, data) => (
         <>
           <Space size={'large'}>
-            <Link key="showDetail" style={{textDecoration: 'underline'}} to={`/tests/${data.id}`} onClick={() => fetchDataTest(data.id)}>Chi tiết</Link>
+            <Link key="showDetail" style={{textDecoration: 'underline'}} to={`/tests/${data.id}`}>Chi tiết</Link>
             <a key="delete" style={{color: 'red', textDecoration: 'underline'}} onClick={() => handleDelete(data.id, data.runID)}>Xóa</a>
           </Space>  
         </>

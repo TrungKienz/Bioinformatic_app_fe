@@ -120,14 +120,20 @@ export default [
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
     path: '/gene-and-mutation',
     access: 'canAdmin',
-    component: './GeneAndMutationList',
+    component: './GeneAndMutation/geneAndMutation',
+  },
+  {
+    path: '/gene-and-mutation/:id',
+    access: 'canAdmin',
+    component: './GeneAndMutation/articles',
+    hideInMenu: true,
   },
   {
     name: 'Thông tin nhóm phát triển',
     icon: '',
     path: '',
     access: 'canAdmin',
-    component: './GeneAndMutationList',
+    component: './Welcome',
   },
   {
     path: '*',

@@ -27,30 +27,14 @@ const articles = () => {
   }>>([]);
 
   const currentLocation = location.pathname;
-  const id = currentLocation.replace('/drug/','');
+  const id = currentLocation.replace('/mutation/','');
 
   const fetchDataArticles = async (id: any) => {
-    const response = await fetch(`http://localhost:3000/drugs-information/find/${id}`);
+    const response = await fetch(`http://localhost:3000/mutation/find/${id}`);
     const data = await response.json();
-    const articles = data.articles.map((article: any) => {
+    const articles = data.mutationEffectPmids.map((article: any) => {
       return {
-        gene: data.gene,
-        cancerType: data.cancer_main_type,
-        level: data.level,
-        alteration: data.alteration,
-        drug: data.drug,
-        key: article.pmid,
-        title: article.title,
-        journal: article.journal,
-        pubDate: article.pubDate,
-        volume: article.volume,
-        issue: article.issue,
-        authors: article.authors,
-        elocationId: article.eloctionId,
-        reference: article.reference,
-        link: article.link || null,
-        abstract: article.abstract,
-        pages: article.pages,
+        
       };
     });
     setDataArticles(articles);  
@@ -59,7 +43,7 @@ const articles = () => {
   useEffect(() => {
     fetchDataArticles(id).catch((error) => console.error(error));
   }, []);
-
+  
   console.log(dataArticles);  
 
   const columns: ProColumns[] = [
@@ -135,9 +119,8 @@ const articles = () => {
       <Descriptions title="Thông tin cơ bản">
         <Descriptions.Item label="Gene">{dataArticles[0]?.gene}</Descriptions.Item>
         <Descriptions.Item label="Đột biến">{dataArticles[0]?.alteration}</Descriptions.Item>
-        <Descriptions.Item label="Loại ung thư">{dataArticles[0]?.cancerType}</Descriptions.Item>
-        <Descriptions.Item label="Thuốc">{dataArticles[0]?.drug}</Descriptions.Item>
-        <Descriptions.Item label="Level">{dataArticles[0]?.level}</Descriptions.Item>
+        <Descriptions.Item label="Oncogenic">{dataArticles[0]?.cancerType}</Descriptions.Item>
+        <Descriptions.Item label="Mutation Effect">{dataArticles[0]?.drug}</Descriptions.Item>
       </Descriptions>
 
       <ProTable
@@ -157,4 +140,3 @@ const articles = () => {
 };
 
 export default articles;
-
