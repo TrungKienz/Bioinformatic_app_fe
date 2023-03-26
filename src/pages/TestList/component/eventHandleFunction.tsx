@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { testCaseEp } from "@/pages/EndPoint";
 
 const showData = () => {
     const [data, setData] = useState([]);
 
-    let URL = 'http://localhost:3000/test-case';
+    let URL = testCaseEp;
   
   
     const fetchData = async () => {

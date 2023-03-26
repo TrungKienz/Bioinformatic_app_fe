@@ -21,7 +21,7 @@ const TestDetail = () => {
   const id = currentLocation.replace('/tests/','');
 
   const fetchDataTest = async (id: String) => {
-    const response = await fetch(`http://localhost:3000/test-case/find/${id}`);
+    const response = await fetch(`${server}/test-case/find/${id}`);
     const data = await response.json();
     const testCase = [{
       runID: data.run.runId,

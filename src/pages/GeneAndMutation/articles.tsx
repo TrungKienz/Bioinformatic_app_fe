@@ -2,27 +2,27 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Descriptions } from 'antd';
 import { useEffect, useState } from 'react';
+import { geneMutationArticlesEp } from '../EndPoint';
 
 
 const articles = () => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [dataArticles, setDataArticles] = useState<Array<{
-    gene: any,
-    cancerType: any,
-    level: any,
-    alteration: any,
-    drug: any,
-    key: any,
-    title: any,
-    journal: any,
-    pubDate: any,
-    volume: any,
-    issue: any,
-    authors: any,
-    elocationId: any,
-    reference: any,
-    link: any,
-    abstract: any,
+    gene: String,
+    cancerType: String,
+    level: String,
+    alteration: String,
+    drug: String,
+    key: String,
+    title: String,
+    journal: String,
+    pubDate: String,
+    volume: String,
+    issue: String,
+    authors: String,
+    elocationId: String,
+    reference: String,
+    link: String,
+    abstract: String,
     page: Number,
   }>>([]);
 
@@ -30,7 +30,7 @@ const articles = () => {
   const id = currentLocation.replace('/mutation/','');
 
   const fetchDataArticles = async (id: any) => {
-    const response = await fetch(`http://localhost:3000/mutation/find/${id}`);
+    const response = await fetch(`${geneMutationArticlesEp}/${id}`);
     const data = await response.json();
     const articles = data.mutationEffectPmids.map((article: any) => {
       return {

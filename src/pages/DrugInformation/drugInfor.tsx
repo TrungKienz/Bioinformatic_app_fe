@@ -2,6 +2,7 @@ import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
 import { AutoComplete, Button, Col, Form, Input, Row, Tag } from 'antd';
 import { useEffect, useState } from 'react';
+import { drugsInformationEp } from '../EndPoint';
 
 const NormalGenes = () => {
   const [data, setData] = useState([]);
@@ -11,7 +12,7 @@ const NormalGenes = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:3000/drugs-information');
+      const response = await fetch(drugsInformationEp);
       const json = await response.json();
       setData(json);
     };

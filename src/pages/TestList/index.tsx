@@ -4,12 +4,14 @@ import { ProTable } from '@ant-design/pro-components';
 import { Button, message, Modal, Space, Upload, UploadFile, UploadProps } from 'antd';
 import { SetStateAction, useEffect, useState } from 'react';
 import { Link } from 'umi';
+import { server } from '../Api';
+import { testCaseEp, addTestCaseEp } from '../EndPoint';
 
 const { confirm } = Modal;
 
 // const props: UploadProps = {
 //   name: 'file',
-//   action: 'http://localhost:3000/test-case/add',
+//   action: `${server}/test-case/add`,
 //   accept: '.json,.txt',
 //   headers: {
 //     authorization: 'authorization-text',
@@ -39,7 +41,7 @@ export default () => {
   const props = {
     name: 'file',
     accept: '.json',
-      action: 'http://localhost:3000/test-case/add',
+      action: addTestCaseEp,
     headers: {
       authorization: 'Bearer my-token',
     },
@@ -59,11 +61,9 @@ export default () => {
       setFileList(info.fileList);
     },
   };
-
-  let URL = 'http://localhost:3000/test-case';
     
   const fetchData = async () => {
-    const response = await fetch(URL);
+    const response = await fetch(testCaseEp);
     const data = await response.json();
     const testCase = data.map((obj: any) => ({
       id: obj._id,
@@ -94,7 +94,7 @@ export default () => {
       formData.append('file', file.originFileObj as File);
     });
 
-    fetch('http://localhost:3000/test-case/add', {
+    fetch(`${server}/test-case/add`, {
       method: 'POST',
       headers: {
         authorization: 'Bearer my-token',
@@ -128,7 +128,7 @@ export default () => {
       okText: 'Xóa',
       okType: 'danger',
       onOk() {
-        fetch(`http://localhost:3000/test-case/delete/${id}`, {
+        fetch(`${server}/test-case/delete/${id}`, {
           method: 'DELETE',
         })
           .then((response) => {

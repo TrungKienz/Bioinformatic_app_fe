@@ -1,6 +1,7 @@
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useState } from 'react';
+import { server } from '@/pages/Api';
 
 const lungCancerPage = '/cancer/lung-cancer';
 const liverCancerPage = '/cancer/liver-cancer';
@@ -13,15 +14,15 @@ const NormalGenes = () => {
   let URL = '';
 
   if (location.pathname === lungCancerPage) {
-    URL = 'http://localhost:3000/normal-lung-gene';
+    URL = `${server}/normal-lung-gene`;
   } else if (location.pathname === liverCancerPage) {
-    URL = 'http://localhost:3000/normal-liver-gene';
+    URL = `${server}/normal-liver-gene`;
   } else if (location.pathname === breastCancerPage) {
-    URL = 'http://localhost:3000/normal-breast-gene';
+    URL = `${server}/normal-breast-gene`;
   } else if (location.pathname === thyroidCancerPage) {
-    URL = 'http://localhost:3000/normal-thyroid-gene';
+    URL = `${server}/normal-thyroid-gene`;
   } else if (location.pathname === colorectalCancerPage) {
-    URL = 'http://localhost:3000/normal-colorectal-gene';
+    URL = `${server}/normal-colorectal-gene`;
   } else {
     URL = '';
   }

@@ -1,8 +1,8 @@
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
-import { indexOf } from 'lodash';
 import { useEffect, useState } from 'react';
+import { server } from '@/pages/Api';
 
 const PatientList = () => {
     const [dataPatient, setDataPatient] = useState<Array<{
@@ -14,7 +14,7 @@ const PatientList = () => {
       const id = currentLocation.replace('/tests/','');
     
       const fetchDataTest = async (id: String) => {
-        const response = await fetch(`http://localhost:3000/test-case/find/${id}`);
+        const response = await fetch(`${server}/test-case/find/${id}`);
         const data = await response.json();
         const patientInformation = [{
           patient: data.patients,

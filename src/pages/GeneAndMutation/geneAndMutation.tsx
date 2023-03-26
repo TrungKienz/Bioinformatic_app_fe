@@ -1,21 +1,16 @@
-import { placeOrder } from '@/services/swagger/store';
-import { ContainerFilled, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
-import { Button, Descriptions, message, Modal, Row, Space, Tag, Upload, UploadProps } from 'antd';
 import { useEffect, useState } from 'react';
+import { geneAndMutationEp } from '../EndPoint';
 
 
 export default () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [dataMutation, setDataMutation] = useState([]);
 
-  let URL = 'http://localhost:3000/mutation';
-
-
   const fetchData = async () => {
-    const response = await fetch(URL);
+    const response = await fetch(geneAndMutationEp);
     const data = await response.json();
     const mutationData = data.map((obj: any) => ({
       id: obj._id,

@@ -2,10 +2,9 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Descriptions } from 'antd';
 import { useEffect, useState } from 'react';
-
+import { drugArticlesEp } from '../EndPoint';
 
 const articles = () => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [dataArticles, setDataArticles] = useState<Array<{
     gene: any,
     cancerType: any,
@@ -30,7 +29,7 @@ const articles = () => {
   const id = currentLocation.replace('/drug/','');
 
   const fetchDataArticles = async (id: any) => {
-    const response = await fetch(`http://localhost:3000/drugs-information/find/${id}`);
+    const response = await fetch(`${drugArticlesEp}/${id}`);
     const data = await response.json();
     const articles = data.articles.map((article: any) => {
       return {
