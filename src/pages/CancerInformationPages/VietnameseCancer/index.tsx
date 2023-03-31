@@ -1,35 +1,35 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { Menu, MenuProps } from 'antd';
 import React, { useState } from 'react';
-import NoFoundPage from './404';
-import MutanGene from './CancerInformationPages/MutanGene';
-import NormalGene from './CancerInformationPages/NormalGene';
-import TopGene from './CancerInformationPages/TopGene';
+import NoFoundPage from '../../404';
+import PatientsList from './components/patientsList';
+import Statistical from './components/statistical';
+import AddInformation from './components/addInformation';
 
 const items: MenuProps['items'] = [
   {
-    label: 'Top 20 gene',
-    key: 'topGene',
+    label: 'Thống kê ',
+    key: 'statistical',
   },
   {
-    label: 'Gen đột biến',
-    key: 'mutatedGenes',
+    label: 'Thêm thông tin',
+    key: 'addInformation',
   },
   {
-    label: 'Gen không đột biến',
-    key: 'normalGenes',
+    label: 'Danh sách bệnh nhân',
+    key: 'patientsList',
   },
 ];
 
-const CancerInformation: React.FC = () => {
-  const [current, setCurrent] = useState('topGene');
+const VietnameseCancer: React.FC = () => {
+  const [current, setCurrent] = useState('statistical');
 
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('click ', e);
     setCurrent(e.key);
   };
 
-  if (current === 'topGene') {
+  if (current === 'statistical') {
     return (
       <PageContainer>
         <Menu
@@ -39,10 +39,10 @@ const CancerInformation: React.FC = () => {
           mode="horizontal"
           items={items}
         />
-        <TopGene />
+        <Statistical/>
       </PageContainer>
     );
-  } else if (current === 'mutatedGenes') {
+  } else if (current === 'addInformation') {
     return (
       <PageContainer>
         <Menu
@@ -52,10 +52,10 @@ const CancerInformation: React.FC = () => {
           mode="horizontal"
           items={items}
         />
-        <MutanGene />
+        <AddInformation/>
       </PageContainer>
     );
-  } else if (current === 'normalGenes') {
+  } else if (current === 'patientsList') {
     return (
       <PageContainer>
         <Menu
@@ -65,7 +65,7 @@ const CancerInformation: React.FC = () => {
           mode="horizontal"
           items={items}
         />
-        <NormalGene />
+        <PatientsList/>
       </PageContainer>
     );
   } else {
@@ -73,4 +73,4 @@ const CancerInformation: React.FC = () => {
   }
 };
 
-export default CancerInformation;
+export default VietnameseCancer;

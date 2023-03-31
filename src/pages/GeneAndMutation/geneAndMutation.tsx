@@ -8,26 +8,32 @@ import { geneAndMutationEp } from '../EndPoint';
 export default () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [dataMutation, setDataMutation] = useState([]);
-
-  const fetchData = async () => {
-    const response = await fetch(geneAndMutationEp);
-    const data = await response.json();
-    const mutationData = data.map((obj: any) => ({
-      id: obj._id,
-      gene_name: obj.variant.gene.hugoSymbol,
-      alteration_name: obj.variant.name,
-      oncogenic: obj.oncogenic,
-      mutation_effect: obj.mutationEffect,
-      articles: obj.variant.gene.geneAliases,
-    }));
-    setDataMutation(mutationData);
-  };
-
-  console.log(dataMutation);
+  const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
+  const [ totalPages, setTotalPages ] = useState(1);
 
   useEffect(() => {
-    fetchData().catch((error) => console.error(error));
-  }, []);
+    fetch(`${geneAndMutationEp}?page=${pagination.current}&limit=${pagination.pageSize}`)
+      .then(response => response.json())
+      .then(data => {
+        const mutationData = data.mutationModels.map((obj: any) => ({
+          id: obj._id,
+          gene_name: obj.variant.gene.hugoSymbol,
+          alteration_name: obj.variant.name,
+          oncogenic: obj.oncogenic,
+          mutation_effect: obj.mutationEffect,
+          articles: obj.variant.gene.geneAliases,
+        }));
+        setDataMutation(mutationData);
+        setTotalPages(data.totalPages)
+      })
+      .catch(error => console.log(error));
+  }, [pagination.current, pagination.pageSize]);
+  
+
+  const handleTableChange = (pagination: any) => {
+    setPagination(pagination);
+  };
+  console.log(dataMutation);
 
   const columns: ProColumns[] = [
     {
@@ -90,7 +96,9 @@ export default () => {
         }}
         rowKey="key"
         search={false}
-        pagination={{ pageSize: 10 }}
+        dateFormatter="string"
+        pagination={{total: totalPages, pageSize: 10}}
+        onChange={handleTableChange}
       />
   );
 };

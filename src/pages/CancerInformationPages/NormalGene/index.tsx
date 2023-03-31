@@ -1,6 +1,6 @@
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { server } from '@/pages/Api';
 
 const lungCancerPage = '/cancer/lung-cancer';
@@ -11,6 +11,10 @@ const colorectalCancerPage = '/cancer/colorectal-cancer';
 
 const NormalGenes = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [data, setData] = useState([]);
+  const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
+  const [ totalPages, setTotalPages ] = useState(1);
+
   let URL = '';
 
   if (location.pathname === lungCancerPage) {
@@ -27,16 +31,29 @@ const NormalGenes = () => {
     URL = '';
   }
 
-  const fetchData = async (params: any, sort: any, filter: any) => {
-    const response = await fetch(URL);
-    const data = await response.json();
-    return {
-      data: data.filter((row: { gene_name: string }) =>
-        row.gene_name.toLowerCase().includes(searchTerm.toLowerCase()),
-      ),
-    };
-  };
+  useEffect(() => {
+    fetch(`${URL}?page=${pagination.current}&limit=${pagination.pageSize}`)
+      .then(response => response.json())
+      .then(data => {
+        setTotalPages(data.totalPages);
+        if (location.pathname === lungCancerPage) {
+          setData(data.normalLungGeneModels);
+        } else if (location.pathname === liverCancerPage) {
+          setData(data.normalLiverGeneModels);
+        } else if (location.pathname === breastCancerPage) {
+          setData(data.normalBreastGeneModels);
+        } else if (location.pathname === thyroidCancerPage) {
+          setData(data.normalThyroidGeneModels);
+        } else if (location.pathname === colorectalCancerPage) {
+          setData(data.normalColorectalGeneModels);
+        }
+      });
+  }, [pagination.current, pagination.pageSize]);
 
+  const handleTableChange = (pagination: any) => {
+    setPagination(pagination);
+  };
+   console.log(data)
   const columns: ProColumns[] = [
     {
       title: 'TÊN GEN',
@@ -76,7 +93,7 @@ const NormalGenes = () => {
   return (
     <ProTable
       columns={columns}
-      request={fetchData}
+      dataSource={data}
       toolbar={{
         title: 'Gen không đột biến',
         search: {
@@ -87,7 +104,9 @@ const NormalGenes = () => {
       }}
       rowKey="key"
       search={false}
-      pagination={{ pageSize: 10 }}
+      dateFormatter="string"
+      pagination={{total: totalPages, pageSize: 10}}
+      onChange={handleTableChange}
     />
   );
 };

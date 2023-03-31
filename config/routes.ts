@@ -67,6 +67,11 @@ export default [
         name: 'Ung thư trực tràng',
         component: './CancerInformation',
       },
+      {
+        path: '/cancer/vietnamese-cancer',
+        name: 'Thống kê tại Việt Nam',
+        component: './CancerInformationPages/VietnameseCancer',
+      },
     ],
   },
   {

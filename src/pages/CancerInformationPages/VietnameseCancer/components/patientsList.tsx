@@ -2,34 +2,12 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useState } from 'react';
 import { server } from '@/pages/Api';
-import { mutationLungGeneEp, mutationLiverGeneEp, mutationBreastGeneEp, mutationThyroidGeneEp, mutationColorectalEp } from '@/pages/EndPoint';
 
-const lungCancerPage = '/cancer/lung-cancer';
-const liverCancerPage = '/cancer/liver-cancer';
-const breastCancerPage = '/cancer/breast-cancer';
-const thyroidCancerPage = '/cancer/thyroid-cancer';
-const colorectalCancerPage = '/cancer/colorectal-cancer';
+const PatientsList = () => {
 
-const MutanGene = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  let URL = '';
-
-  if (location.pathname === lungCancerPage) {
-    URL = mutationLungGeneEp;
-  } else if (location.pathname === liverCancerPage) {
-    URL = mutationLiverGeneEp;
-  } else if (location.pathname === breastCancerPage) {
-    URL = mutationBreastGeneEp;
-  } else if (location.pathname === thyroidCancerPage) {
-    URL = mutationThyroidGeneEp;
-  } else if (location.pathname === colorectalCancerPage) {
-    URL = mutationColorectalEp;
-  } else {
-    URL = '';
-  }
-  
   const fetchData = async (params: any, sort: any, filter: any) => {
-    const response = await fetch(URL);
+    const response = await fetch(server);
     const data = await response.json();
     return {
       data: data.filter((row: { gene_name: string }) =>
@@ -40,7 +18,7 @@ const MutanGene = () => {
 
   const columns: ProColumns[] = [
     {
-      title: 'TÊN GEN',
+      title: 'Căn cước công dân',
       dataIndex: 'gene_name',
       filteredValue: [searchTerm],
       onFilter: (value, record) => {
@@ -51,7 +29,7 @@ const MutanGene = () => {
         return (
           <a
             href={`https://cancer.sanger.ac.uk/cosmic/gene/analysis?all_data=n&in=t&ln=${gene_name}&sn=liver&src=tissue&wgs=off`}
-            target= '_blank'
+            target='_blank'
           >
             {gene_name}
           </a>
@@ -59,38 +37,66 @@ const MutanGene = () => {
       },
     },
     {
-      title: 'TRƯỜNG HỢP MANG ĐỘT BIẾN',
-      dataIndex: 'mutated_samples',
-      sorter: (a, b) => a.mutated_samples - b.mutated_samples,
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'TỔNG SỐ MẪU',
+      title: 'Giới tính',
       dataIndex: 'samples_tested',
-      sorter: (a, b) => a.samples_tested - b.samples_tested,
       hideInSearch: true,
       align: 'center',
     },
     {
-      title: 'TỶ LỆ TRƯỜNG HỢP MANG ĐỘT BIẾN',
-      render: (_, row) => ((row.mutated_samples / row.samples_tested) * 100).toFixed(2) + '%',
+      title: 'Năm sinh',
+      dataIndex: '',
+      hideInSearch: true,
+      align: 'center',
+    },
+    {
+      title: 'Tuổi phát hiện bệnh',
+      dataIndex: '',
+      hideInSearch: true,
+      align: 'center',
+    },
+    {
+      title: 'Vị trí ung thư',
+      dataIndex: '',
+      hideInSearch: true,
+      align: 'center',
+    },
+    {
+      title: 'Tỉnh',
+      dataIndex: '',
+      hideInSearch: true,
+      align: 'center',
+    },
+    {
+      title: 'Huyện/Thành phố',
+      dataIndex: '',
+      hideInSearch: true,
+      align: 'center',
+    },
+    {
+      title: 'Năm tử vong',
+      dataIndex: '',
+      hideInSearch: true,
+      align: 'center',
+    },
+    {
+      title: 'Thời gian sống',
+      dataIndex: '',
       hideInSearch: true,
       align: 'center',
     },
   ];
+
 
   return (
     <ProTable
       columns={columns}
       request={fetchData}
       toolbar={{
-        title: 'Gen đột biến',
+        title: 'Gen không đột biến',
         search: {
           onSearch: (value) => setSearchTerm(value),
           onChange: (e) => setSearchTerm(e.target.value),
         },
-
         settings: [],
       }}
       rowKey="key"
@@ -100,4 +106,4 @@ const MutanGene = () => {
   );
 };
 
-export default MutanGene;
+export default PatientsList;

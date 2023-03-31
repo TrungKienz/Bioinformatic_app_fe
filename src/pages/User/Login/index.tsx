@@ -8,6 +8,8 @@ import { Alert, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
 import Settings from '../../../../config/defaultSettings';
+import axios from 'axios';
+import { loginEp } from '@/pages/EndPoint';
 
 const Lang = () => {
   const langClassName = useEmotionCss(({ token }) => {
@@ -76,6 +78,7 @@ const Login: React.FC = () => {
       });
     }
   };
+
 
   const userInfo = {
       name: 'Doctor',
@@ -164,6 +167,7 @@ const Login: React.FC = () => {
       console.log(error);
       message.error(defaultLoginFailureMessage);
     }
+    
   };
   const { status, type: loginType } = userLoginState;
 

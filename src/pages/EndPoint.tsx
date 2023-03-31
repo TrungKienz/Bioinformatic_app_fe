@@ -20,3 +20,5 @@ export const drugArticlesEp = `${server}/drugs-information/find`;
 
 export const geneAndMutationEp = `${server}/mutation`;
 export const geneMutationArticlesEp = `${server}/mutation/find`;
+
+export const loginEp = `${server}/user/login`

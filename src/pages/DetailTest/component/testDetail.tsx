@@ -1,6 +1,6 @@
 import { Col, Descriptions, Image, Row } from "antd";
 import { useEffect, useState } from "react";
-
+import { server } from "@/pages/Api";
 
 const TestDetail = () => {
   const [dataTest, setDataTest] = useState<Array<{

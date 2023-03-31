@@ -1,41 +1,18 @@
 import { Column } from '@ant-design/charts';
 import { useEffect, useState } from 'react';
-import { mutationLungGeneEp, mutationLiverGeneEp, mutationBreastGeneEp, mutationThyroidGeneEp, mutationColorectalEp } from '@/pages/EndPoint';
+import { mutationColorectalEp } from '@/pages/EndPoint';
 
-const lungCancerPage = '/cancer/lung-cancer';
-const liverCancerPage = '/cancer/liver-cancer';
-const breastCancerPage = '/cancer/breast-cancer';
-const thyroidCancerPage = '/cancer/thyroid-cancer';
-const colorectalCancerPage = '/cancer/colorectal-cancer';
-  
 interface DataObject {
   gene_name: string;
   value: number;
   type: string;
 }
 
-const TopGene = () => {
+const Statistical = () => {
   const [dataTopGene, setDataTopGene] = useState<DataObject[]>([]);
-
-  let URL = '';
-
-  if (location.pathname === lungCancerPage) {
-    URL = mutationLungGeneEp;
-  } else if (location.pathname === liverCancerPage) {
-    URL = mutationLiverGeneEp;
-  } else if (location.pathname === breastCancerPage) {
-    URL = mutationBreastGeneEp;
-  } else if (location.pathname === thyroidCancerPage) {
-    URL = mutationThyroidGeneEp;
-  } else if (location.pathname === colorectalCancerPage) {
-    URL = mutationColorectalEp;
-  } else {
-    URL = '';
-  }
-  
   const asyncFetch = async () => {
     try {
-      const response = await fetch(URL);
+      const response = await fetch(mutationColorectalEp);
       const data = await response.json();
       const top20MutatedSamples = data
         .sort((a: any, b: any) => b.mutated_samples - a.mutated_samples)
@@ -93,4 +70,4 @@ const TopGene = () => {
   return <Column {...config} />;
 };
 
-export default TopGene;
+export default Statistical;
