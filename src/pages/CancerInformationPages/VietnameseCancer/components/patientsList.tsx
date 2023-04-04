@@ -92,7 +92,7 @@ const PatientsList = () => {
       columns={columns}
       request={fetchData}
       toolbar={{
-        title: 'Gen không đột biến',
+        title: 'Thông tin bệnh nhân',
         search: {
           onSearch: (value) => setSearchTerm(value),
           onChange: (e) => setSearchTerm(e.target.value),

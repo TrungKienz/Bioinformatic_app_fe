@@ -1,6 +1,6 @@
 import { Column } from '@ant-design/charts';
 import { useEffect, useState } from 'react';
-import { mutationColorectalEp } from '@/pages/EndPoint';
+import { mutationColorectalGeneEp } from '@/pages/EndPoint';
 
 interface DataObject {
   gene_name: string;
@@ -12,7 +12,7 @@ const Statistical = () => {
   const [dataTopGene, setDataTopGene] = useState<DataObject[]>([]);
   const asyncFetch = async () => {
     try {
-      const response = await fetch(mutationColorectalEp);
+      const response = await fetch(mutationColorectalGeneEp);
       const data = await response.json();
       const top20MutatedSamples = data
         .sort((a: any, b: any) => b.mutated_samples - a.mutated_samples)

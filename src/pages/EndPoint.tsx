@@ -4,7 +4,13 @@ export const mutationLungGeneEp = `${server}/mutation-lung-gene`;
 export const mutationLiverGeneEp = `${server}/mutation-liver-gene`;
 export const mutationBreastGeneEp = `${server}/mutation-breast-gene`;
 export const mutationThyroidGeneEp = `${server}/mutation-thyroid-gene`;
-export const mutationColorectalEp = `${server}/mutation-colorectal-gene`;
+export const mutationColorectalGeneEp = `${server}/mutation-colorectal-gene`;
+
+export const mutationLung20GeneEp = `${server}/mutation-lung-gene/top20`;
+export const mutationLiver20GeneEp = `${server}/mutation-liver-gene/top20`;
+export const mutationBreast20GeneEp = `${server}/mutation-breast-gene/top20`;
+export const mutationThyroid20GeneEp = `${server}/mutation-thyroid-gene/top20`;
+export const mutationColorectal20GeneEp = `${server}/mutation-colorectal-gene/top20`;
 
 export const nomalLungGeneEp = `${server}/nomal-lung-gene`;
 export const nomalLiverGeneEp = `${server}/nomal-liver-gene`;

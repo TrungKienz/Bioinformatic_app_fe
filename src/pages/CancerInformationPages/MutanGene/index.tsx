@@ -1,7 +1,7 @@
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useEffect, useState } from 'react';
-import { mutationLungGeneEp, mutationLiverGeneEp, mutationBreastGeneEp, mutationThyroidGeneEp, mutationColorectalEp } from '@/pages/EndPoint';
+import { mutationLungGeneEp, mutationLiverGeneEp, mutationBreastGeneEp, mutationThyroidGeneEp, mutationColorectalGeneEp } from '@/pages/EndPoint';
 import { currentUser } from '@/services/ant-design-pro/api';
 
 const lungCancerPage = '/cancer/lung-cancer';
@@ -27,7 +27,7 @@ const MutanGene = () => {
   } else if (location.pathname === thyroidCancerPage) {
     URL = mutationThyroidGeneEp;
   } else if (location.pathname === colorectalCancerPage) {
-    URL = mutationColorectalEp;
+    URL = mutationColorectalGeneEp;
   } else {
     URL = '';
   }

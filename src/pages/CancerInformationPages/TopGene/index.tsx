@@ -1,6 +1,6 @@
 import { Column } from '@ant-design/charts';
 import { useEffect, useState } from 'react';
-import { mutationLungGeneEp, mutationLiverGeneEp, mutationBreastGeneEp, mutationThyroidGeneEp, mutationColorectalEp } from '@/pages/EndPoint';
+import { mutationLung20GeneEp, mutationLiver20GeneEp, mutationBreast20GeneEp, mutationThyroid20GeneEp, mutationColorectal20GeneEp } from '@/pages/EndPoint';
 
 const lungCancerPage = '/cancer/lung-cancer';
 const liverCancerPage = '/cancer/liver-cancer';
@@ -20,15 +20,15 @@ const TopGene = () => {
   let URL = '';
 
   if (location.pathname === lungCancerPage) {
-    URL = mutationLungGeneEp;
+    URL = mutationLung20GeneEp;
   } else if (location.pathname === liverCancerPage) {
-    URL = mutationLiverGeneEp;
+    URL = mutationLiver20GeneEp;
   } else if (location.pathname === breastCancerPage) {
-    URL = mutationBreastGeneEp;
+    URL = mutationBreast20GeneEp;
   } else if (location.pathname === thyroidCancerPage) {
-    URL = mutationThyroidGeneEp;
+    URL = mutationThyroid20GeneEp;
   } else if (location.pathname === colorectalCancerPage) {
-    URL = mutationColorectalEp;
+    URL = mutationColorectal20GeneEp;
   } else {
     URL = '';
   }
