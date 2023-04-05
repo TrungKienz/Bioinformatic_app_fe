@@ -1,46 +1,20 @@
-import { ExclamationCircleOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { ExclamationCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, message, Modal, Space, Upload, UploadFile, UploadProps } from 'antd';
-import { SetStateAction, useEffect, useState } from 'react';
+import { Button, message, Modal, Space } from 'antd';
+import { useEffect, useState } from 'react';
 import { Link } from 'umi';
 import { server } from '../Api';
 import { testCaseEp, addTestCaseEp } from '../EndPoint';
+import UploadTestCase from './component/uploadTestCase';
 
 const { confirm } = Modal;
 
 export default () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [ totalPages, setTotalPages ] = useState(1);
-  const [fileList, setFileList] = useState<Array<UploadFile<any>>>([]);
-
-  const props = {
-    name: 'file',
-    accept: '.json',
-      action: addTestCaseEp,
-    headers: {
-      authorization: 'Bearer my-token',
-    },
-    beforeUpload(file) {
-      const reader = new FileReader();
-
-      reader.onload = e => {
-          console.log(e.target?.result);
-      };
-      reader.readAsText(file);
-      return false;
-    },
-    fileList,
-    
-    onChange(info: { file: any; fileList: SetStateAction<UploadFile<any>[]>; }) {
-      console.log(info.file, info.fileList);
-      setFileList(info.fileList);
-    },
-  };
-    
 
   useEffect(() => {
     fetch(`${testCaseEp}?page=${pagination.current}&limit=${pagination.pageSize}`)
@@ -59,48 +33,6 @@ export default () => {
 
   const handleTableChange = (pagination: any) => {
     setPagination(pagination);
-  };
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    if (fileList.length === 0) {
-      message.error('Please select a file to upload');
-      return;
-    }
-
-    const formData = new FormData();
-    fileList.forEach(file => {
-      console.log('Appending file:', file);
-      formData.append('file', file.originFileObj as File);
-    });
-
-    fetch(`${server}/test-case/add`, {
-      method: 'POST',
-      headers: {
-        authorization: 'Bearer my-token',
-      },
-      body: formData,
-    })
-    .then(response => {
-      if (response.ok) {
-        message.success('File uploaded successfully');
-        setFileList([]);
-      } else {
-        message.error('File upload failed');
-      }
-    })
-    .catch(error => {
-      console.error('Error uploading file:', error);
-      message.error('Error uploading file');
-    });
-    console.log(formData)
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
   };
 
   const handleDelete = (id: String, runID: String) => {
@@ -194,22 +126,7 @@ export default () => {
           style: {width: '350px'},
         },
         actions: [
-          <Button key="key" type="primary" onClick={showModal}>
-            <PlusOutlined />
-            Thêm xét nghiệm mới
-          </Button>,
-          <Modal
-            title="Thêm thông tin xét nghiệm"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
-            <Upload {...props}>
-              <Button key="key" icon={<UploadOutlined />}>
-                Chọn file
-              </Button>
-            </Upload>
-          </Modal>,
+          <UploadTestCase/>
         ],
         settings: [],
       }}

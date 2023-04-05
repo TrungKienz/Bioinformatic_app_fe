@@ -2,10 +2,70 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useState } from 'react';
 import { server } from '@/pages/Api';
+import { Button, Modal } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import AddInformation from './addInformation';
+import FileUpload from './uploadExcelFile';
+
+const columns: ProColumns[] = [
+  {
+    title: 'Căn cước công dân',
+    dataIndex: 'gene_name',
+  },
+  {
+    title: 'Giới tính',
+    dataIndex: 'samples_tested',
+    hideInSearch: true,
+    align: 'center',
+  },
+  {
+    title: 'Năm sinh',
+    dataIndex: '',
+    hideInSearch: true,
+    align: 'center',
+  },
+  {
+    title: 'Tuổi phát hiện bệnh',
+    dataIndex: '',
+    hideInSearch: true,
+    align: 'center',
+  },
+  {
+    title: 'Vị trí ung thư',
+    dataIndex: '',
+    hideInSearch: true,
+    align: 'center',
+  },
+  {
+    title: 'Tỉnh',
+    dataIndex: '',
+    hideInSearch: true,
+    align: 'center',
+  },
+  {
+    title: 'Huyện/Thành phố',
+    dataIndex: '',
+    hideInSearch: true,
+    align: 'center',
+  },
+  {
+    title: 'Năm tử vong',
+    dataIndex: '',
+    hideInSearch: true,
+    align: 'center',
+  },
+  {
+    title: 'Thời gian sống',
+    dataIndex: '',
+    hideInSearch: true,
+    align: 'center',
+  },
+];
 
 const PatientsList = () => {
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  
   const fetchData = async (params: any, sort: any, filter: any) => {
     const response = await fetch(server);
     const data = await response.json();
@@ -16,76 +76,15 @@ const PatientsList = () => {
     };
   };
 
-  const columns: ProColumns[] = [
-    {
-      title: 'Căn cước công dân',
-      dataIndex: 'gene_name',
-      filteredValue: [searchTerm],
-      onFilter: (value, record) => {
-        return String(record.gene_name).toLowerCase().includes(String(value).toLowerCase());
-      },
-      render: (_, record) => {
-        const gene_name = record.gene_name;
-        return (
-          <a
-            href={`https://cancer.sanger.ac.uk/cosmic/gene/analysis?all_data=n&in=t&ln=${gene_name}&sn=liver&src=tissue&wgs=off`}
-            target='_blank'
-          >
-            {gene_name}
-          </a>
-        );
-      },
-    },
-    {
-      title: 'Giới tính',
-      dataIndex: 'samples_tested',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Năm sinh',
-      dataIndex: '',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Tuổi phát hiện bệnh',
-      dataIndex: '',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Vị trí ung thư',
-      dataIndex: '',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Tỉnh',
-      dataIndex: '',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Huyện/Thành phố',
-      dataIndex: '',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Năm tử vong',
-      dataIndex: '',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Thời gian sống',
-      dataIndex: '',
-      hideInSearch: true,
-      align: 'center',
-    },
-  ];
-
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <ProTable
@@ -97,6 +96,23 @@ const PatientsList = () => {
           onSearch: (value) => setSearchTerm(value),
           onChange: (e) => setSearchTerm(e.target.value),
         },
+        actions: [
+          <FileUpload/>,
+          
+          <Button key="key" type="primary" onClick={showModal}>
+            <PlusOutlined />
+            Thêm xét nghiệm mới
+          </Button>,
+
+          <Modal
+            title="Thêm thông tin xét nghiệm"
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <AddInformation/>
+          </Modal>
+        ],
         settings: [],
       }}
       rowKey="key"

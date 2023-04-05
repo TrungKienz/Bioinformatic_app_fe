@@ -140,7 +140,7 @@ const Welcome: React.FC = () => {
           >
             <InfoCard
               index={1}
-              href="http://localhost:8000/drug/find-drug"
+              href="/drug"
               title="Tìm kiếm"
               desc="Tìm kiếm, tra cứu các thông tin về thuốc, các loại bệnh ung thư, gen và đột biến liên quan"
             />

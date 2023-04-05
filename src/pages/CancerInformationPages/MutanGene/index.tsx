@@ -60,9 +60,9 @@ const MutanGene = () => {
       title: 'TÊN GEN',
       dataIndex: 'gene_name',
       filteredValue: [searchTerm],
-      // onFilter: (value, record) => {
-      //   return String(record.gene_name).toLowerCase().includes(String(value).toLowerCase());
-      // },
+      onFilter: (value, record) => {
+        return String(record.gene_name).toLowerCase().includes(String(value).toLowerCase());
+      },
       render: (_, record) => {
         const gene_name = record.gene_name;
         return (

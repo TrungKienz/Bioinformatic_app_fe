@@ -12,10 +12,6 @@ const items: MenuProps['items'] = [
     key: 'statistical',
   },
   {
-    label: 'Thêm thông tin',
-    key: 'addInformation',
-  },
-  {
     label: 'Danh sách bệnh nhân',
     key: 'patientsList',
   },
@@ -40,19 +36,6 @@ const VietnameseCancer: React.FC = () => {
           items={items}
         />
         <Statistical/>
-      </PageContainer>
-    );
-  } else if (current === 'addInformation') {
-    return (
-      <PageContainer>
-        <Menu
-          style={{}}
-          onClick={onClick}
-          selectedKeys={[current]}
-          mode="horizontal"
-          items={items}
-        />
-        <AddInformation/>
       </PageContainer>
     );
   } else if (current === 'patientsList') {
