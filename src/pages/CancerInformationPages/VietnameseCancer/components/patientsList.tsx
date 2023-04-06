@@ -79,12 +79,6 @@ const PatientsList = () => {
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <ProTable
@@ -98,20 +92,7 @@ const PatientsList = () => {
         },
         actions: [
           <FileUpload/>,
-          
-          <Button key="key" type="primary" onClick={showModal}>
-            <PlusOutlined />
-            Thêm xét nghiệm mới
-          </Button>,
-
-          <Modal
-            title="Thêm thông tin xét nghiệm"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
-            <AddInformation/>
-          </Modal>
+          <AddInformation/>,
         ],
         settings: [],
       }}

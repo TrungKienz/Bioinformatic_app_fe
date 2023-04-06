@@ -1,4 +1,6 @@
-import { Form, Input, InputNumber } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { Button, Form, Input, InputNumber, Modal } from 'antd';
+import { useState } from 'react';
 
 const layout = {
     labelCol: { span: 9 },
@@ -15,47 +17,74 @@ const validateMessages = {
     },
 };
 
-const onFinish = (values: any) => {
-    console.log(values);
-};
+
+
 
 
 
 const AddInformation = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    
+    const onFinish = (values: any) => {
+        console.log(values);
+    };
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+        onFinish;
+    };
 
     return (
-        <Form
-        {...layout}
-        name="nest-messages"
-        onFinish={onFinish}
-        style={{ maxWidth: 600, padding:40 }}
-        validateMessages={validateMessages}
-        >
-            <Form.Item name={['ID', 'ID']} label="Số chứng minh thư" rules={[{ required: true }]}>
-                <Input />
-            </Form.Item>
-            <Form.Item name={['sex', 'sex']} label="Giới tính" rules={[{ type: 'string' }]}>
-                <Input />
-            </Form.Item>
-            <Form.Item name={['year', 'year']} label="Năm sinh" >
-                <InputNumber />
-            </Form.Item>
-            <Form.Item name={['age', 'age']} label="Tuổi phát hiện bệnh" rules={[{ type: 'number', min: 0, max: 150 }]}>
-                <InputNumber />
-            </Form.Item>
-            <Form.Item name={['location', 'location']} label="Vị trí ung thư" rules={[{ type: 'string' }]}>
-                <Input/>
-            </Form.Item>
-            <Form.Item name={['province', 'province']} label="Tỉnh" rules={[{ type: 'string' }]}>
-                <Input/>
-            </Form.Item>
-            <Form.Item name={['district', 'district']} label="Huyện/TP" rules={[{ type: 'string' }]}>
-                <Input/>
-            </Form.Item>
-            <Form.Item name={['deadYear', 'deadYear']} label="Năm tử vong" >
-                <InputNumber/>
-            </Form.Item>
-        </Form>
+        <>
+            <Button key="key" type="primary" onClick={showModal}>
+                <PlusOutlined />
+                Thêm xét nghiệm mới
+            </Button> 
+            <Modal
+            title="Thêm thông tin xét nghiệm"
+            open={isModalOpen}
+            onOk={onFinish}
+            onCancel={handleCancel}
+            >
+                <Form
+                {...layout}
+                name="nest-messages"
+                onFinish={onFinish}
+                style={{ maxWidth: 600, padding:40 }}
+                validateMessages={validateMessages}
+                >
+                    <Form.Item name={['ID', 'ID']} label="Số chứng minh thư" rules={[{ required: true }]}>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item name={['sex', 'sex']} label="Giới tính" rules={[{ type: 'string' }]}>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item name={['year', 'year']} label="Năm sinh" >
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item name={['age', 'age']} label="Tuổi phát hiện bệnh" rules={[{ type: 'number', min: 0, max: 150 }]}>
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item name={['location', 'location']} label="Vị trí ung thư" rules={[{ type: 'string' }]}>
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item name={['province', 'province']} label="Tỉnh" rules={[{ type: 'string' }]}>
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item name={['district', 'district']} label="Huyện/TP" rules={[{ type: 'string' }]}>
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item name={['deadYear', 'deadYear']} label="Năm tử vong" >
+                        <InputNumber/>
+                    </Form.Item>
+                </Form>
+            </Modal>
+        </>
     )
 };
   
