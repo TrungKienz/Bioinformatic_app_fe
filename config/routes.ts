@@ -102,7 +102,7 @@ export default [
   },
   {
     name: 'Quản lý bệnh nhân',
-    icon: '',
+    icon: 'https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png',
     path: '/patient-management',
     access: 'canAdmin',
     routes: [

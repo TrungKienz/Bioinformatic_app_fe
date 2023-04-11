@@ -91,38 +91,38 @@ const NormalGenes = () => {
     },
   ];
 
-  // const uniqueGeneOptions = [...new Set(data.map((item) => item.gene))].map((gene) => {
-  //   const item = data.find((d) => d.gene === gene);
-  //   return {
-  //     value: `${item.gene}`,
-  //     label: (
-  //       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-  //         <span>{item.gene}</span>
-  //       </div>
-  //     ),
-  //   };
-  // });
+  const uniqueGeneOptions = [...new Set(data.map((item) => item.gene))].map((gene) => {
+    const item = data.find((d) => d.gene === gene);
+    return {
+      value: `${item.gene}`,
+      label: (
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>{item.gene}</span>
+        </div>
+      ),
+    };
+  });
 
-  // const uniqueDrugOptions = [...new Set(data.flatMap((item) => item.drug))].map((drug) => {
-  //   return {
-  //     value: drug,
-  //     label: (
-  //       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-  //         <span>{drug}</span>
-  //       </div>
-  //     ),
-  //   };
-  // });
+  const uniqueDrugOptions = [...new Set(data.flatMap((item) => item.drug))].map((drug) => {
+    return {
+      value: drug,
+      label: (
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>{drug}</span>
+        </div>
+      ),
+    };
+  });
 
-  // const handleAutoCompleteSelect = (value: any) => {
-  //   setSearchText(value);
-  //   setAutoCompleteValue(value);
-  //   handleSearch(value);
-  // };
+  const handleAutoCompleteSelect = (value: any) => {
+    setSearchText(value);
+    setAutoCompleteValue(value);
+    handleSearch(value);
+  };
 
-  // const handleAutoCompleteSearch = (value: any) => {
-  //   setAutoCompleteValue(value);
-  // };
+  const handleAutoCompleteSearch = (value: any) => {
+    setAutoCompleteValue(value);
+  };
 
   return (
     <>
@@ -130,10 +130,10 @@ const NormalGenes = () => {
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo Gene:" >
             <AutoComplete
-              // options={uniqueGeneOptions}
+              options={uniqueGeneOptions}
               value={autoCompleteValue}
-              // onSelect={handleAutoCompleteSelect}
-              // onSearch={handleAutoCompleteSearch}
+              onSelect={handleAutoCompleteSelect}
+              onSearch={handleAutoCompleteSearch}
               style={{ width: 400 }}
             >
               <Input allowClear placeholder="Search" />
@@ -143,10 +143,10 @@ const NormalGenes = () => {
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo tên thuốc:">
             <AutoComplete
-              // options={uniqueDrugOptions}
+              options={uniqueDrugOptions}
               value={autoCompleteValue}
-              // onSelect={handleAutoCompleteSelect}
-              // onSearch={handleAutoCompleteSearch}
+              onSelect={handleAutoCompleteSelect}
+              onSearch={handleAutoCompleteSearch}
               style={{ width: 400 }}
             >
               <Input allowClear placeholder="Search" />
