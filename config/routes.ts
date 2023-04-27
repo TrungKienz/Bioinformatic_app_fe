@@ -85,7 +85,7 @@ export default [
     path: '/tests/:id',
     access: 'canAdmin',
     component: './DetailTest',
-    hideInMenu: true, 
+    hideInMenu: true,
   },
   {
     path: '/drug',
@@ -132,6 +132,24 @@ export default [
     access: 'canAdmin',
     component: './GeneAndMutation/articles',
     hideInMenu: true,
+  },
+  {
+    name: 'Bệnh án ung thư trực tràng ',
+    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    path: '/health-record/conlorectal-cancer',
+    component: './HealthRecord/ColorectalCancer',
+  },
+  {
+    name: 'Bệnh án  ung thư phổi',
+    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    path: '/health-record/lung-cancer',
+    component: './HealthRecord/Detail',
+  },
+  {
+    name: 'Bệnh án gan',
+    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    path: '/health-record/liver-cancer',
+    component: './HealthRecord/LiverCancer',
   },
   {
     name: 'Thông tin nhóm phát triển',
