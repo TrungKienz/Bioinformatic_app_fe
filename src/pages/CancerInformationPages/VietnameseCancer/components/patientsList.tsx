@@ -2,8 +2,6 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useState } from 'react';
 import { server } from '@/pages/Api';
-import { Button, Modal } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
 import AddInformation from './addInformation';
 import FileUpload from './uploadExcelFile';
 
@@ -63,7 +61,6 @@ const columns: ProColumns[] = [
 ];
 
 const PatientsList = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   
   const fetchData = async (params: any, sort: any, filter: any) => {
@@ -76,9 +73,6 @@ const PatientsList = () => {
     };
   };
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
 
   return (
     <ProTable

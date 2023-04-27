@@ -17,13 +17,9 @@ const validateMessages = {
     },
 };
 
-
-
-
-
-
 const AddInformation = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [form] = Form.useForm();
     
     const onFinish = (values: any) => {
         console.log(values);
@@ -34,9 +30,18 @@ const AddInformation = () => {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-    const handleOk = () => {
-        setIsModalOpen(false);
-        onFinish;
+    const handleOk = async() => {
+        try {
+            const { ID, sex, year, age, location, province, district, deadYear } = await form.validateFields();
+            await fetch('', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ ID, sex, year, age, location, province, district, deadYear }),
+            });
+            form.resetFields();
+          } catch (error) {
+            console.error(error);
+          }
     };
 
     return (
@@ -48,10 +53,11 @@ const AddInformation = () => {
             <Modal
             title="Thêm thông tin xét nghiệm"
             open={isModalOpen}
-            onOk={onFinish}
+            onOk={handleOk}
             onCancel={handleCancel}
             >
                 <Form
+                form={form}
                 {...layout}
                 name="nest-messages"
                 onFinish={onFinish}

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import NoFoundPage from '../../404';
 import PatientsList from './components/patientsList';
 import Statistical from './components/statistical';
-import AddInformation from './components/addInformation';
+import StatisticalLayout from './statisticalLayout';
 
 const items: MenuProps['items'] = [
   {
@@ -35,7 +35,7 @@ const VietnameseCancer: React.FC = () => {
           mode="horizontal"
           items={items}
         />
-        <Statistical/>
+        <StatisticalLayout/>
       </PageContainer>
     );
   } else if (current === 'patientsList') {
