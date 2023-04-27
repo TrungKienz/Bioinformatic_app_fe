@@ -233,11 +233,11 @@ const Login: React.FC = () => {
           initialValues={{
             autoLogin: true,
           }}
-          // onFinish={async (values) => {
-          //   await handleSubmit(values as API.LoginParams);
-          //   console.log(values);
-          // }}
-          onFinish={onFinish}
+          onFinish={async (values) => {
+            await handleSubmit(values as API.LoginParams);
+            console.log(values);
+          }}
+          // onFinish={onFinish}
         >
           <Tabs
             activeKey={type}
