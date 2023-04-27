@@ -8,7 +8,6 @@ const NormalGenes = () => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [filteredData, setFilteredData] = useState([]);
-  const [autoCompleteValue, setAutoCompleteValue] = useState('');
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [ totalPages, setTotalPages ] = useState(1);
 
@@ -91,6 +90,7 @@ const NormalGenes = () => {
     },
   ];
 
+<<<<<<< HEAD
   const uniqueGeneOptions = [...new Set(data.map((item) => item.gene))].map((gene) => {
     const item = data.find((d) => d.gene === gene);
     return {
@@ -124,11 +124,14 @@ const NormalGenes = () => {
     setAutoCompleteValue(value);
   };
 
+=======
+>>>>>>> dda7fa7 (update 27/04)
   return (
     <>
       <Row>
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo Gene:" >
+<<<<<<< HEAD
             <AutoComplete
               options={uniqueGeneOptions}
               value={autoCompleteValue}
@@ -138,10 +141,14 @@ const NormalGenes = () => {
             >
               <Input allowClear placeholder="Search" />
             </AutoComplete>
+=======
+              <Input allowClear placeholder="Nhập tên gene" style={{width: 300}}/>
+>>>>>>> dda7fa7 (update 27/04)
           </Form.Item>
         </Col> 
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo tên thuốc:">
+<<<<<<< HEAD
             <AutoComplete
               options={uniqueDrugOptions}
               value={autoCompleteValue}
@@ -151,11 +158,14 @@ const NormalGenes = () => {
             >
               <Input allowClear placeholder="Search" />
             </AutoComplete>
+=======
+              <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 300 }}/>
+>>>>>>> dda7fa7 (update 27/04)
           </Form.Item>
         </Col> 
         <Col span={8}>
             <Button type="primary" onClick={handleSearch}>
-              Search
+              Tìm kiếm
             </Button> 
         </Col>
       </Row>
