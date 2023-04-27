@@ -9,7 +9,7 @@ const NormalGenes = () => {
   const [searchText, setSearchText] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
-  const [ totalPages, setTotalPages ] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
 
   useEffect(() => {
@@ -84,95 +84,35 @@ const NormalGenes = () => {
       dataIndex: 'articles',
       hideInSearch: true,
       align: 'center',
-      render: ( articles: any,data) => (
-          <Link key="showDetail" style={{textDecoration: 'underline'}}  to={`/drug/${data._id}`}>{articles.length}</Link>
+      render: (articles: any, data) => (
+        <Link key="showDetail" style={{ textDecoration: 'underline' }} to={`/drug/${data._id}`}>{articles.length}</Link>
       ),
     },
   ];
 
-<<<<<<< HEAD
-  const uniqueGeneOptions = [...new Set(data.map((item) => item.gene))].map((gene) => {
-    const item = data.find((d) => d.gene === gene);
-    return {
-      value: `${item.gene}`,
-      label: (
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <span>{item.gene}</span>
-        </div>
-      ),
-    };
-  });
-
-  const uniqueDrugOptions = [...new Set(data.flatMap((item) => item.drug))].map((drug) => {
-    return {
-      value: drug,
-      label: (
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <span>{drug}</span>
-        </div>
-      ),
-    };
-  });
-
-  const handleAutoCompleteSelect = (value: any) => {
-    setSearchText(value);
-    setAutoCompleteValue(value);
-    handleSearch(value);
-  };
-
-  const handleAutoCompleteSearch = (value: any) => {
-    setAutoCompleteValue(value);
-  };
-
-=======
->>>>>>> dda7fa7 (update 27/04)
   return (
     <>
       <Row>
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo Gene:" >
-<<<<<<< HEAD
-            <AutoComplete
-              options={uniqueGeneOptions}
-              value={autoCompleteValue}
-              onSelect={handleAutoCompleteSelect}
-              onSearch={handleAutoCompleteSearch}
-              style={{ width: 400 }}
-            >
-              <Input allowClear placeholder="Search" />
-            </AutoComplete>
-=======
-              <Input allowClear placeholder="Nhập tên gene" style={{width: 300}}/>
->>>>>>> dda7fa7 (update 27/04)
+            <Input allowClear placeholder="Nhập tên gene" style={{ width: 300 }} />
           </Form.Item>
-        </Col> 
+        </Col>
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo tên thuốc:">
-<<<<<<< HEAD
-            <AutoComplete
-              options={uniqueDrugOptions}
-              value={autoCompleteValue}
-              onSelect={handleAutoCompleteSelect}
-              onSearch={handleAutoCompleteSearch}
-              style={{ width: 400 }}
-            >
-              <Input allowClear placeholder="Search" />
-            </AutoComplete>
-=======
-              <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 300 }}/>
->>>>>>> dda7fa7 (update 27/04)
+            <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 300 }} />
           </Form.Item>
-        </Col> 
+        </Col>
         <Col span={8}>
-            <Button type="primary" onClick={handleSearch}>
-              Tìm kiếm
-            </Button> 
+          <Button type="primary" onClick={handleSearch}>
+            Tìm kiếm
+          </Button>
         </Col>
       </Row>
 
       <ProTable
         columns={columns}
-        dataSource={filteredData.length?filteredData:data}
+        dataSource={filteredData.length ? filteredData : data}
         toolbar={{
           title: 'Thông tin thuốc',
           settings: [],
@@ -180,7 +120,7 @@ const NormalGenes = () => {
         rowKey="key"
         search={false}
         dateFormatter="string"
-        pagination={{total: totalPages, pageSize: 10}}
+        pagination={{ total: totalPages, pageSize: 10 }}
         onChange={handleTableChange}
       />
     </>
