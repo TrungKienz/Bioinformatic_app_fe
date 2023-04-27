@@ -40,9 +40,8 @@ const TopGene = () => {
       });
   };
   console.log(data);
-  const sorted = data.sort((a, b) => b.value - a.value);
     const config = {
-      data: sorted,
+      data,
       xField: 'gene_name',
       yField: 'value',
       seriesField: 'type',
