@@ -10,6 +10,7 @@ import { flushSync } from 'react-dom';
 import Settings from '../../../../config/defaultSettings';
 import axios from 'axios';
 import { loginEp } from '@/pages/EndPoint';
+import { server } from '../../Api';
 
 const Lang = () => {
   const langClassName = useEmotionCss(({ token }) => {
@@ -132,6 +133,39 @@ const Login: React.FC = () => {
       phone: '0752-268888888',
     }
 
+
+    const onFinish = async (values: any) => {
+      try {
+        setUserLoginState({
+          status: 'ok',
+          type,
+          currentAuthority: 'admin',
+        });
+        setInitialState((s: any) => ({
+          ...s,
+          currentUser: userInfo,
+        }));
+        const response = await axios.post(`${server}/user/login`, values);
+        if (response.status === 200) {
+          const defaultLoginSuccessMessage = intl.formatMessage({
+            id: 'pages.login.success',
+            defaultMessage: 'Đăng nhập thành công!',
+          });
+          message.success(defaultLoginSuccessMessage);
+          const urlParams = new URL(window.location.href).searchParams;
+          history.push(urlParams.get('redirect') || '/');
+          console.log(values);
+        }
+      } catch (error: any) {
+          const defaultLoginFailureMessage = intl.formatMessage({
+            id: 'pages.login.failure',
+            defaultMessage: 'Đăng nhập thất bại!',
+          });
+          console.log(error);
+          message.error(defaultLoginFailureMessage);
+        }
+    };
+
   const handleSubmit = async (values: API.LoginParams) => {
     try {
       // Log in
@@ -195,14 +229,15 @@ const Login: React.FC = () => {
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" src="/logo.svg" />}
-          title="Lab Bioinformatics"
+          title="Project ung thư"
           initialValues={{
             autoLogin: true,
           }}
-          onFinish={async (values) => {
-            await handleSubmit(values as API.LoginParams);
-            console.log(values);
-          }}
+          // onFinish={async (values) => {
+          //   await handleSubmit(values as API.LoginParams);
+          //   console.log(values);
+          // }}
+          onFinish={onFinish}
         >
           <Tabs
             activeKey={type}
@@ -213,7 +248,7 @@ const Login: React.FC = () => {
                 key: 'account',
                 label: intl.formatMessage({
                   id: 'pages.login.accountLogin.tab',
-                  defaultMessage: 'account password login',
+                  defaultMessage: 'Đăng nhập bằng tài khoản',
                 }),
               },
             ]}
@@ -223,7 +258,7 @@ const Login: React.FC = () => {
             <LoginMessage
               content={intl.formatMessage({
                 id: 'pages.login.accountLogin.errorMessage',
-                defaultMessage: 'account or password error(admin/ant.design)',
+                defaultMessage: 'Sai tài khoản hoặc mật khẩu',
               })}
             />
           )}
@@ -237,7 +272,7 @@ const Login: React.FC = () => {
                 }}
                 placeholder={intl.formatMessage({
                   id: 'pages.login.username.placeholder',
-                  defaultMessage: 'username: admin or user',
+                  defaultMessage: 'Tài khoản',
                 })}
                 rules={[
                   {
@@ -245,7 +280,7 @@ const Login: React.FC = () => {
                     message: (
                       <FormattedMessage
                         id="pages.login.username.required"
-                        defaultMessage="please enter user name!"
+                        defaultMessage="Tài khoản không được để trống!"
                       />
                     ),
                   },
@@ -259,7 +294,7 @@ const Login: React.FC = () => {
                 }}
                 placeholder={intl.formatMessage({
                   id: 'pages.login.password.placeholder',
-                  defaultMessage: 'password: ant.design',
+                  defaultMessage: 'Mật khẩu',
                 })}
                 rules={[
                   {
@@ -267,7 +302,7 @@ const Login: React.FC = () => {
                     message: (
                       <FormattedMessage
                         id="pages.login.password.required"
-                        defaultMessage="Please enter your password!"
+                        defaultMessage="Mật khẩu không được để trống!"
                       />
                     ),
                   },

@@ -51,6 +51,25 @@ const MutanGene = () => {
       });
   }, [pagination.current, pagination.pageSize]);
 
+  useEffect(() => {
+    fetch(`${URL}/findByName`)
+      .then(response => response.json())
+      .then(data => {
+        setTotalPages(data.totalPages);
+        if (location.pathname === lungCancerPage) {
+          setData(data.mutationLungGeneModels);
+        } else if (location.pathname === liverCancerPage) {
+          setData(data.mutationLiverGeneModels);
+        } else if (location.pathname === breastCancerPage) {
+          setData(data.mutationBreastGeneModels);
+        } else if (location.pathname === thyroidCancerPage) {
+          setData(data.mutationThyroidGeneModels);
+        } else if (location.pathname === colorectalCancerPage) {
+          setData(data.mutationColorectalGeneModels);
+        }
+      });
+  }, [pagination.current, pagination.pageSize]);
+
   const handleTableChange = (pagination: any) => {
     setPagination(pagination);
   };

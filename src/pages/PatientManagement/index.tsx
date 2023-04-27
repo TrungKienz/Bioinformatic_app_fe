@@ -121,7 +121,7 @@ const PatientManagement = () => {
             <ProFormText width="md" name="name" label="Tên bệnh nhân" placeholder="" />
             <ProFormText width="sm" name="age" label="Tuổi (năm sinh)" placeholder="" />
             <ProFormSelect
-              colProps={{ xl: 8, md: 12 }}
+              // colProps={{ xl: 8, md: 12 }}
               label="Giới tính"
               name="gender"
               placeholder=""
@@ -154,7 +154,7 @@ const PatientManagement = () => {
         >
           <ProForm.Group>
             <ProFormSelect
-              // colProps={{ xl: 12, md: 16 }}
+              colProps={{ xl: 12, md: 16 }}
               width={'md'}
               label="Loại ung thư"
               name="gender"
@@ -168,7 +168,7 @@ const PatientManagement = () => {
               }}
             />
             <ProFormSelect
-              // colProps={{ xl: 8, md: 12 }}
+              colProps={{ xl: 8, md: 12 }}
               width={'md'}
               label="Cơ quan di căn"
               name="metastatic-agency"
@@ -224,7 +224,7 @@ const PatientManagement = () => {
         >
           <ProForm.Group>
             <ProFormSelect
-              // colProps={{ xl: 8, md: 12 }}
+              colProps={{ xl: 8, md: 12 }}
               width="md"
               label="Nguồn gốc mẫu"
               name="sample-origin"
@@ -236,7 +236,7 @@ const PatientManagement = () => {
               }}
             />
             <ProFormSelect
-              // colProps={{ xl: 8, md: 12 }}
+              colProps={{ xl: 8, md: 12 }}
               width="md"
               label="Loại mẫu"
               name="sample-type"
@@ -256,7 +256,7 @@ const PatientManagement = () => {
           </ProForm.Group>
           <ProForm.Group>
             <ProFormSelect
-              // colProps={{ xl: 8, md: 12 }}
+              colProps={{ xl: 8, md: 12 }}
               width="md"
               label="Phương pháp bảo quản "
               name="preservation-method"
@@ -269,7 +269,7 @@ const PatientManagement = () => {
               }}
             />
             <ProFormSelect
-              // colProps={{ xl: 8, md: 12 }}
+              colProps={{ xl: 8, md: 12 }}
               width="md"
               label="Điều kiện vận chuyển"
               name="shipping-terms"
@@ -281,7 +281,7 @@ const PatientManagement = () => {
               }}
             />
             <ProFormSelect
-              // colProps={{ xl: 8, md: 12 }}
+              colProps={{ xl: 8, md: 12 }}
               width="md"
               label="Tình trạng mẫu"
               name="sample-status"
@@ -302,7 +302,7 @@ const PatientManagement = () => {
           </ProForm.Group>
           <ProForm.Group title="Kết quả xét nghiệm gen">
             <ProFormSelect
-              // colProps={{ xl: 8, md: 12 }}
+              colProps={{ xl: 8, md: 12 }}
               width="md"
               label="Gen"
               name="gene-name"

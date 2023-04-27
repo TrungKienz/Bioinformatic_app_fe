@@ -8,7 +8,6 @@ const NormalGenes = () => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [filteredData, setFilteredData] = useState([]);
-  const [autoCompleteValue, setAutoCompleteValue] = useState('');
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [ totalPages, setTotalPages ] = useState(1);
 
@@ -91,71 +90,22 @@ const NormalGenes = () => {
     },
   ];
 
-  // const uniqueGeneOptions = [...new Set(data.map((item) => item.gene))].map((gene) => {
-  //   const item = data.find((d) => d.gene === gene);
-  //   return {
-  //     value: `${item.gene}`,
-  //     label: (
-  //       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-  //         <span>{item.gene}</span>
-  //       </div>
-  //     ),
-  //   };
-  // });
-
-  // const uniqueDrugOptions = [...new Set(data.flatMap((item) => item.drug))].map((drug) => {
-  //   return {
-  //     value: drug,
-  //     label: (
-  //       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-  //         <span>{drug}</span>
-  //       </div>
-  //     ),
-  //   };
-  // });
-
-  // const handleAutoCompleteSelect = (value: any) => {
-  //   setSearchText(value);
-  //   setAutoCompleteValue(value);
-  //   handleSearch(value);
-  // };
-
-  // const handleAutoCompleteSearch = (value: any) => {
-  //   setAutoCompleteValue(value);
-  // };
-
   return (
     <>
       <Row>
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo Gene:" >
-            <AutoComplete
-              // options={uniqueGeneOptions}
-              value={autoCompleteValue}
-              // onSelect={handleAutoCompleteSelect}
-              // onSearch={handleAutoCompleteSearch}
-              style={{ width: 400 }}
-            >
-              <Input allowClear placeholder="Search" />
-            </AutoComplete>
+              <Input allowClear placeholder="Nhập tên gene" style={{width: 300}}/>
           </Form.Item>
         </Col> 
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo tên thuốc:">
-            <AutoComplete
-              // options={uniqueDrugOptions}
-              value={autoCompleteValue}
-              // onSelect={handleAutoCompleteSelect}
-              // onSearch={handleAutoCompleteSearch}
-              style={{ width: 400 }}
-            >
-              <Input allowClear placeholder="Search" />
-            </AutoComplete>
+              <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 300 }}/>
           </Form.Item>
         </Col> 
         <Col span={8}>
             <Button type="primary" onClick={handleSearch}>
-              Search
+              Tìm kiếm
             </Button> 
         </Col>
       </Row>
