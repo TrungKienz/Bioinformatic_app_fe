@@ -1,4 +1,6 @@
-const LUNG: any = {
+let LUNG: any = {
+  typeHealthRecord: 'UNG THƯ PHỔI',
+
   generalInfo: [
     {
       name: 'II> TIỀN SỬ',
@@ -17,11 +19,13 @@ const LUNG: any = {
               question: '',
               type: 'text',
               unit: 'bao/ngày',
+              answer: ''
             },
             {
               question: '',
               type: 'text',
               unit: 'năm',
+              answer: ''
             },
           ],
         ],
@@ -852,434 +856,267 @@ const LUNG: any = {
       },
     ],
   },
-  genMutation: [
-    [
-      {
-        question: 'L858R',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'Del19',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'L861',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'G719',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'S768',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'T790M',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'Khác',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'MET',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'TP53',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'ALK',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'KRAS',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'BRAF',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'NTRK',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'PTEN',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-    ],
-  ],
-  clinicalSymptoms: [
-    [
-      { question: 'Sau 3 tháng', type: 'none' },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3, 4, 5],
-        answer: '',
-      },
-      {
-        type: 'text',
-        unit: 'kg',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-    ],
-    [
-      { question: 'Sau 6 tháng', type: 'none' },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3, 4, 5],
-        answer: '',
-      },
-      {
-        type: 'text',
-        unit: 'kg',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-    ],
-    [
-      { question: 'Sau 9 tháng', type: 'none' },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3, 4, 5],
-        answer: '',
-      },
-      {
-        type: 'text',
-        unit: 'kg',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-    ],
-    [
-      { question: 'Sau 12 tháng', type: 'none' },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3, 4, 5],
-        answer: '',
-      },
-      {
-        type: 'text',
-        unit: 'kg',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-    ],
-    [
-      { question: 'Sau 15 tháng', type: 'none' },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3, 4, 5],
-        answer: '',
-      },
-      {
-        type: 'text',
-        unit: 'kg',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-    ],
-    [
-      { question: 'Sau 18 tháng', type: 'none' },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3, 4, 5],
-        answer: '',
-      },
-      {
-        type: 'text',
-        unit: 'kg',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-    ],
-    [
-      { question: 'Sau 21 tháng', type: 'none' },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3, 4, 5],
-        answer: '',
-      },
-      {
-        type: 'text',
-        unit: 'kg',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-    ],
-    [
-      { question: 'Sau 24 tháng', type: 'none' },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3, 4, 5],
-        answer: '',
-      },
-      {
-        type: 'text',
-        unit: 'kg',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-      {
-        type: 'select',
-        listChoice: [1, 2, 3],
-        answer: '',
-      },
-    ],
-  ],
+  clinicalSymptoms: {
+    header: [],
+    body: [
+      [
+        { question: 'Sau 3 tháng', type: 'none' },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3, 4, 5],
+          answer: '',
+        },
+        {
+          type: 'text',
+          unit: 'kg',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+      ],
+      [
+        { question: 'Sau 6 tháng', type: 'none' },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3, 4, 5],
+          answer: '',
+        },
+        {
+          type: 'text',
+          unit: 'kg',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+      ],
+      [
+        { question: 'Sau 9 tháng', type: 'none' },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3, 4, 5],
+          answer: '',
+        },
+        {
+          type: 'text',
+          unit: 'kg',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+      ],
+      [
+        { question: 'Sau 12 tháng', type: 'none' },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3, 4, 5],
+          answer: '',
+        },
+        {
+          type: 'text',
+          unit: 'kg',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+      ],
+      [
+        { question: 'Sau 15 tháng', type: 'none' },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3, 4, 5],
+          answer: '',
+        },
+        {
+          type: 'text',
+          unit: 'kg',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+      ],
+      [
+        { question: 'Sau 18 tháng', type: 'none' },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3, 4, 5],
+          answer: '',
+        },
+        {
+          type: 'text',
+          unit: 'kg',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+      ],
+      [
+        { question: 'Sau 21 tháng', type: 'none' },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3, 4, 5],
+          answer: '',
+        },
+        {
+          type: 'text',
+          unit: 'kg',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+      ],
+      [
+        { question: 'Sau 24 tháng', type: 'none' },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3, 4, 5],
+          answer: '',
+        },
+        {
+          type: 'text',
+          unit: 'kg',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+        {
+          type: 'select',
+          listChoice: [1, 2, 3],
+          answer: '',
+        },
+      ],
+    ]
+  },
   responeToTreatment: [
     [
       {
@@ -1474,79 +1311,153 @@ const LUNG: any = {
       },
     ],
   ],
-  CEA: [
-    [
+
+  genTest: {
+    header: ["Gen",
+      "Trình tự tham chiếu",
+      "Biến thể",
+      "Vị trí trên nhiễm sắc thể",
+      "Kiểu gen",
+      "Kiểu di truyền",],
+    body: [
+      [{
+        type: 'text',
+        answer: ''
+      },
       {
-        question: 'Sau 3 tháng',
-        type: 'none',
+        type: 'text',
+        answer: ''
+      },
+      {
+        type: 'text',
+        answer: ''
+      },
+      {
+        type: 'text',
+        answer: ''
+      },
+      {
+        type: 'text',
+        answer: ''
+      },
+      {
+        type: 'text',
+        answer: ''
+      },]
+    ],
+
+  },
+  genTestResponseTreatment: {
+    header: [
+      "Gen",
+      "Trình tự tham chiếu",
+      "Biến thể",
+      "Vị trí trên nhiễm sắc thể",
+      "Nhạy cảm/Kháng thuốc đích",
+      "Thuốc đích ảnh hưởng",
+    ],
+    body: [
+      [{
+        type: 'text',
       },
       {
         type: 'text',
       },
-    ],
-    [
       {
-        question: 'Sau 6 tháng',
-        type: 'none',
+        type: 'text',
       },
       {
         type: 'text',
       },
-    ],
-    [
-      {
-        question: 'Sau 9 tháng',
-        type: 'none',
-      },
       {
         type: 'text',
       },
-    ],
-    [
-      {
-        question: 'Sau 12 tháng',
-        type: 'none',
-      },
       {
         type: 'text',
-      },
+      },]
     ],
-    [
-      {
-        question: 'Sau 15 tháng',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'Sau 18 tháng',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'Sau 21 tháng',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-    ],
-    [
-      {
-        question: 'Sau 24 tháng',
-        type: 'none',
-      },
-      {
-        type: 'text',
-      },
-    ],
-  ],
+  },
+  otherInfo: {
+    CEA: {
+      header: [
+        'Thời gian sau sử dụng đích',
+        'Nồng độ CEA (ng/ml)'
+      ],
+      body: [
+        [
+          {
+            question: 'Sau 3 tháng',
+            type: 'none',
+          },
+          {
+            type: 'text',
+          },
+        ],
+        [
+          {
+            question: 'Sau 6 tháng',
+            type: 'none',
+          },
+          {
+            type: 'text',
+          },
+        ],
+        [
+          {
+            question: 'Sau 9 tháng',
+            type: 'none',
+          },
+          {
+            type: 'text',
+          },
+        ],
+        [
+          {
+            question: 'Sau 12 tháng',
+            type: 'none',
+          },
+          {
+            type: 'text',
+          },
+        ],
+        [
+          {
+            question: 'Sau 15 tháng',
+            type: 'none',
+          },
+          {
+            type: 'text',
+          },
+        ],
+        [
+          {
+            question: 'Sau 18 tháng',
+            type: 'none',
+          },
+          {
+            type: 'text',
+          },
+        ],
+        [
+          {
+            question: 'Sau 21 tháng',
+            type: 'none',
+          },
+          {
+            type: 'text',
+          },
+        ],
+        [
+          {
+            question: 'Sau 24 tháng',
+            type: 'none',
+          },
+          {
+            type: 'text',
+          },
+        ],
+      ]
+    },
+  }
 };
 export default LUNG;

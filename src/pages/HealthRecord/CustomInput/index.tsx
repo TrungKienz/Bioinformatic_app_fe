@@ -1,18 +1,24 @@
-import { Checkbox, Input, Radio, Select, Space, Col, Row } from 'antd';
-export default ({ categoryId, ques, LUNG, templateInfo }) => {
-  const handleOnChangeCheckbox = (categoryId, choiceId, checked) => {
-    console.log(templateInfo);
+import { useModel } from '@umijs/max';
+import { Checkbox, Input, Radio, Select, Space } from 'antd';
+import './customInput.css'
+import CustomTable from '../CustomTable';
+export default ({ ques }) => {
+  const { isView } = useModel("viewPage")
+  const handleOnChangeCheckbox = (choiceId, checked) => {
+    console.log(ques);
 
-    templateInfo.answer[choiceId] = checked;
-    console.log(LUNG.generalInfo[categoryId]);
+    ques.answer[choiceId] = checked;
+
   };
-  const handleOnChangeText = (categoryId, value, otherValue = false) => {
+  const handleOnChangeText = (value, otherValue = false) => {
+    console.log(ques);
+
     if (otherValue) {
-      templateInfo.otherValue = value;
-    } else templateInfo.answer = value;
+      ques.otherValue = value;
+    } else ques.answer = value;
   };
-  const handleOnChangeRadio = (categoryId, value) => {
-    templateInfo.answer = value;
+  const handleOnChangeRadio = (value) => {
+    ques.answer = value;
   };
   if (ques.type === 'checkbox') {
     return (
@@ -22,47 +28,72 @@ export default ({ categoryId, ques, LUNG, templateInfo }) => {
             return (
               <div key={choiceId} className="sub-cell">
                 <Checkbox
+                  className={isView ? 'is-disabled' : ''}
+                  disabled={isView}
                   defaultChecked={ques.answer[choiceId]}
                   onChange={(e) => {
-                    handleOnChangeCheckbox(categoryId, choiceId, e.target.checked);
+                    handleOnChangeCheckbox(choiceId, e.target.checked);
                   }}
                 >
                   {choice}
                 </Checkbox>{' '}
                 <Input.TextArea
+                  disabled={isView}
+
                   autoSize={true}
                   defaultValue={ques?.otherValue}
-                  onChange={(e) => handleOnChangeText(categoryId, e.target.value, true)}
+                  onChange={(e) => handleOnChangeText(e.target.value, true)}
                 />
-              </div>
+              </div >
             );
           return (
             <div style={{ height: '48px' }} className="sub-cell" key={choiceId}>
               <Checkbox
+                disabled={isView}
+
                 defaultChecked={ques.answer[choiceId]}
                 onChange={(e) => {
-                  handleOnChangeCheckbox(categoryId, choiceId, e.target.checked);
+                  handleOnChangeCheckbox(choiceId, e.target.checked);
                 }}
               >
                 {choice}
               </Checkbox>
             </div>
           );
-        })}
+        })
+        }
       </>
     );
   }
   if (ques.type === 'text') {
-
     return (
       <>
         <Input
+          disabled={isView}
+          defaultValue={ques?.answer}
           className="input"
           onChange={(e) => {
-            handleOnChangeText(categoryId, e.target.value);
+            handleOnChangeText(e.target.value);
           }}
           suffix={ques?.unit}
           prefix={ques?.prefix}
+        ></Input>
+      </>
+    );
+  }
+  if (ques.type === 'number') {
+    return (
+      <>
+        <Input
+          disabled={isView}
+
+          className="input"
+          onChange={(e) => {
+            handleOnChangeText(e.target.value);
+          }}
+          suffix={ques?.unit}
+          prefix={ques?.prefix}
+          type="number"
         ></Input>
       </>
     );
@@ -71,9 +102,11 @@ export default ({ categoryId, ques, LUNG, templateInfo }) => {
     return (
       <>
         <Input.TextArea
+          disabled={isView}
+
           style={{ width: '100%' }}
           onChange={(e) => {
-            handleOnChangeText(categoryId, e.target.value);
+            handleOnChangeText(e.target.value);
           }}
           suffix={ques?.unit}
         ></Input.TextArea>
@@ -93,8 +126,10 @@ export default ({ categoryId, ques, LUNG, templateInfo }) => {
   if (ques.type === 'radio') {
     return (
       <Radio.Group
+        disabled={isView}
+
         onChange={(e) => {
-          handleOnChangeRadio(categoryId, e.target.value);
+          handleOnChangeRadio(e.target.value);
         }}
         defaultValue={ques?.answer}
       >
@@ -113,37 +148,30 @@ export default ({ categoryId, ques, LUNG, templateInfo }) => {
   if (ques.type === 'date') {
     return (
       <Input
+        disabled={isView}
+
         type="date"
         onChange={(e) => {
-          handleOnChangeText(categoryId, e.target.value);
+          handleOnChangeText(e.target.value);
         }}
         suffix={ques?.unit}
-        prefix={
-          ques?.prefix
-        }
+        prefix={ques?.prefix}
       ></Input>
     );
   }
   if (ques.type === 'select') {
     return (
       <Select
+        disabled={isView}
+
         style={{ width: '100%' }}
         options={ques.listChoice.map((choice) => ({ label: choice, value: choice }))}
       />
     );
   }
   if (ques.type === 'table') {
-    return <table>
-      <thead>
-        <tr>  {ques.header.map((title, titleId) => {
-          return <th key={titleId}>
-            {title}
-          </th>
-        })}</tr>
-      </thead>
-      <tbody>
-        {/* {ques.body.map((body))} */}
-      </tbody>
-    </table>
+    return (
+      <CustomTable record={ques} />
+    );
   }
 };

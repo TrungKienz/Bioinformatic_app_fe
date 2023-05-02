@@ -1,47 +1,47 @@
-import { SaveOutlined } from '@ant-design/icons';
+import { SaveOutlined, EditOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { Affix, Button, Col, Form, Input, Radio, Row, Tooltip } from 'antd';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CustomInput from '../CustomInput';
-import './colorectalCancer.css';
-import COLORECTAL from './colorectalTemplate';
+import './lungCancer.css';
+import LUNG from './LungTemplate';
+import { useModel } from '@umijs/max';
 import GenTestForm from '../GenTestForm';
-import PatientInfo from '../PatientInfo'
-import { useModel, useParams, useRequest } from '@umijs/max';
+import PatientInfo from '../PatientInfo';
+import CustomTable from '../CustomTable';
+import { history, useParams } from '@umijs/max';
+import { useRequest } from 'umi';
 import HealthRecordService from '@/services/healthRecord';
 import ControlButton from '../ControlButton';
 
-let CANCER = JSON.parse(JSON.stringify(COLORECTAL))
+let CANCER = JSON.parse(JSON.stringify(LUNG))
 
 export default () => {
   const [patientInfoForm] = Form.useForm();
   const [genTestForm] = Form.useForm();
-  useEffect(() => {
-    patientInfoForm.setFieldsValue({
-      address: '',
-      dob: '',
-      fullname: '',
-      healthRecordId: '',
-      job: '',
-      phone: '',
-      sex: '',
+  patientInfoForm.setFieldsValue({
+    address: '',
+    dob: '',
+    fullname: '',
+    healthRecordId: '',
+    job: '',
+    phone: '',
+    sex: '',
 
-    })
-    genTestForm.setFieldsValue({
-      concentrateDNA: '',
-      dateSample: '',
-      patientId: '',
-      purityDNA: '',
-      sourceSample: '',
-      testCode: '',
-      testDate: '',
-      typeSample: '',
-    })
+  })
+  genTestForm.setFieldsValue({
+    concentrateDNA: '',
+    dateSample: '',
+    patientId: '',
+    purityDNA: '',
+    sourceSample: '',
+    testCode: '',
+    testDate: '',
+    typeSample: '',
+  })
 
-  }, [])
   const params = useParams()
   if (params.id !== '0') {
-
     const { data, error, loading } = useRequest(() => {
       return HealthRecordService.getHealthRecord(params);
     });
@@ -53,9 +53,8 @@ export default () => {
     }
     CANCER = data;
     patientInfoForm.setFieldsValue(data.patientInfo)
-    genTestForm.setFieldsValue(data.genTestInfo)
   }
-  console.log()
+
   const handleSubmit = async () => {
     const patientInfo = patientInfoForm.getFieldsValue()
     const genTestInfo = genTestForm.getFieldsValue()
@@ -81,7 +80,6 @@ export default () => {
       </p>
       <h4>I{'>'} HÀNH CHÍNH</h4>
       <PatientInfo form={patientInfoForm} />
-
       {CANCER.generalInfo.map((category, categoryId) => {
         return (
           <div key={categoryId}>
@@ -120,20 +118,12 @@ export default () => {
                                         quesId={quesId}
                                         ques={ques}
                                         index={index}
-                                        categoryId={categoryId}
-                                        listId={listId}
-                                        CANCER={CANCER}
-                                        templateInfo={
-                                          CANCER.generalInfo[categoryId].listQuestions[index][
-                                          listId
-                                          ][quesId]
-                                        }
+
                                       />
                                     </Col>
                                   </Row>
                                 );
                               }
-
                               return (
                                 <>
                                   <div
@@ -149,15 +139,7 @@ export default () => {
                                       <CustomInput
                                         quesId={quesId}
                                         ques={ques}
-                                        index={index}
-                                        categoryId={categoryId}
-                                        listId={listId}
-                                        CANCER={CANCER}
-                                        templateInfo={
-                                          CANCER.generalInfo[categoryId].listQuestions[index][
-                                          listId
-                                          ][quesId]
-                                        }
+
                                       />
                                     </div>
                                   </div>
@@ -178,28 +160,27 @@ export default () => {
       })}
       <h4>VII{'>'} ĐÁNH GIÁ ĐÁP ỨNG ĐIỀU TRỊ </h4>
       <div>
-        42. Triệu chứng lâm sàng sau điều trị: Mức độ: 0. Không 1. Ít 2. Vừa 3. Nhiều
+        38. Triệu chứng lâm sàng sau điều trị thuốc đích: Mức độ: 0. Không 1. Ít 2. Vừa 3. Nhiều
         <table>
           <thead>
             <tr>
-              {CANCER.clinicalSymptoms.header.map((title, titleId) => (
-                <th key={titleId}>{title}</th>
-              ))}
+              <th>Thời gian sau sử dụng hóa chất</th>
+              <th>PS*(1-5)</th>
+              <th>Cân nặng</th>
+              <th>Mức độ mệt mỏi</th>
+              <th>Mức độ ho</th>
+              <th>Mức độ đau ngực</th>
+              <th>Mức độ khó thở</th>
             </tr>
           </thead>
           <tbody>
-            {CANCER.clinicalSymptoms.listQuestions.map((res, resId) => {
+            {CANCER.clinicalSymptoms.body.map((res, resId) => {
               return (
                 <tr key={resId}>
                   {res.map((ques, quesId) => {
                     return (
                       <td key={quesId}>
-                        <CustomInput
-                          quesId={quesId}
-                          ques={ques}
-                          CANCER={CANCER}
-                          templateInfo={ques}
-                        />
+                        <CustomInput quesId={quesId} ques={ques} CANCER={CANCER} templateInfo={ques} />
                       </td>
                     );
                   })}
@@ -218,25 +199,20 @@ export default () => {
         <p>• PS 3: Chỉ chăm sóc bản thân tối thiểu, phải nghỉ trên 50% thời gian.</p>
         <p>• PS 4: Mất khả năng chăm sóc bản thân và hoàn toàn nằm nghỉ tại giường hoặc ghế.</p>
         <p>• PS 5: Bệnh nhân tử vong.</p>
-        43. Xét nghiệm sau điều trị:
+        39. Tỷ lệ đáp ứng sau điều trị đích:
         <table>
           <thead>
             <tr>
-              <th>Thời gian sau sử dụng hóa chất</th>
-              <th>Hồng cầu(T/L)</th>
-              <th>Hb (g/L)</th>
-              <th>Bạch cầu (G/L)</th>
-              <th>Tiểu cầu (G/L)</th>
-              <th>
-                Khối u tái phát
-                <br />
-                0. Không 1. Có
-              </th>
-              <th>
-                Cơ quan di căn mới*
-                <br />
-                0. Không 1. Có (ghi rõ)
-              </th>
+              <th rowSpan={2}> Thời gian sau sử dụng hóa chất</th>
+              <th rowSpan={2}>Kích thước khối u (mm)</th>
+              <th rowSpan={2}>Tỷ lệ đáp ứng (%)</th>
+              <th colSpan={4}>Đánh giá đáp ứng</th>
+            </tr>
+            <tr>
+              <td>SD</td>
+              <td>PR</td>
+              <td>CR</td>
+              <td>PD</td>
             </tr>
           </thead>
           <tbody>
@@ -246,12 +222,7 @@ export default () => {
                   {res.map((ques, quesId) => {
                     return (
                       <td key={quesId}>
-                        <CustomInput
-                          quesId={quesId}
-                          ques={ques}
-                          CANCER={CANCER}
-                          templateInfo={ques}
-                        />
+                        <CustomInput quesId={quesId} ques={ques} CANCER={CANCER} templateInfo={ques} />
                       </td>
                     );
                   })}
@@ -261,48 +232,16 @@ export default () => {
           </tbody>
         </table>
         <p>
-          *Cơ quan di căn mới xuất hiện trong thời gian theo dõi (bằng các phương tiện chẩn đoán
-          hình ảnh)
+          SD: stable deasease; PR: Partial respone; CR: Complete respone; PD: Progression deasease
         </p>
-        44. CEA
-        <table>
-          <thead>
-            <tr>
-              <th> Thời gian sau sử dụng đích</th>
-              <th>Nồng độ CEA (ng/ml)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {CANCER.otherInfo.CEA.map((res, resId) => {
-              return (
-                <tr key={resId}>
-                  {res.map((ques, quesId) => {
-                    return (
-                      <td key={quesId}>
-                        <CustomInput
-                          quesId={quesId}
-                          ques={ques}
-                          CANCER={CANCER}
-                          templateInfo={ques}
-                        />
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        40.CEA
+        <CustomTable record={CANCER.otherInfo.CEA} isAddRow={false}></CustomTable>
         {CANCER.assessmentResponseTreatment.listQuestions.map((ques, quesId) => {
           return (
             <Row key={quesId} gutter={[16, 40]} style={{ marginTop: '8px' }}>
               <Col span={8}> {ques?.question}</Col>
               <Col span={16}>
-                <CustomInput
-                  quesId={quesId}
-                  ques={ques}
-
-                />
+                <CustomInput quesId={quesId} ques={ques} CANCER={CANCER} templateInfo={ques} />
               </Col>
             </Row>
           );
@@ -311,11 +250,6 @@ export default () => {
       <h4>VIII{'>'} THÔNG TIN XÉT NGHIỆM DI TRUYỀN</h4>
       <GenTestForm form={genTestForm} cancer={CANCER} />
 
-
-      <h5>Kết luận</h5>
-      <CustomInput
-        ques={CANCER.otherInfo.genTestResult.conclude}
-      />
       <ControlButton handleSubmit={handleSubmit} />
     </PageContainer>
   );

@@ -102,7 +102,7 @@ export default [
   },
   {
     name: 'Quản lý bệnh nhân',
-    icon: 'https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png',
+    icon: '',
     path: '/patient-management',
     access: 'canAdmin',
     routes: [
@@ -128,28 +128,51 @@ export default [
     component: './GeneAndMutation/geneAndMutation',
   },
   {
+    name: 'Bệnh án ung thư trực tràng',
+    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    path: '/health-record/conlorectal-cancer/:id',
+    component: './HealthRecord/ColorectalCancer',
+    hideInMenu: true
+  },
+  {
+    name: 'Bệnh án ung thư phổi',
+    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    path: '/health-record/lung-cancer/:id',
+    component: './HealthRecord/LungCancer',
+    hideInMenu: true
+  },
+  {
+    name: 'Bệnh án ung thư gan',
+    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    path: '/health-record/liver-cancer/:id',
+    component: './HealthRecord/LiverCancer',
+    hideInMenu: true
+  },
+  {
+    name: 'Bệnh án NC-K Giáp',
+    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    path: '/health-record/thyroid-cancer/:id',
+    component: './HealthRecord/ThyroidCancer',
+    hideInMenu: true
+  },
+  {
+    name: 'Bệnh án NC-K Vú',
+    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    path: '/health-record/breast-cancer/:id',
+    component: './HealthRecord/BreastCancer',
+    hideInMenu: true
+  },
+  {
+    name: 'Quản lý bệnh án',
+    icon: '/icons/health-record.png',
+    path: '/health-record',
+    component: './HealthRecord/',
+  },
+  {
     path: '/gene-and-mutation/:id',
     access: 'canAdmin',
     component: './GeneAndMutation/articles',
     hideInMenu: true,
-  },
-  {
-    name: 'Bệnh án ung thư trực tràng ',
-    icon: 'https://icon-library.com/images/ef4d093f9d.png',
-    path: '/health-record/conlorectal-cancer',
-    component: './HealthRecord/ColorectalCancer',
-  },
-  {
-    name: 'Bệnh án  ung thư phổi',
-    icon: 'https://icon-library.com/images/ef4d093f9d.png',
-    path: '/health-record/lung-cancer',
-    component: './HealthRecord/Detail',
-  },
-  {
-    name: 'Bệnh án gan',
-    icon: 'https://icon-library.com/images/ef4d093f9d.png',
-    path: '/health-record/liver-cancer',
-    component: './HealthRecord/LiverCancer',
   },
   {
     name: 'Thông tin nhóm phát triển',
