@@ -176,6 +176,20 @@ export default [
     ]
   },
   {
+    name: 'Cosmic Gene',
+    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    path: '/cosmic-gene',
+    access: 'canAdmin',
+    component: './GeneCosmic',
+    routes: [
+      {
+        path: '/cosmic-gene/:gene',
+        component: './GeneCosmic/geneDetail',
+        hideInMenu: true,
+      }
+    ]
+  },
+  {
     name: 'Thông tin nhóm phát triển',
     icon: '',
     path: '',

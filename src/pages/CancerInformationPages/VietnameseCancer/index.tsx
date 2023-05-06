@@ -6,6 +6,12 @@ import { Typography } from 'antd';
 import { Checkbox } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import type { CheckboxValueType } from 'antd/es/checkbox/Group';
+import { PageContainer } from '@ant-design/pro-components';
+import PieChart from './charts/pieChart';
+import ScatterChart from './charts/scatterChart';
+import NoFoundPage from '@/pages/404';
+import StatisticalChart from './charts/statisticalChart';
+import TreeMap from './maps/treeMap';
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -178,6 +184,12 @@ const VietNameseCancer: React.FC = () => {
   const [checkedList, setCheckedList] = useState<CheckboxValueType[]>(defaultCheckedList);
   const [indeterminate, setIndeterminate] = useState(true);
   const [checkAll, setCheckAll] = useState(false);
+  const [current, setCurrent] = useState('multi-bars');
+
+  const onClick: MenuProps['onClick'] = (e) => {
+    console.log('click ', e);
+    setCurrent(e.key);
+  };
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -200,7 +212,7 @@ const VietNameseCancer: React.FC = () => {
       </Header>
       <Layout>
         <Sider style={{ background: '#383838', color: "#fff" }} collapsible={false} collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-          <Menu style={{ background: '#383838', color: "#fff" }} defaultSelectedKeys={['1']} mode="inline" items={items}></Menu>
+          <Menu style={{ background: '#383838', color: "#fff" }} defaultSelectedKeys={['1']} mode="inline" items={items} onClick={onClick} selectedKeys={[current]}></Menu>
         </Sider>
         <Sider className="sider-medium" style={{ background: '#fff', color: "#fff", minWidth: 300, overflow: 'auto', height: '100%'}} collapsible={false} collapsed={false}>
           <div style={{ overflow: 'auto', height: '870px' }}>
@@ -258,7 +270,7 @@ const VietNameseCancer: React.FC = () => {
             <Form.Item name="indicators" valuePropName="checked">
               <div style={{display: 'inline'}} className='sider-component'>
                 <Title level={5}>Population</Title>
-                <Button type='primary'>Choose a population: </Button>
+                <Button type='primary'>Choose a population: VietNam</Button>
               </div>
             </Form.Item>
             <Divider/>
@@ -298,13 +310,16 @@ const VietNameseCancer: React.FC = () => {
         </Sider>
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            <Breadcrumb.Item>Chart</Breadcrumb.Item>
+            <Breadcrumb.Item>{current}</Breadcrumb.Item>
           </Breadcrumb>
-            {/* <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
-              <SliderComponents/>
-            </div> */}
-            {/* <SliderComponents/> */}
+          <PageContainer>
+            {current === 'multi-bars' ? <StatisticalChart/>
+            : current === 'pie-charts' ? <PieChart/> 
+            : current === 'scatter-plot'? <ScatterChart/> 
+            : current === 'tree-map' ? <TreeMap/>
+            :<NoFoundPage/>}
+          </PageContainer>
         </Content>
       </Layout>
     </Layout>

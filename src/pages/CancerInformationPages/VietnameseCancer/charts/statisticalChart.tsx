@@ -17,6 +17,9 @@ const StatisticalChart = () => {
     xField: 'Cases',
     yField: 'Cancer',
     seriesField: 'Cancer',
+    legend: {
+      position: 'top-left',
+    },
   };
   return <Bar {...config} />;
 };
