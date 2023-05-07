@@ -11,6 +11,8 @@
  * @doc https://umijs.org/docs/guides/routes
  */
 
+import access from "@/access";
+
 export default [
   {
     path: '/user',
@@ -36,7 +38,7 @@ export default [
   {
     path: '/cancer',
     name: 'Ung thư',
-    icon: 'https://cdn-icons-png.flaticon.com/512/2925/2925854.png',
+    icon: '/icons/cancer_icon.png',
     access: 'canAdmin',
     routes: [
       {
@@ -74,10 +76,24 @@ export default [
       },
     ],
   },
+
+  {
+    path: '/cancer',
+    layout: false,
+    access: 'canAdmin',
+    hideInMenu: true,
+    routes: [
+      {
+        path: '/cancer/vietnamese-cancer',
+        name: 'Thống kê tại Việt Nam',
+        component: './CancerInformationPages/VietnameseCancer',
+      },
+    ],
+  },
   {
     path: '/tests',
     name: 'Xét nghiệm',
-    icon: 'https://icon-library.com/images/test-tube-icon/test-tube-icon-23.jpg',
+    icon: '/icons/tests_icon.jpg',
     access: 'canAdmin',
     component: './TestList',
   },
@@ -90,7 +106,7 @@ export default [
   {
     path: '/drug',
     name: 'Thông tin thuốc',
-    icon: 'https://icon-library.com/images/drug-icon/drug-icon-18.jpg',
+    icon: '/icons/drug_icon.jpg',
     access: 'canAdmin',
     component: './DrugInformation/drugInfor',
   },
@@ -102,7 +118,7 @@ export default [
   },
   {
     name: 'Quản lý bệnh nhân',
-    icon: '',
+    icon: '/icons/patient_icon.png',
     path: '/patient-management',
     access: 'canAdmin',
     routes: [
@@ -122,12 +138,13 @@ export default [
   },
   {
     name: 'Gen và đột biến',
-    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    icon: '/icons/gene_icon.png',
     path: '/gene-and-mutation',
     access: 'canAdmin',
     component: './GeneAndMutation/geneAndMutation',
   },
   {
+
     name: 'Bệnh án ung thư trực tràng',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
     path: '/health-record/conlorectal-cancer/:id',
@@ -173,6 +190,20 @@ export default [
     access: 'canAdmin',
     component: './GeneAndMutation/articles',
     hideInMenu: true,
+  },
+  {
+    name: 'Cosmic Gene',
+    icon: 'https://icon-library.com/images/ef4d093f9d.png',
+    path: '/cosmic-gene',
+    access: 'canAdmin',
+    component: './GeneCosmic',
+    routes: [
+      {
+        path: '/cosmic-gene/:gene',
+        component: './GeneCosmic/geneDetail',
+        hideInMenu: true,
+      }
+    ]
   },
   {
     name: 'Thông tin nhóm phát triển',

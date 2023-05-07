@@ -228,16 +228,27 @@ const Login: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.svg" />}
+          logo={<img alt="logo" src="/Logo_3.png" />}
           title="Project ung thư"
           initialValues={{
             autoLogin: true,
           }}
-          // onFinish={async (values) => {
-          //   await handleSubmit(values as API.LoginParams);
-          //   console.log(values);
-          // }}
-          onFinish={onFinish}
+          onFinish={async (values) => {
+            await handleSubmit(values as API.LoginParams);
+            console.log(values);
+          }}
+          submitter={{
+            searchConfig: {
+              submitText: 'Đăng nhập',
+            },
+            submitButtonProps: {
+              size: 'large',
+              style: {
+                width: '100%',
+              },
+            },
+          }}
+          // onFinish={onFinish}
         >
           <Tabs
             activeKey={type}

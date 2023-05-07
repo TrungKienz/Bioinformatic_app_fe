@@ -43,9 +43,10 @@ const StatisticalLayout = () => {
               onClick={handleMenuClick}
             />
           </Sider>
-            <div style={{height:'100%', width:'100%', padding:'20px'}} >
+            <div style={{height:'80vh', width:'160vh', padding:'20px'}} >
+              <h1>Thống kê các loại ung thư theo giới tại Việt Nam</h1>
+              {/* {current === 'statiscal' && <StatisticalChart/>} */}
               {current === 'pieChart' && <PieChart/>}
-              {current === 'statiscal' && <StatisticalChart/>}
             </div>
         </Layout>
       </Content>

@@ -89,18 +89,18 @@ const NormalGenes = () => {
       ),
     },
   ];
-
+  
   return (
     <>
       <Row>
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo Gene:" >
-            <Input allowClear placeholder="Nhập tên gene" style={{ width: 300 }} />
+              <Input allowClear placeholder="Nhập tên gene" style={{ width: 200 }}/>
           </Form.Item>
         </Col>
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo tên thuốc:">
-            <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 300 }} />
+              <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 200 }}/>
           </Form.Item>
         </Col>
         <Col span={8}>

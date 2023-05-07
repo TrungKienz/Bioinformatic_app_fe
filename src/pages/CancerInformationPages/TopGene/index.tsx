@@ -1,7 +1,6 @@
-import { Bar, Column } from '@ant-design/charts';
+import { Column } from '@ant-design/charts';
 import { useEffect, useState } from 'react';
 import { mutationLung20GeneEp, mutationLiver20GeneEp, mutationBreast20GeneEp, mutationThyroid20GeneEp, mutationColorectal20GeneEp } from '@/pages/EndPoint';
-import ColumnGroup from 'antd/es/table/ColumnGroup';
 
 const lungCancerPage = '/cancer/lung-cancer';
 const liverCancerPage = '/cancer/liver-cancer';
@@ -40,9 +39,8 @@ const TopGene = () => {
       });
   };
   console.log(data);
-  const sorted = data.sort((a, b) => b.value - a.value);
     const config = {
-      data: sorted,
+      data,
       xField: 'gene_name',
       yField: 'value',
       seriesField: 'type',
