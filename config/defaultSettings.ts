@@ -14,11 +14,11 @@ const Settings: ProLayoutProps & {
   fixedHeader: true,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'Lab Bioinformatics',
+  title: 'PROJECT UNG THƯ',
   pwa: false,
   splitMenus: false,
   breadcrumbRender: false,
-  logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Logo_Hust.png',
-  iconfontUrl: '',
+  logo: '/Logo_HUST_HMU.png',
+  iconfontUrl: 'Logo_1.jpg',
 };
 export default Settings;

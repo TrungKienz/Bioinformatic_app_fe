@@ -1,0 +1,11 @@
+.ant-menu-vertical .ant-menu-submenu{
+    padding-bottom: 70px;
+}
+
+.sider-medium {
+    min-width: 300px !important;
+}
+
+.sider-component {
+    padding: 20px;
+}
