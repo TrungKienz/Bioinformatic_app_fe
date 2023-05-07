@@ -75,7 +75,7 @@ export default () => {
   return (
     <PageContainer
       header={{
-        title: 'BỆNH ÁN NC- K GIÁP',
+        title: 'BỆNH ÁN UNG THƯ VÚ',
       }}
     >
       <h3>PHẦN 1: THÔNG TIN CHUNG</h3>
