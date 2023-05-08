@@ -9,6 +9,7 @@ export const StatisticalChart = (data: any) => {
     legend: {
       position: 'top-left',
     },
+    height: 550, 
   };
   return <Bar {...config} />;
 };

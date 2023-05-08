@@ -7,6 +7,7 @@ export const PieChart = (data: any) => {
     angleField: 'Cases',
     colorField: 'Cancer',
     radius: 0.8,
+    legend: false,
     label: {
       type: 'outer',
       content: '{name} {percentage}',
@@ -19,6 +20,7 @@ export const PieChart = (data: any) => {
         type: 'element-active',
       },
     ],
+    height: 550, 
   };
 
   return <Pie {...config} />;

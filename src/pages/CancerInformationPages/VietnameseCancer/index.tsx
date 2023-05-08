@@ -31,6 +31,10 @@ import {
 } from './data/dataNewCase';
 import TreeMap from './maps/treeMap';
 import './style.css';
+import { Link } from '@umijs/max';
+import AvatarDropdown from '@/components/RightContent/AvatarDropdown';
+import { tableCancerDetail } from './tables/tableCancerDetail';
+import TableCancer from './tables/tableCancer';
 
 const { Title } = Typography;
 const { Header, Content, Sider } = Layout;
@@ -183,42 +187,46 @@ const VietNameseCancer: React.FC = () => {
   } = theme.useToken();
 
   let data: { Cancer: string; Cases: number }[] = [];
+  let title = '';
+  let total = 0;
   valueIndicator === 'Inc' && valueSex === 'Both'
-    ? (data = dataNewCaseBothSexes)
+    ? (data = dataNewCaseBothSexes, title = 'Tỷ lệ mắc bệnh tại Việt Nam vào năm 2020, cả hai giới, mọi lứa tuổi (EXEX. NMSC)')
     : valueIndicator === 'Inc' && valueSex === 'Males'
-    ? (data = dataNewCaseMales)
+    ? (data = dataNewCaseMales, title = 'Tỷ lệ mắc bệnh tại Việt Nam vào năm 2020, ở nam giới, mọi lứa tuổi (EXEX. NMSC)')
     : valueIndicator === 'Inc' && valueSex === 'Females'
-    ? (data = dataNewCaseFemales)
+    ? (data = dataNewCaseFemales, title = 'Tỷ lệ mắc bệnh tại Việt Nam vào năm 2020, ở nữ giới, mọi lứa tuổi (EXEX. NMSC)')
     : valueIndicator === 'Mort' && valueSex === 'Both'
-    ? (data = dataDeathCaseBothSexes)
+    ? (data = dataDeathCaseBothSexes, title = 'Tỷ lệ tử vong tại Việt Nam vào năm 2020, cả hai giới, mọi lứa tuổi (EXEX. NMSC)')
     : valueIndicator === 'Mort' && valueSex === 'Males'
-    ? (data = dataDeathCaseMales)
+    ? (data = dataDeathCaseMales, title = 'Tỷ lệ tử vong tại Việt Nam vào năm 2020, ở nam giới, mọi lứa tuổi (EXEX. NMSC)')
     : valueIndicator === 'Mort' && valueSex === 'Females'
-    ? (data = dataDeathCaseFemales)
+    ? (data = dataDeathCaseFemales, title = 'Tỷ lệ tử vong tại Việt Nam vào năm 2020, ở nữ giới, mọi lứa tuổi (EXEX. NMSC)')
     : valueIndicator === 'Prev' && valueSex === 'Both'
-    ? (data = dataCasePrevalentBothSexes)
+    ? (data = dataCasePrevalentBothSexes, title = 'Số lượng trường hợp ước tính tại Việt Nam vào năm 2020, cả hai giới, mọi lứa tuổi (EXEX. NMSC)')
     : valueIndicator === 'Prev' && valueSex === 'Males'
-    ? (data = dataCasePrevalentMale)
+    ? (data = dataCasePrevalentMale, title = 'Số lượng trường hợp ước tính tại Việt Nam vào năm 2020, ở nam giới, mọi lứa tuổi (EXEX. NMSC)')
     : valueIndicator === 'Prev' && valueSex === 'Females'
-    ? (data = dataCasePrevalentFemale)
-    : (data = []);
+    ? (data = dataCasePrevalentFemale, title = 'Số lượng trường hợp ước tínhtại Việt Nam vào năm 2020, ở nữ giới, mọi lứa tuổi (EXEX. NMSC)')
+    : (data = [], title = '');
 
   return (
     <Layout style={{ minHeight: '100vh', margin: 0, height: '100%', overflow: 'hidden' }}>
-      <Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%', height: '80px' }}>
-        <div
-          style={{
-            float: 'left',
-            width: 120,
-            height: 31,
-            margin: '16px 24px 16px 0',
-            background: 'rgba(255, 255, 255, 0.2)',
-          }}
-        />
+      <Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%', height: '80px', display: 'flex', justifyContent: 'space-between' }}>
+        <div className='logo-title'>
+          <img src="/Logo_HUST_HMU.png" alt="" style={{width: '100%'}}/>
+        </div>
+        <div style={{height: '100%', paddingTop: 10}}>
+          <h3 className='title'>
+            THỐNG KÊ CÁC LOẠI BỆNH UNG THƯ PHỔ BIẾN TẠI VIỆT NAM
+          </h3>
+        </div>
+        <div style={{paddingTop: 15}}>
+          <AvatarDropdown/>
+        </div>
       </Header>
       <Layout>
         <Sider
-          style={{ background: '#383838', color: '#fff' }}
+          style={{ background: '#383838', color: '#fff'}}
           collapsible={false}
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
@@ -242,7 +250,7 @@ const VietNameseCancer: React.FC = () => {
             <Form>
               <Form.Item name="compare" valuePropName="checked">
                 <div className="sider-component">
-                  <Title level={5}>Compare</Title>
+                  <Title level={4}>Compare</Title>
                   <Radio.Group defaultValue={'cancer_sites'}>
                     <Radio value="population">Population</Radio>
                     <Radio value="cancer_sites">Cancer sites</Radio>
@@ -252,7 +260,7 @@ const VietNameseCancer: React.FC = () => {
               <Divider />
               <Form.Item name="indicators" valuePropName="checked">
                 <div className="sider-component">
-                  <Title level={5}>Indicator</Title>
+                  <Title level={4}>Indicator</Title>
                   <Radio.Group
                     onChange={onChangeIndicator}
                     value={valueIndicator}
@@ -267,7 +275,7 @@ const VietNameseCancer: React.FC = () => {
               <Divider />
               <Form.Item name="sex" valuePropName="checked">
                 <div className="sider-component">
-                  <Title level={5}>Indicator</Title>
+                  <Title level={4}>Sex</Title>
                   <Radio.Group onChange={onChangeSex} value={valueSex} defaultValue={'Both'}>
                     <Radio value="Both">Both</Radio>
                     <Radio value="Males">Males</Radio>
@@ -276,30 +284,33 @@ const VietNameseCancer: React.FC = () => {
                 </div>
               </Form.Item>
               <Divider />
-              <Form.Item name="indicators" valuePropName="checked">
-                <div style={{ display: 'inline' }} className="sider-component">
-                  <Title level={5}>Population</Title>
+              <div className="sider-component">
+                <Form.Item name="indicators" valuePropName="checked">
+                  <Title level={4}>Population</Title>
                   <Button type="primary">Choose a population: VietNam</Button>
-                </div>
-              </Form.Item>
+                </Form.Item>
+              </div>
             </Form>
           </div>
+          <Divider />
+          <div style={{textAlign: 'center'}}>
+            <Button type="primary"><Link to={'/welcome'}>Quay lại</Link></Button>
+          </div>
         </Sider>
-        <Content style={{ margin: '0 16px', height: '100%', overflow: 'auto' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
+        <Content style={{ margin: '0 16px', height: '90%', overflow: 'auto' }}>
+          <Breadcrumb style={{ margin: '16px 0', backgroundColor: '#fff', padding: 5, borderRadius: 10}}>
             <Breadcrumb.Item>Chart</Breadcrumb.Item>
             <Breadcrumb.Item>{current}</Breadcrumb.Item>
           </Breadcrumb>
           <Menu
-            style={{}}
+            style={{borderRadius: 10}}
             onClick={onClickMenuInside}
             selectedKeys={[current]}
             mode="horizontal"
             items={itemsMenuInside}
           />
           <h2 className="chart-title">
-            Estimated age-standardized incidence and mortality rates (World) in 2020, both sexes,
-            all ages (excl. NMSC){' '}
+            {title}
           </h2>
           {valueMenu === 'graphic' ? (
             <PageContainer>
@@ -311,17 +322,30 @@ const VietNameseCancer: React.FC = () => {
                 <ScatterChart />
               ) : current === 'tree-map' ? (
                 <TreeMap />
+              ) : current === 'table' ? (
+                <TableCancer/>
               ) : (
                 <NoFoundPage />
               )}
             </PageContainer>
-          ) : (
-            <NoFoundPage />
+          ) : (<PageContainer>
+            {tableCancerDetail(data)}
+          </PageContainer>
           )}
 
-          <Footer style={{ textAlign: 'center' }}>
-            Đại học Bách Khoa Hà Nội và đại học Y Hà Nội
-          </Footer>
+          
+          <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: 10}}>
+            <div className="left-footer">
+              <p>Data source: Globocan 2020</p>
+              <p>Graph production: Global Cancer Observatory (<a href="http://gco.iarc.fr/today" target="_blank">http://gco.iarc.fr/today</a>)</p>
+            </div>
+            <h2 className="center-footer">
+               <a href="https://hust.edu.vn/" target="_blank" rel="noopener noreferrer">Đại học Bách Khoa Hà Nội</a>  và <a href="https://hmu.edu.vn/" target="_blank" rel="noopener noreferrer">trường đại học Y Hà Nội</a> 
+            </h2>
+            <div className="right-footer">
+              <img src="/Logo_HUST_HMU.png" alt="img_HUST_HMU" />
+            </div>
+          </div>
         </Content>
       </Layout>
     </Layout>
