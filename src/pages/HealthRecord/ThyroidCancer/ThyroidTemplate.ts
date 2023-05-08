@@ -849,11 +849,9 @@ const THYROID: any = {
               type: 'title',
             },
           ],
-
         ],
 
         [
-
           [
             {
               question: 'Tổng số nhân tuyến giáp:',
@@ -861,7 +859,6 @@ const THYROID: any = {
               answer: '',
             },
             {
-
               body: [
                 [
                   {
@@ -876,14 +873,9 @@ const THYROID: any = {
                   {
                     type: 'text',
                   },
-                ]
+                ],
               ],
-              header: [
-                "Nhân giáp thứ",
-                "Vị trí",
-                "Kích thước",
-                "Phân độ TIRADS",
-              ]
+              header: ['Nhân giáp thứ', 'Vị trí', 'Kích thước', 'Phân độ TIRADS'],
             },
             {
               question: 'Hạch vùng cổ',
@@ -1421,7 +1413,7 @@ const THYROID: any = {
           type: 'text',
         },
       ],
-    ]
+    ],
   },
   responeToTreatment: [
     [
@@ -1588,7 +1580,6 @@ const THYROID: any = {
     ],
   ],
 
-
   assessmentResponseTreatment: {
     name: '40.Theo dõi đáp ứng điều trị',
     listQuestions: [
@@ -1649,70 +1640,74 @@ const THYROID: any = {
     ],
   },
 
-
   genTest: {
-    header: ["Gen",
-      "Trình tự tham chiếu",
-      "Biến thể",
-      "Vị trí trên nhiễm sắc thể",
-      "Kiểu gen",
-      "Kiểu di truyền",],
-    body: [
-      [{
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },]
+    header: [
+      'Gen',
+      'Trình tự tham chiếu',
+      'Biến thể',
+      'Vị trí trên nhiễm sắc thể',
+      'Kiểu gen',
+      'Kiểu di truyền',
     ],
-
+    body: [
+      [
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+      ],
+    ],
   },
   genTestResponseTreatment: {
     header: [
-      "Gen",
-      "Trình tự tham chiếu",
-      "Biến thể",
-      "Vị trí trên nhiễm sắc thể",
-      "Nhạy cảm/Kháng thuốc đích",
-      "Thuốc đích ảnh hưởng",
+      'Gen',
+      'Trình tự tham chiếu',
+      'Biến thể',
+      'Vị trí trên nhiễm sắc thể',
+      'Nhạy cảm/Kháng thuốc đích',
+      'Thuốc đích ảnh hưởng',
     ],
     body: [
-      [{
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },]
+      [
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+      ],
     ],
   },
   otherInfo: {
@@ -1917,7 +1912,6 @@ const THYROID: any = {
       ],
     ],
     thyroidTable: {
-
       body: [
         [
           {
@@ -1932,15 +1926,10 @@ const THYROID: any = {
           {
             type: 'text',
           },
-        ]
+        ],
       ],
-      header: [
-        "Nhân giáp thứ",
-        "Vị trí",
-        "Kích thước",
-        "Phân độ TIRADS",
-      ]
+      header: ['Nhân giáp thứ', 'Vị trí', 'Kích thước', 'Phân độ TIRADS'],
     },
-  }
+  },
 };
 export default THYROID;

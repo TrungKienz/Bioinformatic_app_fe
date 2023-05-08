@@ -11,15 +11,15 @@ function ListArticles() {
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
 
-  const handleNameChange = (event) => {
+  const handleNameChange = (event: any) => {
     setName(event.target.value);
   };
 
-  const handleCommentChange = (event) => {
+  const handleCommentChange = (event: any) => {
     setComment(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     const newComment = { name, comment };
     setComments([...comments, newComment]);
@@ -55,7 +55,7 @@ function ListArticles() {
       <br />
       <br />
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmitCapture={handleSubmit}>
         <Form.Item label="Tên" htmlFor="name">
           <Input type="text" id="name" value={name} onChange={handleNameChange} required />
         </Form.Item>

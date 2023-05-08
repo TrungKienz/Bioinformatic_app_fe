@@ -1,6 +1,6 @@
 import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
-import { AutoComplete, Button, Col, Form, Input, Row, Tag } from 'antd';
+import { Button, Col, Form, Input, Row, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import { drugsInformationEp } from '../EndPoint';
 
@@ -11,11 +11,10 @@ const NormalGenes = () => {
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [totalPages, setTotalPages] = useState(1);
 
-
   useEffect(() => {
     fetch(`${drugsInformationEp}?page=${pagination.current}&limit=${pagination.pageSize}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setTotalPages(data.totalPages);
         setData(data.drugInformationModels);
       });
@@ -85,22 +84,24 @@ const NormalGenes = () => {
       hideInSearch: true,
       align: 'center',
       render: (articles: any, data) => (
-        <Link key="showDetail" style={{ textDecoration: 'underline' }} to={`/drug/${data._id}`}>{articles.length}</Link>
+        <Link key="showDetail" style={{ textDecoration: 'underline' }} to={`/drug/${data._id}`}>
+          {articles.length}
+        </Link>
       ),
     },
   ];
-  
+
   return (
     <>
       <Row>
         <Col span={8}>
-          <Form.Item name="note" label="Tìm kiếm theo Gene:" >
-              <Input allowClear placeholder="Nhập tên gene" style={{ width: 200 }}/>
+          <Form.Item name="note" label="Tìm kiếm theo Gene:">
+            <Input allowClear placeholder="Nhập tên gene" style={{ width: 200 }} />
           </Form.Item>
         </Col>
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo tên thuốc:">
-              <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 200 }}/>
+            <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 200 }} />
           </Form.Item>
         </Col>
         <Col span={8}>

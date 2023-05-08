@@ -1,6 +1,5 @@
-import { React } from "react";
-import { useParams } from "react-router-dom";
-import geneDetails from "./data/geneData";
+import { useParams } from 'react-router-dom';
+import geneDetails from './data/geneData';
 export default function GeneDetails() {
   const { gene } = useParams();
   var genzz = geneDetails.filter((gen) => gen.name === gene);

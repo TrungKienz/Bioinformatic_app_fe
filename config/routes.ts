@@ -11,8 +11,6 @@
  * @doc https://umijs.org/docs/guides/routes
  */
 
-import access from "@/access";
-
 export default [
   {
     path: '/user',
@@ -76,16 +74,15 @@ export default [
       },
     ],
   },
-
   {
     path: '/cancer',
-    layout: false,
     access: 'canAdmin',
+    layout: false,
     hideInMenu: true,
     routes: [
       {
         path: '/cancer/vietnamese-cancer',
-        name: 'Thống kê tại Việt Nam',
+        hideInMenu: true,
         component: './CancerInformationPages/VietnameseCancer',
       },
     ],
@@ -144,40 +141,39 @@ export default [
     component: './GeneAndMutation/geneAndMutation',
   },
   {
-
     name: 'Bệnh án ung thư trực tràng',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
     path: '/health-record/conlorectal-cancer/:id',
     component: './HealthRecord/ColorectalCancer',
-    hideInMenu: true
+    hideInMenu: true,
   },
   {
     name: 'Bệnh án ung thư phổi',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
     path: '/health-record/lung-cancer/:id',
     component: './HealthRecord/LungCancer',
-    hideInMenu: true
+    hideInMenu: true,
   },
   {
     name: 'Bệnh án ung thư gan',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
     path: '/health-record/liver-cancer/:id',
     component: './HealthRecord/LiverCancer',
-    hideInMenu: true
+    hideInMenu: true,
   },
   {
     name: 'Bệnh án NC-K Giáp',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
     path: '/health-record/thyroid-cancer/:id',
     component: './HealthRecord/ThyroidCancer',
-    hideInMenu: true
+    hideInMenu: true,
   },
   {
     name: 'Bệnh án NC-K Vú',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
     path: '/health-record/breast-cancer/:id',
     component: './HealthRecord/BreastCancer',
-    hideInMenu: true
+    hideInMenu: true,
   },
   {
     name: 'Quản lý bệnh án',
@@ -202,8 +198,8 @@ export default [
         path: '/cosmic-gene/:gene',
         component: './GeneCosmic/geneDetail',
         hideInMenu: true,
-      }
-    ]
+      },
+    ],
   },
   {
     name: 'Thông tin nhóm phát triển',

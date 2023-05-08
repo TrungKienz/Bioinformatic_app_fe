@@ -1,6 +1,12 @@
+import {
+  mutationBreast20GeneEp,
+  mutationColorectal20GeneEp,
+  mutationLiver20GeneEp,
+  mutationLung20GeneEp,
+  mutationThyroid20GeneEp,
+} from '@/pages/EndPoint';
 import { Column } from '@ant-design/charts';
 import { useEffect, useState } from 'react';
-import { mutationLung20GeneEp, mutationLiver20GeneEp, mutationBreast20GeneEp, mutationThyroid20GeneEp, mutationColorectal20GeneEp } from '@/pages/EndPoint';
 
 const lungCancerPage = '/cancer/lung-cancer';
 const liverCancerPage = '/cancer/liver-cancer';
@@ -39,19 +45,19 @@ const TopGene = () => {
       });
   };
   console.log(data);
-    const config = {
-      data,
-      xField: 'gene_name',
-      yField: 'value',
-      seriesField: 'type',
-      isGroup: true,
-      columnStyle: {
+  const config = {
+    data,
+    xField: 'gene_name',
+    yField: 'value',
+    seriesField: 'type',
+    isGroup: true,
+    columnStyle: {
       radius: [5, 5, 0, 0],
-      },
+    },
   };
   return (
     <div style={{ height: '80vh' }}>
-      <Column {...config} height="100%"/>
+      <Column {...config} height="100%" />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { server } from "./Api";
+import { server } from './Api';
 
 export const mutationLungGeneEp = `${server}/mutation-lung-gene`;
 export const mutationLiverGeneEp = `${server}/mutation-liver-gene`;
@@ -27,4 +27,4 @@ export const drugArticlesEp = `${server}/drugs-information/find`;
 export const geneAndMutationEp = `${server}/mutation`;
 export const geneMutationArticlesEp = `${server}/mutation/find`;
 
-export const loginEp = `${server}/user/login`
+export const loginEp = `${server}/user/login`;

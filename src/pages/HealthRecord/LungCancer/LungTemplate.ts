@@ -19,13 +19,13 @@ let LUNG: any = {
               question: '',
               type: 'text',
               unit: 'bao/ngày',
-              answer: ''
+              answer: '',
             },
             {
               question: '',
               type: 'text',
               unit: 'năm',
-              answer: ''
+              answer: '',
             },
           ],
         ],
@@ -1115,7 +1115,7 @@ let LUNG: any = {
           answer: '',
         },
       ],
-    ]
+    ],
   },
   responeToTreatment: [
     [
@@ -1313,76 +1313,78 @@ let LUNG: any = {
   ],
 
   genTest: {
-    header: ["Gen",
-      "Trình tự tham chiếu",
-      "Biến thể",
-      "Vị trí trên nhiễm sắc thể",
-      "Kiểu gen",
-      "Kiểu di truyền",],
-    body: [
-      [{
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },]
+    header: [
+      'Gen',
+      'Trình tự tham chiếu',
+      'Biến thể',
+      'Vị trí trên nhiễm sắc thể',
+      'Kiểu gen',
+      'Kiểu di truyền',
     ],
-
+    body: [
+      [
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+      ],
+    ],
   },
   genTestResponseTreatment: {
     header: [
-      "Gen",
-      "Trình tự tham chiếu",
-      "Biến thể",
-      "Vị trí trên nhiễm sắc thể",
-      "Nhạy cảm/Kháng thuốc đích",
-      "Thuốc đích ảnh hưởng",
+      'Gen',
+      'Trình tự tham chiếu',
+      'Biến thể',
+      'Vị trí trên nhiễm sắc thể',
+      'Nhạy cảm/Kháng thuốc đích',
+      'Thuốc đích ảnh hưởng',
     ],
     body: [
-      [{
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },]
+      [
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+      ],
     ],
   },
   otherInfo: {
     CEA: {
-      header: [
-        'Thời gian sau sử dụng đích',
-        'Nồng độ CEA (ng/ml)'
-      ],
+      header: ['Thời gian sau sử dụng đích', 'Nồng độ CEA (ng/ml)'],
       body: [
         [
           {
@@ -1456,8 +1458,8 @@ let LUNG: any = {
             type: 'text',
           },
         ],
-      ]
+      ],
     },
-  }
+  },
 };
 export default LUNG;

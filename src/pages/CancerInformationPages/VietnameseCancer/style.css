@@ -9,3 +9,16 @@
 .sider-component {
     padding: 20px;
 }
+
+.chart-title {
+    font-weight: 500 !important;
+    fill: #000;
+    color: #000;
+    font-size: 20px !important;
+    font-family: "Noto Sans";
+    text-transform: none;
+    text-align: center;
+    padding: 35px 0px 15px 0px;
+    min-height: 30px;
+    z-index: 3;
+}

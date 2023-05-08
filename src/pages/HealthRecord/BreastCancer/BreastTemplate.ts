@@ -1233,14 +1233,8 @@ const BREAST: any = {
             },
             {
               type: 'table',
-              header: [
-                'Khối thứ',
-                'Vị trí',
-                'Kích thước (mm x mm)',
-                'Phân độ BRADS',
-              ],
+              header: ['Khối thứ', 'Vị trí', 'Kích thước (mm x mm)', 'Phân độ BRADS'],
               body: [
-
                 [
                   {
                     type: 'text',
@@ -1254,8 +1248,8 @@ const BREAST: any = {
                   {
                     type: 'text',
                   },
-                ]
-              ]
+                ],
+              ],
             },
             {
               prefix: 'Tổng số hạch',
@@ -1533,12 +1527,12 @@ const BREAST: any = {
   ],
   clinicalSymptoms: {
     header: [
-      "Thời gian sau sử dụng hóa chất",
-      "PS*(1-5)",
-      "Cân nặng",
-      "Mức độ mệt mỏi",
-      "Mức độ chán ăn/nôn/buồn nôn",
-      "Mức độ rụng tóc",
+      'Thời gian sau sử dụng hóa chất',
+      'PS*(1-5)',
+      'Cân nặng',
+      'Mức độ mệt mỏi',
+      'Mức độ chán ăn/nôn/buồn nôn',
+      'Mức độ rụng tóc',
     ],
     body: [
       [
@@ -1703,7 +1697,7 @@ const BREAST: any = {
           answer: '',
         },
       ],
-    ]
+    ],
   },
   responeToTreatment: [
     [
@@ -1870,11 +1864,7 @@ const BREAST: any = {
       ],
     ],
     tumor: {
-      header: [
-        "Thời gian sau sử dụng hóa chất",
-        "Lâm sàng",
-        "Siêu âm",
-      ],
+      header: ['Thời gian sau sử dụng hóa chất', 'Lâm sàng', 'Siêu âm'],
       body: [
         [
           {
@@ -1888,7 +1878,7 @@ const BREAST: any = {
             type: 'number',
           },
         ],
-      ]
+      ],
     },
   },
   assessmentResponseTreatment: {
@@ -1919,70 +1909,74 @@ const BREAST: any = {
     ],
   },
   genTest: {
-    header: ["Gen",
-      "Trình tự tham chiếu",
-      "Biến thể",
-      "Vị trí trên nhiễm sắc thể",
-      "Kiểu gen",
-      "Kiểu di truyền",],
-    body: [
-      [{
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },]
+    header: [
+      'Gen',
+      'Trình tự tham chiếu',
+      'Biến thể',
+      'Vị trí trên nhiễm sắc thể',
+      'Kiểu gen',
+      'Kiểu di truyền',
     ],
-
+    body: [
+      [
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+      ],
+    ],
   },
   genTestResponseTreatment: {
     header: [
-      "Gen",
-      "Trình tự tham chiếu",
-      "Biến thể",
-      "Vị trí trên nhiễm sắc thể",
-      "Nhạy cảm/Kháng thuốc đích",
-      "Thuốc đích ảnh hưởng",
+      'Gen',
+      'Trình tự tham chiếu',
+      'Biến thể',
+      'Vị trí trên nhiễm sắc thể',
+      'Nhạy cảm/Kháng thuốc đích',
+      'Thuốc đích ảnh hưởng',
     ],
     body: [
-      [{
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },]
+      [
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+      ],
     ],
   },
-
 };
 export default BREAST;

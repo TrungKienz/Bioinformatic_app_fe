@@ -5,28 +5,30 @@ import { useEffect, useState } from 'react';
 import { drugArticlesEp } from '../EndPoint';
 
 const articles = () => {
-  const [dataArticles, setDataArticles] = useState<Array<{
-    gene: any,
-    cancerType: any,
-    level: any,
-    alteration: any,
-    drug: any,
-    key: any,
-    title: any,
-    journal: any,
-    pubDate: any,
-    volume: any,
-    issue: any,
-    authors: any,
-    elocationId: any,
-    reference: any,
-    link: any,
-    abstract: any,
-    page: Number,
-  }>>([]);
+  const [dataArticles, setDataArticles] = useState<
+    Array<{
+      gene: any;
+      cancerType: any;
+      level: any;
+      alteration: any;
+      drug: any;
+      key: any;
+      title: any;
+      journal: any;
+      pubDate: any;
+      volume: any;
+      issue: any;
+      authors: any;
+      elocationId: any;
+      reference: any;
+      link: any;
+      abstract: any;
+      page: Number;
+    }>
+  >([]);
 
   const currentLocation = location.pathname;
-  const id = currentLocation.replace('/drug/','');
+  const id = currentLocation.replace('/drug/', '');
 
   const fetchDataArticles = async (id: any) => {
     const response = await fetch(`${drugArticlesEp}/${id}`);
@@ -52,14 +54,14 @@ const articles = () => {
         pages: article.pages,
       };
     });
-    setDataArticles(articles);  
+    setDataArticles(articles);
   };
 
   useEffect(() => {
     fetchDataArticles(id).catch((error) => console.error(error));
   }, []);
 
-  console.log(dataArticles);  
+  console.log(dataArticles);
 
   const columns: ProColumns[] = [
     {
@@ -115,10 +117,24 @@ const articles = () => {
       dataIndex: 'link',
       hideInSearch: true,
       align: 'center',
-      render: (text, dataArticles) => (
-        dataArticles.link ? <a href={dataArticles.link .toString()} style={{textDecoration: 'underline'}} target='_blank'>Xem</a> 
-        : <a href={`https://pubmed.ncbi.nlm.nih.gov/${dataArticles.key}`} style={{textDecoration: 'underline'}} target='_blank'>Xem</a>
-      ),
+      render: (text, dataArticles) =>
+        dataArticles.link ? (
+          <a
+            href={dataArticles.link.toString()}
+            style={{ textDecoration: 'underline' }}
+            target="_blank"
+          >
+            Xem
+          </a>
+        ) : (
+          <a
+            href={`https://pubmed.ncbi.nlm.nih.gov/${dataArticles.key}`}
+            style={{ textDecoration: 'underline' }}
+            target="_blank"
+          >
+            Xem
+          </a>
+        ),
     },
     {
       title: 'Tóm tắt',
@@ -127,7 +143,6 @@ const articles = () => {
       align: 'center',
     },
   ];
-
 
   return (
     <>
@@ -151,9 +166,7 @@ const articles = () => {
         pagination={{ pageSize: 10 }}
       />
     </>
-    
   );
 };
 
 export default articles;
-

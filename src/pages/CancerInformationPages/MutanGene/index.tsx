@@ -1,8 +1,13 @@
+import {
+  mutationBreastGeneEp,
+  mutationColorectalGeneEp,
+  mutationLiverGeneEp,
+  mutationLungGeneEp,
+  mutationThyroidGeneEp,
+} from '@/pages/EndPoint';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useEffect, useState } from 'react';
-import { mutationLungGeneEp, mutationLiverGeneEp, mutationBreastGeneEp, mutationThyroidGeneEp, mutationColorectalGeneEp } from '@/pages/EndPoint';
-import { currentUser } from '@/services/ant-design-pro/api';
 
 const lungCancerPage = '/cancer/lung-cancer';
 const liverCancerPage = '/cancer/liver-cancer';
@@ -14,8 +19,8 @@ const MutanGene = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
-  const [ totalPages, setTotalPages ] = useState(1);
-  
+  const [totalPages, setTotalPages] = useState(1);
+
   let URL = '';
 
   if (location.pathname === lungCancerPage) {
@@ -31,11 +36,11 @@ const MutanGene = () => {
   } else {
     URL = '';
   }
-  
+
   useEffect(() => {
     fetch(`${URL}?page=${pagination.current}&limit=${pagination.pageSize}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setTotalPages(data.totalPages);
         if (location.pathname === lungCancerPage) {
           setData(data.mutationLungGeneModels);
@@ -53,8 +58,8 @@ const MutanGene = () => {
 
   useEffect(() => {
     fetch(`${URL}/findByName`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setTotalPages(data.totalPages);
         if (location.pathname === lungCancerPage) {
           setData(data.mutationLungGeneModels);
@@ -73,7 +78,7 @@ const MutanGene = () => {
   const handleTableChange = (pagination: any) => {
     setPagination(pagination);
   };
-  
+
   const columns: ProColumns[] = [
     {
       title: 'TÊN GEN',
@@ -87,7 +92,7 @@ const MutanGene = () => {
         return (
           <a
             href={`https://cancer.sanger.ac.uk/cosmic/gene/analysis?all_data=n&in=t&ln=${gene_name}&sn=liver&src=tissue&wgs=off`}
-            target= '_blank'
+            target="_blank"
           >
             {gene_name}
           </a>
@@ -116,7 +121,6 @@ const MutanGene = () => {
     },
   ];
 
-
   return (
     <ProTable
       columns={columns}
@@ -133,7 +137,7 @@ const MutanGene = () => {
       rowKey="key"
       search={false}
       dateFormatter="string"
-      pagination={{total: totalPages, pageSize: 10}}
+      pagination={{ total: totalPages, pageSize: 10 }}
       onChange={handleTableChange}
     />
   );

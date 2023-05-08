@@ -1,8 +1,6 @@
-import { request, extend } from "@umijs/max";
+import { request } from '@umijs/max';
 
-
-
-const baseUrl = 'http://localhost:3000'
+const baseUrl = 'http://localhost:3000';
 class HealthRecordService {
   saveHealthRecord = async (body: any, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${baseUrl}/save`, {
@@ -13,7 +11,7 @@ class HealthRecordService {
       data: body,
       ...(options || {}),
     });
-  }
+  };
   getHealthRecord = async (body: any, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${baseUrl}/get-health-record`, {
       method: 'POST',
@@ -23,7 +21,7 @@ class HealthRecordService {
       data: body,
       ...(options || {}),
     });
-  }
+  };
   deleteHealthRecord = async (body: any, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${baseUrl}/delete-health-record`, {
       method: 'POST',
@@ -33,7 +31,7 @@ class HealthRecordService {
       data: { id: body },
       ...(options || {}),
     });
-  }
+  };
   getAll = async (options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${baseUrl}/get-all`, {
       method: 'GET',
@@ -42,7 +40,7 @@ class HealthRecordService {
       },
       ...(options || {}),
     });
-  }
+  };
   search = async (body: object, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${baseUrl}/search`, {
       method: 'POST',
@@ -52,7 +50,6 @@ class HealthRecordService {
       data: body,
       ...(options || {}),
     });
-  }
-
+  };
 }
 export default new HealthRecordService();

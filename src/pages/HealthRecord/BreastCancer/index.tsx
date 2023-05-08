@@ -1,19 +1,18 @@
-import { EditOutlined, SaveOutlined } from '@ant-design/icons';
-import { PageContainer } from '@ant-design/pro-components';
-import { Affix, Button, Col, Form, Input, Radio, Row, Tooltip } from 'antd';
-import { useState, useEffect } from 'react';
-import CustomInput from '../CustomInput';
-import './breastCancer.css';
-import BREAST from './BreastTemplate';
 import HealthRecordService from '@/services/healthRecord';
+import { PageContainer } from '@ant-design/pro-components';
+import { useParams } from '@umijs/max';
+import { Col, Form, Row } from 'antd';
+import { useEffect } from 'react';
+import { useRequest } from 'umi';
+import ControlButton from '../ControlButton';
+import CustomInput from '../CustomInput';
 import CustomTable from '../CustomTable';
 import GenTestForm from '../GenTestForm';
 import PatientInfo from '../PatientInfo';
-import { useModel, useParams, } from '@umijs/max';
-import { useRequest } from 'umi';
-import ControlButton from '../ControlButton';
+import './breastCancer.css';
+import BREAST from './BreastTemplate';
 
-let CANCER = JSON.parse(JSON.stringify(BREAST))
+let CANCER = JSON.parse(JSON.stringify(BREAST));
 
 export default () => {
   const [patientInfoForm] = Form.useForm();
@@ -27,7 +26,7 @@ export default () => {
       job: '',
       phone: '',
       sex: '',
-    })
+    });
     genTestForm.setFieldsValue({
       concentrateDNA: '',
       dateSample: '',
@@ -37,12 +36,11 @@ export default () => {
       testCode: '',
       testDate: '',
       typeSample: '',
-    })
-  }, [])
+    });
+  }, []);
 
-  const params = useParams()
+  const params = useParams();
   if (params.id !== '0') {
-
     const { data, error, loading } = useRequest(() => {
       return HealthRecordService.getHealthRecord(params);
     });
@@ -54,23 +52,28 @@ export default () => {
     }
     CANCER = data;
 
-    patientInfoForm.setFieldsValue(data?.patientInfo)
-    genTestForm.setFieldsValue(data?.genTestInfo)
+    patientInfoForm.setFieldsValue(data?.patientInfo);
+    genTestForm.setFieldsValue(data?.genTestInfo);
   }
 
-
   const handleSubmit = async () => {
-    const patientInfo = patientInfoForm.getFieldsValue()
-    const genTestInfo = genTestForm.getFieldsValue()
-    console.log('submit', patientInfo)
-    const healthRecordId = patientInfo?.healthRecordId
-    const data: object = Object.assign({}, CANCER, { patientInfo }, { genTestInfo }, { healthRecordId })
-    console.log('send value', data)
-    const demo = await HealthRecordService.saveHealthRecord(data)
+    const patientInfo = patientInfoForm.getFieldsValue();
+    const genTestInfo = genTestForm.getFieldsValue();
+    console.log('submit', patientInfo);
+    const healthRecordId = patientInfo?.healthRecordId;
+    const data: object = Object.assign(
+      {},
+      CANCER,
+      { patientInfo },
+      { genTestInfo },
+      { healthRecordId },
+    );
+    console.log('send value', data);
+    const demo = await HealthRecordService.saveHealthRecord(data);
 
     // console.log("response", demo);
     // console.log(history)
-  }
+  };
 
   return (
     <PageContainer
@@ -103,8 +106,8 @@ export default () => {
                               item.length === 1
                                 ? '100%'
                                 : item.length === 2 && listId === 1
-                                  ? '2'
-                                  : '1'
+                                ? '2'
+                                : '1'
                             }
                             key={listId}
                           >
@@ -126,9 +129,9 @@ export default () => {
                                         listId={listId}
                                         CANCER={CANCER}
                                         templateInfo={
-                                          CANCER.generalInfo[categoryId].listQuestions[index][listId][
-                                          quesId
-                                          ]
+                                          CANCER.generalInfo[categoryId].listQuestions[index][
+                                            listId
+                                          ][quesId]
                                         }
                                       />
                                     </Col>
@@ -155,9 +158,9 @@ export default () => {
                                         listId={listId}
                                         CANCER={CANCER}
                                         templateInfo={
-                                          CANCER.generalInfo[categoryId].listQuestions[index][listId][
-                                          quesId
-                                          ]
+                                          CANCER.generalInfo[categoryId].listQuestions[index][
+                                            listId
+                                          ][quesId]
                                         }
                                       />
                                     </div>

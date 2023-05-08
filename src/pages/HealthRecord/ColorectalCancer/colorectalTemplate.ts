@@ -1528,68 +1528,73 @@ const COLORECTAL: any = {
   ],
 
   genTest: {
-    header: ["Gen",
-      "Trình tự tham chiếu",
-      "Biến thể",
-      "Vị trí trên nhiễm sắc thể",
-      "Kiểu gen",
-      "Kiểu di truyền",],
-    body: [
-      [{
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },
-      {
-        type: 'text',
-        answer: ''
-      },]
+    header: [
+      'Gen',
+      'Trình tự tham chiếu',
+      'Biến thể',
+      'Vị trí trên nhiễm sắc thể',
+      'Kiểu gen',
+      'Kiểu di truyền',
     ],
-
+    body: [
+      [
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+        {
+          type: 'text',
+          answer: '',
+        },
+      ],
+    ],
   },
   genTestResponseTreatment: {
     header: [
-      "Gen",
-      "Trình tự tham chiếu",
-      "Biến thể",
-      "Vị trí trên nhiễm sắc thể",
-      "Nhạy cảm/Kháng thuốc đích",
-      "Thuốc đích ảnh hưởng",
+      'Gen',
+      'Trình tự tham chiếu',
+      'Biến thể',
+      'Vị trí trên nhiễm sắc thể',
+      'Nhạy cảm/Kháng thuốc đích',
+      'Thuốc đích ảnh hưởng',
     ],
     body: [
-      [{
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },]
+      [
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+        {
+          type: 'text',
+        },
+      ],
     ],
   },
   otherInfo: {
@@ -1688,7 +1693,6 @@ const COLORECTAL: any = {
         },
       ],
     ],
-  }
-
+  },
 };
 export default COLORECTAL;

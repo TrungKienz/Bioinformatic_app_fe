@@ -1,9 +1,3 @@
-import { React, useState } from "react";
-import { Table, Tag, Button, Modal } from "antd";
-import SearchName from "./search/SearchName";
-import SearchAliase from "./search/SearchAliase";
-import SearchDisease from "./search/SearchDisease";
-import SearchTherapie from "./search/SearchTherapie";
 import {
   CheckCircleTwoTone,
   CloseCircleTwoTone,
@@ -11,8 +5,14 @@ import {
   PauseCircleFilled,
   PlusCircleFilled,
   QuestionCircleFilled,
-} from "@ant-design/icons";
-import { Link } from "react-router-dom";
+} from '@ant-design/icons';
+import { Button, Modal, Table, Tag } from 'antd';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import SearchAliase from './search/SearchAliase';
+import SearchDisease from './search/SearchDisease';
+import SearchName from './search/SearchName';
+import SearchTherapie from './search/SearchTherapie';
 
 export default function NewTable() {
   const [searchData, setSearchData] = useState(null);
@@ -31,10 +31,10 @@ export default function NewTable() {
   const genData = [
     {
       id: 1,
-      name: "ALK",
-      aliases: ["ALK", "ALK1", "CD246", "NBLST3"],
-      diseases: ["Lung", "Non-small", "Cell", "Carcinoma"],
-      therapies: ["Crizotinib"],
+      name: 'ALK',
+      aliases: ['ALK', 'ALK1', 'CD246', 'NBLST3'],
+      diseases: ['Lung', 'Non-small', 'Cell', 'Carcinoma'],
+      therapies: ['Crizotinib'],
       count1: 66,
       count2: 59,
       count3: 231,
@@ -42,10 +42,10 @@ export default function NewTable() {
     },
     {
       id: 2,
-      name: "AKT1",
-      aliases: ["ALK", "ALK1", "PKB", "PRKBA", "RAC"],
-      diseases: [" Melanoma"],
-      therapies: ["Capivasertib"],
+      name: 'AKT1',
+      aliases: ['ALK', 'ALK1', 'PKB', 'PRKBA', 'RAC'],
+      diseases: [' Melanoma'],
+      therapies: ['Capivasertib'],
       count1: 8,
       count2: 8,
       count3: 15,
@@ -53,10 +53,10 @@ export default function NewTable() {
     },
     {
       id: 3,
-      name: "ARAF",
-      aliases: ["A-RAF", "ARAF", "PFS2", "RAFA1"],
-      diseases: ["Lung", "Non-small", "Cell", "Carcinoma"],
-      therapies: ["Crizotinib"],
+      name: 'ARAF',
+      aliases: ['A-RAF', 'ARAF', 'PFS2', 'RAFA1'],
+      diseases: ['Lung', 'Non-small', 'Cell', 'Carcinoma'],
+      therapies: ['Crizotinib'],
       count1: 66,
       count2: 59,
       count3: 231,
@@ -66,16 +66,16 @@ export default function NewTable() {
 
   const columns = [
     {
-      title: "name",
-      dataIndex: "name",
-      key: "name",
+      title: 'name',
+      dataIndex: 'name',
+      key: 'name',
       render: (text) => <Link to={`/cosmic-gene/${text}`}>{text}</Link>,
       sorter: (a, b) => a.name - b.name,
     },
     {
-      title: "aliases",
-      dataIndex: "aliases",
-      key: "aliases",
+      title: 'aliases',
+      dataIndex: 'aliases',
+      key: 'aliases',
       render: (_, { aliases }) => (
         <>
           {aliases.map((tag) => (
@@ -85,9 +85,9 @@ export default function NewTable() {
       ),
     },
     {
-      title: "diseases",
-      key: "diseases",
-      dataIndex: "diseases",
+      title: 'diseases',
+      key: 'diseases',
+      dataIndex: 'diseases',
       render: (_, { diseases }) => (
         <>
           {diseases.map((tag) => (
@@ -100,9 +100,9 @@ export default function NewTable() {
       ),
     },
     {
-      title: "therapies",
-      key: "therapies",
-      dataIndex: "therapies",
+      title: 'therapies',
+      key: 'therapies',
+      dataIndex: 'therapies',
       render: (_, { therapies }) => (
         <>
           {therapies.map((tag) => (
@@ -115,44 +115,39 @@ export default function NewTable() {
       ),
     },
     {
-      title: [<QuestionCircleFilled />, " Count"],
-      key: "count1",
-      dataIndex: "count1",
+      title: [<QuestionCircleFilled />, ' Count'],
+      key: 'count1',
+      dataIndex: 'count1',
       sorter: (a, b) => a.count1 - b.count1,
     },
     {
-      title: [<PlusCircleFilled />, " Count"],
-      key: "count2",
-      dataIndex: "count2",
+      title: [<PlusCircleFilled />, ' Count'],
+      key: 'count2',
+      dataIndex: 'count2',
       sorter: (a, b) => a.count2 - b.count2,
     },
     {
-      title: [<PauseCircleFilled />, " Count"],
-      key: "count3",
-      dataIndex: "count3",
+      title: [<PauseCircleFilled />, ' Count'],
+      key: 'count3',
+      dataIndex: 'count3',
       sorter: (a, b) => a.count3 - b.count3,
     },
     {
-      title: [<MinusCircleFilled />, " Count"],
-      dataIndex: "count4",
-      key: "count",
+      title: [<MinusCircleFilled />, ' Count'],
+      dataIndex: 'count4',
+      key: 'count',
       sorter: (a, b) => a.count4 - b.count4,
     },
     {
-      title: "Action",
-      dataIndex: "",
-      key: "x",
+      title: 'Action',
+      dataIndex: '',
+      key: 'x',
       render: () => (
         <>
           <Button type="primary" onClick={showModal}>
             EDIT
           </Button>
-          <Modal
-            title="Basic Modal"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
+          <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <p>name</p>
           </Modal>
 
@@ -165,9 +160,7 @@ export default function NewTable() {
   ];
   return (
     <div>
-      <div
-        style={{ display: "flex", width: "100%", backgroundColor: "#001529" }}
-      >
+      <div style={{ display: 'flex', width: '100%', backgroundColor: '#001529' }}>
         <div>
           <SearchName genes={genData} setSearchData={setSearchData} />
         </div>

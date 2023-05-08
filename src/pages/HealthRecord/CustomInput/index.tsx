@@ -1,14 +1,13 @@
 import { useModel } from '@umijs/max';
 import { Checkbox, Input, Radio, Select, Space } from 'antd';
-import './customInput.css'
 import CustomTable from '../CustomTable';
+import './customInput.css';
 export default ({ ques }) => {
-  const { isView } = useModel("viewPage")
+  const { isView } = useModel('viewPage');
   const handleOnChangeCheckbox = (choiceId, checked) => {
     console.log(ques);
 
     ques.answer[choiceId] = checked;
-
   };
   const handleOnChangeText = (value, otherValue = false) => {
     console.log(ques);
@@ -39,18 +38,16 @@ export default ({ ques }) => {
                 </Checkbox>{' '}
                 <Input.TextArea
                   disabled={isView}
-
                   autoSize={true}
                   defaultValue={ques?.otherValue}
                   onChange={(e) => handleOnChangeText(e.target.value, true)}
                 />
-              </div >
+              </div>
             );
           return (
             <div style={{ height: '48px' }} className="sub-cell" key={choiceId}>
               <Checkbox
                 disabled={isView}
-
                 defaultChecked={ques.answer[choiceId]}
                 onChange={(e) => {
                   handleOnChangeCheckbox(choiceId, e.target.checked);
@@ -60,8 +57,7 @@ export default ({ ques }) => {
               </Checkbox>
             </div>
           );
-        })
-        }
+        })}
       </>
     );
   }
@@ -86,7 +82,6 @@ export default ({ ques }) => {
       <>
         <Input
           disabled={isView}
-
           className="input"
           onChange={(e) => {
             handleOnChangeText(e.target.value);
@@ -103,7 +98,6 @@ export default ({ ques }) => {
       <>
         <Input.TextArea
           disabled={isView}
-
           style={{ width: '100%' }}
           onChange={(e) => {
             handleOnChangeText(e.target.value);
@@ -127,7 +121,6 @@ export default ({ ques }) => {
     return (
       <Radio.Group
         disabled={isView}
-
         onChange={(e) => {
           handleOnChangeRadio(e.target.value);
         }}
@@ -149,7 +142,6 @@ export default ({ ques }) => {
     return (
       <Input
         disabled={isView}
-
         type="date"
         onChange={(e) => {
           handleOnChangeText(e.target.value);
@@ -163,15 +155,12 @@ export default ({ ques }) => {
     return (
       <Select
         disabled={isView}
-
         style={{ width: '100%' }}
         options={ques.listChoice.map((choice) => ({ label: choice, value: choice }))}
       />
     );
   }
   if (ques.type === 'table') {
-    return (
-      <CustomTable record={ques} />
-    );
+    return <CustomTable record={ques} />;
   }
 };
