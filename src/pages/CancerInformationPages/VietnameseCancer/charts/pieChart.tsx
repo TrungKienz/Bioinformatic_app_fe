@@ -20,7 +20,7 @@ export const PieChart = (data: any) => {
         type: 'element-active',
       },
     ],
-    height: 550, 
+    height: 550,
   };
 
   return <Pie {...config} />;

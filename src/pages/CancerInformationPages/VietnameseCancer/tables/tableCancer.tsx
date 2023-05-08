@@ -24,7 +24,8 @@ const TableCancer = () => {
       title: 'Uncertainty interval',
       dataIndex: 'Uncertainty interval',
       hideInSearch: true,
-    },{
+    },
+    {
       title: 'Crude Rate',
       dataIndex: 'Crude_Rate',
       sorter: (a, b) => a.Crude_Rate - b.Crude_Rate,
