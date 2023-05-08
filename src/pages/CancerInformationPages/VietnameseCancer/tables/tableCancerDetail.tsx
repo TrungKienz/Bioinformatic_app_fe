@@ -1,7 +1,5 @@
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { useState } from 'react';
-import { dataNewCaseBothSexes } from '../data/dataNewCase';
 
 export const tableCancerDetail = (data: any) => {
   const columns: ProColumns[] = [
@@ -13,7 +11,7 @@ export const tableCancerDetail = (data: any) => {
     {
       title: 'Số trường hợp',
       dataIndex: 'Cases',
-      sorter: (a, b) => a.samples_tested - b.samples_tested,
+      sorter: (a, b) => a.Cases - b.Cases,
       hideInSearch: true,
       align: 'left',
     },
