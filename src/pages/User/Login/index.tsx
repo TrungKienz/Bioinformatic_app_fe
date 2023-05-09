@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
 import Settings from '../../../../config/defaultSettings';
 import { server } from '../../Api';
+import "./style.css";
 
 const Lang = () => {
   const langClassName = useEmotionCss(({ token }) => {

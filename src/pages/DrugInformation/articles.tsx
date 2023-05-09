@@ -7,6 +7,7 @@ import { drugArticlesEp } from '../EndPoint';
 const articles = () => {
   const [dataArticles, setDataArticles] = useState<
     Array<{
+      pmid:any;
       gene: any;
       cancerType: any;
       level: any;
@@ -27,14 +28,17 @@ const articles = () => {
     }>
   >([]);
 
+  console.log (dataArticles)
   const currentLocation = location.pathname;
   const id = currentLocation.replace('/drug/', '');
 
   const fetchDataArticles = async (id: any) => {
     const response = await fetch(`${drugArticlesEp}/${id}`);
     const data = await response.json();
+    console.log("data: " + data);
     const articles = data.articles.map((article: any) => {
       return {
+        pmid: data.pmid,
         gene: data.gene,
         cancerType: data.cancer_main_type,
         level: data.level,
@@ -76,36 +80,36 @@ const articles = () => {
       hideInSearch: true,
       align: 'center',
     },
-    {
-      title: 'Ngày xuất bản',
-      dataIndex: 'pubDate',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Volume',
-      dataIndex: 'volume',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Số',
-      dataIndex: 'issue',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Trang',
-      dataIndex: 'pages',
-      hideInSearch: true,
-      align: 'center',
-    },
-    {
-      title: 'Tác giả',
-      dataIndex: 'authors',
-      hideInSearch: true,
-      align: 'center',
-    },
+    // {
+    //   title: 'Ngày xuất bản',
+    //   dataIndex: 'pubDate',
+    //   hideInSearch: true,
+    //   align: 'center',
+    // },
+    // {
+    //   title: 'Volume',
+    //   dataIndex: 'volume',
+    //   hideInSearch: true,
+    //   align: 'center',
+    // },
+    // {
+    //   title: 'Số',
+    //   dataIndex: 'issue',
+    //   hideInSearch: true,
+    //   align: 'center',
+    // },
+    // {
+    //   title: 'Trang',
+    //   dataIndex: 'pages',
+    //   hideInSearch: true,
+    //   align: 'center',
+    // },
+    // {
+    //   title: 'Tác giả',
+    //   dataIndex: 'authors',
+    //   hideInSearch: true,
+    //   align: 'center',
+    // },
     {
       title: 'Tham chiếu',
       dataIndex: 'reference',

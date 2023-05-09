@@ -19,19 +19,27 @@ const TopGene = () => {
 
   let URL = '';
 
-  if (location.pathname === lungCancerPage) {
-    URL = mutationLung20GeneEp;
-  } else if (location.pathname === liverCancerPage) {
-    URL = mutationLiver20GeneEp;
-  } else if (location.pathname === breastCancerPage) {
-    URL = mutationBreast20GeneEp;
-  } else if (location.pathname === thyroidCancerPage) {
-    URL = mutationThyroid20GeneEp;
-  } else if (location.pathname === colorectalCancerPage) {
-    URL = mutationColorectal20GeneEp;
-  } else {
-    URL = '';
+  switch (location.pathname) {
+    case lungCancerPage:
+      URL = mutationLung20GeneEp;
+      break;
+    case liverCancerPage:
+      URL = mutationLiver20GeneEp;
+      break;
+    case breastCancerPage:
+      URL = mutationBreast20GeneEp;
+      break;
+    case thyroidCancerPage:
+      URL = mutationThyroid20GeneEp;
+      break;
+    case colorectalCancerPage:
+      URL = mutationColorectal20GeneEp;
+      break;
+    default:
+      URL = '';
+      break;
   }
+  
   useEffect(() => {
     asyncFetch();
   }, []);
@@ -57,7 +65,7 @@ const TopGene = () => {
   };
   return (
     <div style={{ height: '80vh' }}>
-      <Column {...config} height="100%" />
+      <Column {...config}/>
     </div>
   );
 };

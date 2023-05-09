@@ -3,6 +3,7 @@ import { Link } from '@umijs/max';
 import { Button, Col, Form, Input, Row, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import { drugsInformationEp } from '../EndPoint';
+import { values } from 'lodash';
 
 const NormalGenes = () => {
   const [data, setData] = useState([]);
@@ -101,7 +102,7 @@ const NormalGenes = () => {
         </Col>
         <Col span={8}>
           <Form.Item name="note" label="Tìm kiếm theo tên thuốc:">
-            <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 200 }} />
+            <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 200 }}/>
           </Form.Item>
         </Col>
         <Col span={8}>

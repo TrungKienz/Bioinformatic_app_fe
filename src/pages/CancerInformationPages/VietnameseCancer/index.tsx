@@ -34,6 +34,7 @@ import TreeMap from './maps/treeMap';
 import './style.css';
 import TableCancer from './tables/tableCancer';
 import { tableCancerDetail } from './tables/tableCancerDetail';
+import DualChart from './charts/dualChart';
 
 const { Title } = Typography;
 const { Header, Content, Sider } = Layout;
@@ -60,8 +61,8 @@ const items: MenuProps['items'] = [
             key: 'dual-bars',
           },
           {
-            label: 'Scatter Plot',
-            key: 'scatter-plot',
+            label: 'Pie Charts',
+            key: 'pie-charts',
           },
         ],
       },
@@ -77,8 +78,8 @@ const items: MenuProps['items'] = [
         type: 'group',
         children: [
           {
-            label: 'Pie Charts',
-            key: 'pie-charts',
+            label: 'Scatter Plot',
+            key: 'scatter-plot',
           },
           {
             label: 'Circle Packing',
@@ -158,7 +159,6 @@ const itemsMenuInside: MenuProps['items'] = [
 const VietNameseCancer: React.FC = () => {
   const [collapsed, setCollapsed] = useState(true);
   const [current, setCurrent] = useState('multi-bars');
-  const [currentName, setCurrentName] = useState('Multi Bars');
   const [valueIndicator, setValueIndicator] = useState('Inc');
   const [valueSex, setValueSex] = useState('Both');
   const [valueMenu, setValueMenu] = useState('graphic');
@@ -221,6 +221,8 @@ const VietNameseCancer: React.FC = () => {
         'Số lượng trường hợp ước tínhtại Việt Nam vào năm 2020, ở nữ giới, mọi lứa tuổi (EXEX. NMSC)'))
     : ((data = []), (title = ''));
 
+    let disable = false;
+    current === 'dual-bars' ? disable = true : disable = false;
   return (
     <Layout style={{ minHeight: '100vh', margin: 0, height: '100%', overflow: 'hidden' }}>
       <Header
@@ -270,9 +272,9 @@ const VietNameseCancer: React.FC = () => {
             <Form>
               <Form.Item name="compare" valuePropName="checked">
                 <div className="sider-component">
-                  <Title level={4}>Compare</Title>
+                  <Title level={4}>So sánh</Title>
                   <Radio.Group defaultValue={'cancer_sites'}>
-                    <Radio value="population">Population</Radio>
+                    <Radio value="population" disabled>Dân cư</Radio>
                     <Radio value="cancer_sites">Cancer sites</Radio>
                   </Radio.Group>
                 </div>
@@ -280,34 +282,34 @@ const VietNameseCancer: React.FC = () => {
               <Divider />
               <Form.Item name="indicators" valuePropName="checked">
                 <div className="sider-component">
-                  <Title level={4}>Indicator</Title>
+                  <Title level={4}>Chỉ báo</Title>
                   <Radio.Group
                     onChange={onChangeIndicator}
                     value={valueIndicator}
                     defaultValue={'Inc'}
                   >
-                    <Radio value="Inc">Inc.</Radio>
-                    <Radio value="Mort">Mort.</Radio>
-                    <Radio value="Prev">Prev.</Radio>
+                    <Radio value="Inc" disabled={disable}>Inc.</Radio>
+                    <Radio value="Mort" disabled={disable}>Mort.</Radio>
+                    <Radio value="Prev" disabled={disable}>Prev.</Radio>
                   </Radio.Group>
                 </div>
               </Form.Item>
               <Divider />
               <Form.Item name="sex" valuePropName="checked">
                 <div className="sider-component">
-                  <Title level={4}>Sex</Title>
+                  <Title level={4}>Giới tính</Title>
                   <Radio.Group onChange={onChangeSex} value={valueSex} defaultValue={'Both'}>
-                    <Radio value="Both">Both</Radio>
-                    <Radio value="Males">Males</Radio>
-                    <Radio value="Females">Females</Radio>
+                    <Radio value="Both">Cả hai</Radio>
+                    <Radio value="Males" disabled={disable}>Nam</Radio>
+                    <Radio value="Females" disabled={disable}>Nữ</Radio>
                   </Radio.Group>
                 </div>
               </Form.Item>
               <Divider />
               <div className="sider-component">
                 <Form.Item name="indicators" valuePropName="checked">
-                  <Title level={4}>Population</Title>
-                  <Button type="primary">Choose a population: VietNam</Button>
+                  <Title level={4}>Dân cư</Title>
+                  <Button type="primary">Khu vực dân cư: Việt Nam</Button>
                 </Form.Item>
               </div>
             </Form>
@@ -342,8 +344,8 @@ const VietNameseCancer: React.FC = () => {
                 PieChart(data)
               ) : current === 'scatter-plot' ? (
                 <ScatterChart />
-              ) : current === 'tree-map' ? (
-                <TreeMap />
+              ) : current === 'dual-bars' ? (
+                <DualChart/>
               ) : current === 'table' ? (
                 <TableCancer />
               ) : (
