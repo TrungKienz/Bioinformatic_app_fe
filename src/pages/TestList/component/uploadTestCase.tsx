@@ -10,16 +10,16 @@ const UploadTestCase = () => {
 
   const props = {
     name: 'file',
-    accept: '.json',
+    accept: '.json, .csv, .gz, .tar, .tgz',
     action: addTestCaseEp,
     headers: {
       authorization: 'Bearer my-token',
     },
-    beforeUpload(file) {
+    beforeUpload(file: Blob) {
       const reader = new FileReader();
 
       reader.onload = (e) => {
-        console.log(e.target?.result);
+        console.log( "Result: " + e.target?.result);
       };
       reader.readAsText(file);
       return false;
@@ -44,7 +44,9 @@ const UploadTestCase = () => {
       formData.append('file', file.originFileObj as File);
     });
 
-    fetch(`${server}/test-case/add`, {
+    console.log("Form data: "+formData)
+
+    fetch(addTestCaseEp, {
       method: 'POST',
       headers: {
         authorization: 'Bearer my-token',
@@ -63,7 +65,7 @@ const UploadTestCase = () => {
         console.error('Error uploading file:', error);
         message.error('Error uploading file');
       });
-    console.log(formData);
+    console.log("Form data body:" +formData);
   };
 
   const handleCancel = () => {

@@ -19,7 +19,7 @@ export const nomalThyroidGeneEp = `${server}/nomal-thyroid-gene`;
 export const nomalColorectalEp = `${server}/nomal-colorectal-gene`;
 
 export const testCaseEp = `${server}/test-case`;
-export const addTestCaseEp = `${server}/test-case/add`;
+export const addTestCaseEp = `${server}/upload`;
 
 export const drugsInformationEp = `${server}/drugs-information`;
 export const drugArticlesEp = `${server}/drugs-information/find`;
