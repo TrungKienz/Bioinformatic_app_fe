@@ -45,32 +45,169 @@ export default [
       {
         path: '/cancer/lung-cancer',
         name: 'Ung thư phổi',
-        component: './CancerInformation',
+        routes: [
+          {
+            path:'/cancer/lung-cancer'
+          },
+          {
+            path: '/cancer/lung-cancer/overview',
+            name: 'Tổng quan',
+            component: './CancerInformation'
+          },
+          {
+            path: '/cancer/lung-cancer/epidemiology',
+            name: 'Dịch tễ',
+            component: './CancerInformationPages/VietnameseCancer'
+          },
+          {
+            path: '/cancer/lung-cancer/gene-mutation',
+            name: 'Gene đột biến',
+            component: './GeneAndMutation/geneAndMutation'
+          },
+          {
+            path: '/cancer/lung-cancer/drug',
+            name: 'Thuốc điều trị',
+            component: './DrugInformation/drugInfor',
+          },
+          {
+            path: '/cancer/lung-cancer/other-treatment',
+            name: 'Các điều trị khác',
+            component: './Admin.tsx'
+          },
+        ]
       },
       {
         path: '/cancer/liver-cancer',
         name: 'Ung thư gan',
-        component: './CancerInformation',
+        routes: [
+          {
+            path:'/cancer/liver-cancer'
+          },
+          {
+            path: '/cancer/liver-cancer/overview',
+            name: 'Tổng quan',
+            component: './CancerInformation'
+          },
+          {
+            path: '/cancer/liver-cancer/epidemiology',
+            name: 'Dịch tễ',
+            component: './CancerInformationPages/VietnameseCancer'
+          },
+          {
+            path: '/cancer/liver-cancer/gene-mutation',
+            name: 'Gene đột biến',
+            component: './GeneAndMutation/geneAndMutation'
+          },
+          {
+            path: '/cancer/liver-cancer/drug',
+            name: 'Thuốc điều trị',
+            component: './DrugInformation/drugInfor',
+          },
+          {
+            path: '/cancer/liver-cancer/other-treatment',
+            name: 'Các điều trị khác',
+            component: './Admin.tsx'
+          },
+        ]
       },
       {
         path: '/cancer/breast-cancer',
         name: 'Ung thư vú',
-        component: './CancerInformation',
+        routes: [
+          {
+            path:'/cancer/breast-cancer'
+          },
+          {
+            path: '/cancer/breast-cancer/overview',
+            name: 'Tổng quan',
+            component: './CancerInformation'
+          },
+          {
+            path: '/cancer/breast-cancer/epidemiology',
+            name: 'Dịch tễ',
+            component: './CancerInformationPages/VietnameseCancer'
+          },
+          {
+            path: '/cancer/breast-cancer/gene-mutation',
+            name: 'Gene đột biến',
+            component: './GeneAndMutation/geneAndMutation'
+          },
+          {
+            path: '/cancer/breast-cancer/drug',
+            name: 'Thuốc điều trị',
+            component: './DrugInformation/drugInfor',
+          },
+          {
+            path: '/cancer/breast-cancer/other-treatment',
+            name: 'Các điều trị khác',
+            component: './Admin.tsx'
+          },
+        ]
       },
       {
         path: '/cancer/thyroid-cancer',
         name: 'Ung thư tuyến giáp',
-        component: './CancerInformation',
+        routes: [
+          {
+            path:'/cancer/thyroid-cancer'
+          },
+          {
+            path: '/cancer/thyroid-cancer/overview',
+            name: 'Tổng quan',
+            component: './CancerInformation'
+          },
+          {
+            path: '/cancer/thyroid-cancer/epidemiology',
+            name: 'Dịch tễ',
+            component: './CancerInformationPages/VietnameseCancer'
+          },
+          {
+            path: '/cancer/thyroid-cancer/gene-mutation',
+            name: 'Gene đột biến',
+            component: './GeneAndMutation/geneAndMutation'
+          },
+          {
+            path: '/cancer/thyroid-cancer/drug',
+            name: 'Thuốc điều trị',
+            component: './DrugInformation/drugInfor',
+          },
+          {
+            path: '/cancer/thyroid-cancer/other-treatment',
+            name: 'Các điều trị khác',
+            component: './Admin.tsx'
+          },
+        ]
       },
       {
         path: '/cancer/colorectal-cancer',
         name: 'Ung thư trực tràng',
-        component: './CancerInformation',
-      },
-      {
-        path: '/cancer/vietnamese-cancer',
-        name: 'Thống kê tại Việt Nam',
-        component: './CancerInformationPages/VietnameseCancer',
+        routes: [
+          {
+            path: '/cancer/colorectal-cancer/overview',
+            name: 'Tổng quan',
+            component: './CancerInformation'
+          },
+          {
+            path: '/cancer/colorectal-cancer/epidemiology',
+            name: 'Dịch tễ',
+            component: './CancerInformationPages/VietnameseCancer'
+          },
+          {
+            path: '/cancer/colorectal-cancer/gene-mutation',
+            name: 'Gene đột biến',
+            component: './GeneAndMutation/geneAndMutation'
+          },
+          {
+            path: '/cancer/colorectal-cancer/drug',
+            name: 'Thuốc điều trị',
+            component: './DrugInformation/drugInfor',
+          },
+          {
+            path: '/cancer/colorectal-cancer/other-treatment',
+            name: 'Các điều trị khác',
+            component: './Admin.tsx'
+          },
+        ]
       },
     ],
   },
@@ -92,20 +229,27 @@ export default [
     name: 'Xét nghiệm',
     icon: '/icons/tests_icon.jpg',
     access: 'canAdmin',
-    component: './TestList',
+    routes: [
+      {
+        path:'/tests'
+      },
+      {
+        path: '/tests/test-list',
+        name: 'Danh sách xét nghiệm',
+        component: './TestList'
+      },
+      {
+        path: '/tests/add-test',
+        name: 'Thêm mới xét nghiệm',
+        component: './Admin.tsx'
+      },
+    ]
   },
   {
     path: '/tests/:id',
     access: 'canAdmin',
     component: './DetailTest',
     hideInMenu: true,
-  },
-  {
-    path: '/drug',
-    name: 'Thông tin thuốc',
-    icon: '/icons/drug_icon.jpg',
-    access: 'canAdmin',
-    component: './DrugInformation/drugInfor',
   },
   {
     path: '/drug/:id',
@@ -132,13 +276,6 @@ export default [
         component: '',
       },
     ],
-  },
-  {
-    name: 'Gen và đột biến',
-    icon: '/icons/gene_icon.png',
-    path: '/gene-and-mutation',
-    access: 'canAdmin',
-    component: './GeneAndMutation/geneAndMutation',
   },
   {
     name: 'Bệnh án ung thư trực tràng',
@@ -187,20 +324,20 @@ export default [
     component: './GeneAndMutation/articles',
     hideInMenu: true,
   },
-  {
-    name: 'Cosmic Gene',
-    icon: 'https://icon-library.com/images/ef4d093f9d.png',
-    path: '/cosmic-gene',
-    access: 'canAdmin',
-    component: './GeneCosmic',
-    routes: [
-      {
-        path: '/cosmic-gene/:gene',
-        component: './GeneCosmic/geneDetail',
-        hideInMenu: true,
-      },
-    ],
-  },
+  // {
+  //   name: 'Cosmic Gene',
+  //   icon: 'https://icon-library.com/images/ef4d093f9d.png',
+  //   path: '/cosmic-gene',
+  //   access: 'canAdmin',
+  //   component: './GeneCosmic',
+  //   routes: [
+  //     {
+  //       path: '/cosmic-gene/:gene',
+  //       component: './GeneCosmic/geneDetail',
+  //       hideInMenu: true,
+  //     },
+  //   ],
+  // },
   {
     name: 'Thông tin nhóm phát triển',
     icon: '',

@@ -4,11 +4,9 @@ import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-compone
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { FormattedMessage, Helmet, history, SelectLang, useIntl, useModel } from '@umijs/max';
 import { Alert, message, Tabs } from 'antd';
-import axios from 'axios';
-import React, { useState } from 'react';
-import { flushSync } from 'react-dom';
+import {login, currentUser, currentUser1} from '@/services/ant-design-pro/api';
+import React, { useEffect, useRef, useState } from 'react';
 import Settings from '../../../../config/defaultSettings';
-import { server } from '../../Api';
 import "./style.css";
 
 const Lang = () => {
@@ -51,7 +49,10 @@ const LoginMessage: React.FC<{
 const Login: React.FC = () => {
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
-  const { initialState, setInitialState } = useModel('@@initialState');
+  const { setInitialState } = useModel('@@initialState');
+  const isLoginInProgress = useRef(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
 
   const containerClassName = useEmotionCss(() => {
     return {
@@ -67,83 +68,29 @@ const Login: React.FC = () => {
 
   const intl = useIntl();
 
-  const fetchUserInfo = async () => {
-    const userInfo = await initialState?.fetchUserInfo?.();
-    if (userInfo) {
-      flushSync(() => {
-        setInitialState((s: any) => ({
-          ...s,
-          currentUser: userInfo,
-        }));
-      });
+  const handleLogin = async (values: any) => {
+    if (isLoginInProgress.current) {
+      // Login process is already in progress
+      return;
     }
-  };
-
-  const userInfo = {
-    name: 'Doctor',
-    avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-    userid: '00000001',
-    email: 'antdesign@alipay.com',
-    signature: '海纳百川，有容乃大',
-    title: '交互专家',
-    group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
-    tags: [
-      {
-        key: '0',
-        label: '很有想法的',
-      },
-      {
-        key: '1',
-        label: '专注设计',
-      },
-      {
-        key: '2',
-        label: '辣~',
-      },
-      {
-        key: '3',
-        label: '大长腿',
-      },
-      {
-        key: '4',
-        label: '川妹子',
-      },
-      {
-        key: '5',
-        label: '海纳百川',
-      },
-    ],
-    notifyCount: 12,
-    unreadCount: 11,
-    country: 'China',
-    access: 'admin',
-    geographic: {
-      province: {
-        label: '浙江省',
-        key: '330000',
-      },
-      city: {
-        label: '杭州市',
-        key: '330100',
-      },
-    },
-    address: '西湖区工专路 77 号',
-    phone: '0752-268888888',
-  };
-
-  const onFinish = async (values: any) => {
+  
     try {
+      isLoginInProgress.current = true; // Set login in progress
+
+      const loginData = await login(values);
+      const { signStatus, token } = loginData;
       setUserLoginState({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin',
+        status: signStatus.status,
+        type: signStatus.type,
+        currentAuthority: signStatus.currentAuthority,
       });
-      setInitialState((s: any) => ({
-        ...s,
-        currentUser: userInfo,
-      }));
-      const response = await axios.post(`${server}/user/login`, values);
-      if (response.status === 200) {
+      const userData = await currentUser(values);
+        setInitialState((prevState: any) => ({
+          ...prevState,
+          currentUser: userData,
+        }));
+      if (signStatus.status === "ok") {
+        localStorage.setItem('accessToken', token);
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: 'Đăng nhập thành công!',
@@ -151,54 +98,46 @@ const Login: React.FC = () => {
         message.success(defaultLoginSuccessMessage);
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/');
-        console.log(values);
+        setLoggedIn(true); // Set loggedIn state
       }
     } catch (error: any) {
       const defaultLoginFailureMessage = intl.formatMessage({
         id: 'pages.login.failure',
         defaultMessage: 'Đăng nhập thất bại!',
       });
-      console.log(error);
+      console.error(error);
       message.error(defaultLoginFailureMessage);
+    } finally {
+      isLoginInProgress.current = false; // Reset login in progress
     }
   };
 
-  const handleSubmit = async (values: API.LoginParams) => {
-    try {
-      // Log in
-      setUserLoginState({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin',
-      });
-      setInitialState((s: any) => ({
-        ...s,
-        currentUser: userInfo,
-      }));
 
-      // const msg = await login({ ...values, type });
-      // if (msg.status === 'ok') {
-      const defaultLoginSuccessMessage = intl.formatMessage({
-        id: 'pages.login.success',
-        defaultMessage: 'Đăng nhập thành công!',
-      });
-      message.success(defaultLoginSuccessMessage);
-      //   await fetchUserInfo();
-      const urlParams = new URL(window.location.href).searchParams;
-      history.push(urlParams.get('redirect') || '/');
-      //   return;
-      // }
-      // console.log(msg);
-      // // If it fails, set the user error message
-    } catch (error) {
-      const defaultLoginFailureMessage = intl.formatMessage({
-        id: 'pages.login.failure',
-        defaultMessage: 'Đăng nhập thất bại!',
-      });
-      console.log(error);
-      message.error(defaultLoginFailureMessage);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (loggedIn || accessToken) {
+      // Đã đăng nhập hoặc tồn tại access token
+      const fetchData = async () => {
+        try {
+          const userData = await currentUser1();
+          setInitialState((prevState: any) => ({
+            ...prevState,
+            currentUser: userData,
+          }));
+          const urlParams = new URL(window.location.href).searchParams;
+          history.push(urlParams.get('redirect') || '/');
+        } catch (error) {
+          // Handle error fetching user data or setting initial state
+          console.error('Error:', error);
+        }
+      };
+
+      fetchData();
     }
-  };
+  }, [loggedIn, history]);
+  
+
   const { status, type: loginType } = userLoginState;
 
   return (
@@ -209,7 +148,7 @@ const Login: React.FC = () => {
             id: 'menu.login',
             defaultMessage: 'login page',
           })}
-          - {Settings.title}
+          {Settings.title}
         </title>
       </Helmet>
       <Lang />
@@ -229,9 +168,8 @@ const Login: React.FC = () => {
           initialValues={{
             autoLogin: true,
           }}
-          onFinish={async (values) => {
-            await handleSubmit(values as API.LoginParams);
-            console.log(values);
+          onFinish={(values: any) => {
+            return handleLogin(values);
           }}
           submitter={{
             searchConfig: {
@@ -244,7 +182,6 @@ const Login: React.FC = () => {
               },
             },
           }}
-          // onFinish={onFinish}
         >
           <Tabs
             activeKey={type}

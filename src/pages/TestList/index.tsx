@@ -23,9 +23,10 @@ export default () => {
         const testCase = data.testCaseModels.map((obj: any) => ({
           id: obj._id,
           runID: obj.run.id,
-          name: obj.patients,
-          samples: obj.sams,
+          name: obj.name,
+          samples: obj.samples,
         }));
+        console.log(testCase);
         setData(testCase);
         setTotalPages(data.totalPages);
       });

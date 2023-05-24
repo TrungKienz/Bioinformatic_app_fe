@@ -81,30 +81,6 @@ const articles = () => {
       align: 'center',
     },
     // {
-    //   title: 'Ngày xuất bản',
-    //   dataIndex: 'pubDate',
-    //   hideInSearch: true,
-    //   align: 'center',
-    // },
-    // {
-    //   title: 'Volume',
-    //   dataIndex: 'volume',
-    //   hideInSearch: true,
-    //   align: 'center',
-    // },
-    // {
-    //   title: 'Số',
-    //   dataIndex: 'issue',
-    //   hideInSearch: true,
-    //   align: 'center',
-    // },
-    // {
-    //   title: 'Trang',
-    //   dataIndex: 'pages',
-    //   hideInSearch: true,
-    //   align: 'center',
-    // },
-    // {
     //   title: 'Tác giả',
     //   dataIndex: 'authors',
     //   hideInSearch: true,
