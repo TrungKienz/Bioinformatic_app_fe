@@ -1,31 +1,45 @@
+import {
+  mutationBreast20GeneEp,
+  mutationColorectal20GeneEp,
+  mutationLiver20GeneEp,
+  mutationLung20GeneEp,
+  mutationThyroid20GeneEp,
+} from '@/pages/EndPoint';
 import { Column } from '@ant-design/charts';
 import { useEffect, useState } from 'react';
-import { mutationLung20GeneEp, mutationLiver20GeneEp, mutationBreast20GeneEp, mutationThyroid20GeneEp, mutationColorectal20GeneEp } from '@/pages/EndPoint';
 
-const lungCancerPage = '/cancer/lung-cancer';
-const liverCancerPage = '/cancer/liver-cancer';
-const breastCancerPage = '/cancer/breast-cancer';
-const thyroidCancerPage = '/cancer/thyroid-cancer';
-const colorectalCancerPage = '/cancer/colorectal-cancer';
+const lungCancerPage = '/cancer/lung-cancer/overview';
+const liverCancerPage = '/cancer/liver-cancer/overview';
+const breastCancerPage = '/cancer/breast-cancer/overview';
+const thyroidCancerPage = '/cancer/thyroid-cancer/overview';
+const colorectalCancerPage = '/cancer/colorectal-cancer/overview';
 
 const TopGene = () => {
   const [data, setData] = useState([]);
 
   let URL = '';
 
-  if (location.pathname === lungCancerPage) {
-    URL = mutationLung20GeneEp;
-  } else if (location.pathname === liverCancerPage) {
-    URL = mutationLiver20GeneEp;
-  } else if (location.pathname === breastCancerPage) {
-    URL = mutationBreast20GeneEp;
-  } else if (location.pathname === thyroidCancerPage) {
-    URL = mutationThyroid20GeneEp;
-  } else if (location.pathname === colorectalCancerPage) {
-    URL = mutationColorectal20GeneEp;
-  } else {
-    URL = '';
+  switch (location.pathname) {
+    case lungCancerPage:
+      URL = mutationLung20GeneEp;
+      break;
+    case liverCancerPage:
+      URL = mutationLiver20GeneEp;
+      break;
+    case breastCancerPage:
+      URL = mutationBreast20GeneEp;
+      break;
+    case thyroidCancerPage:
+      URL = mutationThyroid20GeneEp;
+      break;
+    case colorectalCancerPage:
+      URL = mutationColorectal20GeneEp;
+      break;
+    default:
+      URL = '';
+      break;
   }
+  
   useEffect(() => {
     asyncFetch();
   }, []);
@@ -39,19 +53,19 @@ const TopGene = () => {
       });
   };
   console.log(data);
-    const config = {
-      data,
-      xField: 'gene_name',
-      yField: 'value',
-      seriesField: 'type',
-      isGroup: true,
-      columnStyle: {
+  const config = {
+    data,
+    xField: 'gene_name',
+    yField: 'value',
+    seriesField: 'type',
+    isGroup: true,
+    columnStyle: {
       radius: [5, 5, 0, 0],
-      },
+    },
   };
   return (
     <div style={{ height: '80vh' }}>
-      <Column {...config} height="100%"/>
+      <Column {...config}/>
     </div>
   );
 };

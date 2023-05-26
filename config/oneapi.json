@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Ant Design Pro",
+    "title": "Cancer Project",
     "version": "1.0.0"
   },
   "servers": [
@@ -512,15 +512,15 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "description": "业务约定的错误码"
+            "description": "The error code of the business agreement"
           },
           "errorMessage": {
             "type": "string",
-            "description": "业务上的错误信息"
+            "description": "business misinformation"
           },
           "success": {
             "type": "boolean",
-            "description": "业务上的请求是否成功"
+            "description": "Whether the business request is successful"
           }
         }
       },

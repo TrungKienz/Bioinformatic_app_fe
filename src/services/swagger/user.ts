@@ -13,7 +13,7 @@ export async function createUser(body: API.User, options?: { [key: string]: any 
 
 /** Get user by user name GET /user/${param0} */
 export async function getUserByName(
-// Overlay generated Param type (non-body parameter swagger does not generate objects by default)
+  // Overlay generated Param type (non-body parameter swagger does not generate objects by default)
   params: API.getUserByNameParams,
   options?: { [key: string]: any },
 ) {
@@ -27,7 +27,7 @@ export async function getUserByName(
 
 /** Updated user This can only be done by the logged in user. PUT /user/${param0} */
 export async function updateUser(
-// Overlay generated Param type (non-body parameter swagger does not generate objects by default)
+  // Overlay generated Param type (non-body parameter swagger does not generate objects by default)
   params: API.updateUserParams,
   body: API.User,
   options?: { [key: string]: any },
@@ -43,7 +43,7 @@ export async function updateUser(
 
 /** Delete user This can only be done by the logged in user. DELETE /user/${param0} */
 export async function deleteUser(
-// Kiểu tham số được tạo lớp phủ (theo mặc định, công cụ chuyển đổi tham số không phải nội dung không tạo đối tượng)
+  // Kiểu tham số được tạo lớp phủ (theo mặc định, công cụ chuyển đổi tham số không phải nội dung không tạo đối tượng)
   params: API.deleteUserParams,
   options?: { [key: string]: any },
 ) {
@@ -78,7 +78,7 @@ export async function createUsersWithListInput(body: API.User[], options?: { [ke
 
 /** Logs user into the system GET /user/login */
 export async function loginUser(
-// Overlay generated Param type (non-body parameter swagger does not generate objects by default)
+  // Overlay generated Param type (non-body parameter swagger does not generate objects by default)
   params: API.loginUserParams,
   options?: { [key: string]: any },
 ) {

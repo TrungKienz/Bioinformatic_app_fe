@@ -1,7 +1,7 @@
+import { server } from '@/pages/Api';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useState } from 'react';
-import { server } from '@/pages/Api';
 import AddInformation from './addInformation';
 import FileUpload from './uploadExcelFile';
 
@@ -62,7 +62,7 @@ const columns: ProColumns[] = [
 
 const PatientsList = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  
+
   const fetchData = async (params: any, sort: any, filter: any) => {
     const response = await fetch(server);
     const data = await response.json();
@@ -72,7 +72,6 @@ const PatientsList = () => {
       ),
     };
   };
-
 
   return (
     <ProTable
@@ -84,10 +83,7 @@ const PatientsList = () => {
           onSearch: (value) => setSearchTerm(value),
           onChange: (e) => setSearchTerm(e.target.value),
         },
-        actions: [
-          <FileUpload/>,
-          <AddInformation/>,
-        ],
+        actions: [<FileUpload />, <AddInformation />],
         settings: [],
       }}
       rowKey="key"

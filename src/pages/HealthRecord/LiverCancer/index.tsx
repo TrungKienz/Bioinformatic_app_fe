@@ -1,16 +1,15 @@
+import HealthRecordService from '@/services/healthRecord';
 import { SaveOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
-import { Affix, Button, Col, Form, Input, Radio, Row, Tooltip } from 'antd';
-import { useState } from 'react';
+import { useParams, useRequest } from '@umijs/max';
+import { Affix, Button, Col, Form, Row, Tooltip } from 'antd';
+import ControlButton from '../ControlButton';
 import CustomInput from '../CustomInput';
-import PatientInfo from '../PatientInfo'
+import GenTestForm from '../GenTestForm';
+import PatientInfo from '../PatientInfo';
 import './liverCancer.css';
 import LIVER from './liverTemplate';
-import GenTestForm from '../GenTestForm';
-import HealthRecordService from '@/services/healthRecord';
-import ControlButton from '../ControlButton';
-import { useParams, useRequest } from '@umijs/max';
-let CANCER = JSON.parse(JSON.stringify(LIVER))
+let CANCER = JSON.parse(JSON.stringify(LIVER));
 
 export default () => {
   const [patientInfoForm] = Form.useForm();
@@ -23,8 +22,7 @@ export default () => {
     job: '',
     phone: '',
     sex: '',
-
-  })
+  });
   genTestForm.setFieldsValue({
     concentrateDNA: '',
     dateSample: '',
@@ -34,11 +32,10 @@ export default () => {
     testCode: '',
     testDate: '',
     typeSample: '',
-  })
+  });
 
-  const params = useParams()
+  const params = useParams();
   if (params.id !== '0') {
-
     const { data, error, loading } = useRequest(() => {
       return HealthRecordService.getHealthRecord(params);
     });
@@ -49,21 +46,27 @@ export default () => {
       return <div>{error.message}</div>;
     }
     CANCER = data;
-    patientInfoForm.setFieldsValue(data.patientInfo)
-    genTestForm.setFieldsValue(data.genTestInfo)
+    patientInfoForm.setFieldsValue(data.patientInfo);
+    genTestForm.setFieldsValue(data.genTestInfo);
   }
   const handleSubmit = async () => {
-    const patientInfo = patientInfoForm.getFieldsValue()
-    const genTestInfo = genTestForm.getFieldsValue()
-    console.log('submit', genTestInfo)
-    const healthRecordId = patientInfo?.healthRecordId
-    const data: object = Object.assign({}, CANCER, { patientInfo }, { genTestInfo }, { healthRecordId })
-    console.log('send value', data)
-    const demo = await HealthRecordService.saveHealthRecord(data)
+    const patientInfo = patientInfoForm.getFieldsValue();
+    const genTestInfo = genTestForm.getFieldsValue();
+    console.log('submit', genTestInfo);
+    const healthRecordId = patientInfo?.healthRecordId;
+    const data: object = Object.assign(
+      {},
+      CANCER,
+      { patientInfo },
+      { genTestInfo },
+      { healthRecordId },
+    );
+    console.log('send value', data);
+    const demo = await HealthRecordService.saveHealthRecord(data);
 
-    console.log("response", demo);
-    console.log(history)
-  }
+    console.log('response', demo);
+    console.log(history);
+  };
 
   return (
     <PageContainer
@@ -96,8 +99,8 @@ export default () => {
                               item.length === 1
                                 ? '100%'
                                 : item.length === 2 && listId === 1
-                                  ? '2'
-                                  : '1'
+                                ? '2'
+                                : '1'
                             }
                             key={listId}
                           >
@@ -110,11 +113,7 @@ export default () => {
                                     </Col>
                                     <Col span={18}>
                                       {' '}
-                                      <CustomInput
-                                        className="cell"
-                                        ques={ques}
-
-                                      />
+                                      <CustomInput className="cell" ques={ques} />
                                     </Col>
                                   </Row>
                                 );
@@ -139,9 +138,9 @@ export default () => {
                                         listId={listId}
                                         CANCER={CANCER}
                                         templateInfo={
-                                          CANCER.generalInfo[categoryId].listQuestions[index][listId][
-                                          quesId
-                                          ]
+                                          CANCER.generalInfo[categoryId].listQuestions[index][
+                                            listId
+                                          ][quesId]
                                         }
                                       />
                                     </div>
@@ -196,7 +195,6 @@ export default () => {
             })}
           </tbody>
         </table>
-
         *Với PS là thang đánh giá toàn trạng (PS) theo ECOG
         <p>• PS 0: Hoạt động bình thường.</p>
         <p>• PS 1: Bị hạn chế hoạt động nặng, nhưng đi lại được và làm được việc nhẹ.</p>
@@ -287,11 +285,7 @@ export default () => {
         })}
       </div>
       <h4>VIII{'>'} THÔNG TIN XÉT NGHIỆM DI TRUYỀN</h4>
-      <GenTestForm form={genTestForm} cancer={CANCER} ></GenTestForm>
-
-
-
-
+      <GenTestForm form={genTestForm} cancer={CANCER}></GenTestForm>
 
       <Affix style={{ right: '30px', position: 'absolute' }} offsetBottom={50}>
         <Tooltip title="Save" color="#1890ff">
@@ -299,7 +293,6 @@ export default () => {
         </Tooltip>
       </Affix>
       <ControlButton handleSubmit={handleSubmit} />
-
     </PageContainer>
   );
 };

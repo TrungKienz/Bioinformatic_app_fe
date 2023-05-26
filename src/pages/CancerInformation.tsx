@@ -20,10 +20,6 @@ const items: MenuProps['items'] = [
     label: 'Gen không đột biến',
     key: 'normalGenes',
   },
-  {
-    label: 'Đánh Giá',
-    key: 'evaluate',
-  },
 ];
 
 const CancerInformation: React.FC = () => {
@@ -71,19 +67,6 @@ const CancerInformation: React.FC = () => {
           items={items}
         />
         <NormalGene />
-      </PageContainer>
-    );
-  } else if (current === 'evaluate') {
-    return (
-      <PageContainer>
-        <Menu
-          style={{}}
-          onClick={onClick}
-          selectedKeys={[current]}
-          mode="horizontal"
-          items={items}
-        />
-        <ListArticles />
       </PageContainer>
     );
   } else {

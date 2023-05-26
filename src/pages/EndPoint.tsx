@@ -1,4 +1,4 @@
-import { server } from "./Api";
+import { server } from './Api';
 
 export const mutationLungGeneEp = `${server}/mutation-lung-gene`;
 export const mutationLiverGeneEp = `${server}/mutation-liver-gene`;
@@ -19,7 +19,7 @@ export const nomalThyroidGeneEp = `${server}/nomal-thyroid-gene`;
 export const nomalColorectalEp = `${server}/nomal-colorectal-gene`;
 
 export const testCaseEp = `${server}/test-case`;
-export const addTestCaseEp = `${server}/test-case/add`;
+export const addTestCaseEp = `${server}/upload`;
 
 export const drugsInformationEp = `${server}/drugs-information`;
 export const drugArticlesEp = `${server}/drugs-information/find`;
@@ -27,4 +27,4 @@ export const drugArticlesEp = `${server}/drugs-information/find`;
 export const geneAndMutationEp = `${server}/mutation`;
 export const geneMutationArticlesEp = `${server}/mutation/find`;
 
-export const loginEp = `${server}/user/login`
+export const loginEp = `${server}/user/login`;

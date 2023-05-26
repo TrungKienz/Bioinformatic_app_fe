@@ -1,22 +1,21 @@
-import { SaveOutlined } from '@ant-design/icons';
+import HealthRecordService from '@/services/healthRecord';
 import { PageContainer } from '@ant-design/pro-components';
-import { Affix, Button, Col, Form, Input, Radio, Row, Tooltip } from 'antd';
-import { useEffect, useState } from 'react';
+import { useModel, useParams, useRequest } from '@umijs/max';
+import { Col, Form, Row } from 'antd';
+import { useEffect } from 'react';
+import ControlButton from '../ControlButton';
 import CustomInput from '../CustomInput';
+import CustomTable from '../CustomTable';
+import GenTestForm from '../GenTestForm';
+import PatientInfo from '../PatientInfo';
 import './thyroidCancer.css';
 import THYROID from './ThyroidTemplate';
-import GenTestForm from '../GenTestForm';
-import PatientInfo from '../PatientInfo'
-import CustomTable from '../CustomTable';
-import HealthRecordService from '@/services/healthRecord';
-import ControlButton from '../ControlButton';
-import { useModel, useParams, useRequest } from '@umijs/max';
 
-let CANCER = JSON.parse(JSON.stringify(THYROID))
+let CANCER = JSON.parse(JSON.stringify(THYROID));
 export default () => {
   const [patientInfoForm] = Form.useForm();
   const [genTestForm] = Form.useForm();
-  const { toggleView } = useModel("viewPage");
+  const { toggleView } = useModel('viewPage');
   useEffect(() => {
     patientInfoForm.setFieldsValue({
       address: '',
@@ -26,8 +25,7 @@ export default () => {
       job: '',
       phone: '',
       sex: '',
-
-    })
+    });
     genTestForm.setFieldsValue({
       concentrateDNA: '',
       dateSample: '',
@@ -37,12 +35,11 @@ export default () => {
       testCode: '',
       testDate: '',
       typeSample: '',
-    })
-  }, [])
+    });
+  }, []);
 
-  const params = useParams()
+  const params = useParams();
   if (params.id !== '0') {
-
     const { data, error, loading } = useRequest(() => {
       return HealthRecordService.getHealthRecord(params);
     });
@@ -53,21 +50,27 @@ export default () => {
       return <div>{error.message}</div>;
     }
     CANCER = data;
-    patientInfoForm.setFieldsValue(data.patientInfo)
-    genTestForm.setFieldsValue(data.genTestInfo)
+    patientInfoForm.setFieldsValue(data.patientInfo);
+    genTestForm.setFieldsValue(data.genTestInfo);
   }
   const handleSubmit = async () => {
-    const patientInfo = patientInfoForm.getFieldsValue()
-    const genTestInfo = genTestForm.getFieldsValue()
-    console.log('submit', genTestInfo)
-    const healthRecordId = patientInfo?.healthRecordId
-    const data: object = Object.assign({}, CANCER, { patientInfo }, { genTestInfo }, { healthRecordId })
-    console.log('send value', data)
-    const demo = await HealthRecordService.saveHealthRecord(data)
+    const patientInfo = patientInfoForm.getFieldsValue();
+    const genTestInfo = genTestForm.getFieldsValue();
+    console.log('submit', genTestInfo);
+    const healthRecordId = patientInfo?.healthRecordId;
+    const data: object = Object.assign(
+      {},
+      CANCER,
+      { patientInfo },
+      { genTestInfo },
+      { healthRecordId },
+    );
+    console.log('send value', data);
+    const demo = await HealthRecordService.saveHealthRecord(data);
 
-    console.log("response", demo);
-    console.log(history)
-  }
+    console.log('response', demo);
+    console.log(history);
+  };
 
   return (
     <PageContainer
@@ -101,8 +104,8 @@ export default () => {
                               item.length === 1
                                 ? '100%'
                                 : item.length === 2 && listId === 1
-                                  ? '2'
-                                  : '1'
+                                ? '2'
+                                : '1'
                             }
                             key={listId}
                           >
@@ -124,9 +127,9 @@ export default () => {
                                         listId={listId}
                                         CANCER={CANCER}
                                         templateInfo={
-                                          CANCER.generalInfo[categoryId].listQuestions[index][listId][
-                                          quesId
-                                          ]
+                                          CANCER.generalInfo[categoryId].listQuestions[index][
+                                            listId
+                                          ][quesId]
                                         }
                                       />
                                     </Col>
@@ -153,9 +156,9 @@ export default () => {
                                         listId={listId}
                                         CANCER={CANCER}
                                         templateInfo={
-                                          CANCER.generalInfo[categoryId].listQuestions[index][listId][
-                                          quesId
-                                          ]
+                                          CANCER.generalInfo[categoryId].listQuestions[index][
+                                            listId
+                                          ][quesId]
                                         }
                                       />
                                     </div>
@@ -312,9 +315,7 @@ export default () => {
       <h4>VIII{'>'} THÔNG TIN XÉT NGHIỆM DI TRUYỀN</h4>
       <GenTestForm form={genTestForm} cancer={CANCER} />
 
-
       <ControlButton handleSubmit={handleSubmit} />
-
     </PageContainer>
   );
 };

@@ -1,6 +1,6 @@
+import { mutationColorectalGeneEp } from '@/pages/EndPoint';
 import { Column } from '@ant-design/charts';
 import { useEffect, useState } from 'react';
-import { mutationColorectalGeneEp } from '@/pages/EndPoint';
 
 interface DataObject {
   gene_name: string;
@@ -23,47 +23,52 @@ const Statistical = () => {
           samples_tested: obj.samples_tested,
         }));
 
-        // Remove duplicates
-        const uniqueTop20MutatedSamples = Array.from(new Set(top20MutatedSamples.map((obj: any) => JSON.stringify(obj))))
-        .map(str => JSON.parse(String(str)));
-        
-        return uniqueTop20MutatedSamples;
-      } catch (error) {
-        console.error(error);
-        return []; // return an empty array if there's an error
-      }
-    };
+      // Remove duplicates
+      const uniqueTop20MutatedSamples = Array.from(
+        new Set(top20MutatedSamples.map((obj: any) => JSON.stringify(obj))),
+      ).map((str) => JSON.parse(String(str)));
 
-    useEffect(() => {
-      asyncFetch()
-        .then(myArray => {
-          const newData = [];
-          for (let i = 0; i < myArray.length; i++) {
-            let currentObject = myArray[i];
-            const newDataObject1 = {
-              gene_name: currentObject.gene_name,
-              value: currentObject.mutated_samples,
-              type: 'mutated_samples',
-            };
-            const newDataObject2 = {
-              gene_name: currentObject.gene_name,
-              value: currentObject.samples_tested,
-              type: 'samples_tested',
-            };
-            newData.push(newDataObject1, newDataObject2); 
-          }
-          setDataTopGene(newData);
-        })
-        .catch(error => console.error(error));
-    }, []);
+      return uniqueTop20MutatedSamples;
+    } catch (error) {
+      console.error(error);
+      return []; // return an empty array if there's an error
+    }
+  };
 
-    const config = {
-      data: dataTopGene.map(dataTopGene => ({ x: dataTopGene.gene_name, y: dataTopGene.value, type: dataTopGene.type })),
-      xField: 'x',
-      yField: 'y',
-      seriesField: 'type',
-      isGroup: true,
-      columnStyle: {
+  useEffect(() => {
+    asyncFetch()
+      .then((myArray) => {
+        const newData = [];
+        for (let i = 0; i < myArray.length; i++) {
+          let currentObject = myArray[i];
+          const newDataObject1 = {
+            gene_name: currentObject.gene_name,
+            value: currentObject.mutated_samples,
+            type: 'mutated_samples',
+          };
+          const newDataObject2 = {
+            gene_name: currentObject.gene_name,
+            value: currentObject.samples_tested,
+            type: 'samples_tested',
+          };
+          newData.push(newDataObject1, newDataObject2);
+        }
+        setDataTopGene(newData);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  const config = {
+    data: dataTopGene.map((dataTopGene) => ({
+      x: dataTopGene.gene_name,
+      y: dataTopGene.value,
+      type: dataTopGene.type,
+    })),
+    xField: 'x',
+    yField: 'y',
+    seriesField: 'type',
+    isGroup: true,
+    columnStyle: {
       radius: [5, 5, 0, 0],
     },
   };

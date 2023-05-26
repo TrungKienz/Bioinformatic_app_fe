@@ -1,13 +1,35 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from '@umijs/max';
+import token from '@/utils/token'
 
 /** 获取当前的用户 GET /api/currentUser */
-export async function currentUser(options?: { [key: string]: any }) {
+export async function currentUser1(options?: { [key: string]: any }) {
+  const accessToken = token.get().accessToken || '';
+  if (!accessToken) {
+    throw Error();
+  }
   return request<{
     data: API.CurrentUser;
-  }>('/api/currentUser', {
-    method: 'GET',
+  }>('http://localhost:3000/user/user-infor', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: accessToken,
+    ...(options || {}),
+  });
+}
+
+export async function currentUser(body:object, options?: { [key: string]: any }) {
+  return request<{
+    data: API.CurrentUser;
+  }>('http://localhost:3000/user/user-infor', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
     ...(options || {}),
   });
 }
@@ -20,9 +42,9 @@ export async function outLogin(options?: { [key: string]: any }) {
   });
 }
 
-/** 登录接口 POST /api/login/account */
+/* POST /api/login/account */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.LoginResult>('/api/login/account', {
+  return request<ErrorResponse>('http://localhost:3000/user/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -4,17 +4,16 @@ import { Link } from '@umijs/max';
 import { useEffect, useState } from 'react';
 import { geneAndMutationEp } from '../EndPoint';
 
-
 export default () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [dataMutation, setDataMutation] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
-  const [ totalPages, setTotalPages ] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     fetch(`${geneAndMutationEp}?page=${pagination.current}&limit=${pagination.pageSize}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         const mutationData = data.mutationModels.map((obj: any) => ({
           id: obj._id,
           gene_name: obj.variant.gene.hugoSymbol,
@@ -24,11 +23,10 @@ export default () => {
           articles: obj.variant.gene.geneAliases,
         }));
         setDataMutation(mutationData);
-        setTotalPages(data.totalPages)
+        setTotalPages(data.totalPages);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }, [pagination.current, pagination.pageSize]);
-  
 
   const handleTableChange = (pagination: any) => {
     setPagination(pagination);
@@ -41,10 +39,10 @@ export default () => {
       title: 'Gene',
       dataIndex: 'gene_name',
       align: 'left',
-      filteredValue: [searchTerm], 
+      filteredValue: [searchTerm],
       onFilter: (value, record) => {
         return String(record.gene_name).toLowerCase().includes(String(value).toLowerCase());
-      }, 
+      },
       width: '20%',
     },
     {
@@ -72,33 +70,37 @@ export default () => {
       hideInSearch: true,
       align: 'center',
       render: (articles: any, dataMutation) => (
-        <Link key="showDetail" style={{textDecoration: 'underline'}} to={`/gene-and-mutation/${dataMutation.id}`}>{articles.length}</Link>
+        <Link
+          key="showDetail"
+          style={{ textDecoration: 'underline' }}
+          to={`/gene-and-mutation/${dataMutation.id}`}
+        >
+          {articles.length}
+        </Link>
       ),
       width: '20%',
     },
   ];
-  
 
   return (
-      <ProTable
-        columns={columns}
-        dataSource={dataMutation}
-        toolbar={{
-          title: 'Danh sách gen đột biến',
-          search: {
-            onSearch: (value) => setSearchTerm(value),
-            onChange: (e) => setSearchTerm(e.target.value),
-            style: {width: '350px'},
-            placeholder: 'Nhập tên gene',
-            
-          },
-          settings: [],
-        }}
-        rowKey="key"
-        search={false}
-        dateFormatter="string"
-        pagination={{total: totalPages, pageSize: 10}}
-        onChange={handleTableChange}
-      />
+    <ProTable
+      columns={columns}
+      dataSource={dataMutation}
+      toolbar={{
+        title: 'Danh sách gen đột biến',
+        search: {
+          onSearch: (value) => setSearchTerm(value),
+          onChange: (e) => setSearchTerm(e.target.value),
+          style: { width: '350px' },
+          placeholder: 'Nhập tên gene',
+        },
+        settings: [],
+      }}
+      rowKey="key"
+      search={false}
+      dateFormatter="string"
+      pagination={{ total: totalPages, pageSize: 10 }}
+      onChange={handleTableChange}
+    />
   );
 };

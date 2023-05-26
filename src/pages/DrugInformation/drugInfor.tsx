@@ -1,21 +1,22 @@
 import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
-import { AutoComplete, Button, Col, Form, Input, Row, Tag } from 'antd';
+import { Button, Col, Form, Input, Row, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import { drugsInformationEp } from '../EndPoint';
+import DrugsInformationService from '@/services/drugInformation';
 
 const NormalGenes = () => {
   const [data, setData] = useState([]);
-  const [searchText, setSearchText] = useState('');
-  const [filteredData, setFilteredData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [totalPages, setTotalPages] = useState(1);
 
+  const getUrl = `${drugsInformationEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
+  const searchUrl = `${drugsInformationEp}/search?page=${pagination.current}&limit=${pagination.pageSize}`;
 
-  useEffect(() => {
-    fetch(`${drugsInformationEp}?page=${pagination.current}&limit=${pagination.pageSize}`)
-      .then(response => response.json())
-      .then(data => {
+  const handleRefresh = useEffect(() => {
+    fetch(getUrl)
+      .then((response) => response.json())
+      .then((data) => {
         setTotalPages(data.totalPages);
         setData(data.drugInformationModels);
       });
@@ -25,15 +26,12 @@ const NormalGenes = () => {
     setPagination(pagination);
   };
 
-  const handleSearch = () => {
-    const filteredData = data.filter((item) =>
-      Object.values(item).some(
-        (value) => value && value.toString().toLowerCase().includes(searchText.toLowerCase()),
-      ),
-    );
-    setFilteredData(filteredData);
+  const handleSearch = async (values: any) => {
+    console.log(values)
+    const dataDrugInformation = await DrugsInformationService.search(searchUrl,values);
+    setData(dataDrugInformation.data);
+    setTotalPages(dataDrugInformation.totalPages);
   };
-
   const columns: ProColumns[] = [
     {
       title: 'LOẠI UNG THƯ (MAIN TYPE)',
@@ -85,34 +83,53 @@ const NormalGenes = () => {
       hideInSearch: true,
       align: 'center',
       render: (articles: any, data) => (
-        <Link key="showDetail" style={{ textDecoration: 'underline' }} to={`/drug/${data._id}`}>{articles.length}</Link>
+        <Link key="showDetail" style={{ textDecoration: 'underline' }} to={`/drug/${data._id}`}>
+          {articles.length}
+        </Link>
       ),
     },
   ];
-  
+
   return (
     <>
-      <Row>
-        <Col span={8}>
-          <Form.Item name="note" label="Tìm kiếm theo Gene:" >
-              <Input allowClear placeholder="Nhập tên gene" style={{ width: 200 }}/>
-          </Form.Item>
-        </Col>
-        <Col span={8}>
-          <Form.Item name="note" label="Tìm kiếm theo tên thuốc:">
+      <Form onFinish={handleSearch}>
+        <Row>
+          <Col span={8}>
+            <Form.Item name="geneName" label="Tìm kiếm theo Gene:">
+              <Input allowClear placeholder="Nhập tên gene" style={{ width: 200 }} />
+            </Form.Item>
+          </Col>
+          <Col span={8}>
+            <Form.Item name="drugName" label="Tìm kiếm theo tên thuốc:">
               <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 200 }}/>
-          </Form.Item>
-        </Col>
-        <Col span={8}>
-          <Button type="primary" onClick={handleSearch}>
-            Tìm kiếm
-          </Button>
-        </Col>
-      </Row>
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={8}>
+            <Form.Item name="cancerMainType" label="Tìm kiếm loại ung thư (Main type):">
+              <Input allowClear placeholder="Nhập tên loại ung thư (Main type)" style={{ width: 200 }}/>
+            </Form.Item>
+          </Col>
+          <Col span={8}>
+            <Form.Item name="cancerSubType" label="Tìm kiếm theo loại ung thư (Sub type):">
+              <Input allowClear placeholder="Nhập loại ung thư (Sub type)" style={{ width: 200 }}/>
+            </Form.Item>
+          </Col>
+          <Col span={8}>
+            <Button name="search" type="primary" htmlType='submit'>
+              Tìm kiếm
+            </Button>
+            <Button name="refresh" type="primary" onClick={handleRefresh}>
+              Tải lại
+            </Button>
+          </Col>
+        </Row>
+      </Form>
 
       <ProTable
         columns={columns}
-        dataSource={filteredData.length ? filteredData : data}
+        dataSource={data}
         toolbar={{
           title: 'Thông tin thuốc',
           settings: [],

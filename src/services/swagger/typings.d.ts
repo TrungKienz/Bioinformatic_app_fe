@@ -14,7 +14,7 @@ declare namespace API {
     /** ID of the order that needs to be deleted */
     orderId: number;
   };
-  
+
   type deleteUserParams = {
     /** The name that needs to be deleted */
     username: string;

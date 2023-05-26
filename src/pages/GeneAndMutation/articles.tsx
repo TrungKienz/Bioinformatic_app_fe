@@ -4,47 +4,46 @@ import { Descriptions } from 'antd';
 import { useEffect, useState } from 'react';
 import { geneMutationArticlesEp } from '../EndPoint';
 
-
 const articles = () => {
-  const [dataArticles, setDataArticles] = useState<Array<{
-    gene: String,
-    cancerType: String,
-    level: String,
-    alteration: String,
-    drug: String,
-    key: String,
-    title: String,
-    journal: String,
-    pubDate: String,
-    volume: String,
-    issue: String,
-    authors: String,
-    elocationId: String,
-    reference: String,
-    link: String,
-    abstract: String,
-    page: Number,
-  }>>([]);
+  const [dataArticles, setDataArticles] = useState<
+    Array<{
+      gene: String;
+      cancerType: String;
+      level: String;
+      alteration: String;
+      drug: String;
+      key: String;
+      title: String;
+      journal: String;
+      pubDate: String;
+      volume: String;
+      issue: String;
+      authors: String;
+      elocationId: String;
+      reference: String;
+      link: String;
+      abstract: String;
+      page: Number;
+    }>
+  >([]);
 
   const currentLocation = location.pathname;
-  const id = currentLocation.replace('/mutation/','');
+  const id = currentLocation.replace('/mutation/', '');
 
   const fetchDataArticles = async (id: any) => {
     const response = await fetch(`${geneMutationArticlesEp}/${id}`);
     const data = await response.json();
     const articles = data.mutationEffectPmids.map((article: any) => {
-      return {
-        
-      };
+      return {};
     });
-    setDataArticles(articles);  
+    setDataArticles(articles);
   };
 
   useEffect(() => {
     fetchDataArticles(id).catch((error) => console.error(error));
   }, []);
-  
-  console.log(dataArticles);  
+
+  console.log(dataArticles);
 
   const columns: ProColumns[] = [
     {
@@ -100,10 +99,24 @@ const articles = () => {
       dataIndex: 'link',
       hideInSearch: true,
       align: 'center',
-      render: (text, dataArticles) => (
-        dataArticles.link ? <a href={dataArticles.link .toString()} style={{textDecoration: 'underline'}} target='_blank'>Xem</a> 
-        : <a href={`https://pubmed.ncbi.nlm.nih.gov/${dataArticles.key}`} style={{textDecoration: 'underline'}} target='_blank'>Xem</a>
-      ),
+      render: (text, dataArticles) =>
+        dataArticles.link ? (
+          <a
+            href={dataArticles.link.toString()}
+            style={{ textDecoration: 'underline' }}
+            target="_blank"
+          >
+            Xem
+          </a>
+        ) : (
+          <a
+            href={`https://pubmed.ncbi.nlm.nih.gov/${dataArticles.key}`}
+            style={{ textDecoration: 'underline' }}
+            target="_blank"
+          >
+            Xem
+          </a>
+        ),
     },
     {
       title: 'Tóm tắt',
@@ -112,7 +125,6 @@ const articles = () => {
       align: 'center',
     },
   ];
-
 
   return (
     <>
@@ -135,7 +147,6 @@ const articles = () => {
         pagination={{ pageSize: 10 }}
       />
     </>
-    
   );
 };
 

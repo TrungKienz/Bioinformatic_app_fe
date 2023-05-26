@@ -1,19 +1,19 @@
+import { server } from '@/pages/Api';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useEffect, useState } from 'react';
-import { server } from '@/pages/Api';
 
-const lungCancerPage = '/cancer/lung-cancer';
-const liverCancerPage = '/cancer/liver-cancer';
-const breastCancerPage = '/cancer/breast-cancer';
-const thyroidCancerPage = '/cancer/thyroid-cancer';
-const colorectalCancerPage = '/cancer/colorectal-cancer';
+const lungCancerPage = '/cancer/lung-cancer/overview';
+const liverCancerPage = '/cancer/liver-cancer/overview';
+const breastCancerPage = '/cancer/breast-cancer/overview';
+const thyroidCancerPage = '/cancer/thyroid-cancer/overview';
+const colorectalCancerPage = '/cancer/colorectal-cancer/overview';
 
 const NormalGenes = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
-  const [ totalPages, setTotalPages ] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   let URL = '';
 
@@ -33,8 +33,8 @@ const NormalGenes = () => {
 
   useEffect(() => {
     fetch(`${URL}?page=${pagination.current}&limit=${pagination.pageSize}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setTotalPages(data.totalPages);
         if (location.pathname === lungCancerPage) {
           setData(data.normalLungGeneModels);
@@ -53,7 +53,7 @@ const NormalGenes = () => {
   const handleTableChange = (pagination: any) => {
     setPagination(pagination);
   };
-   console.log(data)
+  console.log(data);
   const columns: ProColumns[] = [
     {
       title: 'TÊN GEN',
@@ -67,7 +67,7 @@ const NormalGenes = () => {
         return (
           <a
             href={`https://cancer.sanger.ac.uk/cosmic/gene/analysis?all_data=n&in=t&ln=${gene_name}&sn=liver&src=tissue&wgs=off`}
-            target='_blank'
+            target="_blank"
           >
             {gene_name}
           </a>
@@ -89,7 +89,6 @@ const NormalGenes = () => {
     },
   ];
 
-
   return (
     <ProTable
       columns={columns}
@@ -105,7 +104,7 @@ const NormalGenes = () => {
       rowKey="key"
       search={false}
       dateFormatter="string"
-      pagination={{total: totalPages, pageSize: 10}}
+      pagination={{ total: totalPages, pageSize: 10 }}
       onChange={handleTableChange}
     />
   );

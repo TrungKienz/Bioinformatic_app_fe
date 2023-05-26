@@ -76,7 +76,7 @@ export default defineConfig({
    * @name layout plugin
    * @doc https://umijs.org/docs/max/layout-menu
    */
-  title: 'Ant Design Pro',
+  title: 'Project Ung Thư',
   layout: {
     locale: true,
     ...defaultSettings,

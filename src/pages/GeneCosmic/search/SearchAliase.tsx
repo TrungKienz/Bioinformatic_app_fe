@@ -1,26 +1,26 @@
-import { Layout, Input } from 'antd';
-import { React, useState } from "react";
+import { Input, Layout } from 'antd';
+import { useState } from 'react';
 
 const { Header } = Layout;
 
 export default function SearchAliase({ genes, setSearchData }) {
-    const [search, setSearch] = useState('');
-    const searchGen = () => {
-        if (search.trim()) {
-          setSearchData(
-            genes.filter((gen) => 
-             gen.aliases.some((aliase) => aliase.toLowerCase().includes(search.toLowerCase()))
-            )
-            // some là chỉ để kiểm tra có hoặc không tức trả về true/ false
-            // còn filer thì trả về mảng các phần tử thỏa mãn điều kiện nào đó
-          );
-        } else {
-          setSearchData(null);
-        }
-      };
+  const [search, setSearch] = useState('');
+  const searchGen = () => {
+    if (search.trim()) {
+      setSearchData(
+        genes.filter((gen) =>
+          gen.aliases.some((aliase) => aliase.toLowerCase().includes(search.toLowerCase())),
+        ),
+        // some là chỉ để kiểm tra có hoặc không tức trả về true/ false
+        // còn filer thì trả về mảng các phần tử thỏa mãn điều kiện nào đó
+      );
+    } else {
+      setSearchData(null);
+    }
+  };
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-        searchGen();
+      searchGen();
     }
   };
 
@@ -31,7 +31,7 @@ export default function SearchAliase({ genes, setSearchData }) {
         onSearch={searchGen}
         onChange={(e) => setSearch(e.target.value)}
         value={search}
-        onKeyPress={handleKeyPress}//Enter thì thực hiện hàm handleKeyPress
+        onKeyPress={handleKeyPress} //Enter thì thực hiện hàm handleKeyPress
         style={{ margin: '10px 0' }}
       />
     </Header>

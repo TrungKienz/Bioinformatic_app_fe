@@ -1,20 +1,17 @@
-import { SaveOutlined, EditOutlined } from '@ant-design/icons';
+import HealthRecordService from '@/services/healthRecord';
 import { PageContainer } from '@ant-design/pro-components';
-import { Affix, Button, Col, Form, Input, Radio, Row, Tooltip } from 'antd';
-import { useState } from 'react';
+import { history, useParams } from '@umijs/max';
+import { Col, Form, Row } from 'antd';
+import { useRequest } from 'umi';
+import ControlButton from '../ControlButton';
 import CustomInput from '../CustomInput';
-import './lungCancer.css';
-import LUNG from './LungTemplate';
-import { useModel } from '@umijs/max';
+import CustomTable from '../CustomTable';
 import GenTestForm from '../GenTestForm';
 import PatientInfo from '../PatientInfo';
-import CustomTable from '../CustomTable';
-import { history, useParams } from '@umijs/max';
-import { useRequest } from 'umi';
-import HealthRecordService from '@/services/healthRecord';
-import ControlButton from '../ControlButton';
+import './lungCancer.css';
+import LUNG from './LungTemplate';
 
-let CANCER = JSON.parse(JSON.stringify(LUNG))
+let CANCER = JSON.parse(JSON.stringify(LUNG));
 
 export default () => {
   const [patientInfoForm] = Form.useForm();
@@ -27,8 +24,7 @@ export default () => {
     job: '',
     phone: '',
     sex: '',
-
-  })
+  });
   genTestForm.setFieldsValue({
     concentrateDNA: '',
     dateSample: '',
@@ -38,9 +34,9 @@ export default () => {
     testCode: '',
     testDate: '',
     typeSample: '',
-  })
+  });
 
-  const params = useParams()
+  const params = useParams();
   if (params.id !== '0') {
     const { data, error, loading } = useRequest(() => {
       return HealthRecordService.getHealthRecord(params);
@@ -52,21 +48,27 @@ export default () => {
       return <div>{error.message}</div>;
     }
     CANCER = data;
-    patientInfoForm.setFieldsValue(data.patientInfo)
+    patientInfoForm.setFieldsValue(data.patientInfo);
   }
 
   const handleSubmit = async () => {
-    const patientInfo = patientInfoForm.getFieldsValue()
-    const genTestInfo = genTestForm.getFieldsValue()
-    console.log('submit', genTestInfo)
-    const healthRecordId = patientInfo?.healthRecordId
-    const data: object = Object.assign({}, CANCER, { patientInfo }, { genTestInfo }, { healthRecordId })
-    console.log('send value', data)
-    const demo = await HealthRecordService.saveHealthRecord(data)
+    const patientInfo = patientInfoForm.getFieldsValue();
+    const genTestInfo = genTestForm.getFieldsValue();
+    console.log('submit', genTestInfo);
+    const healthRecordId = patientInfo?.healthRecordId;
+    const data: object = Object.assign(
+      {},
+      CANCER,
+      { patientInfo },
+      { genTestInfo },
+      { healthRecordId },
+    );
+    console.log('send value', data);
+    const demo = await HealthRecordService.saveHealthRecord(data);
 
-    console.log("response", demo);
-    console.log(history)
-  }
+    console.log('response', demo);
+    console.log(history);
+  };
 
   return (
     <PageContainer
@@ -99,8 +101,8 @@ export default () => {
                               item.length === 1
                                 ? '100%'
                                 : item.length === 2 && listId === 1
-                                  ? '2'
-                                  : '1'
+                                ? '2'
+                                : '1'
                             }
                             key={listId}
                           >
@@ -118,7 +120,6 @@ export default () => {
                                         quesId={quesId}
                                         ques={ques}
                                         index={index}
-
                                       />
                                     </Col>
                                   </Row>
@@ -136,11 +137,7 @@ export default () => {
                                     }
                                   >
                                     <div className="full-width">
-                                      <CustomInput
-                                        quesId={quesId}
-                                        ques={ques}
-
-                                      />
+                                      <CustomInput quesId={quesId} ques={ques} />
                                     </div>
                                   </div>
                                   {ques?.unit === 'bao/ngày' && ' x '}
@@ -180,7 +177,12 @@ export default () => {
                   {res.map((ques, quesId) => {
                     return (
                       <td key={quesId}>
-                        <CustomInput quesId={quesId} ques={ques} CANCER={CANCER} templateInfo={ques} />
+                        <CustomInput
+                          quesId={quesId}
+                          ques={ques}
+                          CANCER={CANCER}
+                          templateInfo={ques}
+                        />
                       </td>
                     );
                   })}
@@ -222,7 +224,12 @@ export default () => {
                   {res.map((ques, quesId) => {
                     return (
                       <td key={quesId}>
-                        <CustomInput quesId={quesId} ques={ques} CANCER={CANCER} templateInfo={ques} />
+                        <CustomInput
+                          quesId={quesId}
+                          ques={ques}
+                          CANCER={CANCER}
+                          templateInfo={ques}
+                        />
                       </td>
                     );
                   })}
