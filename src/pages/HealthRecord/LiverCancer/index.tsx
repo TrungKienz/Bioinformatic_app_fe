@@ -37,7 +37,7 @@ export default () => {
   const params = useParams();
   if (params.id !== '0') {
     const { data, error, loading } = useRequest(() => {
-      return HealthRecordService.getHealthRecord(params);
+      return HealthRecordService.getHealthRecord(params,CANCER.typeHealthRecord);
     });
     if (loading) {
       return <div>loading... </div>;
@@ -292,7 +292,7 @@ export default () => {
           <Button size="large" type="primary" icon={<SaveOutlined />}></Button>
         </Tooltip>
       </Affix>
-      <ControlButton handleSubmit={handleSubmit} />
+      <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />
     </PageContainer>
   );
 };

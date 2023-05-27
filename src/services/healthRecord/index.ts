@@ -3,7 +3,7 @@ import { request } from '@umijs/max';
 const baseUrl = 'http://localhost:3000';
 class HealthRecordService {
   saveHealthRecord = async (body: any, options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${baseUrl}/save`, {
+    return request<ErrorResponse>(`${baseUrl}/${body.typeHealthRecord}/save`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -12,8 +12,8 @@ class HealthRecordService {
       ...(options || {}),
     });
   };
-  getHealthRecord = async (body: any, options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${baseUrl}/get-health-record`, {
+  getHealthRecord = async (body: any,typeHealthRecord:string, options?: { [key: string]: any }) => {
+    return request<ErrorResponse>(`${baseUrl}/${typeHealthRecord}/get-health-record`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,18 +22,18 @@ class HealthRecordService {
       ...(options || {}),
     });
   };
-  deleteHealthRecord = async (body: any, options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${baseUrl}/delete-health-record`, {
+  deleteHealthRecord = async (typeHealthRecord:string,id:number, options?: { [key: string]: any }) => {
+    return request<ErrorResponse>(`${baseUrl}/${typeHealthRecord}/delete-health-record`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      data: { id: body },
+      data: { id: id },
       ...(options || {}),
     });
   };
-  getAll = async (options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${baseUrl}/get-all`, {
+  getAllByType = async (recordType:string,options?: { [key: string]: any }) => {
+    return request<ErrorResponse>(`${baseUrl}/${recordType}/get-all`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -41,8 +41,8 @@ class HealthRecordService {
       ...(options || {}),
     });
   };
-  search = async (body: object, options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${baseUrl}/search`, {
+  search = async (body: object, typeHealthRecord,options?: { [key: string]: any }) => {
+    return request<ErrorResponse>(`${baseUrl}/${typeHealthRecord}/search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

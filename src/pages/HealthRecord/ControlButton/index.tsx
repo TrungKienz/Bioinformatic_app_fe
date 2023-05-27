@@ -1,8 +1,9 @@
 import { SaveOutlined } from '@ant-design/icons';
-import { history } from '@umijs/max';
+import { history, useNavigate } from '@umijs/max';
 import { Affix, Button, Tooltip } from 'antd';
 
-export default ({ handleSubmit }) => {
+export default ({ handleSubmit,link }) => {
+  const navigate = useNavigate();
   return (
     <Affix style={{ right: '30px', position: 'absolute' }} offsetBottom={50}>
       <Tooltip title={'Save'} color="#1890ff">
@@ -12,7 +13,7 @@ export default ({ handleSubmit }) => {
           icon={<SaveOutlined />}
           onClick={() => {
             handleSubmit();
-            history.push('/health-record?reload=true');
+            navigate(`/health-record/${link}`);
           }}
         ></Button>
       </Tooltip>

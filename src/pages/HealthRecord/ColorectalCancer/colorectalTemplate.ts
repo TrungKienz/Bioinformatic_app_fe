@@ -1,5 +1,5 @@
 const COLORECTAL: any = {
-  typeHealthRecord: 'UNG THƯ TRỰC TRÀNG',
+  typeHealthRecord: 'colorectal-record',
 
   generalInfo: [
     {

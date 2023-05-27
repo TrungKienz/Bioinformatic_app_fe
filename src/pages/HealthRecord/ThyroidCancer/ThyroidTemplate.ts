@@ -1,5 +1,5 @@
 const THYROID: any = {
-  typeHealthRecord: 'UNG THƯ K GIÁP',
+  typeHealthRecord: 'thyroid-record',
 
   generalInfo:{},
 

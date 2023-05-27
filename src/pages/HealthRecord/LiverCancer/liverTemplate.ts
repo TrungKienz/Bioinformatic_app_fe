@@ -1,5 +1,5 @@
 const LUNG: any = {
-  typeHealthRecord: 'UNG THƯ GAN',
+  typeHealthRecord: 'liver-record',
 
   generalInfo:[
     {

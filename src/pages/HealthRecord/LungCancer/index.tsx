@@ -39,7 +39,7 @@ export default () => {
   const params = useParams();
   if (params.id !== '0') {
     const { data, error, loading } = useRequest(() => {
-      return HealthRecordService.getHealthRecord(params);
+      return HealthRecordService.getHealthRecord(params,CANCER.typeHealthRecord);
     });
     if (loading) {
       return <div>loading... </div>;
@@ -257,7 +257,7 @@ export default () => {
       <h4>VIII{'>'} THÔNG TIN XÉT NGHIỆM DI TRUYỀN</h4>
       <GenTestForm form={genTestForm} cancer={CANCER} />
 
-      <ControlButton handleSubmit={handleSubmit} />
+      <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />
     </PageContainer>
   );
 };

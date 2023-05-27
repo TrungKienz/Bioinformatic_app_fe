@@ -1,5 +1,5 @@
 let LUNG: any = {
-  typeHealthRecord: 'UNG THƯ PHỔI',
+  typeHealthRecord: 'lung-record',
 
   generalInfo:[
     {

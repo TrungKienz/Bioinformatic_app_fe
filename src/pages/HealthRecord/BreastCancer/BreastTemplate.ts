@@ -1,5 +1,5 @@
 const BREAST: any = {
-  typeHealthRecord: 'UNG THƯ VÚ',
+  typeHealthRecord: 'breast-record',
   generalInfo: [
     {
       name: 'II> TIỀN SỬ',

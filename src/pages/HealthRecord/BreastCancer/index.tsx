@@ -42,7 +42,7 @@ export default () => {
   const params = useParams();
   if (params.id !== '0') {
     const { data, error, loading } = useRequest(() => {
-      return HealthRecordService.getHealthRecord(params);
+      return HealthRecordService.getHealthRecord(params,CANCER.typeHealthRecord);
     });
     if (loading) {
       return <div></div>;
@@ -128,11 +128,6 @@ export default () => {
                                         categoryId={categoryId}
                                         listId={listId}
                                         CANCER={CANCER}
-                                        templateInfo={
-                                          CANCER.generalInfo[categoryId].listQuestions[index][
-                                            listId
-                                          ][quesId]
-                                        }
                                       />
                                     </Col>
                                   </Row>
@@ -157,11 +152,6 @@ export default () => {
                                         categoryId={categoryId}
                                         listId={listId}
                                         CANCER={CANCER}
-                                        templateInfo={
-                                          CANCER.generalInfo[categoryId].listQuestions[index][
-                                            listId
-                                          ][quesId]
-                                        }
                                       />
                                     </div>
                                   </div>
@@ -216,7 +206,7 @@ export default () => {
             </tr>
           </thead>
           <tbody>
-            {CANCER.responeToTreatment.map((res, resId) => {
+            {CANCER?.responeToTreatment?.map((res, resId) => {
               return (
                 <tr key={resId}>
                   {res.map((ques, quesId) => {
@@ -260,7 +250,7 @@ export default () => {
       </div>
       <h4>Số lượng u</h4>
       <CustomTable record={CANCER?.otherInfo?.tumor} isAddRow={false} />
-      {CANCER.assessmentResponseTreatment.listQuestions.map((ques, quesId) => {
+      {CANCER?.assessmentResponseTreatment?.listQuestions.map((ques, quesId) => {
         return (
           <Row key={quesId} gutter={[16, 40]} style={{ marginTop: '8px' }}>
             <Col span={6}> {ques?.question}</Col>
@@ -271,7 +261,7 @@ export default () => {
         );
       })}
 
-      {CANCER.assessmentResponseTreatment.postListQuestions.map((ques, quesId) => {
+      {CANCER?.assessmentResponseTreatment?.postListQuestions.map((ques, quesId) => {
         return (
           <Row key={quesId} gutter={[16, 40]} style={{ marginTop: '8px' }}>
             <Col span={6}> {ques?.question}</Col>
@@ -284,7 +274,7 @@ export default () => {
       <h4>VIII{'>'} THÔNG TIN XÉT NGHIỆM DI TRUYỀN</h4>
       <GenTestForm form={genTestForm} cancer={CANCER} />
 
-      <ControlButton handleSubmit={handleSubmit}></ControlButton>
+      <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />
     </PageContainer>
   );
 };
