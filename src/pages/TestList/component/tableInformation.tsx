@@ -1,13 +1,13 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, message, Modal, Space } from 'antd';
+import { message, Modal, Space } from 'antd';
 import { useEffect, useState } from 'react';
 import { Link } from 'umi';
-import { server } from '../Api';
-import { testCaseEp } from '../EndPoint';
-import UploadTestCase from './component/uploadTestCase';
-import AddTestCase from './component/addTestInformation';
+import { server } from '../../Api';
+import { testCaseEp } from '../../EndPoint';
+import UploadTestCase from '../component/uploadTestCase';
+import AddTestCase from '../component/addTestInformation';
 import CRUDService from '@/services/CRUDService';
 
 const { confirm } = Modal;
@@ -100,24 +100,7 @@ export default () => {
       align: 'left',
       render: (text, data) => (
         <>
-          {/* <Space size={'large'}>
-            <Link key="showDetail" style={{ textDecoration: 'underline' }} to={`/tests/${data.id}`}>
-              Chi tiết
-            </Link>
-            <a
-              key="delete"
-              style={{ color: 'red', textDecoration: 'underline' }}
-              onClick={() => handleDelete(data.id, data.runID)}
-            >
-              Xóa
-            </a>
-          </Space> */}
-          <Space size={'large'}>
-            <UploadTestCase patientID={data.patientID} />
-            <Button type="primary" danger onClick={() => handleDelete(data.id, data.patientID)}>
-              Xóa
-            </Button>
-          </Space>
+          
         </>
       ),
     },
@@ -130,7 +113,6 @@ export default () => {
       toolbar={{
         title: 'Danh sách xét nghiệm',
         search: {
-          placeholder: 'Nhập thông tin',
           onSearch: (value) => setSearchTerm(value),
           onChange: (e) => setSearchTerm(e.target.value),
           style: { width: '350px' },

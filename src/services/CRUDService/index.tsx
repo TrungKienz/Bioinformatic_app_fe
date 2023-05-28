@@ -1,8 +1,8 @@
 import { request } from '@umijs/max';
 
 class CRUDService {
-  saveService = async (body: any, options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${Url}`, {
+  saveService = async (url: String, body: any, options?: { [key: string]: any }) => {
+    return request<ErrorResponse>(`${url}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

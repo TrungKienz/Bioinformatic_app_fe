@@ -120,9 +120,6 @@ const NormalGenes = () => {
             <Button name="search" type="primary" htmlType='submit'>
               Tìm kiếm
             </Button>
-            <Button name="refresh" type="primary" onClick={handleRefresh}>
-              Tải lại
-            </Button>
           </Col>
         </Row>
       </Form>

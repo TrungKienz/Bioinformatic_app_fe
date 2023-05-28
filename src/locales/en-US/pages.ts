@@ -14,8 +14,8 @@ export default {
   'pages.login.submit': 'Đăng nhập',
   'pages.login.registerAccount': 'Register Account',
   'pages.welcome.link': 'Welcome',
-  'pages.welcome.alertMessage': 'Faster and stronger heavy-duty components have been released.',
-  'pages.admin.subPage.title': 'This page can only be viewed by Admin',
+  'pages.welcome.alertMessage': 'Chức năng đang trong qúa trình phát triển',
+  'pages.admin.subPage.title': 'Chức năng hiện tại không khả dụng',
   'pages.admin.subPage.alertMessage':
     'Umi ui is now released, welcome to use npm run ui to start the experience.',
   'pages.searchTable.createForm.newRule': 'New Rule',

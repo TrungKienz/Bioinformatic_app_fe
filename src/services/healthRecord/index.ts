@@ -1,6 +1,6 @@
 import { request } from '@umijs/max';
-
-const baseUrl = 'http://localhost:3000';
+import { server } from '@/pages/Api';
+const baseUrl = server;
 class HealthRecordService {
   saveHealthRecord = async (body: any, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${baseUrl}/save`, {

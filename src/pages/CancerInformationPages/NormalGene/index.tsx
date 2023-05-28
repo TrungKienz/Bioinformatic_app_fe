@@ -2,12 +2,14 @@ import { server } from '@/pages/Api';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useEffect, useState } from 'react';
+import CRUDService from '@/services/CRUDService';
 
-const lungCancerPage = '/cancer/lung-cancer/overview';
-const liverCancerPage = '/cancer/liver-cancer/overview';
-const breastCancerPage = '/cancer/breast-cancer/overview';
-const thyroidCancerPage = '/cancer/thyroid-cancer/overview';
-const colorectalCancerPage = '/cancer/colorectal-cancer/overview';
+
+const lungCancerPage = '/lung-cancer/overview';
+const liverCancerPage = '/liver-cancer/overview';
+const breastCancerPage = '/breast-cancer/overview';
+const thyroidCancerPage = '/thyroid-cancer/overview';
+const colorectalCancerPage = '/colorectal-cancer/overview';
 
 const NormalGenes = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -96,6 +98,7 @@ const NormalGenes = () => {
       toolbar={{
         title: 'Gen không đột biến',
         search: {
+          placeholder: 'Nhập tên gene',
           onSearch: (value) => setSearchTerm(value),
           onChange: (e) => setSearchTerm(e.target.value),
         },

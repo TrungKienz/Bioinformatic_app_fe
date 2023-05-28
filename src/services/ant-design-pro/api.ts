@@ -2,8 +2,9 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 import token from '@/utils/token'
+import { server } from '@/pages/Api';
 
-/** 获取当前的用户 GET /api/currentUser */
+/** GET /api/currentUser */
 export async function currentUser1(options?: { [key: string]: any }) {
   const accessToken = token.get().accessToken || '';
   if (!accessToken) {
@@ -11,7 +12,7 @@ export async function currentUser1(options?: { [key: string]: any }) {
   }
   return request<{
     data: API.CurrentUser;
-  }>('http://localhost:3000/user/user-infor', {
+  }>(`${server}/user/user-infor`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,7 +25,7 @@ export async function currentUser1(options?: { [key: string]: any }) {
 export async function currentUser(body:object, options?: { [key: string]: any }) {
   return request<{
     data: API.CurrentUser;
-  }>('http://localhost:3000/user/user-infor', {
+  }>(`${server}/user/user-infor`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -44,7 +45,7 @@ export async function outLogin(options?: { [key: string]: any }) {
 
 /* POST /api/login/account */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<ErrorResponse>('http://localhost:3000/user/login', {
+  return request<API.LoginParams>(`${server}/user/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -54,7 +55,7 @@ export async function login(body: API.LoginParams, options?: { [key: string]: an
   });
 }
 
-/** 此处后端没有提供注释 GET /api/notices */
+/** GET /api/notices */
 export async function getNotices(options?: { [key: string]: any }) {
   return request<API.NoticeIconList>('/api/notices', {
     method: 'GET',
@@ -66,9 +67,7 @@ export async function getNotices(options?: { [key: string]: any }) {
 export async function rule(
   params: {
     // query
-    /** 当前的页码 */
     current?: number;
-    /** 页面的容量 */
     pageSize?: number;
   },
   options?: { [key: string]: any },
@@ -82,7 +81,7 @@ export async function rule(
   });
 }
 
-/** 新建规则 PUT /api/rule */
+/**  PUT /api/rule */
 export async function updateRule(options?: { [key: string]: any }) {
   return request<API.RuleListItem>('/api/rule', {
     method: 'PUT',
@@ -90,7 +89,7 @@ export async function updateRule(options?: { [key: string]: any }) {
   });
 }
 
-/** 新建规则 POST /api/rule */
+/** POST /api/rule */
 export async function addRule(options?: { [key: string]: any }) {
   return request<API.RuleListItem>('/api/rule', {
     method: 'POST',
@@ -98,7 +97,7 @@ export async function addRule(options?: { [key: string]: any }) {
   });
 }
 
-/** 删除规则 DELETE /api/rule */
+/** DELETE /api/rule */
 export async function removeRule(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/rule', {
     method: 'DELETE',
