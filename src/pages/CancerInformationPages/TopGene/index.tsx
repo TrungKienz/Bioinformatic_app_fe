@@ -8,11 +8,11 @@ import {
 import { Column } from '@ant-design/charts';
 import { useEffect, useState } from 'react';
 
-const lungCancerPage = '/cancer/lung-cancer/overview';
-const liverCancerPage = '/cancer/liver-cancer/overview';
-const breastCancerPage = '/cancer/breast-cancer/overview';
-const thyroidCancerPage = '/cancer/thyroid-cancer/overview';
-const colorectalCancerPage = '/cancer/colorectal-cancer/overview';
+const lungCancerPage = '/lung-cancer/overview';
+const liverCancerPage = '/liver-cancer/overview';
+const breastCancerPage = '/breast-cancer/overview';
+const thyroidCancerPage = '/thyroid-cancer/overview';
+const colorectalCancerPage = '/colorectal-cancer/overview';
 
 const TopGene = () => {
   const [data, setData] = useState([]);
@@ -64,7 +64,7 @@ const TopGene = () => {
     },
   };
   return (
-    <div style={{ height: '80vh' }}>
+    <div style={{ height: '70vh' }}>
       <Column {...config}/>
     </div>
   );

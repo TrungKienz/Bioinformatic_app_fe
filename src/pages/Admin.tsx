@@ -10,14 +10,14 @@ const Admin: React.FC = () => {
     <PageContainer
       content={intl.formatMessage({
         id: 'pages.admin.subPage.title',
-        defaultMessage: 'This page can only be viewed by admin',
+        defaultMessage: 'Chức năng hiện tại không khả dụng',
       })}
     >
       <Card>
         <Alert
           message={intl.formatMessage({
             id: 'pages.welcome.alertMessage',
-            defaultMessage: 'Faster and stronger heavy-duty components have been released.',
+            defaultMessage: 'Chức năng đang trong quá trình phát triển',
           })}
           type="success"
           showIcon
@@ -28,12 +28,12 @@ const Admin: React.FC = () => {
           }}
         />
         <Typography.Title level={2} style={{ textAlign: 'center' }}>
-          <SmileTwoTone /> Cancer Project <HeartTwoTone twoToneColor="#eb2f96" /> You
+          <SmileTwoTone /> Chức năng đang trong quá trình phát triển  <HeartTwoTone twoToneColor="#eb2f96" />
         </Typography.Title>
       </Card>
       <p style={{ textAlign: 'center', marginTop: 24 }}>
         Want to add more pages? Please refer to{' '}
-        <a href="https://pro.ant.design/docs/block-cn" target="_blank" rel="noopener noreferrer">
+        <a href="" target="_blank" rel="noopener noreferrer">
           use block
         </a>
         。

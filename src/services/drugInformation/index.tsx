@@ -1,8 +1,7 @@
 import { request } from '@umijs/max';
+import { server } from '@/pages/Api';
+const baseUrl = server;
 
-const baseUrl = 'http://localhost:3000';
-const current = 1; 
-const pageSize = 10;
 class DrugsInformationService {
   saveDrugInfor = async (body: any, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${baseUrl}/save`, {
@@ -53,8 +52,9 @@ class DrugsInformationService {
         data: body,
         ...(options || {}),
       });
-  
-      return response.data; // Return the response data
+      
+      console.log(response)
+      return response; // Return the response data
     } catch (error) {
       // Handle any errors that occur during the request
       console.error(error);

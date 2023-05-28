@@ -9,11 +9,11 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useEffect, useState } from 'react';
 
-const lungCancerPage = '/cancer/lung-cancer/overview';
-const liverCancerPage = '/cancer/liver-cancer/overview';
-const breastCancerPage = '/cancer/breast-cancer/overview';
-const thyroidCancerPage = '/cancer/thyroid-cancer/overview';
-const colorectalCancerPage = '/cancer/colorectal-cancer/overview';
+const lungCancerPage = '/lung-cancer/overview';
+const liverCancerPage = '/liver-cancer/overview';
+const breastCancerPage = '/breast-cancer/overview';
+const thyroidCancerPage = '/thyroid-cancer/overview';
+const colorectalCancerPage = '/colorectal-cancer/overview';
 
 const MutanGene = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,56 +21,87 @@ const MutanGene = () => {
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [totalPages, setTotalPages] = useState(1);
 
-  let URL = '';
-
-  if (location.pathname === lungCancerPage) {
-    URL = mutationLungGeneEp;
-  } else if (location.pathname === liverCancerPage) {
-    URL = mutationLiverGeneEp;
-  } else if (location.pathname === breastCancerPage) {
-    URL = mutationBreastGeneEp;
-  } else if (location.pathname === thyroidCancerPage) {
-    URL = mutationThyroidGeneEp;
-  } else if (location.pathname === colorectalCancerPage) {
-    URL = mutationColorectalGeneEp;
-  } else {
-    URL = '';
+  let URLReload = '';
+  let URLFindByName = '';
+  switch(location.pathname){
+    case lungCancerPage:
+      URLReload = `${mutationLungGeneEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
+      URLFindByName = `${mutationLungGeneEp}/findByName`
+      break;
+    case liverCancerPage:
+      URLReload = `${mutationLiverGeneEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
+      URLFindByName = `${mutationLungGeneEp}/findByName`
+      break;
+    case breastCancerPage:
+      URLReload = `${mutationBreastGeneEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
+      URLFindByName = `${mutationBreastGeneEp}/findByName`
+      break;
+    case thyroidCancerPage:
+      URLReload = `${mutationThyroidGeneEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
+      URLFindByName = `${mutationThyroidGeneEp}/findByName`
+      break;
+    case colorectalCancerPage:
+      URLReload = `${mutationColorectalGeneEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
+      URLFindByName = `${mutationColorectalGeneEp}/findByName`
+      break;
+    default:
+      URLReload = '';
+      URLFindByName = '';
+      break;
   }
 
   useEffect(() => {
-    fetch(`${URL}?page=${pagination.current}&limit=${pagination.pageSize}`)
+    fetch(URLReload)
       .then((response) => response.json())
       .then((data) => {
         setTotalPages(data.totalPages);
-        if (location.pathname === lungCancerPage) {
-          setData(data.mutationLungGeneModels);
-        } else if (location.pathname === liverCancerPage) {
-          setData(data.mutationLiverGeneModels);
-        } else if (location.pathname === breastCancerPage) {
-          setData(data.mutationBreastGeneModels);
-        } else if (location.pathname === thyroidCancerPage) {
-          setData(data.mutationThyroidGeneModels);
-        } else if (location.pathname === colorectalCancerPage) {
-          setData(data.mutationColorectalGeneModels);
+        switch(location.pathname){
+          case lungCancerPage:
+            setData(data.mutationLungGeneModels);
+            break;
+          case liverCancerPage:
+            setData(data.mutationLiverGeneModels);
+            break;
+          case breastCancerPage:
+            setData(data.mutationBreastGeneModels);
+            break;
+          case thyroidCancerPage:
+            setData(data.mutationThyroidGeneModels);
+            break;
+          case colorectalCancerPage:
+            setData(data.mutationColorectalGeneModels);
+            break;
+          default:
+            setData([]);
+            break;
         }
       });
   }, [pagination.current, pagination.pageSize]);
 
   useEffect(() => {
-    fetch(`${URL}/findByName`)
+    fetch(URLFindByName)
       .then((response) => response.json())
       .then((data) => {
         setTotalPages(data.totalPages);
-        if (location.pathname === lungCancerPage) {
-          setData(data.mutationLungGeneModels);
-        } else if (location.pathname === liverCancerPage) {
-          setData(data.mutationLiverGeneModels);
-        } else if (location.pathname === breastCancerPage) {
-          setData(data.mutationBreastGeneModels);
-        } else if (location.pathname === thyroidCancerPage) {
-          setData(data.mutationThyroidGeneModels);
-        } else if (location.pathname === colorectalCancerPage) {
-          setData(data.mutationColorectalGeneModels);
+        switch(location.pathname){
+          case lungCancerPage:
+            setData(data.mutationLungGeneModels);
+            break;
+          case liverCancerPage:
+            setData(data.mutationLiverGeneModels);
+            break;
+          case breastCancerPage:
+            setData(data.mutationBreastGeneModels);
+            break;
+          case thyroidCancerPage:
+            setData(data.mutationThyroidGeneModels);
+            break;
+          case colorectalCancerPage:
+            setData(data.mutationColorectalGeneModels);
+            break;
+          default:
+            setData([]);
+            break;
         }
       });
   }, [pagination.current, pagination.pageSize]);
@@ -128,6 +159,7 @@ const MutanGene = () => {
       toolbar={{
         title: 'Gen đột biến',
         search: {
+          placeholder: 'Nhập tên gene',
           onSearch: (value) => setSearchTerm(value),
           onChange: (e) => setSearchTerm(e.target.value),
         },
