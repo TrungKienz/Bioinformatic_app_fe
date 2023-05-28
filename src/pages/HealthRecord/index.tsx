@@ -3,8 +3,10 @@ import { DeleteOutlined, EditOutlined, FileAddOutlined } from '@ant-design/icons
 import { ModalForm, PageContainer, ProFormSelect } from '@ant-design/pro-components';
 import { history, useParams } from '@umijs/max';
 import { Button, Form, Input, Popconfirm, Select, Space, Table, Tag } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
+import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
+import { FilterValue } from 'antd/es/table/interface';
 import { useEffect, useState } from 'react';
+
 interface DataType {
   id: string;
   name: string;
@@ -34,71 +36,84 @@ const handleCreateHealthRecord = (typeRecord, id = 0) => {
   }
   return;
 };
-const handleDeleteHealthRecord = async (typeHealthRecord:string,id: number) => {
-  await HealthRecordService.deleteHealthRecord(typeHealthRecord,id);
-};
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Mã bệnh án',
-    dataIndex: 'healthRecordId',
-    key: 'healthRecordId',
-  },
-  {
-    title: 'Họ tên',
-    dataIndex: 'fullname',
-    key: 'name',
-  },
-  {
-    title: 'Năm sinh',
-    dataIndex: 'dob',
-    key: 'dob',
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size="middle">
-        <Button
-          type="primary"
-          icon={<EditOutlined />}
-          onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id)}
-        />
-        <Popconfirm
-          title="Xóa bệnh án"
-          description="Bạn có chắc muốn xóa bệnh án này?"
-          onConfirm={() => handleDeleteHealthRecord(record.typeHealthRecord,record.id)}
-          okText="Yes"
-          cancelText="No"
-        >
-          <Button danger icon={<DeleteOutlined />} />
-        </Popconfirm>
-      </Space>
-    ),
-  },
-];
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
 };
+interface TableParams {
+  pagination?: TablePaginationConfig;
+  sortField?: string;
+  sortOrder?: string;
+  filters?: Record<string, FilterValue>;
+}
 
 export default () => {
-  const { typeHealthRecord } = useParams();
+  const typeHealthRecord = history.location.pathname.split('/health-record')[0].substring(1).replace('cancer','record');
   const [post, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [queryUrl, setQueryUrl] = useState('');
-  console.log('[health record param]', typeHealthRecord)
-  const handleGetAll = async () => {
-    let records = (await HealthRecordService.getAllByType(typeHealthRecord))?.data || [];
+  const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
+  const [reload,setReload] = useState('');
+  const handleDeleteHealthRecord = async (typeHealthRecord:string,id: string) => {
+    try{
+      await HealthRecordService.deleteHealthRecord(typeHealthRecord,id);
+      setReload(id);
+    }catch(err){
+      console.log(err);
+    }
+  };
+  const columns: ColumnsType<DataType> = [
+    {
+      title: 'Mã bệnh án',
+      dataIndex: 'healthRecordId',
+      key: 'healthRecordId',
+    },
+    {
+      title: 'Họ tên',
+      dataIndex: 'fullname',
+      key: 'name',
+    },
+    {
+      title: 'Năm sinh',
+      dataIndex: 'dob',
+      key: 'dob',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (_, record) => (
+        <Space size="middle">
+          <Button
+            type="primary"
+            icon={<EditOutlined />}
+            onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id)}
+          />
+          <Popconfirm
+            title="Xóa bệnh án"
+            description="Bạn có chắc muốn xóa bệnh án này?"
+            onConfirm={() => handleDeleteHealthRecord(record.typeHealthRecord,record.id)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button danger icon={<DeleteOutlined />} />
+          </Popconfirm>
+        </Space>
+      ),
+    },
+  ];
+  const handleGetAll = async (page,limit) => {
+    let records = (await HealthRecordService.getAllByType(typeHealthRecord,page,limit))?.data || [];
     console.log(records);
 
     setData(records);
-    setLoading(false);
   };
   useEffect(() => {
-    handleGetAll();
-  }, [queryUrl]);
+    
+    handleGetAll(pagination.current,pagination.pageSize);
+  }, [reload,pagination.current,pagination.pageSize]);
 
+  const handleTableChange = (pagination: any) => {
+    setPagination(pagination);
+  };
   const handleSearch = async (values) => {
     console.log('[handle search]', values);
     const data = (await HealthRecordService.search(values,typeHealthRecord))?.data;
@@ -119,7 +134,7 @@ export default () => {
           <Button icon={<FileAddOutlined />} style={{ margin: '20px 0' }} onClick={ ()=>handleCreateHealthRecord(typeHealthRecord)}>
             Thêm bệnh án
           </Button>
-      <Table loading={loading} columns={columns} dataSource={post} />
+      <Table  columns={columns} dataSource={post}  />
     </PageContainer>
   );
 };

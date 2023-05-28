@@ -39,7 +39,7 @@ export default [
     icon: '/icons/lung-icon.png',
     routes: [
       {
-        path:'/lung-cancer'
+        path: '/lung-cancer'
       },
       {
         path: '/lung-cancer/overview',
@@ -66,6 +66,13 @@ export default [
         name: 'Các điều trị khác',
         component: './Admin.tsx'
       },
+      {
+        name: 'Quản lý bệnh án',
+        // icon: '/icons/health-record.png',
+        path: '/lung-cancer/health-record',
+
+        component: './HealthRecord/',
+      },
     ]
   },
   {
@@ -74,7 +81,7 @@ export default [
     icon: '/icons/liver-icon.png',
     routes: [
       {
-        path:'/liver-cancer'
+        path: '/liver-cancer'
       },
       {
         path: '/liver-cancer/overview',
@@ -101,6 +108,11 @@ export default [
         name: 'Các điều trị khác',
         component: './Admin.tsx'
       },
+      {
+        name: 'Quản lý bệnh án',
+        path: '/liver-cancer/health-record',
+        component: './HealthRecord/',
+      },
     ]
   },
   {
@@ -109,7 +121,7 @@ export default [
     icon: '/icons/breast-icon.png',
     routes: [
       {
-        path:'/breast-cancer'
+        path: '/breast-cancer'
       },
       {
         path: '/breast-cancer/overview',
@@ -136,6 +148,11 @@ export default [
         name: 'Các điều trị khác',
         component: './Admin.tsx'
       },
+      {
+        name: 'Quản lý bệnh án',
+        path: '/breast-cancer/health-record',
+        component: './HealthRecord/',
+      },
     ]
   },
   {
@@ -144,7 +161,7 @@ export default [
     icon: '/icons/thyroid-icon.png',
     routes: [
       {
-        path:'/thyroid-cancer'
+        path: '/thyroid-cancer'
       },
       {
         path: '/thyroid-cancer/overview',
@@ -170,6 +187,11 @@ export default [
         path: '/thyroid-cancer/other-treatment',
         name: 'Các điều trị khác',
         component: './Admin.tsx'
+      },
+      {
+        name: 'Quản lý bệnh án',
+        path: '/thyroid-cancer/health-record',
+        component: './HealthRecord/',
       },
     ]
   },
@@ -203,6 +225,11 @@ export default [
         name: 'Các điều trị khác',
         component: './Admin.tsx'
       },
+      {
+        name: 'Quản lý bệnh án',
+        path: '/colorectal-cancer/health-record',
+        component: './HealthRecord/',
+      },
     ]
   },
   {
@@ -212,7 +239,7 @@ export default [
     access: 'canAdmin',
     routes: [
       {
-        path:'/tests'
+        path: '/tests'
       },
       {
         path: '/tests/add-test',
@@ -258,12 +285,12 @@ export default [
       },
     ],
   },
-  {
-    name: 'Quản lý bệnh án',
-    icon: '/icons/health-record.png',
-    path: '/health-record/:typeHealthRecord',
-    component: './HealthRecord/',
-  },
+  // {
+  //   name: 'Quản lý bệnh án',
+  //   icon: '/icons/health-record.png',
+  //   path: '/health-record/:typeHealthRecord',
+  //   component: './HealthRecord/',
+  // },
   {
     name: 'Bệnh án ung thư trực tràng',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',

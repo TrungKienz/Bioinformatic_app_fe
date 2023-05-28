@@ -2,7 +2,7 @@ import { SaveOutlined } from '@ant-design/icons';
 import { history, useNavigate } from '@umijs/max';
 import { Affix, Button, Tooltip } from 'antd';
 
-export default ({ handleSubmit,link }) => {
+export default ({ handleSubmit, link }) => {
   const navigate = useNavigate();
   return (
     <Affix style={{ right: '30px', position: 'absolute' }} offsetBottom={50}>
@@ -13,7 +13,7 @@ export default ({ handleSubmit,link }) => {
           icon={<SaveOutlined />}
           onClick={() => {
             handleSubmit();
-            navigate(`/health-record/${link}`);
+            navigate(`/${link.replace('record', 'cancer')}/health-record`);
           }}
         ></Button>
       </Tooltip>

@@ -12,7 +12,7 @@ class HealthRecordService {
       ...(options || {}),
     });
   };
-  getHealthRecord = async (body: any,typeHealthRecord:string, options?: { [key: string]: any }) => {
+  getHealthRecord = async (body: any, typeHealthRecord: string, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${baseUrl}/${typeHealthRecord}/get-health-record`, {
       method: 'POST',
       headers: {
@@ -22,7 +22,7 @@ class HealthRecordService {
       ...(options || {}),
     });
   };
-  deleteHealthRecord = async (typeHealthRecord:string,id:number, options?: { [key: string]: any }) => {
+  deleteHealthRecord = async (typeHealthRecord: string, id: string, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${baseUrl}/${typeHealthRecord}/delete-health-record`, {
       method: 'POST',
       headers: {
@@ -32,8 +32,8 @@ class HealthRecordService {
       ...(options || {}),
     });
   };
-  getAllByType = async (recordType:string,options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${baseUrl}/${recordType}/get-all`, {
+  getAllByType = async (recordType: string, page: string, limit: string, options?: { [key: string]: any }) => {
+    return request<ErrorResponse>(`${baseUrl}/${recordType}/get-all?page=${page}?limit=${limit}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ class HealthRecordService {
       ...(options || {}),
     });
   };
-  search = async (body: object, typeHealthRecord,options?: { [key: string]: any }) => {
+  search = async (body: object, typeHealthRecord, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${baseUrl}/${typeHealthRecord}/search`, {
       method: 'POST',
       headers: {
