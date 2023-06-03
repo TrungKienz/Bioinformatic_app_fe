@@ -1198,6 +1198,7 @@ let LUNG: any = {
     }
 ],
   assessmentResponseTreatment: {
+    key:'assessment_response_treatment',
     listQuestions: [
       {
         question: '41.	Thời gian sống thêm không bệnh (PFS) ',

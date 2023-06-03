@@ -297,6 +297,7 @@ export default [
     path: '/health-record/conlorectal-record/:id',
     component: './HealthRecord/ColorectalCancer',
     hideInMenu: true,
+    menuRender: false,
   },
   {
     name: 'Bệnh án ung thư phổi',
@@ -304,6 +305,9 @@ export default [
     path: '/health-record/lung-record/:id',
     component: './HealthRecord/LungCancer',
     hideInMenu: true,
+    menuRender: false,
+    footerRender:false
+
   },
   {
     name: 'Bệnh án ung thư gan',

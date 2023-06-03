@@ -287,11 +287,7 @@ export default () => {
       <h4>VIII{'>'} THÔNG TIN XÉT NGHIỆM DI TRUYỀN</h4>
       <GenTestForm form={genTestForm} cancer={CANCER}></GenTestForm>
 
-      <Affix style={{ right: '30px', position: 'absolute' }} offsetBottom={50}>
-        <Tooltip title="Save" color="#1890ff">
-          <Button size="large" type="primary" icon={<SaveOutlined />}></Button>
-        </Tooltip>
-      </Affix>
+ 
       <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />
     </PageContainer>
   );
