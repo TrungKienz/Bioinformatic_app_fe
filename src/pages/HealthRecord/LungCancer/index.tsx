@@ -12,7 +12,7 @@ import './lungCancer.css';
 import LUNG from './LungTemplate';
 
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import listMenu from '../Menu';
 
 
@@ -23,8 +23,14 @@ export default () => {
   const [loading, setLoading] = useState(true)
   const [collapsed, setCollapsed] = useState(false);
   const [current, setCurrent] = useState('patient_info');
+  const getHealthRecord=async (id, type)=>{
+    let data= await HealthRecordService.getHealthRecord(id, type);
+    CANCER=data.data
+    patientInfoForm.setFieldsValue(CANCER.patientInfo);
+    genTestForm.setFieldsValue(CANCER.genTestInfo);
+  }
   const params = useParams();
-  useEffect(async () => {
+  useEffect( () => {
 
     patientInfoForm.setFieldsValue({
       address: '',
@@ -49,13 +55,13 @@ export default () => {
 
     if (params.id !== '0') {
 
-      CANCER = await HealthRecordService.getHealthRecord(params, CANCER.typeHealthRecord);
+      getHealthRecord(params, CANCER.typeHealthRecord);
 
-      patientInfoForm.setFieldsValue(CANCER.patientInfo);
     }
     setLoading(false)
 
   }, [])
+ 
   const changeMenu: MenuProps['onClick'] = (e) => {
     console.log('click ', e);
     setCurrent(e.key);
@@ -108,7 +114,7 @@ export default () => {
             <h4>I{'>'} HÀNH CHÍNH</h4>
             <PatientInfo form={patientInfoForm} />
           </div>
-          {CANCER.generalInfo.map((category, categoryId) => {
+          {CANCER?.generalInfo?.map((category, categoryId) => {
             return (
               <div key={categoryId} className={current !== category.key ? 'none' : ''}>
                 <h4 className="category-title">{category.name}</h4>

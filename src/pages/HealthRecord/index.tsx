@@ -78,7 +78,7 @@ export default () => {
       key: 'dob',
     },
     {
-      title: 'Action',
+      title: 'Thao tác',
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
