@@ -157,7 +157,7 @@ export default () => {
                                     );
                                   }
                                   return (
-                                    <>
+                                    <div key={quesId}>
                                       <div
                                         key={quesId}
                                         style={{ minHeight: '48px' }}
@@ -172,7 +172,7 @@ export default () => {
                                         </div>
                                       </div>
                                       {ques?.unit === 'bao/ngày' && ' x '}
-                                    </>
+                                    </div>
                                   );
                                 })}{' '}
                               </td>
@@ -246,7 +246,7 @@ export default () => {
                     <td>SD</td>
                     <td>PR</td>
                     <td>CR</td>
-                    <td>PD</td>
+                    <td>PD</td>                
                   </tr>
                 </thead>
                 <tbody>
