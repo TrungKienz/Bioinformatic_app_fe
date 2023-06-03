@@ -292,7 +292,7 @@ const LUNG: any = {
                     },
                     {
                         "question": "",
-                        "prefix": "Số phân thuỷ đã cắt:",
+                        "prefix": "Số phân thùy đã cắt:",
                         "type": "text",
                         "answer": "",
                         "key": "so_phan_thuy_da_cat"

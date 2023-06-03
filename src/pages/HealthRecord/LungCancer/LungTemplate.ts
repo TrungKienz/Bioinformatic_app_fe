@@ -931,7 +931,7 @@ let LUNG: any = {
                             "Biểu mô vảy",
                             "Biểu mô tế bào lớn",
                             "Biểu mô tuyến-vảy",
-                            "Khác (ghỉ rõ):"
+                            "Khác (ghi rõ):"
                         ],
                         "answer": [
                             false,
@@ -1165,7 +1165,7 @@ let LUNG: any = {
                             "Viêm quanh móng",
                             "Rụng tóc",
                             "Đau nhức mỏi cơ",
-                            "Khác (ghỉ rõ): "
+                            "Khác (ghi rõ): "
                         ],
                         "type": "checkbox",
                         "answer": [
