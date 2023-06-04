@@ -1,6 +1,6 @@
 import { server } from '@/pages/Api';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Modal, message } from 'antd';
+import { Button, Form, Input, Modal, Select, message } from 'antd';
 import { useState } from 'react';
 import CRUDService from '@/services/CRUDService';
 
@@ -45,6 +45,11 @@ const AddTestCase = () => {
     handleCancel();
   };
 
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+  
+
   return (
     <>
         {contextHolder}
@@ -70,6 +75,20 @@ const AddTestCase = () => {
           </Form.Item>
           <Form.Item name="testName" label="Mẫu bệnh phẩm:">
             <Input allowClear placeholder="Nhập mẫu bệnh phẩm"/>
+          </Form.Item>
+          <Form.Item name="primaryTissue" label="Vị trí mô:">
+            <Select
+              defaultValue="Vị trí mô"
+              style={{ width: 300 }}
+              onChange={handleChange}
+              options={[
+                { value: 'breast', label: 'Vú (Breast)' },
+                { value: 'hepatocellular_carcinoma', label: 'Gan (Hepatocellular Carcinoma)' },
+                { value: 'lung', label: 'Phổi (Lung)' },
+                { value: 'large_intestine', label: 'Đại tràng (Large Intestine)'},
+                { value: 'thyroid', label: 'Tuyến giáp (Thyroid)'},
+              ]}
+            />
           </Form.Item>
         </Form>
       </Modal> 

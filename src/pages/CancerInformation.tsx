@@ -5,7 +5,6 @@ import NoFoundPage from './404';
 import MutanGene from './CancerInformationPages/MutanGene';
 import NormalGene from './CancerInformationPages/NormalGene';
 import TopGene from './CancerInformationPages/TopGene';
-import ListArticles from './PhamHuyHoang/ListArticles';
 
 const items: MenuProps['items'] = [
   {

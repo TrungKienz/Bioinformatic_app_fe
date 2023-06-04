@@ -54,12 +54,12 @@ export default [
       {
         path: '/lung-cancer/gene-mutation',
         name: 'Gene đột biến',
-        component: './GeneAndMutation/geneAndMutation'
+        component: './GeneAndMutation'
       },
       {
         path: '/lung-cancer/drug',
         name: 'Thuốc điều trị',
-        component: './DrugInformation/drugInfor',
+        component: './DrugInformation',
       },
       {
         path: '/lung-cancer/other-treatment',
@@ -89,7 +89,7 @@ export default [
       {
         path: '/liver-cancer/gene-mutation',
         name: 'Gene đột biến',
-        component: './GeneAndMutation/geneAndMutation'
+        component: './GeneAndMutation'
       },
       {
         path: '/liver-cancer/drug',
@@ -124,7 +124,7 @@ export default [
       {
         path: '/breast-cancer/gene-mutation',
         name: 'Gene đột biến',
-        component: './GeneAndMutation/geneAndMutation'
+        component: './GeneAndMutation'
       },
       {
         path: '/breast-cancer/drug',
@@ -159,7 +159,7 @@ export default [
       {
         path: '/thyroid-cancer/gene-mutation',
         name: 'Gene đột biến',
-        component: './GeneAndMutation/geneAndMutation'
+        component: './GeneAndMutation'
       },
       {
         path: '/thyroid-cancer/drug',
@@ -191,7 +191,7 @@ export default [
       {
         path: '/colorectal-cancer/gene-mutation',
         name: 'Gene đột biến',
-        component: './GeneAndMutation/geneAndMutation'
+        component: './GeneAndMutation'
       },
       {
         path: '/colorectal-cancer/drug',
