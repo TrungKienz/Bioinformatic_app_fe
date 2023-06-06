@@ -57,6 +57,8 @@ export default () => {
 
       getHealthRecord(params, CANCER.typeHealthRecord);
 
+    }else{
+      CANCER = JSON.parse(JSON.stringify(LUNG))
     }
     setLoading(false)
 
