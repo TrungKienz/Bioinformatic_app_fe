@@ -1,109 +1,138 @@
-import React from "react";
-import { useState } from "react";
-import * as LungData from './data/lung_article_.json'
-import SeachArticle from "./component/searchArticle";
+import React, { useState } from "react";
+import { Pagination, Select } from "antd";
+import lungArticelData from "./data";
 import LungArticle from "./component/hideDisplayDetail";
-
-const dataArray = Object.values(LungData)
-// const LungArticleData = dataArray.slice(0,100);
-const LungArticleData = dataArray;
-
-const Article = () => {
-    const [currentPage, setCurrentPage] = useState(1)
-    //bộ lọc
-    const [filterValue, setFilterValue] = useState('All');
-    //search
-    const [searchData, setSearchData] = useState(LungArticleData);
-    // check search
-    const [isSearch, setIsSearch] = useState(false);
+import SeachArticle from "./component/searchArticle";
+import * as lung_article from "./data/lung_article_.json";
+import * as breast_article from "data/dataArticleGeneMutation/breast_article_.json";
+import * as colorectal_article from "data/dataArticleGeneMutation/colorectal_article_.json";
+import * as hepatocellular_article from "data/dataArticleGeneMutation/hepatocellular_article_.json";
+import * as thyroid_article from "data/dataArticleGeneMutation/thyroid_article_.json";
 
 
-    console.log(LungArticleData)
+let articleData = lung_article;
+const articleConverted = Object.values(articleData);
 
-    const indexOfLastStudent =  currentPage* 5;
-    const indexOfFirstStudent = indexOfLastStudent - 5;
-    const paginate = (pageNumber: React.SetStateAction<number>) => setCurrentPage(pageNumber)
+const { Option } = Select;
 
-    const handleFilterChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setFilterValue(event.target.value);
-        setIsSearch(false);
-        paginate(1);
-    };
-    const filteredArticles = LungArticleData.filter((lung: { Category: string; }) => {
-        if (filterValue === 'All') {
-        return true;
-        }
-        return lung.Category === filterValue;
-    });
-    const pageNumbers = [];
-    for(let i = 1; i <= Math.ceil(filteredArticles.length/5); i++ ){
-        pageNumbers.push(i)
+function PaginationLung() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filterValue, setFilterValue] = useState("All");
+  const [searchData, setSearchData] = useState(articleConverted);
+  const [isSearch, setIsSearch] = useState(false);
+
+  const pageSize = 5;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleFilterChange = (value) => {
+    setFilterValue(value);
+    setIsSearch(false);
+    setCurrentPage(1);
+  };
+
+  const handleSearchDataChange = (data) => {
+    setSearchData(data);
+    setIsSearch(true);
+    setCurrentPage(1);
+  };
+
+  const filteredArticles = articleConverted.filter((lung) => {
+    if (filterValue === "All") {
+      return true;
     }
-    const currentArticle = filteredArticles.slice(indexOfFirstStudent, indexOfLastStudent)
+    const category = lung.Category ;
+    return category == filterValue;
+  });
 
-    const pageNumberSearch = [];
-    for(let i = 1; i <= Math.ceil(searchData.length/5); i++ ){
-        pageNumberSearch.push(i)
-    }
-    
-    const currentArticleSearch = searchData.slice(indexOfFirstStudent, indexOfLastStudent)
-    return (
-        <div >
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 140px 20px 140px'}}>
-            <label style={{ marginRight: '15px', fontWeight: 'bold' }} htmlFor="filter">Tìm kiếm: </label>
-            <div style={{ flex: 1 }}>
-                <SeachArticle lungArticles={LungArticleData} setSearchData={setSearchData} setIsSearch={setIsSearch} paginate={paginate} />
-            </div>
-            { isSearch && searchData != null ?(
-                <p style={{ flex: 1, textAlign: 'center', position: 'fixed', top: '0', right: '0' }}>
-                {searchData.length}
-                </p>
-                ):(
-                    <p style={{ flex: 1, textAlign: 'center', position: 'fixed', top: '0', right: '0' }}>
-                {filteredArticles.length}
-                </p>
-                )
-            }
+  const currentArticle = filteredArticles.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
-            <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <label style={{ marginRight: '15px', fontWeight: 'bold' }} htmlFor="filter">Filter by Category:</label>
-                <select style={{ width: '200px', padding: '5px', borderRadius: '5px', border: '1px solid #ccc' }} id="filter" value={filterValue} onChange={handleFilterChange}>
-                <option value="All">All</option>
-                <option value="1">Liên quan đến gen đột biến</option>
-                <option value="0">Không liên quan đến gen đột biến</option>
-                </select>
-            </div>
-            </div>
-            { isSearch ?(
+  const totalItems = isSearch ? searchData.length : filteredArticles.length;
+  const currentArticleSearch = searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+
+  return (
+    <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: "20px",
+        }}
+      >
+        <div style={{ flex: 1 }}>
+          <SeachArticle
+            lungArticles={articleConverted}
+            setSearchData={handleSearchDataChange}
+            setIsSearch={setIsSearch}
+            paginate={handlePageChange}
+          />
+        </div>
+        <p
+          style={{
+            flex: 1,
+            textAlign: "center",
+            position: "fixed",
+            top: "0",
+            right: "0",
+          }}
+        >
+          {totalItems}
+        </p>
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <label
+            style={{ marginRight: "10px", fontWeight: "bold" }}
+            htmlFor="filter"
+          >
+            Filter by Category:
+          </label>
+          <Select
+            id="filter"
+            style={{ width: "200px" }}
+            value={filterValue}
+            onChange={handleFilterChange}
+          >
+            <Option value="All">All</Option>
+            <Option value="1">Liên quan đến gen đột biến</Option>
+            <Option value="0">Không liên quan đến gen đột biến</Option>
+          </Select>
+        </div>
+      </div>
+      { isSearch ?(
                 <LungArticle article={ currentArticleSearch }  />
                 ):(
-                    <LungArticle article={ currentArticle }  />
+                  <LungArticle article={currentArticle} />
                 )
             }
-           
-           <ul style={{ listStyle: "none", display: "flex", padding: "0", margin: "0" }}>
-
-            { isSearch ? 
-                (pageNumberSearch.map(number => (
-                <li key={number} style={{ margin: "0 5px" }}>
-                    <p onClick={() => paginate(number)} style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "30px", height: "30px", backgroundColor: "#f2f2f2", border: "1px solid #ccc", borderRadius: "5px", cursor: "pointer" }}>
-                    {number}
-                    </p>
-                </li>
-                ))):(
-                    pageNumbers.map(number => (
-                        <li key={number} style={{ margin: "0 5px" }}>
-                            <p onClick={() => paginate(number)} style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "30px", height: "30px", backgroundColor: "#f2f2f2", border: "1px solid #ccc", borderRadius: "5px", cursor: "pointer" }}>
-                            {number}
-                            </p>
-                        </li>
-                        ))
-                )
-            }
-            </ul>
-        </div>
-
-    );
+      
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Pagination
+          current={currentPage}
+          pageSize={pageSize}
+          total={totalItems}
+          onChange={handlePageChange}
+        />
+      </div>
+    </div>
+  );
 }
 
-export default Article;
+export default PaginationLung;

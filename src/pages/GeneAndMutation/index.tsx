@@ -2,8 +2,8 @@ import { PageContainer } from '@ant-design/pro-components';
 import { Menu, MenuProps } from 'antd';
 import React, { useState } from 'react';
 import NoFoundPage from '../404';
-import GeneAndMutation from './geneAndMutation';
 import Article from './Articale';
+import GeneAndMutation from './geneAndMutation';
 
 const items: MenuProps['items'] = [
   {

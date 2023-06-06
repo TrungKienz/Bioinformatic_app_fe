@@ -56,7 +56,6 @@ const UploadTestCase: React.FC<UploadTestCaseProps> = ({ patientID }) => {
     setFileList(info.fileList);
   };
 
-
   return (
     <>
       <Button key="key" type="primary" onClick={showModal}>
@@ -64,16 +63,11 @@ const UploadTestCase: React.FC<UploadTestCaseProps> = ({ patientID }) => {
         Thêm mẫu bệnh phẩm
       </Button>
 
-      <Modal
-        title="Thêm mẫu bệnh phẩm"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
+      <Modal title="Thêm mẫu bệnh phẩm" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <Upload
           name="file"
           accept=".json, .csv, .gz, .tar, .tgz"
-          action={"null"}
+          action={'null'}
           headers={{
             authorization: 'Bearer my-token',
           }}

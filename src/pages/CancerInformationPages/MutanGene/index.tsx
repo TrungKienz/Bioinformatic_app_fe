@@ -23,26 +23,26 @@ const MutanGene = () => {
 
   let URLReload = '';
   let URLFindByName = '';
-  switch(location.pathname){
+  switch (location.pathname) {
     case lungCancerPage:
       URLReload = `${mutationLungGeneEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
-      URLFindByName = `${mutationLungGeneEp}/findByName`
+      URLFindByName = `${mutationLungGeneEp}/findByName`;
       break;
     case liverCancerPage:
       URLReload = `${mutationLiverGeneEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
-      URLFindByName = `${mutationLungGeneEp}/findByName`
+      URLFindByName = `${mutationLungGeneEp}/findByName`;
       break;
     case breastCancerPage:
       URLReload = `${mutationBreastGeneEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
-      URLFindByName = `${mutationBreastGeneEp}/findByName`
+      URLFindByName = `${mutationBreastGeneEp}/findByName`;
       break;
     case thyroidCancerPage:
       URLReload = `${mutationThyroidGeneEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
-      URLFindByName = `${mutationThyroidGeneEp}/findByName`
+      URLFindByName = `${mutationThyroidGeneEp}/findByName`;
       break;
     case colorectalCancerPage:
       URLReload = `${mutationColorectalGeneEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
-      URLFindByName = `${mutationColorectalGeneEp}/findByName`
+      URLFindByName = `${mutationColorectalGeneEp}/findByName`;
       break;
     default:
       URLReload = '';
@@ -55,7 +55,7 @@ const MutanGene = () => {
       .then((response) => response.json())
       .then((data) => {
         setTotalPages(data.totalPages);
-        switch(location.pathname){
+        switch (location.pathname) {
           case lungCancerPage:
             setData(data.mutationLungGeneModels);
             break;
@@ -83,7 +83,7 @@ const MutanGene = () => {
       .then((response) => response.json())
       .then((data) => {
         setTotalPages(data.totalPages);
-        switch(location.pathname){
+        switch (location.pathname) {
           case lungCancerPage:
             setData(data.mutationLungGeneModels);
             break;

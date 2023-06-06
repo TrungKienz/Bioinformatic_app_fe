@@ -2,8 +2,6 @@ import { server } from '@/pages/Api';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useEffect, useState } from 'react';
-import CRUDService from '@/services/CRUDService';
-
 
 const lungCancerPage = '/lung-cancer/overview';
 const liverCancerPage = '/liver-cancer/overview';

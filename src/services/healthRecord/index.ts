@@ -1,5 +1,5 @@
-import { request } from '@umijs/max';
 import { server } from '@/pages/Api';
+import { request } from '@umijs/max';
 const baseUrl = server;
 class HealthRecordService {
   saveHealthRecord = async (body: any, options?: { [key: string]: any }) => {

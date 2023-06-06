@@ -1,9 +1,9 @@
+import DrugsInformationService from '@/services/drugInformation';
 import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
 import { Button, Col, Form, Input, Row, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import { drugsInformationEp } from '../EndPoint';
-import DrugsInformationService from '@/services/drugInformation';
 
 const NormalGenes = () => {
   const [data, setData] = useState([]);
@@ -27,8 +27,8 @@ const NormalGenes = () => {
   };
 
   const handleSearch = async (values: any) => {
-    console.log(values)
-    const dataDrugInformation = await DrugsInformationService.search(searchUrl,values);
+    console.log(values);
+    const dataDrugInformation = await DrugsInformationService.search(searchUrl, values);
     setData(dataDrugInformation.data);
     setTotalPages(dataDrugInformation.totalPages);
   };
@@ -101,23 +101,27 @@ const NormalGenes = () => {
           </Col>
           <Col span={8}>
             <Form.Item name="drugName" label="Tìm kiếm theo tên thuốc:">
-              <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 200 }}/>
+              <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 200 }} />
             </Form.Item>
           </Col>
         </Row>
         <Row>
           <Col span={8}>
             <Form.Item name="cancerMainType" label="Tìm kiếm loại ung thư (Main type):">
-              <Input allowClear placeholder="Nhập tên loại ung thư (Main type)" style={{ width: 200 }}/>
+              <Input
+                allowClear
+                placeholder="Nhập tên loại ung thư (Main type)"
+                style={{ width: 200 }}
+              />
             </Form.Item>
           </Col>
           <Col span={8}>
             <Form.Item name="cancerSubType" label="Tìm kiếm theo loại ung thư (Sub type):">
-              <Input allowClear placeholder="Nhập loại ung thư (Sub type)" style={{ width: 200 }}/>
+              <Input allowClear placeholder="Nhập loại ung thư (Sub type)" style={{ width: 200 }} />
             </Form.Item>
           </Col>
           <Col span={8}>
-            <Button name="search" type="primary" htmlType='submit'>
+            <Button name="search" type="primary" htmlType="submit">
               Tìm kiếm
             </Button>
           </Col>

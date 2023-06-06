@@ -1,13 +1,13 @@
 import Footer from '@/components/Footer';
+import { currentUser, login } from '@/services/ant-design-pro/api';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { FormattedMessage, Helmet, history, SelectLang, useIntl, useModel } from '@umijs/max';
 import { Alert, message, Tabs } from 'antd';
-import {login, currentUser, currentUser1} from '@/services/ant-design-pro/api';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Settings from '../../../../config/defaultSettings';
-import "./style.css";
+import './style.css';
 
 const Lang = () => {
   const langClassName = useEmotionCss(({ token }) => {
@@ -75,11 +75,11 @@ const Login: React.FC = () => {
         currentAuthority: signStatus.currentAuthority,
       });
       const userData = await currentUser(values);
-        setInitialState((prevState: any) => ({
-          ...prevState,
-          currentUser: userData,
-        }));
-      if (signStatus.status === "ok") {
+      setInitialState((prevState: any) => ({
+        ...prevState,
+        currentUser: userData,
+      }));
+      if (signStatus.status === 'ok') {
         localStorage.setItem('accessToken', token);
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
