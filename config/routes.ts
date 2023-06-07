@@ -294,10 +294,11 @@ export default [
   {
     name: 'Bệnh án ung thư trực tràng',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
-    path: '/health-record/conlorectal-record/:id',
+    path: '/health-record/colorectal-record/:id',
     component: './HealthRecord/ColorectalCancer',
     hideInMenu: true,
     menuRender: false,
+    footerRender: false
   },
   {
     name: 'Bệnh án ung thư phổi',
@@ -306,7 +307,7 @@ export default [
     component: './HealthRecord/LungCancer',
     hideInMenu: true,
     menuRender: false,
-    footerRender:false
+    footerRender: false
 
   },
   {
@@ -315,6 +316,8 @@ export default [
     path: '/health-record/liver-record/:id',
     component: './HealthRecord/LiverCancer',
     hideInMenu: true,
+    menuRender: false,
+    footerRender: false
   },
   {
     name: 'Bệnh án NC-K Giáp',
@@ -322,6 +325,8 @@ export default [
     path: '/health-record/thyroid-record/:id',
     component: './HealthRecord/ThyroidCancer',
     hideInMenu: true,
+    menuRender: false,
+    footerRender: false
   },
   {
     name: 'Bệnh án NC-K Vú',
@@ -329,6 +334,8 @@ export default [
     path: '/health-record/breast-record/:id',
     component: './HealthRecord/BreastCancer',
     hideInMenu: true,
+    menuRender: false,
+    footerRender: false
   },
 
   {
