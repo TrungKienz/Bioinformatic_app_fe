@@ -27,7 +27,6 @@ const NormalGenes = () => {
   };
 
   const handleSearch = async (values: any) => {
-    console.log(values);
     const dataDrugInformation = await DrugsInformationService.search(searchUrl, values);
     setData(dataDrugInformation.data);
     setTotalPages(dataDrugInformation.totalPages);

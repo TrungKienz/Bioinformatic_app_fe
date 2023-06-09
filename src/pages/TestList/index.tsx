@@ -1,12 +1,13 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, message, Modal, Space } from 'antd';
+import { Button, message, Modal, Space, Spin } from 'antd';
 import { useEffect, useState } from 'react';
 import { server } from '../Api';
 import { testCaseEp } from '../EndPoint';
 import AddTestCase from './component/addTestInformation';
 import UploadTestCase from './component/uploadTestCase';
+import { Link } from '@umijs/max';
 
 const { confirm } = Modal;
 export default () => {
@@ -14,7 +15,12 @@ export default () => {
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [totalPages, setTotalPages] = useState(1);
-
+  
+  const handleClick = (id: string) => {
+    fetch(`${testCaseEp}/detail/${id}`)
+      .then((response) => response.json())
+  };
+  
   const urlData = `${testCaseEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
   useEffect(() => {
     fetch(urlData)
@@ -35,6 +41,7 @@ export default () => {
   const handleTableChange = (pagination: any) => {
     setPagination(pagination);
   };
+
 
   const handleDelete = (id: String, runID: String) => {
     confirm({
@@ -115,6 +122,30 @@ export default () => {
             <Button type="primary" danger onClick={() => handleDelete(data.id, data.patientID)}>
               Xóa
             </Button>
+          </Space>
+        </>
+      ),
+    },
+    {
+      key: 'status',
+      title: 'Trạng thái',
+      dataIndex: '',
+      align: 'center',
+      render: (text, data) => (
+        <>
+          <Space size={'large'}>
+            {data.patientID == "DHY2019" ? (<Link
+              key="showDetail"
+              onClick={() => handleClick(data.patientID)}
+              style={{ textDecoration: 'underline' }}
+              to={`/tests/detail/${data.patientID}`}
+            >
+              Chi tiết
+            </Link>) :  
+            (<Spin tip="" size="small">
+              <div className="content" />
+            </Spin>)}
+            
           </Space>
         </>
       ),

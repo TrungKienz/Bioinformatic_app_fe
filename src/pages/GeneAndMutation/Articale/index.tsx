@@ -20,7 +20,7 @@ function PaginationLung() {
   const [filterValue, setFilterValue] = useState("All");
   const [searchData, setSearchData] = useState(articleConverted);
   const [isSearch, setIsSearch] = useState(false);
-
+  console.log(articleConverted);
   const pageSize = 5;
 
   const handlePageChange = (page) => {

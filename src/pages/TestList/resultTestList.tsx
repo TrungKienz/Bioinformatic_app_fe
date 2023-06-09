@@ -312,31 +312,6 @@ export default () => {
     setPagination(pagination);
   };
 
-  const handleDelete = (id: String, runID: String) => {
-    confirm({
-      title: `Bạn muốn xóa xét nghiệm có ID:${runID} này?`,
-      icon: <ExclamationCircleOutlined />,
-      cancelText: 'Hủy',
-      okText: 'Xóa',
-      okType: 'danger',
-      onOk() {
-        fetch(`${server}/test-case/delete/${id}`, {
-          method: 'DELETE',
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error('Lỗi khi xóa');
-            }
-            message.success('Xóa thành công');
-            // setData((prevData) => prevData.filter((item) => item.id !== id));
-          })
-          .catch((error) => {
-            message.error(error.message);
-          });
-      },
-    });
-  };
-
   const columns: ProColumns[] = [
     {
       key: 'RS-ID',
@@ -406,35 +381,6 @@ export default () => {
       key: 'ReadDepth',
       title: 'Read Depth',
       dataIndex: 'ReadDepth',
-    },
-    {
-      key: 'option',
-      title: 'Tùy chọn',
-      width: 200,
-      valueType: 'option',
-      align: 'left',
-      render: (text, data) => (
-        <>
-          {/* <Space size={'large'}>
-            <Link key="showDetail" style={{ textDecoration: 'underline' }} to={`/tests/${data.id}`}>
-              Chi tiết
-            </Link>
-            <a
-              key="delete"
-              style={{ color: 'red', textDecoration: 'underline' }}
-              onClick={() => handleDelete(data.id, data.runID)}
-            >
-              Xóa
-            </a>
-          </Space> */}
-          <Space size={'large'}>
-            <Button type="primary">Chi tiết</Button>
-            <Button type="primary" danger onClick={() => handleDelete(data.id, data.patientID)}>
-              Xóa
-            </Button>
-          </Space>
-        </>
-      ),
     },
   ];
 

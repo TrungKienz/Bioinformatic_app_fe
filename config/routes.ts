@@ -53,7 +53,7 @@ export default [
       },
       {
         path: '/lung-cancer/gene-mutation',
-        name: 'Gene đột biến',
+        name: 'Bài báo liên quan',
         component: './GeneAndMutation',
       },
       {
@@ -88,7 +88,7 @@ export default [
       },
       {
         path: '/liver-cancer/gene-mutation',
-        name: 'Gene đột biến',
+        name: 'Bài báo liên quan',
         component: './GeneAndMutation',
       },
       {
@@ -123,7 +123,7 @@ export default [
       },
       {
         path: '/breast-cancer/gene-mutation',
-        name: 'Gene đột biến',
+        name: 'Bài báo liên quan',
         component: './GeneAndMutation',
       },
       {
@@ -158,7 +158,7 @@ export default [
       },
       {
         path: '/thyroid-cancer/gene-mutation',
-        name: 'Gene đột biến',
+        name: 'Bài báo liên quan',
         component: './GeneAndMutation',
       },
       {
@@ -190,7 +190,7 @@ export default [
       },
       {
         path: '/colorectal-cancer/gene-mutation',
-        name: 'Gene đột biến',
+        name: 'Bài báo liên quan',
         component: './GeneAndMutation',
       },
       {
@@ -220,8 +220,8 @@ export default [
         component: './TestList',
       },
       {
-        path: '/tests/test-list',
-        name: 'Danh sách xét nghiệm',
+        path: '/tests/detail/:id',
+        hideInMenu: true,
         component: './TestList/resultTestList.tsx',
       },
     ],
@@ -238,26 +238,26 @@ export default [
     component: './DrugInformation/articles',
     hideInMenu: true,
   },
-  {
-    name: 'Quản lý bệnh nhân',
-    icon: '/icons/patient_icon.png',
-    path: '/patient-management',
-    access: 'canAdmin',
-    routes: [
-      {
-        path: '/patient-management/patient-information',
-        name: 'Thêm thông tin bệnh nhân',
-        access: 'canAdmin',
-        component: './PatientManagement',
-      },
-      {
-        path: '/patient-management/patient-list',
-        name: 'Danh sách bệnh nhân',
-        access: 'canAdmin',
-        component: '',
-      },
-    ],
-  },
+  // {
+  //   name: 'Quản lý bệnh nhân',
+  //   icon: '/icons/patient_icon.png',
+  //   path: '/patient-management',
+  //   access: 'canAdmin',
+  //   routes: [
+  //     {
+  //       path: '/patient-management/patient-information',
+  //       name: 'Thêm thông tin bệnh nhân',
+  //       access: 'canAdmin',
+  //       component: './PatientManagement',
+  //     },
+  //     {
+  //       path: '/patient-management/patient-list',
+  //       name: 'Danh sách bệnh nhân',
+  //       access: 'canAdmin',
+  //       component: '',
+  //     },
+  //   ],
+  // },
   {
     name: 'Bệnh án ung thư trực tràng',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
