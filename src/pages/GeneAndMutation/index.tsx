@@ -5,54 +5,56 @@ import NoFoundPage from '../404';
 import Article from './Articale';
 import GeneAndMutation from './geneAndMutation';
 
-const items: MenuProps['items'] = [
-  {
-    label: 'Danh sách gene đột biến',
-    key: 'mutationGene',
-  },
-  {
-    label: 'Bài báo liên quan',
-    key: 'article',
-  },
-];
+// const items: MenuProps['items'] = [
+//   {
+//     label: 'Danh sách gene đột biến',
+//     key: 'mutationGene',
+//   },
+//   {
+//     label: 'Bài báo liên quan',
+//     key: 'article',
+//   },
+// ];
 
 const CancerInformation: React.FC = () => {
-  const [current, setCurrent] = useState('mutationGene');
+  // const [current, setCurrent] = useState('article');
 
-  const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-  };
+  // const onClick: MenuProps['onClick'] = (e) => {
+  //   console.log('click ', e);
+  //   setCurrent(e.key);
+  // };
 
-  if (current === 'mutationGene') {
+  // if (current === 'mutationGene') {
+  //   return (
+  //     <PageContainer>
+  //       <Menu
+  //         style={{}}
+  //         onClick={onClick}
+  //         selectedKeys={[current]}
+  //         mode="horizontal"
+  //         items={items}
+  //       />
+  //       <GeneAndMutation />
+  //     </PageContainer>
+  //   );
+  // } else 
+  
+  // if (current === 'article') {
     return (
       <PageContainer>
         <Menu
           style={{}}
-          onClick={onClick}
-          selectedKeys={[current]}
+          // onClick={onClick}
+          // selectedKeys={[current]}
           mode="horizontal"
-          items={items}
-        />
-        <GeneAndMutation />
-      </PageContainer>
-    );
-  } else if (current === 'article') {
-    return (
-      <PageContainer>
-        <Menu
-          style={{}}
-          onClick={onClick}
-          selectedKeys={[current]}
-          mode="horizontal"
-          items={items}
+          // items={items}
         />
         <Article />
       </PageContainer>
     );
-  } else {
-    return <NoFoundPage />;
-  }
+  // } else {
+  //   return <NoFoundPage />;
+  // }
 };
 
 export default CancerInformation;
