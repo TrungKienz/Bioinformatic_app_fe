@@ -1,16 +1,17 @@
 const THYROID: any = {
-  typeHealthRecord: 'UNG THƯ K GIÁP',
+  typeHealthRecord: 'thyroid-record',
 
   generalInfo: [
     {
       name: 'II> TIỀN SỬ',
-      key: 'medicalHistory',
+      key: 'medical_history',
       listQuestions: [
         [
           [
             {
               question: 'Bệnh lý về tuyến giáp (trước khi được chẩn đoán ung thư tuyến giáp):',
               type: 'none',
+              key: 'benh_ly_ve_tuyen_giap_truoc_khi_duoc_chan_doan_ung_thu_tuyen_giap',
             },
           ],
           [
@@ -24,6 +25,7 @@ const THYROID: any = {
               ],
               type: 'checkbox',
               answer: [false, false, false, false, false],
+              key: '',
             },
           ],
         ],
@@ -32,6 +34,7 @@ const THYROID: any = {
             {
               question: 'Các bệnh khác (nếu có, ghi rõ)',
               type: 'none',
+              key: 'cac_benh_khac_neu_co_ghi_ro',
             },
           ],
           [
@@ -40,6 +43,7 @@ const THYROID: any = {
               unit: '',
               type: 'text',
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -48,6 +52,7 @@ const THYROID: any = {
             {
               question: 'Tiếp xúc với độc tố/hóa chất:',
               type: 'none',
+              key: 'tiep_xuc_voi_doc_to_hoa_chat',
             },
           ],
           [
@@ -56,12 +61,14 @@ const THYROID: any = {
               unit: '',
               type: 'text',
               answer: '',
+              key: 'loai_hoa_chat',
             },
             {
               question: 'Thời gian tiếp xúc:',
               unit: '',
               type: 'text',
               answer: '',
+              key: 'thoi_gian_tiep_xuc',
             },
           ],
         ],
@@ -70,12 +77,14 @@ const THYROID: any = {
             {
               question: 'Tiền sử tia xạ đầu cổ:',
               type: 'none',
+              key: 'tien_su_tia_xa_dau_co',
             },
           ],
           [
             {
               listChoice: ['Không', 'Có'],
               type: 'radio',
+              key: '',
             },
           ],
         ],
@@ -84,6 +93,7 @@ const THYROID: any = {
             {
               question: 'Tiền sử gia đình (Cha, mẹ, anh chị em ruột):',
               type: 'none',
+              key: 'tien_su_gia_dinh_cha_me_anh_chi_em_ruot',
             },
           ],
           [
@@ -98,6 +108,7 @@ const THYROID: any = {
               ],
               type: 'checkbox',
               answer: [false, false, false, false, false, false],
+              key: '',
             },
           ],
         ],
@@ -105,13 +116,14 @@ const THYROID: any = {
     },
     {
       name: 'III> BỆNH SỬ (*từ khi phát hiện bệnh đến ngày bắt đầu theo dõi BN)',
-      key: 'diseaseHistory',
+      key: 'disease_history',
       listQuestions: [
         [
           [
             {
-              question: 'Năm chẩn đoán bệnh lần đầu (VD: 2023):',
+              question: 'Năm chẩn đoán bệnh lần đầu',
               type: 'none',
+              key: 'nam_chan_doan_benh_lan_dau',
             },
           ],
           [
@@ -120,6 +132,7 @@ const THYROID: any = {
               unit: '',
               type: 'date',
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -128,6 +141,7 @@ const THYROID: any = {
             {
               question: 'Năm phát hiện di căn (VD: 2023):',
               type: 'none',
+              key: 'nam_phat_hien_di_can_vd_2023',
             },
           ],
           [
@@ -136,6 +150,7 @@ const THYROID: any = {
               unit: '',
               type: 'date',
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -144,6 +159,7 @@ const THYROID: any = {
             {
               question: 'Cơ quan di căn (nếu có)',
               type: 'none',
+              key: 'co_quan_di_can_neu_co',
             },
           ],
           [
@@ -162,6 +178,7 @@ const THYROID: any = {
               ],
               type: 'checkbox',
               answer: [false, false, false, false, false, false, false, false, false, false],
+              key: '',
             },
           ],
         ],
@@ -170,6 +187,7 @@ const THYROID: any = {
             {
               question: 'Phương pháp điều trị đã sử dụng:',
               type: 'none',
+              key: 'phuong_phap_dieu_tri_da_su_dung',
             },
           ],
         ],
@@ -179,6 +197,7 @@ const THYROID: any = {
               listChoice: ['Phẫu thuật cắt tuyến giáp:'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -187,19 +206,21 @@ const THYROID: any = {
               unit: '',
               type: 'date',
               answer: '',
+              key: 'nam',
             },
-
             {
               question: 'Với u giáp:',
               listChoice: ['Cắt giáp toàn bộ', 'Cắt giáp bán phần'],
               type: 'radio',
               answer: '',
+              key: 'voi_u_giap',
             },
             {
               question: 'Với hạch cổ:',
               unit: '',
               type: '',
               answer: '',
+              key: 'voi_hach_co',
             },
             {
               listChoice: [
@@ -209,6 +230,7 @@ const THYROID: any = {
               ],
               type: 'radio',
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -218,6 +240,7 @@ const THYROID: any = {
               listChoice: ['Xạ trị I131:'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -226,23 +249,27 @@ const THYROID: any = {
               unit: '',
               type: 'date',
               answer: '',
+              key: 'nam',
             },
             {
               question: 'Số liều',
               type: 'text',
               answer: '',
+              key: 'so_lieu',
             },
             {
               question: 'Liều lần 1:',
               unit: 'mCi',
               type: 'text',
               answer: '',
+              key: 'lieu_lan_1',
             },
             {
               question: 'Liều lần 2:',
               unit: 'mCi',
               type: 'text',
               answer: '',
+              key: 'lieu_lan_2',
             },
           ],
         ],
@@ -252,6 +279,7 @@ const THYROID: any = {
               listChoice: ['Liệu pháp hormon thay thế:'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -260,12 +288,14 @@ const THYROID: any = {
               unit: '',
               type: 'text',
               answer: '',
+              key: 'ten_thuoc',
             },
             {
               prefix: 'Liều lượng:',
               unit: '',
               type: 'text',
               answer: '',
+              key: 'lieu_luong',
             },
           ],
         ],
@@ -275,6 +305,7 @@ const THYROID: any = {
               listChoice: ['Xạ trị chiếu ngoài'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -283,6 +314,7 @@ const THYROID: any = {
               unit: 'Gy',
               type: 'text',
               answer: '',
+              key: 'lieu_xa',
             },
           ],
         ],
@@ -291,6 +323,7 @@ const THYROID: any = {
             {
               question: 'Điều trị khác (nếu có, ghi rõ):',
               type: 'none',
+              key: 'dieu_tri_khac_neu_co_ghi_ro',
             },
           ],
           [
@@ -299,6 +332,7 @@ const THYROID: any = {
               unit: '',
               type: 'textarea',
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -308,6 +342,7 @@ const THYROID: any = {
               listChoice: ['Hóa chất'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -322,6 +357,7 @@ const THYROID: any = {
               ],
               type: 'checkbox',
               answer: [false, false, false, false, false, false],
+              key: '',
             },
           ],
         ],
@@ -331,6 +367,7 @@ const THYROID: any = {
               listChoice: ['Thuốc điều trị đích:'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -347,18 +384,21 @@ const THYROID: any = {
               ],
               type: 'checkbox',
               answer: [false, false, false, false, false, false, false, false],
+              key: '',
             },
             {
               question: 'Thời gian sử dụng (VD: 2 tháng):',
               unit: '',
               type: 'text',
               answer: '',
+              key: 'thoi_gian_su_dung_vd_2_thang',
             },
             {
               question: 'Liều lượng',
               unit: 'mg/ngày',
               type: 'text',
               answer: '',
+              key: 'lieu_luong',
             },
           ],
         ],
@@ -366,12 +406,14 @@ const THYROID: any = {
     },
     {
       name: 'IV> KHÁM LÂM SÀNG (*ngay trước điều trị hoá chất)',
+      key: 'clinical_examination',
       listQuestions: [
         [
           [
             {
               question: 'Cân nặng',
               type: 'none',
+              key: 'can_nang',
             },
           ],
           [
@@ -380,6 +422,7 @@ const THYROID: any = {
               unit: 'kg',
               type: 'text',
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -388,6 +431,7 @@ const THYROID: any = {
             {
               question: 'Chiều cao:',
               type: 'none',
+              key: 'chieu_cao',
             },
           ],
           [
@@ -396,6 +440,7 @@ const THYROID: any = {
               unit: 'cm',
               type: 'text',
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -404,6 +449,7 @@ const THYROID: any = {
             {
               question: 'Triệu chứng lâm sàng',
               type: 'title',
+              key: 'trieu_chung_lam_sang',
             },
           ],
         ],
@@ -412,6 +458,7 @@ const THYROID: any = {
             {
               question: 'Nuốt nghẹn',
               type: 'none',
+              key: 'nuot_nghen',
             },
           ],
           [
@@ -420,6 +467,7 @@ const THYROID: any = {
               type: 'radio',
               horizontal: true,
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -428,6 +476,7 @@ const THYROID: any = {
             {
               question: 'Khàn tiếng',
               type: 'none',
+              key: 'khan_tieng',
             },
           ],
           [
@@ -436,6 +485,7 @@ const THYROID: any = {
               type: 'radio',
               horizontal: true,
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -444,6 +494,7 @@ const THYROID: any = {
             {
               question: 'Khó thở',
               type: 'none',
+              key: 'kho_tho',
             },
           ],
           [
@@ -452,6 +503,7 @@ const THYROID: any = {
               type: 'radio',
               horizontal: true,
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -460,6 +512,7 @@ const THYROID: any = {
             {
               question: 'Tuyến giáp',
               type: 'none',
+              key: 'tuyen_giap',
             },
           ],
           [
@@ -473,6 +526,7 @@ const THYROID: any = {
               ],
               answer: 'radio',
               type: 'radio',
+              key: '',
             },
           ],
         ],
@@ -481,6 +535,7 @@ const THYROID: any = {
             {
               question: 'Nhân tuyến giáp',
               type: 'none',
+              key: 'nhan_tuyen_giap',
             },
           ],
           [
@@ -489,16 +544,19 @@ const THYROID: any = {
               unit: '',
               type: 'text',
               answer: '',
+              key: 'so_luong',
             },
             {
               question: 'Vị trí',
               listChoice: ['Thùy trái', 'Thùy phải', 'Eo tuyến giáp'],
               answer: [false, false, false],
               type: 'checkbox',
+              key: 'vi_tri',
             },
             {
               question: 'Mật độ:',
               type: 'none',
+              key: 'mat_do',
             },
             {
               question: 'Mật độ:',
@@ -506,22 +564,23 @@ const THYROID: any = {
               answer: '',
               type: 'radio',
               horizontal: true,
+              key: 'mat_do',
             },
-
             {
               question: 'Di động theo nhịp nuốt:',
               listChoice: ['Không', 'Có'],
               answer: '',
               type: 'radio',
               horizontal: true,
+              key: 'di_dong_theo_nhip_nuot',
             },
-
             {
               question: 'Tính chất đau:',
               listChoice: ['Không', 'Có'],
               answer: '',
               type: 'radio',
               horizontal: true,
+              key: 'tinh_chat_dau',
             },
           ],
         ],
@@ -530,6 +589,7 @@ const THYROID: any = {
             {
               question: 'Hạch cổ',
               type: 'none',
+              key: 'hach_co',
             },
           ],
           [
@@ -538,8 +598,8 @@ const THYROID: any = {
               unit: '',
               type: 'text',
               answer: '',
+              key: 'so_luong',
             },
-
             {
               question: 'Vị trí',
               listChoice: [
@@ -549,6 +609,7 @@ const THYROID: any = {
               ],
               answer: [false, false, false],
               type: 'checkbox',
+              key: 'vi_tri',
             },
           ],
         ],
@@ -557,6 +618,7 @@ const THYROID: any = {
             {
               question: 'Triệu chứng khác (nếu có, ghi rõ)',
               type: 'none',
+              key: 'trieu_chung_khac_neu_co_ghi_ro',
             },
           ],
           [
@@ -565,6 +627,7 @@ const THYROID: any = {
               unit: '',
               type: 'text',
               answer: '',
+              key: '',
             },
           ],
         ],
@@ -572,12 +635,14 @@ const THYROID: any = {
     },
     {
       name: 'V>CẬN LÂM SÀNG',
+      key: 'subclinical',
       listQuestions: [
         [
           [
             {
               question: 'Xét nghiệm máu',
               type: 'title',
+              key: 'xet_nghiem_mau',
             },
           ],
         ],
@@ -586,164 +651,238 @@ const THYROID: any = {
             {
               question: 'Hồng cầu(RBC)',
               type: 'none',
-            },
-            {
-              question: 'Hb',
-              type: 'none',
-            },
-            {
-              question: 'Bạch cầu(WBC)',
-              type: 'none',
-            },
-            {
-              question: 'Bạch cầu đa nhân trung tính',
-              type: 'none',
-            },
-            {
-              question: 'Tiểu cầu',
-              type: 'none',
-            },
-            {
-              question: 'PT%',
-              type: 'none',
-            },
-            {
-              question: 'INR',
-              type: 'none',
-            },
-            {
-              question: 'APTT b/c',
-              type: 'none',
-            },
-            {
-              question: 'Bilirubin toàn phần',
-              type: 'none',
-            },
-            {
-              question: 'Bilirubin trực tiếp',
-              type: 'none',
-            },
-            {
-              question: 'Albumin',
-              type: 'none',
-            },
-            {
-              question: 'ALT',
-              type: 'none',
-            },
-            {
-              question: 'AST',
-              type: 'none',
-            },
-            {
-              question: 'Glucose',
-              type: 'none',
-            },
-            {
-              question: 'LDH',
-              type: 'none',
-            },
-            {
-              question: 'GGT',
-              type: 'none',
-            },
-            {
-              question: 'Ure',
-              type: 'none',
-            },
-            {
-              question: 'Creatinin',
-              type: 'none',
-            },
-            {
-              question: 'Ca2+',
-              type: 'none',
-            },
-            {
-              question: 'PTH',
-              type: 'none',
+              key: 'hong_cau_rbc',
             },
           ],
           [
             {
               unit: 'T/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'Hb',
+              type: 'none',
+              key: 'hb',
+            },
+          ],
+          [
             {
               unit: 'g/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'Bạch cầu(WBC)',
+              type: 'none',
+              key: 'bach_cau_wbc',
+            },
+          ],
+          [
             {
               unit: 'G/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'Bạch cầu đa nhân trung tính',
+              type: 'none',
+              key: 'bach_cau_da_nhan_trung_tinh',
+            },
+          ],
+          [
             {
               unit: 'G/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'Tiểu cầu',
+              type: 'none',
+              key: 'tieu_cau',
+            },
+          ],
+          [
             {
               unit: 'G/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'PT%',
+              type: 'none',
+              key: 'pt',
+            },
+          ],
+          [
             {
               unit: '%',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'INR',
+              type: 'none',
+              key: 'inr',
+            },
+          ],
+          [
             {
               unit: 'none',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'APTT b/c',
+              type: 'none',
+              key: 'aptt_b_c',
+            },
+          ],
+          [
             {
               unit: 'none',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'Bilirubin toàn phần',
+              type: 'none',
+              key: 'bilirubin_toan_phan',
+            },
+          ],
+          [
             {
               unit: 'μmol/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'Bilirubin trực tiếp',
+              type: 'none',
+              key: 'bilirubin_truc_tiep',
+            },
+          ],
+          [
             {
               unit: 'μmol/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'Albumin',
+              type: 'none',
+              key: 'albumin',
+            },
+          ],
+          [
             {
               unit: 'g/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'ALT',
+              type: 'none',
+              key: 'alt',
+            },
+          ],
+          [
             {
               unit: 'UI/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
+            {
+              question: 'AST',
+              type: 'none',
+              key: 'ast',
+            },
+          ],
+          [
             {
               unit: 'UI/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
             {
-              unit: 'none',
-              type: 'text',
+              question: 'Ure',
+              type: 'none',
+              key: 'ure',
             },
-            {
-              unit: 'UI/L',
-              type: 'text',
-            },
-            {
-              unit: 'UI/L',
-              type: 'text',
-            },
+          ],
+          [
             {
               unit: 'mmol/L',
               type: 'text',
+              key: '',
             },
+          ],
+        ],
+        [
+          [
             {
-              unit: 'umol/L',
-              type: 'text',
+              question: 'Creatinine',
+              type: 'none',
+              key: 'creatinine',
             },
+          ],
+          [
             {
               unit: 'mmol/L',
               type: 'text',
-            },
-            {
-              unit: 'pg/mL',
-              type: 'text',
+              key: '',
             },
           ],
         ],
@@ -752,77 +891,93 @@ const THYROID: any = {
             {
               question: 'Chức năng tuyến giáp:',
               type: 'title',
+              key: 'chuc_nang_tuyen_giap',
             },
           ],
         ],
-
         [
           [
             {
               question: 'FT3',
               type: 'none',
+              key: 'ft3',
             },
             {
               question: 'FT4',
               type: 'none',
+              key: 'ft4',
             },
             {
               question: 'TSH',
               type: 'none',
+              key: 'tsh',
             },
             {
               question: 'Thyroglobulin (Tg)',
               type: 'none',
+              key: 'thyroglobulin_tg',
             },
             {
               question: 'Calcitonin',
               type: 'none',
+              key: 'calcitonin',
             },
             {
               question: 'TPO-Ab',
               type: 'none',
+              key: 'tpo_ab',
             },
             {
               question: 'TRAb',
               type: 'none',
+              key: 'trab',
             },
             {
               question: 'Anti - Tg',
               type: 'none',
+              key: 'anti_tg',
             },
           ],
           [
             {
               unit: 'pmol/L',
               type: 'text',
+              key: '',
             },
             {
               unit: 'pmol/L',
               type: 'text',
+              key: '',
             },
             {
               unit: 'uIU/mL',
               type: 'text',
+              key: '',
             },
             {
               unit: 'ng/mL',
               type: 'text',
+              key: '',
             },
             {
               unit: 'pg/mL',
               type: 'text',
+              key: '',
             },
             {
               unit: 'IU/mL',
               type: 'text',
+              key: '',
             },
             {
               unit: 'UI/mL',
               type: 'text',
+              key: '',
             },
             {
               unit: 'UI/mL',
               type: 'text',
+              key: '',
             },
           ],
         ],
@@ -831,6 +986,7 @@ const THYROID: any = {
             {
               question: 'Marker UT',
               type: 'none',
+              key: 'marker_ut',
             },
           ],
           [
@@ -839,6 +995,7 @@ const THYROID: any = {
               type: 'text',
               unit: 'ng/mL',
               answer: '',
+              key: 'cea_antigene_carcino_embryonnaire',
             },
           ],
         ],
@@ -847,16 +1004,17 @@ const THYROID: any = {
             {
               question: 'Siêu âm vùng cổ:',
               type: 'title',
+              key: 'sieu_am_vung_co',
             },
           ],
         ],
-
         [
           [
             {
               question: 'Tổng số nhân tuyến giáp:',
               type: 'text',
               answer: '',
+              key: 'tong_so_nhan_tuyen_giap',
             },
             {
               body: [
@@ -876,20 +1034,24 @@ const THYROID: any = {
                 ],
               ],
               header: ['Nhân giáp thứ', 'Vị trí', 'Kích thước', 'Phân độ TIRADS'],
+              key: '',
             },
             {
               question: 'Hạch vùng cổ',
               type: 'title',
+              key: 'hach_vung_co',
             },
             {
               prefix: 'Vị trí:',
               type: 'text',
               answer: '',
+              key: 'vi_tri',
             },
             {
               prefix: 'Kích thước lớn nhất:',
               type: 'text',
               answer: '',
+              key: 'kich_thuoc_lon_nhat',
             },
           ],
         ],
@@ -898,6 +1060,7 @@ const THYROID: any = {
             {
               question: 'FNA (Chọc tế bào kim nhỏ):',
               type: 'title',
+              key: 'fna_choc_te_bao_kim_nho',
             },
             {
               question: 'Phân nhóm Bethesda',
@@ -911,6 +1074,7 @@ const THYROID: any = {
               ],
               type: 'radio',
               answer: '',
+              key: 'phan_nhom_bethesda',
             },
           ],
         ],
@@ -920,6 +1084,7 @@ const THYROID: any = {
               question: 'Xạ hình tuyến giáp:',
               type: 'textarea',
               answer: '',
+              key: 'xa_hinh_tuyen_giap',
             },
           ],
         ],
@@ -929,6 +1094,7 @@ const THYROID: any = {
               question: 'CT/MRI:',
               type: 'textarea',
               answer: '',
+              key: 'ct_mri',
             },
           ],
         ],
@@ -937,6 +1103,7 @@ const THYROID: any = {
             {
               question: 'Kết quả sinh thiết GPB:',
               type: 'none',
+              key: 'ket_qua_sinh_thiet_gpb',
             },
           ],
           [
@@ -951,6 +1118,7 @@ const THYROID: any = {
               ],
               type: 'checkbox',
               answer: [false, false, false, false, false, false],
+              key: '',
             },
           ],
         ],
@@ -959,6 +1127,7 @@ const THYROID: any = {
             {
               question: 'Phân loại TNM (Theo AJCC)',
               type: 'none',
+              key: 'phan_loai_tnm_theo_ajcc',
             },
           ],
           [
@@ -966,16 +1135,19 @@ const THYROID: any = {
               prefix: 'T:',
               type: 'text',
               answer: '',
+              key: 't',
             },
             {
               prefix: 'N:',
               type: 'text',
               answer: '',
+              key: 'n',
             },
             {
               prefix: 'M:',
               type: 'text',
               answer: '',
+              key: 'm',
             },
           ],
         ],
@@ -992,6 +1164,7 @@ const THYROID: any = {
               ],
               type: 'radio',
               answer: '',
+              key: 'danh_gia_toan_trang_ps_theo_ecog_truoc_dieu_tri_hoa_chat',
             },
           ],
         ],
@@ -999,12 +1172,14 @@ const THYROID: any = {
     },
     {
       name: 'VI> PHƯƠNG PHÁP ĐIỀU TRỊ (*tính từ ngày bắt đầu theo dõi)',
+      key: 'treatments',
       listQuestions: [
         [
           [
             {
               question: 'Thuốc điều trị đích:',
               type: 'none',
+              key: 'thuoc_dieu_tri_dich',
             },
           ],
           [
@@ -1021,6 +1196,7 @@ const THYROID: any = {
               ],
               type: 'checkbox',
               answer: [false, false, false, false, false, false, false, false],
+              key: '',
             },
           ],
         ],
@@ -1029,6 +1205,7 @@ const THYROID: any = {
             {
               question: 'Phương pháp điều trị kết hợp:',
               type: 'title',
+              key: 'phuong_phap_dieu_tri_ket_hop',
             },
           ],
         ],
@@ -1038,6 +1215,7 @@ const THYROID: any = {
               listChoice: ['Phẫu thuật cắt tuyến giáp:'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -1046,6 +1224,7 @@ const THYROID: any = {
               listChoice: ['Cắt giáp toàn bộ', 'Cắt giáp bán phần'],
               type: 'checkbox',
               answer: [false, false],
+              key: 'voi_u_giap',
             },
             {
               question: 'Với hạch cổ:',
@@ -1056,6 +1235,7 @@ const THYROID: any = {
               ],
               type: 'checkbox',
               answer: [false, false, false],
+              key: 'voi_hach_co',
             },
           ],
         ],
@@ -1065,6 +1245,7 @@ const THYROID: any = {
               listChoice: ['Xạ trị I131:'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -1073,18 +1254,21 @@ const THYROID: any = {
               unit: '',
               type: 'text',
               answer: '',
+              key: 'so_lieu',
             },
             {
               prefix: 'Liều lần 1:',
               unit: 'mCi',
               type: 'text',
               answer: '',
+              key: 'lieu_lan_1',
             },
             {
               prefix: 'Liều lần 2:',
               unit: 'mCi',
               type: 'text',
               answer: '',
+              key: 'lieu_lan_2',
             },
           ],
         ],
@@ -1094,6 +1278,7 @@ const THYROID: any = {
               listChoice: ['Liệu pháp hormon thay thế:'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -1102,12 +1287,14 @@ const THYROID: any = {
               unit: '',
               type: 'text',
               answer: '',
+              key: 'ten_thuoc',
             },
             {
               prefix: 'Liều lượng:',
               unit: '',
               type: 'text',
               answer: '',
+              key: 'lieu_luong',
             },
           ],
         ],
@@ -1117,6 +1304,7 @@ const THYROID: any = {
               listChoice: ['Xạ trị chiếu ngoài'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -1125,6 +1313,7 @@ const THYROID: any = {
               unit: 'Gy',
               type: 'text',
               answer: '',
+              key: 'lieu_xa',
             },
           ],
         ],
@@ -1134,6 +1323,7 @@ const THYROID: any = {
               listChoice: ['Hóa chất'],
               type: 'checkbox',
               answer: [false],
+              key: '',
             },
           ],
           [
@@ -1148,6 +1338,7 @@ const THYROID: any = {
               ],
               type: 'checkbox',
               answer: [false, false, false, false, false, false],
+              key: '',
             },
           ],
         ],
@@ -1156,6 +1347,7 @@ const THYROID: any = {
             {
               question: 'Điều trị khác (nếu có, ghi rõ):',
               type: 'none',
+              key: 'dieu_tri_khac_neu_co_ghi_ro',
             },
           ],
           [
@@ -1164,6 +1356,7 @@ const THYROID: any = {
               unit: '',
               type: 'text',
               answer: '',
+              key: '',
             },
           ],
         ],

@@ -1,1041 +1,1526 @@
 const COLORECTAL: any = {
-  typeHealthRecord: 'UNG THƯ TRỰC TRÀNG',
+  typeHealthRecord: 'colorectal-record',
 
   generalInfo: [
     {
-      name: 'II> TIỀN SỬ',
-      key: 'medicalHistory',
-      listQuestions: [
-        [
-          [
-            {
-              listChoice: ['Nguy cơ dinh dưỡng bất thường'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              listChoice: [
-                'Ăn ít chất xơ <20g/ngày (tương đương <400g rau/ngày)',
-                'Ăn nhiều thịt đỏ (thịt bò, thịt lợn, …) >300g/tuần',
-                'Ăn nhiều đồ ăn dầu mỡ, chiên rán, thực phẩm chế biến sẵn',
-              ],
-              type: 'checkbox',
-              answer: [false, false, false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: [' Nguy cơ lối sống'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              listChoice: ['Thuốc lá', 'Rượu bia'],
-              type: 'checkbox',
-              answer: [false, false],
-            },
-          ],
-          [
-            {
-              type: 'text',
-              unit: 'bao/ngày',
-            },
-            {
-              type: 'text',
-              unit: 'năm',
-            },
-            {
-              type: 'text',
-              unit: 'bao/ngày',
-            },
-            {
-              type: 'text',
-              unit: 'năm',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Nguy cơ bệnh lý tiền ung thư'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              listChoice: [
-                'Polyp đại - trực tràng',
-                'Viêm loét đại trực tràng chảy máu ',
-                'Bệnh Crohn',
-                'Khác (ghi rõ):',
-              ],
-              type: 'checkbox',
-              answer: [false, false, false, false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: [
-                'Nguy cơ bệnh lý gia đình di truyền (cha mẹ, anh chị em ruột mắc các hội chứng di truyền và ung thư đại trực tràng)',
-              ],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Tiền sử gia đình có các hội chứng/bệnh sau',
-              listChoice: [
-                'Ung thư đại trực tràng',
-                'Bệnh đa polyp đại - trực tràng gia đình',
-                'HC ung thư đại -- trực tràng di truyền không polyp (HC Lynch)',
-                'HC Peutz-Jeghers',
-                'HC Gardner',
-                'HC Turcot',
-                'HC Polyp Juvenile',
-                'Khác (ghi rõ):',
-              ],
-              type: 'checkbox',
-              answer: [false, false, false, false, false, false, false, false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: [
-                'Sử dụng ít nhất 1 trong 2 phương pháp sàng lọc ung thư đại - trực tràng sau',
-              ],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              listChoice: [
-                'Xét nghiệm máu ẩn trong phân',
-                'Nội soi đại trực tràng',
-                'Khác (ghi rõ):',
-              ],
-              type: 'checkbox',
-              answer: [false, false, false],
-            },
-          ],
-        ],
-      ],
+        "name": "II> TIỀN SỬ",
+        "key": "medical_history",
+        "listQuestions": [
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Nguy cơ dinh dưỡng bất thường"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "listChoice": [
+                            "Ăn ít chất xơ <20g/ngày (tương đương <400g rau/ngày)",
+                            "Ăn nhiều thịt đỏ (thịt bò, thịt lợn, …) >300g/tuần",
+                            "Ăn nhiều đồ ăn dầu mỡ, chiên rán, thực phẩm chế biến sẵn"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            " Nguy cơ lối sống"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "listChoice": [
+                            "Thuốc lá",
+                            "Rượu bia"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "type": "text",
+                        "unit": "bao/ngày",
+                        "key": ""
+                    },
+                    {
+                        "type": "text",
+                        "unit": "năm",
+                        "key": ""
+                    },
+                    {
+                        "type": "text",
+                        "unit": "bao/ngày",
+                        "key": ""
+                    },
+                    {
+                        "type": "text",
+                        "unit": "năm",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Nguy cơ bệnh lý tiền ung thư"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "listChoice": [
+                            "Polyp đại - trực tràng",
+                            "Viêm loét đại trực tràng chảy máu ",
+                            "Bệnh Crohn",
+                            "Khác (ghi rõ):"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Nguy cơ bệnh lý gia đình di truyền (cha mẹ, anh chị em ruột mắc các hội chứng di truyền và ung thư đại trực tràng)"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Tiền sử gia đình có các hội chứng/bệnh sau",
+                        "listChoice": [
+                            "Ung thư đại trực tràng",
+                            "Bệnh đa polyp đại - trực tràng gia đình",
+                            "HC ung thư đại -- trực tràng di truyền không polyp (HC Lynch)",
+                            "HC Peutz-Jeghers",
+                            "HC Gardner",
+                            "HC Turcot",
+                            "HC Polyp Juvenile",
+                            "Khác (ghi rõ):"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": "tien_su_gia_dinh_co_cac_hoi_chung_benh_sau"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Sử dụng ít nhất 1 trong 2 phương pháp sàng lọc ung thư đại - trực tràng sau"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "listChoice": [
+                            "Xét nghiệm máu ẩn trong phân",
+                            "Nội soi đại trực tràng",
+                            "Khác (ghi rõ):"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ]
+            ]
+        ]
     },
     {
-      name: 'III> BỆNH SỬ ',
-      key: 'diseaseHistory',
-      listQuestions: [
-        [
-          [
-            {
-              question: 'Năm chẩn đoán lần đầu (ví dụ: 2019): ……',
-              type: 'none',
-            },
-          ],
-          [
-            {
-              question: '',
-              unit: '',
-              type: 'date',
-              answer: '',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Vị trí:',
-              type: 'none',
-            },
-          ],
-          [
-            {
-              listChoice: [
-                'Đại tràng phải ',
-                'Đại tràng ngang',
-                'Đại tràng trái',
-                'Đại tràng sigma',
-                'Trực tràng cao',
-                'Trực tràng trung bình',
-                'Trực tràng thấp',
-              ],
-              type: 'checkbox',
-              answer: [false, false, false, false, false, false, false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Đánh giá giai đoạn theo TNM',
-              type: 'none',
-              answer: '',
-            },
-          ],
-          [
-            {
-              type: 'text',
-              answer: '',
-              question: 'T',
-            },
-            {
-              type: 'text',
-              answer: '',
-              question: 'N',
-            },
-            {
-              type: 'text',
-              answer: '',
-              question: 'M',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Cơ quan di căn (nếu có)',
-              type: 'none',
-            },
-          ],
-          [
-            {
-              listChoice: [
-                'Gan',
-                'Phổi',
-                'Phúc mạc',
-                'Hạch xa (hạch thượng đòn trái, …)',
-                'Xương ',
-                'Lách',
-                'Não',
-                'Buồng trứng',
-                'Khác (ghi rõ):',
-              ],
-              type: 'checkbox',
-              answer: [false, false, false, false, false, false, false, false, false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Biến chứng',
-              type: 'none',
-            },
-          ],
-          [
-            {
-              listChoice: ['Tắc ruột', 'Vỡ u', 'Xuất huyết tiêu hóa', 'Khác (ghi rõ):'],
-              type: 'checkbox',
-              answer: [false, false, false, false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Thể giải phẫu bệnh. Mức độ biệt hóa: 1. Thấp 2. Vừa 3. Cao',
-              type: 'none',
-            },
-          ],
-          [
-            {
-              listChoice: [
-                'Ung thư biểu mô tuyến. Mức độ biệt hóa:  ',
-                'Ung thư biểu mô chế nhầy. Mức độ biệt hóa:',
-                'Ung thư sarcoma. ',
-              ],
-              type: 'checkbox',
-              answer: [false, false, false],
-            },
-            {
-              type: 'text',
-              question: 'Mức độ biệt hóa',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Gầy sút cân *(so với cân nặng trung bình trước khi phát hiện bệnh)',
-              type: 'none',
-              answer: '',
-            },
-          ],
-          [
-            {
-              type: 'text',
-              answer: '',
-              unit: 'kg',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question:
-                'Phương pháp điều trị đã sử dụng (*từ khi phát hiện bệnh đến ngày bắt đầu theo dõi BN)',
-              type: 'title',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Hoá trị tân bổ trợ'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Phác đồ sử dụng',
-              type: 'none',
-            },
-            {
-              type: 'checkbox',
-              listChoice: ['FOLFLOX', 'FOLFIRI', 'CAPOX', 'Khác (ghi rõ)'],
-              answer: [false, false, false, false],
-            },
-          ],
-          [
-            {
-              question: '',
-              type: 'none',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Xạ trị tân bổ trợ'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Liệu xạ',
-              unit: 'Gy',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Phẫu thuật'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              type: 'checkbox',
-              listChoice: ['Triệt căn', 'Cắt u không triệt căn', 'Tạm thời'],
-              answer: [false, false, false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Hoá trị bổ trợ'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Phác đồ',
-              type: 'none',
-            },
-            {
-              type: 'checkbox',
-              listChoice: ['FOLFLOX', 'FOLFIRI', 'CAPOX', 'Khác (ghi rõ)'],
-              answer: [false, false, false, false],
-            },
-          ],
-          [
-            {
-              question: '',
-              type: 'none',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Xạ trị bổ trợ'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Liệu xạ',
-              unit: 'Gy',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Điều trị đích và điều trị miễn dịch'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Thuốc:',
-              type: 'checkbox',
-              listChoice: [
-                'Bevacizumab',
-                'Cetuximab',
-                'Panitumumab',
-                'Regorafenib',
-                'Ziv-aflibercept',
-                'Pembrolizumab',
-                'Nivolumab',
-                'Khác (ghi rõ):',
-              ],
-              answer: [false, false, false, false, false, false, false, false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Điều trị khác (nếu có, ghi rõ)'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              unit: '',
-              type: 'textarea',
-            },
-          ],
-        ],
-      ],
+        "name": "III> BỆNH SỬ ",
+        "key": "disease_history",
+        "listQuestions": [
+            [
+                [
+                    {
+                        "question": "Năm chẩn đoán bệnh lần đầu",
+                        "type": "none",
+                        "key": "nam_chan_doan_benh_lan_dau"
+                    }
+                ],
+                [
+                    {
+                        "question": "",
+                        "unit": "",
+                        "type": "date",
+                        "answer": "",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Vị trí:",
+                        "type": "none",
+                        "key": "vi_tri"
+                    }
+                ],
+                [
+                    {
+                        "listChoice": [
+                            "Đại tràng phải ",
+                            "Đại tràng ngang",
+                            "Đại tràng trái",
+                            "Đại tràng sigma",
+                            "Trực tràng cao",
+                            "Trực tràng trung bình",
+                            "Trực tràng thấp"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Đánh giá giai đoạn theo TNM",
+                        "type": "none",
+                        "answer": "",
+                        "key": "danh_gia_giai_doan_theo_tnm"
+                    }
+                ],
+                [
+                    {
+                        "type": "text",
+                        "answer": "",
+                        "question": "T",
+                        "key": "t"
+                    },
+                    {
+                        "type": "text",
+                        "answer": "",
+                        "question": "N",
+                        "key": "n"
+                    },
+                    {
+                        "type": "text",
+                        "answer": "",
+                        "question": "M",
+                        "key": "m"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Cơ quan di căn (nếu có)",
+                        "type": "none",
+                        "key": "co_quan_di_can_neu_co"
+                    }
+                ],
+                [
+                    {
+                        "listChoice": [
+                            "Gan",
+                            "Phổi",
+                            "Phúc mạc",
+                            "Hạch xa (hạch thượng đòn trái, …)",
+                            "Xương ",
+                            "Lách",
+                            "Não",
+                            "Buồng trứng",
+                            "Khác (ghi rõ):"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Biến chứng",
+                        "type": "none",
+                        "key": "bien_chung"
+                    }
+                ],
+                [
+                    {
+                        "listChoice": [
+                            "Tắc ruột",
+                            "Vỡ u",
+                            "Xuất huyết tiêu hóa",
+                            "Khác (ghi rõ):"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Thể giải phẫu bệnh. Mức độ biệt hóa: 1. Thấp 2. Vừa 3. Cao",
+                        "type": "none",
+                        "key": "the_giai_phau_benh_muc_do_biet_hoa_1_thap_2_vua_3_cao"
+                    }
+                ],
+                [
+                    {
+                        "listChoice": [
+                            "Ung thư biểu mô tuyến. Mức độ biệt hóa:  ",
+                            "Ung thư biểu mô chế nhầy. Mức độ biệt hóa:",
+                            "Ung thư sarcoma. "
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    },
+                    {
+                        "type": "text",
+                        "question": "Mức độ biệt hóa",
+                        "key": "muc_do_biet_hoa"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Gầy sút cân *(so với cân nặng trung bình trước khi phát hiện bệnh)",
+                        "type": "none",
+                        "answer": "",
+                        "key": "gay_sut_can_so_voi_can_nang_trung_binh_truoc_khi_phat_hien_benh"
+                    }
+                ],
+                [
+                    {
+                        "type": "text",
+                        "answer": "",
+                        "unit": "kg",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Phương pháp điều trị đã sử dụng (*từ khi phát hiện bệnh đến ngày bắt đầu theo dõi BN)",
+                        "type": "title",
+                        "key": "phuong_phap_dieu_tri_da_su_dung_tu_khi_phat_hien_benh_den_ngay_bat_dau_theo_doi_bn"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Hoá trị tân bổ trợ"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Phác đồ sử dụng",
+                        "type": "none",
+                        "key": "phac_do_su_dung"
+                    },
+                    {
+                        "type": "checkbox",
+                        "listChoice": [
+                            "FOLFLOX",
+                            "FOLFIRI",
+                            "CAPOX",
+                            "Khác (ghi rõ)"
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "",
+                        "type": "none",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Xạ trị tân bổ trợ"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Liệu xạ",
+                        "unit": "Gy",
+                        "type": "text",
+                        "key": "lieu_xa"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Phẫu thuật"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "type": "checkbox",
+                        "listChoice": [
+                            "Triệt căn",
+                            "Cắt u không triệt căn",
+                            "Tạm thời"
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Hoá trị bổ trợ"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Phác đồ",
+                        "type": "none",
+                        "key": "phac_do"
+                    },
+                    {
+                        "type": "checkbox",
+                        "listChoice": [
+                            "FOLFLOX",
+                            "FOLFIRI",
+                            "CAPOX",
+                            "Khác (ghi rõ)"
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "",
+                        "type": "none",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Xạ trị bổ trợ"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Liệu xạ",
+                        "unit": "Gy",
+                        "type": "text",
+                        "key": "lieu_xa"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Điều trị đích và điều trị miễn dịch"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Thuốc:",
+                        "type": "checkbox",
+                        "listChoice": [
+                            "Bevacizumab",
+                            "Cetuximab",
+                            "Panitumumab",
+                            "Regorafenib",
+                            "Ziv-aflibercept",
+                            "Pembrolizumab",
+                            "Nivolumab",
+                            "Khác (ghi rõ):"
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": "thuoc"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Điều trị khác (nếu có, ghi rõ)"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "unit": "",
+                        "type": "textarea",
+                        "key": ""
+                    }
+                ]
+            ]
+        ]
     },
     {
-      name: 'IV> KHÁM LÂM SÀNG (*ngay trước điều trị hoá chất)',
-      listQuestions: [
-        [
-          [
-            {
-              question: 'Cân nặng',
-              type: 'none',
-            },
-          ],
-          [
-            {
-              unit: 'kg',
-              type: 'text',
-              answer: '',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Chiều cao',
-              type: 'none',
-            },
-          ],
-          [
-            {
-              unit: 'cm',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Triệu chứng lâm sàng',
-              type: 'title',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Đi ngoài phân nhầy máu thường xuyên > 3 tháng'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Đau bụng'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: '  (thang VAS: 0-10 điểm)',
-              unit: '10',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Rối loạn đại tiện'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              listChoice: [
-                'Táo bón',
-                'Tiêu chảy',
-                'Kết hợp xen kẽ táo bón vào tiêu chảy',
-                'Khác (ghi rõ):',
-              ],
-              answer: [false, false, false, false],
-              type: 'checkbox',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Thay đổi tính chất phân'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-
-          [
-            {
-              question: 'Bảng phân loại Bristol',
-              type: 'none',
-            },
-            {
-              // thay bằng ảnh
-              type: 'checkbox',
-              listChoice: ['Loại 1', 'Loại 2', 'Loại 3', 'Loại 4', 'Loại 5', 'Loại 6', 'Loại 7'],
-              answer: [false, false, false, false, false, false, false],
-            },
-          ],
-          [
-            {
-              question: '',
-              type: 'none',
-            },
-            {
-              unit: 'Từng cục rời rạc, cứng và rất khó ra',
-              type: 'text',
-            },
-            {
-              unit: 'Giống như xúc xích khô và lọn cợn',
-              type: 'text',
-            },
-            {
-              unit: 'Giống như xúc xích khô và nứt nẻ',
-              type: 'text',
-            },
-            {
-              unit: 'Giống như xúc xích hay con rấn, trơn tru và mềm',
-              type: 'text',
-            },
-            {
-              unit: 'Từng cục nhầy và mềm (rất dễ ra)',
-              type: 'text',
-            },
-            {
-              unit: 'Lợn cợn lầy nhầy',
-              type: 'text',
-            },
-            {
-              unit: 'Phân lỏng hoàn toàn',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Đánh giá toàn trạng (PS) theo ECOG: (trước điều trị hoá chất)',
-              listChoice: [
-                'PS 0: Hoạt động bình thường.',
-                'PS 1: Bị hạn chế hoạt động nặng, nhưng đi lại được và làm được việc nhẹ. ',
-                'PS 2: Đi lại được nhưng không làm được các việc, hoàn toàn chăm sóc được bản thân, phải nghỉ ngơi dưới 50% thời gian thức.',
-                'PS 3: Chỉ chăm sóc bản thân tối thiểu, phải nghỉ trên 50% thời gian.',
-                'PS 4: Mất khả năng chăm sóc bản thân và hoàn toàn nằm nghỉ tại giường hoặc ghế.',
-              ],
-              type: 'radio',
-            },
-          ],
-        ],
-      ],
+        "name": "IV> KHÁM LÂM SÀNG (*ngay trước điều trị hoá chất)",
+        "key": "clinical_examination",
+        "listQuestions": [
+            [
+                [
+                    {
+                        "question": "Cân nặng",
+                        "type": "none",
+                        "key": "can_nang"
+                    }
+                ],
+                [
+                    {
+                        "unit": "kg",
+                        "type": "text",
+                        "answer": "",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Chiều cao",
+                        "type": "none",
+                        "key": "chieu_cao"
+                    }
+                ],
+                [
+                    {
+                        "unit": "cm",
+                        "type": "text",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Triệu chứng lâm sàng",
+                        "type": "title",
+                        "key": "trieu_chung_lam_sang"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Đi ngoài phân nhầy máu thường xuyên > 3 tháng"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Đau bụng"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "  (thang VAS: 0-10 điểm)",
+                        "unit": "10",
+                        "type": "text",
+                        "key": "thang_vas_0_10_diem"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Rối loạn đại tiện"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "listChoice": [
+                            "Táo bón",
+                            "Tiêu chảy",
+                            "Kết hợp xen kẽ táo bón vào tiêu chảy",
+                            "Khác (ghi rõ):"
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "type": "checkbox",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Thay đổi tính chất phân"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Bảng phân loại Bristol",
+                        "type": "none",
+                        "key": "bang_phan_loai_bristol"
+                    },
+                    {
+                        "type": "checkbox",
+                        "listChoice": [
+                            "Loại 1",
+                            "Loại 2",
+                            "Loại 3",
+                            "Loại 4",
+                            "Loại 5",
+                            "Loại 6",
+                            "Loại 7"
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "",
+                        "type": "none",
+                        "key": ""
+                    },
+                    {
+                        "unit": "Từng cục rời rạc, cứng và rất khó ra",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "Giống như xúc xích khô và lọn cợn",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "Giống như xúc xích khô và nứt nẻ",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "Giống như xúc xích hay con rấn, trơn tru và mềm",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "Từng cục nhầy và mềm (rất dễ ra)",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "Lợn cợn lầy nhầy",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "Phân lỏng hoàn toàn",
+                        "type": "text",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Đánh giá toàn trạng (PS) theo ECOG: (trước điều trị hoá chất)",
+                        "listChoice": [
+                            "PS 0: Hoạt động bình thường.",
+                            "PS 1: Bị hạn chế hoạt động nặng, nhưng đi lại được và làm được việc nhẹ. ",
+                            "PS 2: Đi lại được nhưng không làm được các việc, hoàn toàn chăm sóc được bản thân, phải nghỉ ngơi dưới 50% thời gian thức.",
+                            "PS 3: Chỉ chăm sóc bản thân tối thiểu, phải nghỉ trên 50% thời gian.",
+                            "PS 4: Mất khả năng chăm sóc bản thân và hoàn toàn nằm nghỉ tại giường hoặc ghế."
+                        ],
+                        "type": "radio",
+                        "key": "danh_gia_toan_trang_ps_theo_ecog_truoc_dieu_tri_hoa_chat"
+                    }
+                ]
+            ]
+        ]
     },
     {
-      name: 'V>CẬN LÂM SÀNG',
-      listQuestions: [
-        [
-          [
-            {
-              question: 'Xét nghiệm máu',
-              type: 'title',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Hồng cầu(RBC)',
-              type: 'none',
-            },
-            {
-              question: 'Hb',
-              type: 'none',
-            },
-            {
-              question: 'Bạch cầu(WBC)',
-              type: 'none',
-            },
-            {
-              question: 'Bạch cầu đa nhân trung tính',
-              type: 'none',
-            },
-            {
-              question: 'Tiểu cầu',
-              type: 'none',
-            },
-            {
-              question: 'PT%',
-              type: 'none',
-            },
-            {
-              question: 'INR',
-              type: 'none',
-            },
-            {
-              question: 'APTT b/c',
-              type: 'none',
-            },
-            {
-              question: 'Bilirubin toàn phần',
-              type: 'none',
-            },
-            {
-              question: 'Bilirubin trực tiếp',
-              type: 'none',
-            },
-            {
-              question: 'Albumin',
-              type: 'none',
-            },
-            {
-              question: 'ALT',
-              type: 'none',
-            },
-            {
-              question: 'AST',
-              type: 'none',
-            },
-            {
-              question: 'Ure',
-              type: 'none',
-            },
-            {
-              question: 'Creatinine',
-              type: 'none',
-            },
-            {
-              question: 'Ure',
-              type: 'none',
-            },
-          ],
-          [
-            {
-              unit: 'T/L',
-              type: 'text',
-            },
-            {
-              unit: 'g/L',
-              type: 'text',
-            },
-            {
-              unit: 'G/L',
-              type: 'text',
-            },
-            {
-              unit: 'G/L',
-              type: 'text',
-            },
-            {
-              unit: 'G/L',
-              type: 'text',
-            },
-            {
-              unit: '%',
-              type: 'text',
-            },
-            {
-              unit: 'none',
-              type: 'text',
-            },
-            {
-              unit: 'none',
-              type: 'text',
-            },
-            {
-              unit: 'μmol/L',
-              type: 'text',
-            },
-            {
-              unit: 'μmol/L',
-              type: 'text',
-            },
-            {
-              unit: 'g/L',
-              type: 'text',
-            },
-            {
-              unit: 'UI/L',
-              type: 'text',
-            },
-            {
-              unit: 'UI/L',
-              type: 'text',
-            },
-            {
-              unit: 'mmol/L',
-              type: 'text',
-            },
-            {
-              unit: 'mmol/L',
-              type: 'text',
-            },
-            {
-              unit: 'μmol/L',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Marker ung thư',
-              type: 'none',
-            },
-          ],
-          [
-            {
-              question: 'CEA',
-              type: 'text',
-              unit: 'ng/mL',
-            },
-            {
-              question: 'CA 19-9',
-              type: 'text',
-              unit: 'ng/mL',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Nội soi đại tràng',
-              type: 'none',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Hình ảnh đại thể khối u:',
-              listChoice: [
-                'U loét',
-                'U sùi',
-                'U thể thâm nhiễm hay thể chai',
-                'U thể chít hẹp, nghẹt',
-                'U thể dưới niêm mạc',
+        "name": "V>CẬN LÂM SÀNG",
+        "key": "subclinical",
+        "listQuestions": [
+            [
+              [
+                {
+                  question: 'Xét nghiệm máu',
+                  type: 'title',
+                  key: 'xet_nghiem_mau',
+                },
               ],
-              type: 'checkbox',
-              answer: [false, false, false, false, false],
-            },
-          ],
-        ],
-      ],
+            ],
+            [
+              [
+                {
+                  question: 'Hồng cầu(RBC)',
+                  type: 'none',
+                  key: 'hong_cau_rbc',
+                },
+              ],
+              [
+                {
+                  unit: 'T/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'Hb',
+                  type: 'none',
+                  key: 'hb',
+                },
+              ],
+              [
+                {
+                  unit: 'g/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'Bạch cầu(WBC)',
+                  type: 'none',
+                  key: 'bach_cau_wbc',
+                },
+              ],
+              [
+                {
+                  unit: 'G/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'Bạch cầu đa nhân trung tính',
+                  type: 'none',
+                  key: 'bach_cau_da_nhan_trung_tinh',
+                },
+              ],
+              [
+                {
+                  unit: 'G/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'Tiểu cầu',
+                  type: 'none',
+                  key: 'tieu_cau',
+                },
+              ],
+              [
+                {
+                  unit: 'G/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'PT%',
+                  type: 'none',
+                  key: 'pt',
+                },
+              ],
+              [
+                {
+                  unit: '%',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'INR',
+                  type: 'none',
+                  key: 'inr',
+                },
+              ],
+              [
+                {
+                  unit: 'none',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'APTT b/c',
+                  type: 'none',
+                  key: 'aptt_b_c',
+                },
+              ],
+              [
+                {
+                  unit: 'none',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'Bilirubin toàn phần',
+                  type: 'none',
+                  key: 'bilirubin_toan_phan',
+                },
+              ],
+              [
+                {
+                  unit: 'μmol/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'Bilirubin trực tiếp',
+                  type: 'none',
+                  key: 'bilirubin_truc_tiep',
+                },
+              ],
+              [
+                {
+                  unit: 'μmol/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'Albumin',
+                  type: 'none',
+                  key: 'albumin',
+                },
+              ],
+              [
+                {
+                  unit: 'g/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'ALT',
+                  type: 'none',
+                  key: 'alt',
+                },
+              ],
+              [
+                {
+                  unit: 'UI/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'AST',
+                  type: 'none',
+                  key: 'ast',
+                },
+              ],
+              [
+                {
+                  unit: 'UI/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'Ure',
+                  type: 'none',
+                  key: 'ure',
+                },
+              ],
+              [
+                {
+                  unit: 'mmol/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+              [
+                {
+                  question: 'Creatinine',
+                  type: 'none',
+                  key: 'creatinine',
+                },
+              ],
+              [
+                {
+                  unit: 'mmol/L',
+                  type: 'text',
+                  key: '',
+                },
+              ],
+            ],
+            [
+                [
+                    {
+                        "question": "Marker ung thư",
+                        "type": "none",
+                        "key": "marker_ung_thu"
+                    }
+                ],
+                [
+                    {
+                        "question": "CEA",
+                        "type": "text",
+                        "unit": "ng/mL",
+                        "key": "cea"
+                    },
+                    {
+                        "question": "CA 19-9",
+                        "type": "text",
+                        "unit": "ng/mL",
+                        "key": "ca_19_9"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Nội soi đại tràng",
+                        "type": "none",
+                        "key": "noi_soi_dai_trang"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Hình ảnh đại thể khối u:",
+                        "listChoice": [
+                            "U loét",
+                            "U sùi",
+                            "U thể thâm nhiễm hay thể chai",
+                            "U thể chít hẹp, nghẹt",
+                            "U thể dưới niêm mạc"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": "hinh_anh_dai_the_khoi_u"
+                    }
+                ]
+            ]
+        ]
     },
     {
-      name: 'VI> PHƯƠNG PHÁP ĐIỀU TRỊ (*tính từ ngày bắt đầu theo dõi)',
-      listQuestions: [
-        [
-          [
-            {
-              question: 'Phương pháp điều trị(*bắt buộc)',
-              type: 'title',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Hoá trị tân bổ trợ'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Phác đồ',
-              type: 'none',
-            },
-            {
-              type: 'checkbox',
-              listChoice: ['FOLFLOX', 'FOLFIRI', 'CAPOX', 'Khác (ghi rõ)'],
-              answer: [false, false, false, false],
-            },
-          ],
-          [
-            {
-              question: 'Số chu kỳ',
-              type: 'none',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Hoá trị tân bổ trợ'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Phác đồ',
-              type: 'none',
-            },
-            {
-              type: 'checkbox',
-              listChoice: ['FOLFLOX', 'FOLFIRI', 'CAPOX', 'Khác (ghi rõ)'],
-              answer: [false, false, false, false],
-            },
-          ],
-          [
-            {
-              question: 'Số chu kỳ',
-              type: 'none',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Hóa trị và điều trị đích giai đoạn tái phát, di căn'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Phác đồ',
-              type: 'none',
-            },
-            {
-              type: 'checkbox',
-              listChoice: ['FOLFLOX', 'FOLFIRI', 'CAPOX', 'Khác (ghi rõ)'],
-              answer: [false, false, false, false],
-            },
-          ],
-          [
-            {
-              question: 'Số chu kì',
-              type: 'none',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-            {
-              unit: 'chu kì',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              question: 'Nội soi đại tràng',
-              type: 'none',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Phẫu thuật'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              type: 'checkbox',
-              listChoice: ['Triệt căn', 'Cắt u không triệt căn', 'Tạm thời'],
-              answer: [false, false, false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Xạ trị'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Liều xạ',
-              unit: 'Gy',
-              type: 'text',
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Điều trị đích và điều trị miễn dịch'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              question: 'Thuốc:',
-              type: 'checkbox',
-              listChoice: [
-                'Bevacizumab',
-                'Cetuximab',
-                'Panitumumab',
-                'Regorafenib',
-                'Ziv-aflibercept',
-                'Pembrolizumab',
-                'Nivolumab',
-                'Khác (ghi rõ): ',
-              ],
-              answer: [false, false, false, false, false, false, false, false],
-            },
-          ],
-        ],
-        [
-          [
-            {
-              listChoice: ['Điều trị khác (nếu có, ghi rõ)'],
-              type: 'checkbox',
-              answer: [false],
-            },
-          ],
-          [
-            {
-              unit: '',
-              type: 'text',
-            },
-          ],
-        ],
-      ],
-    },
-  ],
+        "name": "VI> PHƯƠNG PHÁP ĐIỀU TRỊ (*tính từ ngày bắt đầu theo dõi)",
+        "key": "treatments",
+        "listQuestions": [
+            [
+                [
+                    {
+                        "question": "Phương pháp điều trị(*bắt buộc)",
+                        "type": "title",
+                        "key": "phuong_phap_dieu_tri_bat_buoc"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Hoá trị tân bổ trợ"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Phác đồ",
+                        "type": "none",
+                        "key": "phac_do"
+                    },
+                    {
+                        "type": "checkbox",
+                        "listChoice": [
+                            "FOLFLOX",
+                            "FOLFIRI",
+                            "CAPOX",
+                            "Khác (ghi rõ)"
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Số chu kỳ",
+                        "type": "none",
+                        "key": "so_chu_ky"
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Hoá trị tân bổ trợ"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Phác đồ",
+                        "type": "none",
+                        "key": "phac_do"
+                    },
+                    {
+                        "type": "checkbox",
+                        "listChoice": [
+                            "FOLFLOX",
+                            "FOLFIRI",
+                            "CAPOX",
+                            "Khác (ghi rõ)"
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Số chu kỳ",
+                        "type": "none",
+                        "key": "so_chu_ky"
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Hóa trị và điều trị đích giai đoạn tái phát, di căn"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Phác đồ",
+                        "type": "none",
+                        "key": "phac_do"
+                    },
+                    {
+                        "type": "checkbox",
+                        "listChoice": [
+                            "FOLFLOX",
+                            "FOLFIRI",
+                            "CAPOX",
+                            "Khác (ghi rõ)"
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Số chu kì",
+                        "type": "none",
+                        "key": "so_chu_ki"
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    },
+                    {
+                        "unit": "chu kì",
+                        "type": "text",
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "question": "Nội soi đại tràng",
+                        "type": "none",
+                        "key": "noi_soi_dai_trang"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Phẫu thuật"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "type": "checkbox",
+                        "listChoice": [
+                            "Triệt căn",
+                            "Cắt u không triệt căn",
+                            "Tạm thời"
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": ""
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Xạ trị"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Liều xạ",
+                        "unit": "Gy",
+                        "type": "text",
+                        "key": "lieu_xa"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Điều trị đích và điều trị miễn dịch"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "question": "Thuốc:",
+                        "type": "checkbox",
+                        "listChoice": [
+                            "Bevacizumab",
+                            "Cetuximab",
+                            "Panitumumab",
+                            "Regorafenib",
+                            "Ziv-aflibercept",
+                            "Pembrolizumab",
+                            "Nivolumab",
+                            "Khác (ghi rõ): "
+                        ],
+                        "answer": [
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false,
+                            false
+                        ],
+                        "key": "thuoc"
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "listChoice": [
+                            "Điều trị khác (nếu có, ghi rõ)"
+                        ],
+                        "type": "checkbox",
+                        "answer": [
+                            false
+                        ],
+                        "key": ""
+                    }
+                ],
+                [
+                    {
+                        "unit": "",
+                        "type": "text",
+                        "key": ""
+                    }
+                ]
+            ]
+        ]
+    }
+],
   assessmentResponseTreatment: {
     listQuestions: [
       {
