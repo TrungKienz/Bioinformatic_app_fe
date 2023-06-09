@@ -40,7 +40,7 @@ class CRUDService {
       ...(options || {}),
     });
   };
-  searchService = async (Url:string, body: object, options?: { [key: string]: any }) => {
+  searchService = async (Url: string, body: object, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${Url}`, {
       method: 'POST',
       headers: {

@@ -1,12 +1,10 @@
 import Footer from '@/components/Footer';
 import RightContent from '@/components/RightContent';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
-import { RunTimeLayoutConfig, useModel } from '@umijs/max';
-import { history } from '@umijs/max';
+import { history, RunTimeLayoutConfig } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
-import { currentUser1, currentUser as queryCurrentUser } from './services/ant-design-pro/api';
-import { useEffect } from 'react';
+import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 const loginPath = '/user/login';
 /**
  * @see https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -30,20 +28,20 @@ export async function getInitialState(): Promise<{
   };
   // If it is not a login page, execute
   const { location } = history;
-  // if (location.pathname !== loginPath) {
-  //   const currentUser = await fetchUserInfo();
-  //   return {
-  //     fetchUserInfo,
-  //     currentUser,
-  //     settings: defaultSettings as Partial<LayoutSettings>,
-  //   };
-  // }
+  if (location.pathname !== loginPath) {
+    const currentUser = await fetchUserInfo();
+    return {
+      fetchUserInfo,
+      currentUser,
+      settings: defaultSettings as Partial<LayoutSettings>,
+    };
+  }
   return {
     fetchUserInfo,
     settings: defaultSettings as Partial<LayoutSettings>,
   };
 }
-  const accessToken = localStorage.getItem('accessToken');
+const accessToken = localStorage.getItem('accessToken');
 // APIs supported by ProLayout https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   return {

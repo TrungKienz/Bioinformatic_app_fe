@@ -3,12 +3,10 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Button, message, Modal, Space } from 'antd';
 import { useEffect, useState } from 'react';
-import { Link } from 'umi';
 import { server } from '../Api';
 import { testCaseEp } from '../EndPoint';
-import UploadTestCase from './component/uploadTestCase';
 import AddTestCase from './component/addTestInformation';
-import CRUDService from '@/services/CRUDService';
+import UploadTestCase from './component/uploadTestCase';
 
 const { confirm } = Modal;
 export default () => {
@@ -16,8 +14,8 @@ export default () => {
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [totalPages, setTotalPages] = useState(1);
-  
-  const urlData = `${testCaseEp}?page=${pagination.current}&limit=${pagination.pageSize}`
+
+  const urlData = `${testCaseEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
   useEffect(() => {
     fetch(urlData)
       .then((response) => response.json())

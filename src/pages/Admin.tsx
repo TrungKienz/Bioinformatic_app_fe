@@ -28,7 +28,8 @@ const Admin: React.FC = () => {
           }}
         />
         <Typography.Title level={2} style={{ textAlign: 'center' }}>
-          <SmileTwoTone /> Chức năng đang trong quá trình phát triển  <HeartTwoTone twoToneColor="#eb2f96" />
+          <SmileTwoTone /> Chức năng đang trong quá trình phát triển{' '}
+          <HeartTwoTone twoToneColor="#eb2f96" />
         </Typography.Title>
       </Card>
       <p style={{ textAlign: 'center', marginTop: 24 }}>

@@ -1,13 +1,13 @@
 import Footer from '@/components/Footer';
+import { currentUser, login } from '@/services/ant-design-pro/api';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { FormattedMessage, Helmet, history, SelectLang, useIntl, useModel } from '@umijs/max';
 import { Alert, message, Tabs } from 'antd';
-import {login, currentUser, currentUser1} from '@/services/ant-design-pro/api';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Settings from '../../../../config/defaultSettings';
-import "./style.css";
+import './style.css';
 
 const Lang = () => {
   const langClassName = useEmotionCss(({ token }) => {
@@ -50,9 +50,6 @@ const Login: React.FC = () => {
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
   const { setInitialState } = useModel('@@initialState');
-  const isLoginInProgress = useRef(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-
 
   const containerClassName = useEmotionCss(() => {
     return {
@@ -68,15 +65,8 @@ const Login: React.FC = () => {
 
   const intl = useIntl();
 
-  const handleLogin = async (values: any) => {
-    if (isLoginInProgress.current) {
-      // Login process is already in progress
-      return;
-    }
-  
+  const handleLogin = async (values: object) => {
     try {
-      isLoginInProgress.current = true; // Set login in progress
-
       const loginData = await login(values);
       const { signStatus, token } = loginData;
       setUserLoginState({
@@ -85,11 +75,11 @@ const Login: React.FC = () => {
         currentAuthority: signStatus.currentAuthority,
       });
       const userData = await currentUser(values);
-        setInitialState((prevState: any) => ({
-          ...prevState,
-          currentUser: userData,
-        }));
-      if (signStatus.status === "ok") {
+      setInitialState((prevState: any) => ({
+        ...prevState,
+        currentUser: userData,
+      }));
+      if (signStatus.status === 'ok') {
         localStorage.setItem('accessToken', token);
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
@@ -98,7 +88,6 @@ const Login: React.FC = () => {
         message.success(defaultLoginSuccessMessage);
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/');
-        setLoggedIn(true); // Set loggedIn state
       }
     } catch (error: any) {
       const defaultLoginFailureMessage = intl.formatMessage({
@@ -107,36 +96,8 @@ const Login: React.FC = () => {
       });
       console.error(error);
       message.error(defaultLoginFailureMessage);
-    } finally {
-      isLoginInProgress.current = false; // Reset login in progress
     }
   };
-
-
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (loggedIn || accessToken) {
-      // Đã đăng nhập hoặc tồn tại access token
-      const fetchData = async () => {
-        try {
-          const userData = await currentUser1();
-          setInitialState((prevState: any) => ({
-            ...prevState,
-            currentUser: userData,
-          }));
-          const urlParams = new URL(window.location.href).searchParams;
-          history.push(urlParams.get('redirect') || '/');
-        } catch (error) {
-          // Handle error fetching user data or setting initial state
-          console.error('Error:', error);
-        }
-      };
-
-      fetchData();
-    }
-  }, [loggedIn, history]);
-  
 
   const { status, type: loginType } = userLoginState;
 
@@ -168,7 +129,7 @@ const Login: React.FC = () => {
           initialValues={{
             autoLogin: true,
           }}
-          onFinish={(values: any) => {
+          onFinish={(values: object) => {
             return handleLogin(values);
           }}
           submitter={{

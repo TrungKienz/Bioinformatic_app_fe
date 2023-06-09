@@ -5,8 +5,7 @@ import { request as requestUmi } from 'umi';
 
 import { cloneDeep, merge } from 'lodash';
 import type { RequestInterceptor, RequestOptionsInit, ResponseError } from 'umi-request';
-import { extend } from 'umi-request';
-import Reqs from 'umi-request';
+import Reqs, { extend } from 'umi-request';
 import CaseConverter from './caseConverter';
 
 // Part 2: Request Interceptors, (use this instead of "headers" directly in request config)

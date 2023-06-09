@@ -7,7 +7,7 @@ import { drugArticlesEp } from '../EndPoint';
 const articles = () => {
   const [dataArticles, setDataArticles] = useState<
     Array<{
-      pmid:any;
+      pmid: any;
       gene: any;
       cancerType: any;
       level: any;
@@ -28,14 +28,14 @@ const articles = () => {
     }>
   >([]);
 
-  console.log (dataArticles)
+  console.log(dataArticles);
   const currentLocation = location.pathname;
   const id = currentLocation.replace('/drug/', '');
 
   const fetchDataArticles = async (id: any) => {
     const response = await fetch(`${drugArticlesEp}/${id}`);
     const data = await response.json();
-    console.log("data: " + data);
+    console.log('data: ' + data);
     const articles = data.articles.map((article: any) => {
       return {
         pmid: data.pmid,

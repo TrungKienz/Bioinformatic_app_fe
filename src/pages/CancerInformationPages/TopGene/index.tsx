@@ -39,7 +39,7 @@ const TopGene = () => {
       URL = '';
       break;
   }
-  
+
   useEffect(() => {
     asyncFetch();
   }, []);
@@ -65,7 +65,7 @@ const TopGene = () => {
   };
   return (
     <div style={{ height: '70vh' }}>
-      <Column {...config}/>
+      <Column {...config} />
     </div>
   );
 };

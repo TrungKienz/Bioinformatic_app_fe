@@ -4,7 +4,7 @@ import { Link } from '@umijs/max';
 import { useEffect, useState } from 'react';
 import { geneAndMutationEp } from '../EndPoint';
 
-export default () => {
+const GeneAndMutation = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [dataMutation, setDataMutation] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
@@ -104,3 +104,5 @@ export default () => {
     />
   );
 };
+
+export default GeneAndMutation;

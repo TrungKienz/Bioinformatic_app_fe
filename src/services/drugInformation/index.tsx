@@ -1,5 +1,5 @@
-import { request } from '@umijs/max';
 import { server } from '@/pages/Api';
+import { request } from '@umijs/max';
 const baseUrl = server;
 
 class DrugsInformationService {
@@ -52,8 +52,8 @@ class DrugsInformationService {
         data: body,
         ...(options || {}),
       });
-      
-      console.log(response)
+
+      console.log(response);
       return response; // Return the response data
     } catch (error) {
       // Handle any errors that occur during the request

@@ -16,6 +16,7 @@ import {
   Typography,
 } from 'antd';
 import React, { useState } from 'react';
+import DualChart from './charts/dualChart';
 import { PieChart } from './charts/pieChart';
 import ScatterChart from './charts/scatterChart';
 import { StatisticalChart } from './charts/statisticalChart';
@@ -30,11 +31,9 @@ import {
   dataNewCaseFemales,
   dataNewCaseMales,
 } from './data/dataNewCase';
-import TreeMap from './maps/treeMap';
 import './style.css';
 import TableCancer from './tables/tableCancer';
 import { tableCancerDetail } from './tables/tableCancerDetail';
-import DualChart from './charts/dualChart';
 
 const { Title } = Typography;
 const { Header, Content, Sider } = Layout;
@@ -221,8 +220,8 @@ const VietNameseCancer: React.FC = () => {
         'Số lượng trường hợp ước tínhtại Việt Nam vào năm 2020, ở nữ giới, mọi lứa tuổi (EXEX. NMSC)'))
     : ((data = []), (title = ''));
 
-    let disable = false;
-    current === 'dual-bars' ? disable = true : disable = false;
+  let disable = false;
+  current === 'dual-bars' ? (disable = true) : (disable = false);
   return (
     <Layout style={{ minHeight: '100vh', margin: 0, height: '100%', overflow: 'hidden' }}>
       <Header
@@ -274,7 +273,9 @@ const VietNameseCancer: React.FC = () => {
                 <div className="sider-component">
                   <Title level={4}>So sánh</Title>
                   <Radio.Group defaultValue={'cancer_sites'}>
-                    <Radio value="population" disabled>Dân cư</Radio>
+                    <Radio value="population" disabled>
+                      Dân cư
+                    </Radio>
                     <Radio value="cancer_sites">Cancer sites</Radio>
                   </Radio.Group>
                 </div>
@@ -288,9 +289,15 @@ const VietNameseCancer: React.FC = () => {
                     value={valueIndicator}
                     defaultValue={'Inc'}
                   >
-                    <Radio value="Inc" disabled={disable}>Inc.</Radio>
-                    <Radio value="Mort" disabled={disable}>Mort.</Radio>
-                    <Radio value="Prev" disabled={disable}>Prev.</Radio>
+                    <Radio value="Inc" disabled={disable}>
+                      Inc.
+                    </Radio>
+                    <Radio value="Mort" disabled={disable}>
+                      Mort.
+                    </Radio>
+                    <Radio value="Prev" disabled={disable}>
+                      Prev.
+                    </Radio>
                   </Radio.Group>
                 </div>
               </Form.Item>
@@ -300,8 +307,12 @@ const VietNameseCancer: React.FC = () => {
                   <Title level={4}>Giới tính</Title>
                   <Radio.Group onChange={onChangeSex} value={valueSex} defaultValue={'Both'}>
                     <Radio value="Both">Cả hai</Radio>
-                    <Radio value="Males" disabled={disable}>Nam</Radio>
-                    <Radio value="Females" disabled={disable}>Nữ</Radio>
+                    <Radio value="Males" disabled={disable}>
+                      Nam
+                    </Radio>
+                    <Radio value="Females" disabled={disable}>
+                      Nữ
+                    </Radio>
                   </Radio.Group>
                 </div>
               </Form.Item>
@@ -345,7 +356,7 @@ const VietNameseCancer: React.FC = () => {
               ) : current === 'scatter-plot' ? (
                 <ScatterChart />
               ) : current === 'dual-bars' ? (
-                <DualChart/>
+                <DualChart />
               ) : current === 'table' ? (
                 <TableCancer />
               ) : (
