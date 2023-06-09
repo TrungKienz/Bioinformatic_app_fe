@@ -1,21 +1,28 @@
 import { SaveOutlined } from '@ant-design/icons';
-import { history } from '@umijs/max';
-import { Affix, Button, Tooltip } from 'antd';
+import { history, useNavigate } from '@umijs/max';
+import { Affix, FloatButton, Tooltip, message } from 'antd';
 
-export default ({ handleSubmit }) => {
+export default ({ handleSubmit, link }) => {
+  const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
   return (
-    <Affix style={{ right: '30px', position: 'absolute' }} offsetBottom={50}>
       <Tooltip title={'Save'} color="#1890ff">
-        <Button
-          size="large"
+        <FloatButton
           type="primary"
+          shape="square"
           icon={<SaveOutlined />}
-          onClick={() => {
-            handleSubmit();
-            history.push('/health-record?reload=true');
+          onClick={async () => {
+            try{
+              await handleSubmit();
+              navigate(`/${link.replace('record', 'cancer')}/health-record`);
+            }catch(err){
+              messageApi.open({
+                type: 'error',
+                content: 'Hãy thử lại',
+              });
+            }
           }}
-        ></Button>
+        ></FloatButton>
       </Tooltip>
-    </Affix>
   );
 };
