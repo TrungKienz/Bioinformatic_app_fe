@@ -6,7 +6,6 @@ import * as large_intestine_asia from './data/large_intestine_asia.json';
 import * as lung_asia from './data/lung_asia.json';
 import * as thyroid_asia from './data/thyroid_asia.json';
 import { useEffect, useState } from 'react';
-import { response } from 'express';
 
 const lungCancerPage = '/lung-cancer/drug';
 const liverCancerPage = '/liver-cancer/drug';

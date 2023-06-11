@@ -3,6 +3,7 @@ import CRUDService from '@/services/CRUDService';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Modal, Select } from 'antd';
 import { useState } from 'react';
+import { history } from '@umijs/max';
 
 const searchUrl = `${server}/test-case/add`;
 
