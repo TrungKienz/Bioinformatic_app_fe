@@ -24,7 +24,6 @@ export default ({ record, isAddRow = true }) => {
           </tr>
         </thead>
         <tbody>
-          {' '}
           {record?.body?.map((res, resId) => {
             return (
               <tr key={resId}>
@@ -37,7 +36,7 @@ export default ({ record, isAddRow = true }) => {
                 })}
               </tr>
             );
-          })}{' '}
+          })}
         </tbody>
       </table>
       {isAddRow && (

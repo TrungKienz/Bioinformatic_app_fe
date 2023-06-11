@@ -19,6 +19,5 @@ const Settings: ProLayoutProps & {
   splitMenus: false,
   breadcrumbRender: false,
   logo: '/Logo_HUST_HMU.png',
-  iconfontUrl: 'Logo_1.jpg',
 };
 export default Settings;
