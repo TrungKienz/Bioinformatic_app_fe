@@ -293,12 +293,12 @@ export default [
     component: './HealthRecord/BreastCancer',
     hideInMenu: true,
   },
-  {
-    name: 'Quản lý bệnh án',
-    icon: '/icons/health-record.png',
-    path: '/health-record',
-    component: './HealthRecord/',
-  },
+  // {
+  //   name: 'Quản lý bệnh án',
+  //   icon: '/icons/health-record.png',
+  //   path: '/health-record',
+  //   component: './HealthRecord/',
+  // },
   {
     path: '/gene-and-mutation/:id',
     access: 'canAdmin',
@@ -321,7 +321,7 @@ export default [
   // },
   {
     name: 'Thông tin chung',
-    icon: '',
+    icon: '/icons/health-record.png',
     path: '/over-view',
     access: 'canAdmin',
     routes: [

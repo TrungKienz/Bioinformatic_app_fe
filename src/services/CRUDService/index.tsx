@@ -11,7 +11,7 @@ class CRUDService {
       ...(options || {}),
     });
   };
-  getService = async (body: any, options?: { [key: string]: any }) => {
+  getService = async (url: String, body: any, options?: { [key: string]: any }) => {
     return request<ErrorResponse>(`${Url}`, {
       method: 'POST',
       headers: {

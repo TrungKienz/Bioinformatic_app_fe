@@ -1,7 +1,7 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, message, Modal, Space, Spin } from 'antd';
+import { Button, message, Modal, Space, Spin, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import { server } from '../Api';
 import { testCaseEp } from '../EndPoint';
@@ -15,11 +15,12 @@ export default () => {
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [totalPages, setTotalPages] = useState(1);
+  const [IDTestData, setIDTestData] = useState([]);
+  const [resultStatus, setResultStatus] = useState([]);
   
-  const handleClick = (id: string) => {
-    fetch(`${testCaseEp}/detail/${id}`)
-      .then((response) => response.json())
-  };
+  // const handleID = (id: string) => {
+  //   SetId(id);
+  // }
   
   const urlData = `${testCaseEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
   useEffect(() => {
@@ -31,8 +32,8 @@ export default () => {
           patientID: obj.patientID,
           patientName: obj.patientName,
           testName: obj.testName,
+          primaryTissue: obj.primaryTissue,
         }));
-        console.log(testCase);
         setData(testCase);
         setTotalPages(data.totalPages);
       });
@@ -42,6 +43,53 @@ export default () => {
     setPagination(pagination);
   };
 
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(`${testCaseEp}/detail/${IDArray}`);
+  //       if (!response.ok) {
+  //         throw new Error('Error fetching data');
+  //       }
+  //       const data = await response.json();
+  //       const IDTest = data.IDTest;
+  //       setIDTestData(IDTest);
+  //       console.log(IDTest);
+  //     } catch (error) {
+  //       console.log(error);
+  //       // Handle the error here
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${testCaseEp}/detail`);
+      const data = await response.json();
+      setIDTestData(data);
+    } catch (error) {
+      console.log(error);
+      // Handle the error here
+    }
+  };
+  const addResultStatus = async () => {
+    try {
+      const response = await fetch(`${testCaseEp}/file-name`);
+      const data = await response.json();
+      setResultStatus(data);
+    } catch (error) {
+      console.log(error);
+      // Handle the error here
+    }
+  };
+  
+  useEffect(() => {
+    addResultStatus();
+    fetchData();
+  }, []);
+  
 
   const handleDelete = (id: String, runID: String) => {
     confirm({
@@ -79,6 +127,16 @@ export default () => {
       key: 'patientName',
       title: 'Tên bệnh nhân',
       dataIndex: 'patientName',
+      align: 'left',
+      filteredValue: [searchTerm],
+      onFilter: (value, record) => {
+        return String(record.patientName).toLowerCase().includes(String(value).toLowerCase());
+      },
+    },
+    {
+      key: 'primaryTissue',
+      title: 'Mẫu mô',
+      dataIndex: 'primaryTissue',
       align: 'left',
       filteredValue: [searchTerm],
       onFilter: (value, record) => {
@@ -134,24 +192,33 @@ export default () => {
       render: (text, data) => (
         <>
           <Space size={'large'}>
-            {data.patientID == "DHY2019" ? (<Link
-              key="showDetail"
-              onClick={() => handleClick(data.patientID)}
-              style={{ textDecoration: 'underline' }}
-              to={`/tests/detail/${data.patientID}`}
-            >
-              Chi tiết
-            </Link>) :  
-            (<Spin tip="" size="small">
-              <div className="content" />
-            </Spin>)}
-            
+            {IDTestData.includes(data.patientID) ? (
+              <Tag color="success">
+                <Link
+                  key="showDetail"
+                  // style={{ textDecoration: 'underline' }}
+                  to={`/tests/detail/${data.patientID}`}
+                >
+                  Chi tiết
+                </Link>
+              </Tag>
+            ) : (resultStatus.includes(data.patientID))? 
+            (
+              <Tag color='processing'>
+                Đang xử lý  ...
+              </Tag>
+            )
+            : (
+              <Tag color='warning'> Chưa có dữ liệu ...</Tag>
+            )}
           </Space>
         </>
       ),
+      
     },
   ];
 
+ 
   return (
     <ProTable
       columns={columns}
@@ -164,7 +231,7 @@ export default () => {
           onChange: (e) => setSearchTerm(e.target.value),
           style: { width: '350px' },
         },
-        actions: [<AddTestCase />],
+        actions: [<AddTestCase/>],
         settings: [],
       }}
       showSorterTooltip={false}

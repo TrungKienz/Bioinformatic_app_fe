@@ -1,50 +1,86 @@
 import React, { useState } from "react";
 import { Pagination, Select } from "antd";
-import lungArticelData from "./data";
+import * as lung_article from "./data/lung_article_.json";
+import * as colorectal_article from "./data/colorectal_article_.json";
+import * as hepatocellular_article from "./data/hepatocellular_article_.json";
+import * as breast_article from "./data/breast_article_.json";
+import * as thyroid_article from "./data/thyroid_article_.json";
+//import * as colorectal_article from "../data/colorectal_article_.json";
 import LungArticle from "./component/hideDisplayDetail";
 import SeachArticle from "./component/searchArticle";
-import * as lung_article from "./data/lung_article_.json";
-import * as breast_article from "data/dataArticleGeneMutation/breast_article_.json";
-import * as colorectal_article from "data/dataArticleGeneMutation/colorectal_article_.json";
-import * as hepatocellular_article from "data/dataArticleGeneMutation/hepatocellular_article_.json";
-import * as thyroid_article from "data/dataArticleGeneMutation/thyroid_article_.json";
-
-
-let articleData = lung_article;
-const articleConverted = Object.values(articleData);
 
 const { Option } = Select;
+const lungCancerPage = '/lung-cancer/gene-mutation';
+const liverCancerPage = '/liver-cancer/gene-mutation';
+const breastCancerPage = '/breast-cancer/gene-mutation';
+const thyroidCancerPage = '/thyroid-cancer/gene-mutation';
+const colorectalCancerPage = '/colorectal-cancer/gene-mutation';
 
-function PaginationLung() {
+interface article {
+  Index2: string | number,
+  PMID: string | number,
+  Article_citation: string,
+  Heading_title: string,
+  Authors?: string,
+  Affiliation?: string,
+  Identifiers: string,
+  Abstract: string,
+  Category: string | number,
+}
+let articleData: article[] = [];
+
+
+function PaginationArticle() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterValue, setFilterValue] = useState("All");
-  const [searchData, setSearchData] = useState(articleConverted);
+  const [searchData, setSearchData] = useState<article[]>([]);
   const [isSearch, setIsSearch] = useState(false);
-  console.log(articleConverted);
+
+  switch (location.pathname) {
+    case lungCancerPage:
+      articleData = lung_article as article[];
+      break;
+    case liverCancerPage:
+      articleData = hepatocellular_article as article[];
+      break;
+    case breastCancerPage:
+      articleData = breast_article as article[];
+      break;
+    case thyroidCancerPage:
+      articleData = thyroid_article as article[];
+      break;
+    case colorectalCancerPage:
+      articleData = colorectal_article as article[];
+      break;
+    default:
+      articleData = [];
+      break;
+  }
+
+  const articleConverted = Object.values(articleData);
   const pageSize = 5;
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: any) => {
     setCurrentPage(page);
   };
 
-  const handleFilterChange = (value) => {
+  const handleFilterChange = (value: any) => {
     setFilterValue(value);
     setIsSearch(false);
     setCurrentPage(1);
   };
 
-  const handleSearchDataChange = (data) => {
+  const handleSearchDataChange = (data: any) => {
     setSearchData(data);
     setIsSearch(true);
     setCurrentPage(1);
   };
 
-  const filteredArticles = articleConverted.filter((lung) => {
+  const filteredArticles = articleConverted.filter((article) => {
     if (filterValue === "All") {
       return true;
     }
-    const category = lung.Category ;
-    return category == filterValue;
+    return article.Category === parseInt(filterValue, 10);
   });
 
   const currentArticle = filteredArticles.slice(
@@ -67,7 +103,7 @@ function PaginationLung() {
       >
         <div style={{ flex: 1 }}>
           <SeachArticle
-            lungArticles={articleConverted}
+            Articles={articleConverted}
             setSearchData={handleSearchDataChange}
             setIsSearch={setIsSearch}
             paginate={handlePageChange}
@@ -135,4 +171,4 @@ function PaginationLung() {
   );
 }
 
-export default PaginationLung;
+export default PaginationArticle;

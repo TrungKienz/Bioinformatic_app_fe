@@ -1,11 +1,4 @@
 import React, { useState } from 'react';
-
-import * as lung_article from "data/dataArticleGeneMutation/lung_article_.json";
-import * as breast_article from "data/dataArticleGeneMutation/breast_article_.json";
-import * as colorectal_article from "data/dataArticleGeneMutation/colorectal_article_.json";
-import * as hepatocellular_article from "data/dataArticleGeneMutation/hepatocellular_article_.json";
-import * as thyroid_article from "data/dataArticleGeneMutation/thyroid_article_.json";
-
 const LungArticle = ({ article }) => {
   let check = [];
   for (let i = 0; i < article.length; i++) {
@@ -164,8 +157,8 @@ const LungArticle = ({ article }) => {
             {showAbstract[index] && (
               <p
                 style={{
-                  marginBottom: '5px',
-                  color: 'brown',
+                  marginBottom: '7px',
+                  color: 'black',
                   fontSize: '16px',
                   marginRight: '20px',
                 }}

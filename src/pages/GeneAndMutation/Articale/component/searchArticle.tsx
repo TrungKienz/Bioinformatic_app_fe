@@ -1,46 +1,44 @@
 import { Input } from 'antd';
-import { useState } from 'react';
+import { React, useState } from "react";
 
-export default function SeachArticle({ lungArticles, setSearchData, setIsSearch, paginate }) {
-  const [search, setSearch] = useState('');
-  const searchArticle = () => {
-    const trimmedSearch = search.trim();
 
-    if (trimmedSearch) {
-      setSearchData(
-        lungArticles.filter((lungArticle: { Heading_title: string; Abstract: string }) => {
-          if (lungArticle.Heading_title.toLowerCase().includes(search.toLowerCase())) {
-            return true;
-          } else if (lungArticle.Abstract.toLowerCase().includes(search.toLowerCase())) {
-            return true;
-          } else {
-            return false;
-          }
-        }),
-      );
-    } else {
-      setSearchData([]);
-    }
-    setIsSearch(true);
-    paginate(1);
-    setSearch('');
-  };
-  //   const handleKeyPress = (event) => {
-  //     if (event.key === 'Enter') {
-  //         searchArticle();
-  //     }
-  //   };
+export default function SeachArticle({ Articles, setSearchData, setIsSearch, paginate }) {
+    const [search, setSearch] = useState('');
+    const searchArticle = () => {
+      
+        const trimmedSearch = search.trim(); 
+  
+        if (trimmedSearch) {
+          
+            const ListArticles = Articles.filter((Article) => {
+                return((Article.Heading_title && Article.Heading_title.toLowerCase().includes(search.toLowerCase())) ||
+                (Article.Abstract && Article.Abstract.toLowerCase().includes(search.toLowerCase()))
+              );
+            }
+            );
+            setSearchData(ListArticles); 
+        } else {
+          setSearchData([]);
+        }
+        setIsSearch(true);
+        paginate(1);
+        setSearch("");
+      };
+//   const handleKeyPress = (event) => {
+//     if (event.key === 'Enter') {
+//         searchArticle();
+//     }
+//   };
 
   return (
-    <div style={{ padding: 10 }}>
+    
       <Input.Search
         placeholder="Tìm kiếm theo title/Abstract"
         onSearch={searchArticle}
         onChange={(e) => setSearch(e.target.value)}
         value={search}
         // onKeyPress={handleKeyPress}//Enter thì thực hiện hàm handleKeyPress
-        style={{ margin: '10px 0' }}
+        style={{ margin: '10px 0 10px 50px' }}
       />
-    </div>
   );
 }
