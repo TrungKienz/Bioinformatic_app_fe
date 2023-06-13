@@ -192,7 +192,7 @@ export default () => {
       render: (text, data) => (
         <>
           <Space size={'large'}>
-            {IDTestData.includes(data.patientID) ? (
+            {Array.from(IDTestData).includes(data.patientID) ? (
               <Tag color="success">
                 <Link
                   key="showDetail"
@@ -218,7 +218,6 @@ export default () => {
     },
   ];
 
- 
   return (
     <ProTable
       columns={columns}

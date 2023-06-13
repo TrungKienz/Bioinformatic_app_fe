@@ -1,15 +1,17 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Descriptions, List, message, Modal, Space, Tag } from 'antd';
+import { Button, Descriptions, Divider, List, message, Modal, Space, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import { server } from '../Api';
 import { testCaseEp } from '../EndPoint';
 
 const { confirm } = Modal;
+
 const ResultTest = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
+  const [dataPatient, setDataPatient] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
 
   const currentLocation = location.pathname;
@@ -44,6 +46,21 @@ const ResultTest = () => {
   fetchData();
 }, []);
 
+useEffect(() => {
+  const fetchTestData = async () => {
+    try {
+      const response = await fetch(`${testCaseEp}/find/${id}`);
+      const data = await response.json();
+      setDataPatient(data)
+    } catch (error) {
+      console.log(error);
+      // Handle error
+    }
+  };
+
+  fetchTestData();
+}, []);
+
   const dataList = Array.from({ length: data.length }).map((_, i) => {
     const RS_ID = data[i]['RS_ID'] === 'undefined' ? '-': data[i]['RS_ID'];
     const Gene = data[i]['Gene'];
@@ -67,17 +84,39 @@ const ResultTest = () => {
     };
   });
 
+
+
   return (
     <>
-      <div>
-        <h1>Thông tin chi tiết giải trình tự</h1>
-      </div>
+     <div>
+      {dataPatient.length > 0 && (
+        <Descriptions title="Thông tin chi tiết giải trình tự" size="middle">
+          <Descriptions.Item label="Mã xét nghiệm">
+            {dataPatient[0]?.patientID}
+          </Descriptions.Item>
+          <Descriptions.Item label="Tên bệnh nhân">
+            {dataPatient[0]?.patientName}
+          </Descriptions.Item>
+          <Descriptions.Item label="Mẫu mô">
+            {dataPatient[0]?.testName}
+          </Descriptions.Item>
+          <Descriptions.Item label="Mãu bệnh phẩm">
+            {dataPatient[0]?.primaryTissue}
+          </Descriptions.Item>
+          <Descriptions.Item label="Thông tin thuốc điều trị">
+            <Button type="primary">Thông tin chi tiết</Button>
+          </Descriptions.Item>
+        </Descriptions>
+      )}
+    </div>
+
       {/* <Input.Search
         placeholder="Search"
         allowClear
         onSearch={handleSearch}
         style={{ width: 400 }}
       /> */}
+      
       <List
         itemLayout="vertical"
         size="large"
@@ -97,19 +136,14 @@ const ResultTest = () => {
             <Descriptions>
               <Descriptions.Item label="Tên gene">{item.Gene}</Descriptions.Item>
               <Descriptions.Item label="Nucleotide">{item.Nucleotide}</Descriptions.Item>
-              <Descriptions.Item label="Protein">
-                {item.Protein}
-              </Descriptions.Item>
-              <Descriptions.Item label="Loại đột biến">
-                {item.VariationType}
-              </Descriptions.Item>
+              <Descriptions.Item label="Protein">{item.Protein}</Descriptions.Item>
+              <Descriptions.Item label="Loại đột biến">{item.VariationType}</Descriptions.Item>
               <Descriptions.Item label="Giá trị RS">{item.RS_ID}</Descriptions.Item>
               <Descriptions.Item label="Vị trí">{item.Position}</Descriptions.Item>
               <Descriptions.Item label="Đáp ứng thuốc">{item.DrugResponse}</Descriptions.Item>
-              <Descriptions.Item label="Variant Rate">
-                {item.VariantRate}
-              </Descriptions.Item>
+              <Descriptions.Item label="Variant Rate">{item.VariantRate}</Descriptions.Item>
               <Descriptions.Item label="Read Depth">{item.ReadDepth}</Descriptions.Item>
+              <Descriptions.Item label="Thông tin thuốc điều trị"><Button type="primary">Chi tiết</Button></Descriptions.Item>
             </Descriptions>
           </List.Item>
         )}
