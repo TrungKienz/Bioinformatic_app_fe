@@ -23,7 +23,7 @@ export default ({ ques }) => {
     return (
       <>
         {ques?.listChoice?.map((choice, choiceId) => {
-          if (choice.includes('Khác (ghi rõ):'))
+          if (choice.includes('Khác (ghi rõ):') || choice==="Loại thuốc")
             return (
               <div key={choiceId} className="sub-cell">
                 <Checkbox
@@ -35,7 +35,7 @@ export default ({ ques }) => {
                   }}
                 >
                   {choice}
-                </Checkbox>{' '}
+                </Checkbox>
                 <Input.TextArea
                   disabled={isView}
                   autoSize={true}

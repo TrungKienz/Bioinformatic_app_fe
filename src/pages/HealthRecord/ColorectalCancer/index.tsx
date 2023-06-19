@@ -1,6 +1,6 @@
 import HealthRecordService from '@/services/healthRecord';
 import { PageContainer, PageLoading } from '@ant-design/pro-components';
-import { useParams } from '@umijs/max';
+import { history, useParams,useModel } from '@umijs/max';
 import { Col, Form, Menu, MenuProps, Row } from 'antd';
 import { useEffect, useState } from 'react';
 import ControlButton from '../ControlButton';
@@ -14,6 +14,7 @@ import COLORECTAL from './colorectalTemplate';
 let CANCER = JSON.parse(JSON.stringify(COLORECTAL));
 
 export default () => {
+  const  { isView, toggleView }=useModel('viewPage');
   const [patientInfoForm] = Form.useForm();
   const [genTestForm] = Form.useForm();
   const [loading, setLoading] = useState(true);
@@ -48,6 +49,13 @@ export default () => {
       typeSample: '',
     });
 
+    const type=history.location.search.substring(6)
+    console.log("query param",type )
+    if (type==="edit"){
+      toggleView(false)
+    }else{
+      toggleView(true)
+    }
     if (params.id !== '0') {
       getHealthRecord(params, CANCER.typeHealthRecord);
     } else {
@@ -348,7 +356,7 @@ export default () => {
             <h5>Kết luận</h5>
             <CustomInput ques={CANCER.otherInfo.genTestResult.conclude} />
           </div>
-          <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />
+          {!isView && <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />}
         </PageContainer>
       </div>
     </div>

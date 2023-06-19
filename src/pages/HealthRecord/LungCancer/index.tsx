@@ -1,8 +1,8 @@
 import HealthRecordService from '@/services/healthRecord';
 import { PageContainer, PageLoading } from '@ant-design/pro-components';
-import { history, useParams } from '@umijs/max';
+import { history, useParams,useModel } from '@umijs/max';
 import { Col, Form, Menu, Row, Layout, MenuProps, Tabs } from 'antd';
-import { useRequest } from 'umi';
+
 import ControlButton from '../ControlButton';
 import CustomInput from '../CustomInput';
 import CustomTable from '../CustomTable';
@@ -18,6 +18,7 @@ import listMenu from '../Menu';
 
 let CANCER = JSON.parse(JSON.stringify(LUNG));
 export default () => {
+  const  { isView, toggleView }=useModel('viewPage');
   const [patientInfoForm] = Form.useForm();
   const [genTestForm] = Form.useForm();
   const [loading, setLoading] = useState(true)
@@ -52,7 +53,13 @@ export default () => {
       typeSample: '',
     });
 
-
+    const type=history.location.search.substring(6)
+    console.log("query param",type )
+    if (type==="edit"){
+      toggleView(false)
+    }else{
+      toggleView(true)
+    }
     if (params.id !== '0') {
 
       getHealthRecord(params, CANCER.typeHealthRecord);
@@ -63,7 +70,7 @@ export default () => {
     setLoading(false)
 
   }, [])
- 
+
   const changeMenu: MenuProps['onClick'] = (e) => {
     console.log('click ', e);
     setCurrent(e.key);
@@ -114,7 +121,7 @@ export default () => {
 
 
             <h4>I{'>'} HÀNH CHÍNH</h4>
-            <PatientInfo form={patientInfoForm} />
+            <PatientInfo form={patientInfoForm}/>
           </div>
           {CANCER?.generalInfo?.map((category, categoryId) => {
             return (
@@ -248,7 +255,7 @@ export default () => {
                     <td>SD</td>
                     <td>PR</td>
                     <td>CR</td>
-                    <td>PD</td>                
+                    <td>PD</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -296,7 +303,7 @@ export default () => {
             <GenTestForm form={genTestForm} cancer={CANCER} />
 
           </div>
-          <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />
+          {!isView && <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />}
         </PageContainer>
       </div></div>
 

@@ -26,16 +26,16 @@ export async function getInitialState(): Promise<{
     }
     return undefined;
   };
-  // If it is not a login page, execute
-  const { location } = history;
-  if (location.pathname !== loginPath) {
-    const currentUser = await fetchUserInfo();
-    return {
-      fetchUserInfo,
-      currentUser,
-      settings: defaultSettings as Partial<LayoutSettings>,
-    };
-  }
+  // // If it is not a login page, execute
+  // const { location } = history;
+  // if (location.pathname !== loginPath) {
+  //   const currentUser = await fetchUserInfo();
+  //   return {
+  //     fetchUserInfo,
+  //     currentUser,
+  //     settings: defaultSettings as Partial<LayoutSettings>,
+  //   };
+  // }
   return {
     fetchUserInfo,
     settings: defaultSettings as Partial<LayoutSettings>,

@@ -58,7 +58,7 @@ tr:nth-child(even) {
 .test {
     display: flex;
 }
-/* 
+/*
 .input {
     text-align: right;
 } */
@@ -69,4 +69,12 @@ tr:nth-child(even) {
 .half-width {
     display: inline-block;
     width: 40% !important;
+}
+
+
+.ant-input-disabled, .ant-input[disabled], .ant-input-affix-wrapper-disabled, .ant-radio-wrapper-disabled,.ant-checkbox-disabled+span{
+  color:rgba(0, 0, 0, 0.88);
+}
+.ant-input[disabled], .ant-input-disabled, .ant-input-affix-wrapper[disabled] {
+  background-color: #fff;
 }
