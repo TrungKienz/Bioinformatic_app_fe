@@ -1,6 +1,6 @@
+import { useModel } from '@umijs/max';
 import { Form, Input, Radio } from 'antd';
 import CustomTable from '../CustomTable';
-import { useModel } from '@umijs/max';
 
 const formItemLayout = {
   labelCol: {
@@ -19,10 +19,10 @@ const formItemLayout = {
   },
 };
 export default ({ form, cancer }) => {
-  const  { isView }=useModel('viewPage');
+  const { isView } = useModel('viewPage');
   return (
     <>
-      <Form {...formItemLayout} labelAlign="left" form={form}  disabled={isView}>
+      <Form {...formItemLayout} labelAlign="left" form={form} disabled={isView}>
         <Form.Item name="patientId" label="Mã bệnh nhân">
           <Input></Input>
         </Form.Item>

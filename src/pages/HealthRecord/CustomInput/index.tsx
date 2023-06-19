@@ -23,7 +23,7 @@ export default ({ ques }) => {
     return (
       <>
         {ques?.listChoice?.map((choice, choiceId) => {
-          if (choice.includes('Khác (ghi rõ):') || choice==="Loại thuốc")
+          if (choice.includes('Khác (ghi rõ):') || choice === 'Loại thuốc')
             return (
               <div key={choiceId} className="sub-cell">
                 <Checkbox
@@ -128,12 +128,12 @@ export default ({ ques }) => {
       >
         <Space direction={ques?.horizontal ? 'horizontal' : 'vertical'}>
           {ques?.listChoice?.map((choice, choiceId) => {
-              if (choice.includes('Khác (ghi rõ):'))
+            if (choice.includes('Khác (ghi rõ):'))
               return (
                 <div key={choiceId} className="sub-cell">
-                <Radio value={choice} key={choiceId} className='full-width'>
-                {choice}
-              </Radio>{' '}
+                  <Radio value={choice} key={choiceId} className="full-width">
+                    {choice}
+                  </Radio>{' '}
                   <Input.TextArea
                     disabled={isView}
                     autoSize={true}

@@ -1,6 +1,6 @@
 import HealthRecordService from '@/services/healthRecord';
 import { PageContainer, PageLoading } from '@ant-design/pro-components';
-import { history, useParams,useModel } from '@umijs/max';
+import { history, useModel, useParams } from '@umijs/max';
 import { Col, Form, Menu, Row } from 'antd';
 import { useEffect, useState } from 'react';
 import ControlButton from '../ControlButton';
@@ -13,7 +13,7 @@ import './thyroidCancer.css';
 import THYROID from './ThyroidTemplate';
 let CANCER = JSON.parse(JSON.stringify(THYROID));
 export default () => {
-  const  { isView, toggleView }=useModel('viewPage');
+  const { isView, toggleView } = useModel('viewPage');
   const [patientInfoForm] = Form.useForm();
   const [genTestForm] = Form.useForm();
   const params = useParams();
@@ -49,12 +49,12 @@ export default () => {
       typeSample: '',
     });
 
-    const type=history.location.search.substring(6)
-    console.log("query param",type )
-    if (type==="edit"){
-      toggleView(false)
-    }else{
-      toggleView(true)
+    const type = history.location.search.substring(6);
+    console.log('query param', type);
+    if (type === 'edit') {
+      toggleView(false);
+    } else {
+      toggleView(true);
     }
     if (params.id !== '0') {
       getHealthRecord(params, CANCER.typeHealthRecord);

@@ -1,8 +1,8 @@
 import HealthRecordService from '@/services/healthRecord';
-import { DeleteOutlined, EditOutlined, FileAddOutlined,EyeOutlined, } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, EyeOutlined, FileAddOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { history } from '@umijs/max';
-import { Button, Form, Input, Popconfirm, Space, Table,Tooltip } from 'antd';
+import { Button, Form, Input, Popconfirm, Space, Table, Tooltip } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import { FilterValue } from 'antd/es/table/interface';
 import { useEffect, useState } from 'react';
@@ -14,7 +14,7 @@ interface DataType {
   typeHealthRecord: string;
   healthRecordId: string;
 }
-const handleCreateHealthRecord = (typeRecord, id = 0,type) => {
+const handleCreateHealthRecord = (typeRecord, id = 0, type) => {
   switch (typeRecord) {
     case 'colorectal-record':
       history.push(`/health-record/colorectal-record/${id}?type=${type}`);
@@ -85,33 +85,31 @@ export default () => {
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-            <Tooltip title="Sửa bệnh án">
-
-          <Button
-            icon={<EditOutlined />}
-            onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id,"edit")}
+          <Tooltip title="Sửa bệnh án">
+            <Button
+              icon={<EditOutlined />}
+              onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id, 'edit')}
             />
-            </Tooltip>
-            <Tooltip title="Xem bệnh án">
-          <Button
-          type="primary" ghost
-          icon={<EyeOutlined />}
-          onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id,"view")}
-          />
+          </Tooltip>
+          <Tooltip title="Xem bệnh án">
+            <Button
+              type="primary"
+              ghost
+              icon={<EyeOutlined />}
+              onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id, 'view')}
+            />
           </Tooltip>
           <Tooltip title="Xóa bệnh án">
-
-
-          <Popconfirm
-            title="Xóa bệnh án"
-            description="Bạn có chắc muốn xóa bệnh án này?"
-            onConfirm={() => handleDeleteHealthRecord(record.typeHealthRecord, record.id)}
-            okText="Yes"
-            cancelText="No"
+            <Popconfirm
+              title="Xóa bệnh án"
+              description="Bạn có chắc muốn xóa bệnh án này?"
+              onConfirm={() => handleDeleteHealthRecord(record.typeHealthRecord, record.id)}
+              okText="Yes"
+              cancelText="No"
             >
-            <Button danger icon={<DeleteOutlined />} />
-          </Popconfirm>
-            </Tooltip>
+              <Button danger icon={<DeleteOutlined />} />
+            </Popconfirm>
+          </Tooltip>
         </Space>
       ),
     },
@@ -150,7 +148,7 @@ export default () => {
       <Button
         icon={<FileAddOutlined />}
         style={{ margin: '20px 0' }}
-        onClick={() => handleCreateHealthRecord(typeHealthRecord,0,"edit")}
+        onClick={() => handleCreateHealthRecord(typeHealthRecord, 0, 'edit')}
       >
         Thêm bệnh án
       </Button>

@@ -1,7 +1,7 @@
 import HealthRecordService from '@/services/healthRecord';
 import { PageContainer, PageLoading } from '@ant-design/pro-components';
-import { history, useParams,useModel } from '@umijs/max';
-import { Col, Form, Menu, Row, Layout, MenuProps, Tabs } from 'antd';
+import { history, useModel, useParams } from '@umijs/max';
+import { Col, Form, Menu, MenuProps, Row } from 'antd';
 
 import ControlButton from '../ControlButton';
 import CustomInput from '../CustomInput';
@@ -11,28 +11,25 @@ import PatientInfo from '../PatientInfo';
 import './lungCancer.css';
 import LUNG from './LungTemplate';
 
-
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import listMenu from '../Menu';
-
 
 let CANCER = JSON.parse(JSON.stringify(LUNG));
 export default () => {
-  const  { isView, toggleView }=useModel('viewPage');
+  const { isView, toggleView } = useModel('viewPage');
   const [patientInfoForm] = Form.useForm();
   const [genTestForm] = Form.useForm();
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [collapsed, setCollapsed] = useState(false);
   const [current, setCurrent] = useState('patient_info');
-  const getHealthRecord=async (id, type)=>{
-    let data= await HealthRecordService.getHealthRecord(id, type);
-    CANCER=data.data
+  const getHealthRecord = async (id, type) => {
+    let data = await HealthRecordService.getHealthRecord(id, type);
+    CANCER = data.data;
     patientInfoForm.setFieldsValue(CANCER.patientInfo);
     genTestForm.setFieldsValue(CANCER.genTestInfo);
-  }
+  };
   const params = useParams();
-  useEffect( () => {
-
+  useEffect(() => {
     patientInfoForm.setFieldsValue({
       address: '',
       dob: '',
@@ -53,23 +50,20 @@ export default () => {
       typeSample: '',
     });
 
-    const type=history.location.search.substring(6)
-    console.log("query param",type )
-    if (type==="edit"){
-      toggleView(false)
-    }else{
-      toggleView(true)
+    const type = history.location.search.substring(6);
+    console.log('query param', type);
+    if (type === 'edit') {
+      toggleView(false);
+    } else {
+      toggleView(true);
     }
     if (params.id !== '0') {
-
       getHealthRecord(params, CANCER.typeHealthRecord);
-
-    }else{
-      CANCER = JSON.parse(JSON.stringify(LUNG))
+    } else {
+      CANCER = JSON.parse(JSON.stringify(LUNG));
     }
-    setLoading(false)
-
-  }, [])
+    setLoading(false);
+  }, []);
 
   const changeMenu: MenuProps['onClick'] = (e) => {
     console.log('click ', e);
@@ -93,21 +87,21 @@ export default () => {
     console.log('response', demo);
     console.log(history);
   };
-  if (loading) return <PageLoading/>
+  if (loading) return <PageLoading />;
   return (
-    <div className='cancer-page'>
-      <div
-        className={collapsed ? 'sidebar-1' : 'sidebar'}
-
-      >
-
-
-
-        <Menu onClick={changeMenu} className='menu' inlineCollapsed={collapsed} mode="inline" selectedKeys={[current]} defaultSelectedKeys={['patient_info']} items={listMenu} >
-
-        </Menu>
-      </div >
-      <div className='content'>
+    <div className="cancer-page">
+      <div className={collapsed ? 'sidebar-1' : 'sidebar'}>
+        <Menu
+          onClick={changeMenu}
+          className="menu"
+          inlineCollapsed={collapsed}
+          mode="inline"
+          selectedKeys={[current]}
+          defaultSelectedKeys={['patient_info']}
+          items={listMenu}
+        ></Menu>
+      </div>
+      <div className="content">
         {/* <div onClick={() => setCollapsed(!collapsed)} className='expand' >{'>'} button</div> */}
         <PageContainer
           header={{
@@ -118,10 +112,8 @@ export default () => {
             (*Chứa toàn bộ thông tin bệnh nhân từ khi phát hiện bệnh đến ngày bắt đầu theo dõi)
           </p>
           <div className={current !== 'patient_info' ? 'none' : ''}>
-
-
             <h4>I{'>'} HÀNH CHÍNH</h4>
-            <PatientInfo form={patientInfoForm}/>
+            <PatientInfo form={patientInfoForm} />
           </div>
           {CANCER?.generalInfo?.map((category, categoryId) => {
             return (
@@ -141,16 +133,24 @@ export default () => {
                                   item.length === 1
                                     ? '100%'
                                     : item.length === 2 && listId === 1
-                                      ? '2'
-                                      : '1'
+                                    ? '2'
+                                    : '1'
                                 }
                                 key={listId}
                               >
                                 {listQuestion.map((ques, quesId) => {
-                                  if (ques?.question && ques.type !== 'title' && ques.type !== 'none') {
+                                  if (
+                                    ques?.question &&
+                                    ques.type !== 'title' &&
+                                    ques.type !== 'none'
+                                  ) {
                                     return (
                                       <Row key={quesId}>
-                                        <Col span={24} style={{ minHeight: '48px' }} className="cell">
+                                        <Col
+                                          span={24}
+                                          style={{ minHeight: '48px' }}
+                                          className="cell"
+                                        >
                                           {ques.question}
                                         </Col>
                                         <Col span={18}>
@@ -198,7 +198,8 @@ export default () => {
           <div className={current !== 'assessment_response_treatment' ? 'none' : ''}>
             <h4>VII{'>'} ĐÁNH GIÁ ĐÁP ỨNG ĐIỀU TRỊ </h4>
             <div>
-              38. Triệu chứng lâm sàng sau điều trị thuốc đích: Mức độ: 0. Không 1. Ít 2. Vừa 3. Nhiều
+              38. Triệu chứng lâm sàng sau điều trị thuốc đích: Mức độ: 0. Không 1. Ít 2. Vừa 3.
+              Nhiều
               <table>
                 <thead>
                   <tr>
@@ -236,11 +237,13 @@ export default () => {
               <p>• PS 0: Hoạt động bình thường.</p>
               <p>• PS 1: Bị hạn chế hoạt động nặng, nhưng đi lại được và làm được việc nhẹ.</p>
               <p>
-                • PS 2: Đi lại được nhưng không làm được các việc, hoàn toàn chăm sóc được bản thân, phải
-                nghỉ ngơi dưới 50% thời gian thức.
+                • PS 2: Đi lại được nhưng không làm được các việc, hoàn toàn chăm sóc được bản thân,
+                phải nghỉ ngơi dưới 50% thời gian thức.
               </p>
               <p>• PS 3: Chỉ chăm sóc bản thân tối thiểu, phải nghỉ trên 50% thời gian.</p>
-              <p>• PS 4: Mất khả năng chăm sóc bản thân và hoàn toàn nằm nghỉ tại giường hoặc ghế.</p>
+              <p>
+                • PS 4: Mất khả năng chăm sóc bản thân và hoàn toàn nằm nghỉ tại giường hoặc ghế.
+              </p>
               <p>• PS 5: Bệnh nhân tử vong.</p>
               39. Tỷ lệ đáp ứng sau điều trị đích:
               <table>
@@ -280,7 +283,8 @@ export default () => {
                 </tbody>
               </table>
               <p>
-                SD: stable deasease; PR: Partial respone; CR: Complete respone; PD: Progression deasease
+                SD: stable deasease; PR: Partial respone; CR: Complete respone; PD: Progression
+                deasease
               </p>
               40.CEA
               <CustomTable record={CANCER.otherInfo.CEA} isAddRow={false}></CustomTable>
@@ -289,7 +293,12 @@ export default () => {
                   <Row key={quesId} gutter={[16, 40]} style={{ marginTop: '8px' }}>
                     <Col span={8}> {ques?.question}</Col>
                     <Col span={16}>
-                      <CustomInput quesId={quesId} ques={ques} CANCER={CANCER} templateInfo={ques} />
+                      <CustomInput
+                        quesId={quesId}
+                        ques={ques}
+                        CANCER={CANCER}
+                        templateInfo={ques}
+                      />
                     </Col>
                   </Row>
                 );
@@ -297,16 +306,12 @@ export default () => {
             </div>
           </div>
           <div className={current !== 'gen_test' ? 'none' : ''}>
-
-
             <h4>VIII{'>'} THÔNG TIN XÉT NGHIỆM DI TRUYỀN</h4>
             <GenTestForm form={genTestForm} cancer={CANCER} />
-
           </div>
           {!isView && <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />}
         </PageContainer>
-      </div></div>
-
-
+      </div>
+    </div>
   );
 };

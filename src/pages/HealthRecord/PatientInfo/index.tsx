@@ -1,5 +1,5 @@
-import { Form, Input, Radio } from 'antd';
 import { useModel } from '@umijs/max';
+import { Form, Input, Radio } from 'antd';
 
 const formItemLayout = {
   labelCol: {
@@ -19,14 +19,14 @@ const formItemLayout = {
 };
 export default ({ form }) => {
   // const [generalInfoForm] = Form.useForm();
-  const  { isView }=useModel('viewPage');
+  const { isView } = useModel('viewPage');
   return (
-    <Form {...formItemLayout} form={form} labelAlign="left"  disabled={isView}>
+    <Form {...formItemLayout} form={form} labelAlign="left" disabled={isView}>
       <Form.Item name="healthRecordId" label="Mã bệnh án">
-        <Input  disabled={isView}></Input>
+        <Input disabled={isView}></Input>
       </Form.Item>
       <Form.Item name="fullname" label="Họ và tên">
-        <Input ></Input>
+        <Input></Input>
       </Form.Item>
       <Form.Item name="dob" label="Năm sinh">
         <Input type="date"></Input>
