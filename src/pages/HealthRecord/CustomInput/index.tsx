@@ -27,7 +27,6 @@ export default ({ ques }) => {
             return (
               <div key={choiceId} className="sub-cell">
                 <Checkbox
-                  className={isView ? 'is-disabled' : ''}
                   disabled={isView}
                   defaultChecked={ques.answer[choiceId]}
                   onChange={(e) => {
@@ -38,7 +37,6 @@ export default ({ ques }) => {
                 </Checkbox>
                 <Input.TextArea
                   disabled={isView}
-                  autoSize={true}
                   defaultValue={ques?.otherValue}
                   onChange={(e) => handleOnChangeText(e.target.value, true)}
                 />

@@ -66,7 +66,7 @@ export default () => {
   };
   const columns: ColumnsType<DataType> = [
     {
-      title: 'Mã bệnh án',
+      title: 'Mã hồ sơ',
       dataIndex: 'healthRecordId',
       key: 'healthRecordId',
     },
@@ -85,13 +85,13 @@ export default () => {
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <Tooltip title="Sửa bệnh án">
+          <Tooltip title="Sửa hồ sơ">
             <Button
               icon={<EditOutlined />}
               onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id, 'edit')}
             />
           </Tooltip>
-          <Tooltip title="Xem bệnh án">
+          <Tooltip title="Xem hồ sơ">
             <Button
               type="primary"
               ghost
@@ -99,10 +99,10 @@ export default () => {
               onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id, 'view')}
             />
           </Tooltip>
-          <Tooltip title="Xóa bệnh án">
+          <Tooltip title="Xóa hồ sơ">
             <Popconfirm
-              title="Xóa bệnh án"
-              description="Bạn có chắc muốn xóa bệnh án này?"
+              title="Xóa hồ sơ"
+              description="Bạn có chắc muốn xóa hồ sơ này?"
               onConfirm={() => handleDeleteHealthRecord(record.typeHealthRecord, record.id)}
               okText="Yes"
               cancelText="No"
@@ -137,8 +137,8 @@ export default () => {
   return (
     <PageContainer>
       <Form {...layout} layout="inline" onFinish={handleSearch}>
-        <Form.Item label="Mã bệnh án" name="healthRecordId">
-          <Input placeholder="Hãy nhập mã bệnh án"></Input>
+        <Form.Item label="Mã hồ sơ" name="healthRecordId">
+          <Input placeholder="Hãy nhập mã hồ sơ"></Input>
         </Form.Item>
 
         <Form.Item>
@@ -150,7 +150,7 @@ export default () => {
         style={{ margin: '20px 0' }}
         onClick={() => handleCreateHealthRecord(typeHealthRecord, 0, 'edit')}
       >
-        Thêm bệnh án
+        Thêm hồ sơ
       </Button>
       <Table columns={columns} dataSource={post} />
     </PageContainer>
