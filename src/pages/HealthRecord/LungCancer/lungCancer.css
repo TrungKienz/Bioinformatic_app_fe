@@ -75,6 +75,6 @@ tr:nth-child(even) {
 .ant-input-disabled, .ant-input[disabled], .ant-input-affix-wrapper-disabled, .ant-radio-wrapper-disabled,.ant-checkbox-disabled+span{
   color:rgba(0, 0, 0, 0.88);
 }
-.ant-input[disabled], .ant-input-disabled, .ant-input-affix-wrapper[disabled] {
-  background-color: #fff;
+.ant-input, .ant-input-affix-wrapper-disabled{
+  background-color: #fff !important;
 }
