@@ -92,7 +92,7 @@ export default [
       {
         path: '/liver-cancer/overview',
         name: 'Tổng quan',
-        component: './Admin',
+        component: './OverView',
       },
       {
         path: '/liver-cancer/gene-mutation',
@@ -138,7 +138,7 @@ export default [
       {
         path: '/breast-cancer/overview',
         name: 'Tổng quan',
-        component: './Admin',
+        component: './OverView',
       },
       {
         path: '/breast-cancer/gene-mutation',
@@ -181,9 +181,9 @@ export default [
         path: '/thyroid-cancer',
       },
       {
-        path: '/thyroid-cancer/ovẻview',
+        path: '/thyroid-cancer/overview',
         name: 'Tổng quan',
-        component: './Admin',
+        component: './OverView',
       },
       {
         path: '/thyroid-cancer/gene-mutation',
@@ -228,7 +228,7 @@ export default [
       {
         path: '/colorectal-cancer/overview',
         name: 'Tổng quan',
-        component: './Admin',
+        component: './OverView',
       },
       {
         path: '/colorectal-cancer/gene-mutation',

@@ -1,11 +1,11 @@
 import { PageContainer } from '@ant-design/pro-components';
 import React from 'react';
-import './style.scss'
+import '../style.scss'
 
 const LungOverview = () => {
   return (
     <PageContainer>
-      <h1>Ung thư phổi</h1>
+      <h1>UNG THƯ PHỔI</h1>
       <h2>1. Dịch tễ</h2>
       <p>
         Ung thư phổi (UTP) là một dạng ung thư phổ biến và đã gây tử vong trong nhiều thập kỷ qua,
@@ -26,6 +26,7 @@ const LungOverview = () => {
       <p>- Yếu tố nguy cơ:</p>
       <p>
         <b>1. Thuốc lá:</b>
+      </p>
         <ul>
           <li>
             - Hút thuốc được xem là yếu tố nguy cơ chính gây ra ung thư phổi. Trong khói thuốc lá, có chứa nhiều hydrocarbon thơm, trong đó chất 3 - 4 Benzopyren là chất gây ung thư đã được chứng minh trên thực nghiệm.
@@ -37,45 +38,41 @@ const LungOverview = () => {
             - Người không hút thuốc cũng có nguy cơ mắc ung thư phổi do tiếp xúc với khói thuốc (hút thuốc thụ động). Nguy cơ mắc bệnh tăng lên khoảng 20–30%  đối với những người sống cùng với người hút thuốc và 16–19% đối với những người làm việc trong môi trường có khói thuốc.[4]
           </li>
         </ul>
-      </p>
       <p>
         <b>2. Amiăng</b>
+      </p>
         <ul>
           <li>
             - Amiăng là một chất gây ra nhiều bệnh phổi khác nhau, bao gồm ung thư phổi, thường gặp ở những công nhân sản xuất tấm lợp fibro xi măng. Hút thuốc lá và tiếp xúc với amiăng làm tăng nguy cơ mắc ung thư phổi [5]. Đối với những người hút thuốc và tiếp xúc với amiăng, nguy cơ mắc bệnh tăng từ 45 -90 lần so với người không tiếp xúc.[6] 
           </li>
         </ul>
-      </p>
       <p>
         <b>3. Ô nhiễm không khí</b>
+      </p>
         <ul>
           <li>
           Khí quyển chứa nhiều chất gây ung thư như 3-4 benzopyren, hydrocarbon thơm đa vòng, các muối như thạch tín, arsen, niken và crom. Các hạt vật chất nhỏ (bụi PM2.5) và các chất độc có trong khí thải xe cộ, nhà máy,... liên quan đến tăng nguy cơ nhẹ mắc ung thư phổi[7]. Theo ước tính, ô nhiễm không khí ngoài trời là một trong những nguyên nhân gây ra một số trường hợp mắc ung thư phổi.
           </li>
-        </ul>
-      </p>
-      <p>
-      Ngoài ra có thể kể đến những căn nguyên khác như điều kiện lao động, nhiễm độc nước, nhiễm phóng xạ, chế độ ăn uống, thói quen sinh hoạt, yếu tố di truyền…. 
-      </p>
-      <p>
-      Trong đó có căn nguyên di truyền đang ngày càng được nghiên cứu và làm rõ ở mức độ tế bào và phân tử, cụ thể là đi sâu vào nghiên cứu những đột biến nhiễm sắc thể, đột biến gen liên quan.
-      </p>
-      <p>
-        <ul>
           <li>
-            Khoảng 8% số ca ung thư phổi có nguyên nhân tới từ các yếu tố di truyền.[8] 
+          Ngoài ra có thể kể đến những căn nguyên khác như điều kiện lao động, nhiễm độc nước, nhiễm phóng xạ, chế độ ăn uống, thói quen sinh hoạt, yếu tố di truyền…. 
+          </li>
+          <li>
+          Trong đó có căn nguyên di truyền đang ngày càng được nghiên cứu và làm rõ ở mức độ tế bào và phân tử, cụ thể là đi sâu vào nghiên cứu những đột biến nhiễm sắc thể, đột biến gen liên quan.
+          </li>
+          <li>
+          Khoảng 8% số ca ung thư phổi có nguyên nhân tới từ các yếu tố di truyền.[8] 
           </li>
           <li>
             Một người có quan hệ họ hàng với người bị ung thư phổi thì nguy cơ mắc bệnh sẽ tăng lên 2,4 lần. Điều này khả năng là do sự kết hợp gen.[9] 
           </li>
         </ul>
-      </p>
       <h2>3. Lâm sàng</h2>
       <p>
         Triệu chứng sớm của ung thư phổi thường nghèo nàn và không đặc hiệu, thường dễ nhầm lẫn với các bệnh lý hô hấp khác. Bệnh thường được phát hiện tình cờ khi bệnh nhân đi khám định kỳ thông qua XQ phổi hoặc chụp CT lồng ngực. 
       </p>
       <p>
         Giai đoạn muộn bệnh có triệu chứng lâm sàng rõ rệt:
+      </p>
         <ul>
           <li>
             <b>Triệu chứng hô hấp</b> 
@@ -132,7 +129,7 @@ const LungOverview = () => {
             &emsp; - Hội chứng tăng tiết hormone chống bài niệu.
           </li>
         </ul>
-      </p>
+      
       <h2>4. Cận lâm sàng</h2>
       <p>
         - XQ phổi thẳng nghiêng : Là phương pháp chẩn đoán ban đầu hiệu quả, đơn giản, rẻ tiền giúp phát hiện sớm các tổn thương ung thư phổi. Một số hình ảnh nghi ngờ trên XQ như: khối, nốt mờ trên nhu mô, hình ảnh tràn dịch màng phổi, xẹp phổi....
@@ -161,12 +158,13 @@ const LungOverview = () => {
       </p>
       <p>
         - Tế bào học
+      </p>
         <ul>
           <li>+ Hạch thượng đòn</li>
           <li>+ Dịch màng phổi, màng tim</li>
           <li>+ Các vị trí di căn khác gần bề mặt da</li>
         </ul>
-      </p>
+      
       <p>
         - PET/CT: Là phương pháp chẩn đoán hình ảnh toàn diện nhất để đánh giá ung thư phổi. PET/CT giúp xác định khối u phổi nguyên phát, các tổn thương di căn hạch trung thất, các tổn thương di căn xa tại các vị trí khác trên cơ thể chỉ với 1 lần chụp. Từ đó giúp cho việc chẩn đoán bệnh, chẩn đoán giai đoạn chính xác để điều trị đúng và có hiệu quả hơn.
       </p>
@@ -179,19 +177,18 @@ const LungOverview = () => {
       <p>- Các thăm dò chức năng: điện tâm đồ, siêu âm tim, đo chức năng hô hấp</p>
       <p>- XN gen: Xác định đột biến gen giúp chỉ định thuốc điều trị đích…</p>
       <h2>Tài liệu tham khảo: </h2>
-      <p>
-        <ul>
-          <li>1.	Brown, K. and S. KeatsJJ, Chapter 8 Holland–Frei CancerMedicine . People’s Medical Publishing House USA. 2010.</li>
-          <li>2.	Peto, R., J. Boreham, and A.D. Lopez, Mortality from smoking in developed countries. 1996: Oxford university press.</li>
-          <li>3.	Ruano-Ravina, A., A. Figueiras, and J. Barros-Dios, Lung cancer and related risk factors: an update of the literature. Public health, 2003. 117(3): p. 149-156.</li>
-          <li>4.	Organization, W.H., Frequently asked questions about second hand smoke. 2011.</li>
-          <li>5.	O'Reilly, K.M., et al., Asbestos-related lung disease. American family physician, 2007. 75(5): p. 683-688.</li>
-          <li>6.	Tobias, J.S. and D. Hochhauser, Cancer and its management. 2014: John Wiley & Sons.</li>
-          <li>7.	Goldberg, M., A systematic review of the relation between long-term exposure to ambient air pollution and chronic diseases. Reviews on environmental health, 2008. 23(4): p. 243-298.</li>
-          <li>8.	Yang, I.A., J.W. Holloway, and K.M. Fong, Genetic susceptibility to lung cancer and co-morbidities. Journal of thoracic disease, 2013. 5(Suppl 5): p. S454.</li>
-          <li>9.	Kern, J. and G. McLennan, Fishman's Pulmonary Diseases and Disorders. 1802, McGraw-Hill. hlm.</li>
-        </ul>
-      </p>
+      <ul>
+        <li>1.	Brown, K. and S. KeatsJJ, Chapter 8 Holland–Frei CancerMedicine . People’s Medical Publishing House USA. 2010.</li>
+        <li>2.	Peto, R., J. Boreham, and A.D. Lopez, Mortality from smoking in developed countries. 1996: Oxford university press.</li>
+        <li>3.	Ruano-Ravina, A., A. Figueiras, and J. Barros-Dios, Lung cancer and related risk factors: an update of the literature. Public health, 2003. 117(3): p. 149-156.</li>
+        <li>4.	Organization, W.H., Frequently asked questions about second hand smoke. 2011.</li>
+        <li>5.	O'Reilly, K.M., et al., Asbestos-related lung disease. American family physician, 2007. 75(5): p. 683-688.</li>
+        <li>6.	Tobias, J.S. and D. Hochhauser, Cancer and its management. 2014: John Wiley & Sons.</li>
+        <li>7.	Goldberg, M., A systematic review of the relation between long-term exposure to ambient air pollution and chronic diseases. Reviews on environmental health, 2008. 23(4): p. 243-298.</li>
+        <li>8.	Yang, I.A., J.W. Holloway, and K.M. Fong, Genetic susceptibility to lung cancer and co-morbidities. Journal of thoracic disease, 2013. 5(Suppl 5): p. S454.</li>
+        <li>9.	Kern, J. and G. McLennan, Fishman's Pulmonary Diseases and Disorders. 1802, McGraw-Hill. hlm.</li>
+      </ul>
+      
     </PageContainer>
   );
 };

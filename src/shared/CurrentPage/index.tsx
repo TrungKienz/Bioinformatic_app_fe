@@ -1,3 +1,8 @@
+const lungOverviewPage = '/lung-cancer/overview';
+const liverOverviewPage = '/liver-cancer/overview';
+const breastOverviewPage = '/breast-cancer/overview';
+const thyroidOverviewPage = '/thyroid-cancer/overview';
+const colorectalOverviewPage = '/colorectal-cancer/overview';
 const lungCancerPage = '/lung-cancer/gene-mutation';
 const liverCancerPage = '/liver-cancer/gene-mutation';
 const breastCancerPage = '/breast-cancer/gene-mutation';
@@ -12,35 +17,20 @@ const colorectalDrugPage = '/colorectal-cancer/drug';
 export const currentPage = (currentLocation: string) => {
   let resultLocation;
   switch (currentLocation) {
-    case lungCancerPage:
+    case lungOverviewPage || lungCancerPage || lungDrugPage:
       resultLocation = 'lungCancerPage';
       break;
-    case liverCancerPage:
+    case liverOverviewPage || liverCancerPage || liverDrugPage:
       resultLocation = 'liverCancerPage';
       break;
-    case breastCancerPage:
+    case breastOverviewPage || breastCancerPage || breastDrugPage:
       resultLocation = 'breastCancerPage';
       break;
-    case thyroidCancerPage:
+    case thyroidOverviewPage || thyroidCancerPage || thyroidDrugPage:
       resultLocation = 'thyroidCancerPage';
       break;
-    case colorectalCancerPage:
+    case colorectalOverviewPage || colorectalCancerPage || colorectalDrugPage:
       resultLocation = 'colorectalCancerPage';
-      break;
-    case lungDrugPage:
-      resultLocation = 'lungDrugPage';
-      break;
-    case liverDrugPage:
-      resultLocation = 'liverDrugPage';
-      break;
-    case breastDrugPage:
-      resultLocation = 'breastDrugPage';
-      break;
-    case thyroidDrugPage:
-      resultLocation = 'thyroidDrugPage';
-      break;
-    case colorectalDrugPage:
-      resultLocation = 'colorectalDrugPag';
       break;
     default:
       resultLocation = '';

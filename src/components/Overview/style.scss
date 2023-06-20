@@ -16,13 +16,14 @@ p {
     text-indent: 20px;
 }
 
-// ul {
-//     list-style:outside;
-// }
+ul{
+    li {
+        line-height: 1.5;
+        font-size: 17px;
+        text-indent: 20px;
+    }  
+} 
+
 .hinh1-overview {
     width: 100%;
-    // display: flex;
-    // img {
-    //     padding-left: 38%;
-    // }
 }

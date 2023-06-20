@@ -12,7 +12,7 @@ import { currentPage } from '@/shared/CurrentPage';
 const TopGene = () => {
   const [data, setData] = useState([]);
   
-  const locationPage = currentPage(location.pathname)
+  const locationPage = currentPage(location.pathname);
   let URL = '';
 
   switch (locationPage) {

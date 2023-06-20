@@ -12,11 +12,11 @@ import { Link } from '@umijs/max';
 const { confirm } = Modal;
 export default () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [totalPages, setTotalPages] = useState(1);
-  const [IDTestData, setIDTestData] = useState([]);
-  const [resultStatus, setResultStatus] = useState([]);
+  const [IDTestData, setIDTestData] = useState<any[]>([]);
+  const [resultStatus, setResultStatus] = useState<any[]>([]);
   
   // const handleID = (id: string) => {
   //   SetId(id);

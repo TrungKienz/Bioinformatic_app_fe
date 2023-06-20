@@ -32,7 +32,7 @@ const options: Option[] = [
 
 const DrugInformation = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [dataDrug, setDataDrug] = useState([]);
+  const [dataDrug, setDataDrug] = useState<any[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   // switch (location.pathname) {
   //   case lungCancerPage:
@@ -77,16 +77,16 @@ const DrugInformation = () => {
   };
   const data = Array.from({ length: dataDrug.length }).map((_, i) => {
     const pmid = dataDrug[i]['pmid'];
-    const geneName = dataDrug[i]['gene_name'];
-    const geneLocation = dataDrug[i]['genomic_position'];
-    const nucleotitMutation = dataDrug[i]['cds_mutation'];
-    const axitaminMutation = dataDrug[i]['aa_mutation'];
-    const rsValue = dataDrug[i]['rs_value'];
-    const drugName = dataDrug[i]['therapies'];
-    const drugResponce = dataDrug[i]['response_to_drug'];
+    const geneName = dataDrug[i]['Gene name'];
+    const geneLocation = dataDrug[i]['Genomic Position'];
+    const nucleotitMutation = dataDrug[i]['CDS Mutation'];
+    const axitaminMutation = dataDrug[i]['AA Mutation'];
+    const rsValue = dataDrug[i]['rs valuesource_db'];
+    const drugName = dataDrug[i]['Therapies'];
+    const drugResponce = dataDrug[i]['Response to Drug'];
     const drugClassification = dataDrug[i]['therapy_rank'];
-    const diseaseName = dataDrug[i]['disease'];
-    const description = dataDrug[i]['description'];
+    const diseaseName = dataDrug[i]['Disease'];
+    const description = dataDrug[i]['Description'];
     const pmidSplitArray = pmid.split(':');
     const href =
       pmid && pmidSplitArray[0] === 'PubMed'
@@ -124,12 +124,12 @@ const DrugInformation = () => {
       <Form onFinish={handleSearch}>
         <Row>
           <Col span={8}>
-            <Form.Item name='region' label='Khu vực'>
+            <Form.Item name='region' label='Khu vực' initialValue={'asia'} >
               <Cascader
                 options={options}
                 expandTrigger="hover"
                 style={{ width: 100}}
-                defaultValue={'asia'} 
+                
                 // onChange={onChange}
               />
             </Form.Item>
