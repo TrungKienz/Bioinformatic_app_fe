@@ -163,20 +163,11 @@ export default () => {
       align: 'left',
       render: (text, data) => (
         <>
-          {/* <Space size={'large'}>
-            <Link key="showDetail" style={{ textDecoration: 'underline' }} to={`/tests/${data.id}`}>
-              Chi tiết
-            </Link>
-            <a
-              key="delete"
-              style={{ color: 'red', textDecoration: 'underline' }}
-              onClick={() => handleDelete(data.id, data.runID)}
-            >
-              Xóa
-            </a>
-          </Space> */}
           <Space size={'large'}>
             <UploadTestCase patientID={data.patientID} />
+            <Button type="primary" onClick={() => handleDelete(data.id, data.patientID)}>
+              Sửa
+            </Button>
             <Button type="primary" danger onClick={() => handleDelete(data.id, data.patientID)}>
               Xóa
             </Button>
@@ -189,31 +180,29 @@ export default () => {
       title: 'Trạng thái',
       dataIndex: '',
       align: 'center',
-      render: (text, data) => (
+      render: (text: any, data: any) => (
         <>
           <Space size={'large'}>
-            {Array.from(IDTestData).includes(data.patientID) ? (
+            {Array.from(IDTestData as any[]).includes(data.patientID) ? (
               <Tag color="success">
                 <Link
                   key="showDetail"
-                  // style={{ textDecoration: 'underline' }}
                   to={`/tests/detail/${data.patientID}`}
                 >
                   Chi tiết
                 </Link>
               </Tag>
-            ) : (resultStatus.includes(data.patientID))? 
-            (
+            ) : (Array.isArray(resultStatus) && resultStatus.includes(data.patientID)) ? (
               <Tag color='processing'>
                 Đang xử lý  ...
               </Tag>
-            )
-            : (
+            ) : (
               <Tag color='warning'> Chưa có dữ liệu ...</Tag>
             )}
           </Space>
         </>
       ),
+      
       
     },
   ];

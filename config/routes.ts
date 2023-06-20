@@ -32,6 +32,7 @@ export default [
     name: 'Giới thiệu',
     icon: '/icons/introduce-icon.png',
     component: './Welcome',
+    // access: ['canDoctor','canAdmin'],
   },
   {
     path: '/lung-cancer',
@@ -44,6 +45,11 @@ export default [
       {
         path: '/lung-cancer/overview',
         name: 'Tổng quan',
+        component: './OverView',
+      },
+      {
+        path: '/lung-cancer/gene-mutation',
+        name: 'Gen đột biến',
         component: './CancerInformation',
       },
       {
@@ -52,7 +58,7 @@ export default [
         component: './Admin',
       },
       {
-        path: '/lung-cancer/gene-mutation',
+        path: '/lung-cancer/article',
         name: 'Bài báo liên quan',
         component: './GeneAndMutation',
       },
@@ -86,6 +92,11 @@ export default [
       {
         path: '/liver-cancer/overview',
         name: 'Tổng quan',
+        component: './Admin',
+      },
+      {
+        path: '/liver-cancer/gene-mutation',
+        name: 'Gen đột biến',
         component: './CancerInformation',
       },
       {
@@ -94,7 +105,7 @@ export default [
         component: './Admin',
       },
       {
-        path: '/liver-cancer/gene-mutation',
+        path: '/liver-cancer/article',
         name: 'Bài báo liên quan',
         component: './GeneAndMutation',
       },
@@ -127,6 +138,11 @@ export default [
       {
         path: '/breast-cancer/overview',
         name: 'Tổng quan',
+        component: './Admin',
+      },
+      {
+        path: '/breast-cancer/gene-mutation',
+        name: 'Gen đột biến',
         component: './CancerInformation',
       },
       {
@@ -135,7 +151,7 @@ export default [
         component: './Admin',
       },
       {
-        path: '/breast-cancer/gene-mutation',
+        path: '/breast-cancer/article',
         name: 'Bài báo liên quan',
         component: './GeneAndMutation',
       },
@@ -165,8 +181,13 @@ export default [
         path: '/thyroid-cancer',
       },
       {
-        path: '/thyroid-cancer/overview',
+        path: '/thyroid-cancer/ovẻview',
         name: 'Tổng quan',
+        component: './Admin',
+      },
+      {
+        path: '/thyroid-cancer/gene-mutation',
+        name: 'Gen đột biến',
         component: './CancerInformation',
       },
       {
@@ -175,7 +196,7 @@ export default [
         component: './Admin',
       },
       {
-        path: '/thyroid-cancer/gene-mutation',
+        path: '/thyroid-cancer/article',
         name: 'Bài báo liên quan',
         component: './GeneAndMutation',
       },
@@ -202,8 +223,16 @@ export default [
     icon: '/icons/colorectal-icon.png',
     routes: [
       {
+        path: '/colorectal-cancer',
+      },
+      {
         path: '/colorectal-cancer/overview',
         name: 'Tổng quan',
+        component: './Admin',
+      },
+      {
+        path: '/colorectal-cancer/gene-mutation',
+        name: 'Gen đột biến',
         component: './CancerInformation',
       },
       {
@@ -212,7 +241,7 @@ export default [
         component: './Admin',
       },
       {
-        path: '/colorectal-cancer/gene-mutation',
+        path: '/colorectal-cancer/article ',
         name: 'Bài báo liên quan',
         component: './GeneAndMutation',
       },
@@ -266,25 +295,6 @@ export default [
     component: './DrugInformation/articles',
     hideInMenu: true,
   },
-  // {
-  //   name: 'Quản lý bệnh nhân',
-  //   icon: '/icons/patient_icon.png',
-  //   path: '/patient-management',
-  //   access: 'canAdmin',
-  //   routes: [
-  //     {
-  //       path: '/patient-management/patient-information',
-  //       name: 'Thêm thông tin bệnh nhân',
-  //       access: 'canAdmin',
-  //       component: './PatientManagement',
-  //     },
-  //     {
-  //       path: '/patient-management/patient-list',
-  //       name: 'Danh sách bệnh nhân',
-  //       access: 'canAdmin',
-  //       component: '',
-  //     },
-  //   ],
   {
     name: 'Quản lý bệnh nhân',
     icon: '/icons/patient_icon.png',
@@ -305,12 +315,6 @@ export default [
       },
     ],
   },
-  // {
-  //   name: 'Quản lý bệnh án',
-  //   icon: '/icons/health-record.png',
-  //   path: '/health-record/:typeHealthRecord',
-  //   component: './HealthRecord/',
-  // },
   {
     name: 'Bệnh án ung thư trực tràng',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
@@ -357,34 +361,12 @@ export default [
     menuRender: false,
     footerRender: false
   },
-
-  // {
-  //   name: 'Quản lý bệnh án',
-  //   icon: '/icons/health-record.png',
-  //   path: '/health-record',
-  //   component: './HealthRecord/',
-  // },
-
   {
     path: '/gene-and-mutation/:id',
     access: 'canAdmin',
     component: './GeneAndMutation/articles',
     hideInMenu: true,
   },
-  // {
-  //   name: 'Cosmic Gene',
-  //   icon: 'https://icon-library.com/images/ef4d093f9d.png',
-  //   path: '/cosmic-gene',
-  //   access: 'canAdmin',
-  //   component: './GeneCosmic',
-  //   routes: [
-  //     {
-  //       path: '/cosmic-gene/:gene',
-  //       component: './GeneCosmic/geneDetail',
-  //       hideInMenu: true,
-  //     },
-  //   ],
-  // },
   {
     name: 'Thông tin chung',
     icon: '/icons/health-record.png',
@@ -392,23 +374,28 @@ export default [
     access: 'canAdmin',
     routes: [
         {
-          name: 'Thông tin gen đột biến',
+          name: 'ONCOKB - Thông tin gen đột biến',
           path: '/over-view/gene-mutation',
           component: './GeneAndMutation/geneAndMutation.tsx',
         },
         {
-          name: 'Thông tin thuốc điều trị',
+          name: 'ONCOKB - Thông tin thuốc điều trị',
           path: '/over-view/drug',
           component: './DrugInformation/drugInfor.tsx',
+        },
+        {
+          name: 'Thông tin trị liệu',
+          path: '/over-view/drugtest',
+          component: './PhamHuyHoang/ViewThuocTriLieu.js',
         },
       ],
   },
   {
     name: 'Thông tin nhóm phát triển',
     icon: '',
-    path: '',
+    path: '/dev-teams',
     access: 'canAdmin',
-    component: './Welcome',
+    component: './Admin',
   },
   {
     path: '*',

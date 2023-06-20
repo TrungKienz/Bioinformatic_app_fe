@@ -9,11 +9,11 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useEffect, useState } from 'react';
 
-const lungCancerPage = '/lung-cancer/overview';
-const liverCancerPage = '/liver-cancer/overview';
-const breastCancerPage = '/breast-cancer/overview';
-const thyroidCancerPage = '/thyroid-cancer/overview';
-const colorectalCancerPage = '/colorectal-cancer/overview';
+const lungCancerPage = '/lung-cancer/gene-mutation';
+const liverCancerPage = '/liver-cancer/gene-mutation';
+const breastCancerPage = '/breast-cancer/gene-mutation';
+const thyroidCancerPage = '/thyroid-cancer/gene-mutation';
+const colorectalCancerPage = '/colorectal-cancer/gene-mutation';
 
 const MutanGene = () => {
   const [searchTerm, setSearchTerm] = useState('');

@@ -14,7 +14,7 @@ interface DataType {
   typeHealthRecord: string;
   healthRecordId: string;
 }
-const handleCreateHealthRecord = (typeRecord, id = 0) => {
+const handleCreateHealthRecord = (typeRecord: any, id = 0) => {
   switch (typeRecord) {
     case 'colorectal-record':
       history.push(`/health-record/colorectal-record/${id}`);
@@ -103,7 +103,7 @@ export default () => {
       ),
     },
   ];
-  const handleGetAll = async (page, limit) => {
+  const handleGetAll = async (page: any, limit: any) => {
     let records =
       (await HealthRecordService.getAllByType(typeHealthRecord, page, limit))?.data || [];
     console.log(records);
@@ -117,7 +117,7 @@ export default () => {
   const handleTableChange = (pagination: any) => {
     setPagination(pagination);
   };
-  const handleSearch = async (values) => {
+  const handleSearch = async (values: any) => {
     console.log('[handle search]', values);
     const data = (await HealthRecordService.search(values, typeHealthRecord))?.data;
     setData(data);

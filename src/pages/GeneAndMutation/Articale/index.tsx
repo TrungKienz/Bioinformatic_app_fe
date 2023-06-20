@@ -5,7 +5,6 @@ import * as colorectal_article from "./data/colorectal_article_.json";
 import * as hepatocellular_article from "./data/hepatocellular_article_.json";
 import * as breast_article from "./data/breast_article_.json";
 import * as thyroid_article from "./data/thyroid_article_.json";
-//import * as colorectal_article from "../data/colorectal_article_.json";
 import LungArticle from "./component/hideDisplayDetail";
 import SeachArticle from "./component/searchArticle";
 
