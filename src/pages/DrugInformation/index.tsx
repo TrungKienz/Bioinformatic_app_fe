@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { Descriptions, Input, List, Tag } from 'antd';
+import { Button, Cascader, Col, Descriptions, Form, Input, List, Row, Tag } from 'antd';
 import * as breast_asia from './data/breast_asia.json';
 import * as hepatocellular_carinom_asia from './data/hepatocellular_carinom_asia.json';
 import * as large_intestine_asia from './data/large_intestine_asia.json';
 import * as lung_asia from './data/lung_asia.json';
 import * as thyroid_asia from './data/thyroid_asia.json';
 import { useEffect, useState } from 'react';
+import CRUDService from '@/services/CRUDService';
 
 const lungCancerPage = '/lung-cancer/drug';
 const liverCancerPage = '/liver-cancer/drug';
@@ -13,84 +14,84 @@ const breastCancerPage = '/breast-cancer/drug';
 const thyroidCancerPage = '/thyroid-cancer/drug';
 const colorectalCancerPage = '/colorectal-cancer/drug';
 
-interface DrugInfo {
-  'Gene name': string;
-  'Genomic Position': string;
-  'CDS Mutation': string;
-  'AA Mutation': string;
-  Disease: string;
-  therapy_rank: number;
-  'Response to Drug': string;
-  Therapies: string;
-  Description: string;
-  'rs value': string | number;
-  pmid: string;
+interface Option {
+  value: string;
+  label: string;
+  children?: Option[];
 }
-let drugInfor: DrugInfo[] = [];
+const options: Option[] = [
+  {
+    value: 'asia',
+    label: 'Châu á',
+  },
+  {
+    value: 'world',
+    label: 'Quốc tế',
+  },
+];
 
 const DrugInformation = () => {
-  const [searchText, setSearchText] = useState('');
-  const [data1, setData] = useState([]);
-
-  const handleSearch = (value: any) => {
-    setSearchText(value);
-  };
-
-  switch (location.pathname) {
-    case lungCancerPage:
-      drugInfor = lung_asia;
-      break;
-    case liverCancerPage:
-      drugInfor = breast_asia;
-      break;
-    case breastCancerPage:
-      drugInfor = thyroid_asia;
-      break;
-    case thyroidCancerPage:
-      drugInfor = large_intestine_asia;
-      break;
-    case colorectalCancerPage:
-      drugInfor = hepatocellular_carinom_asia;
-      break;
-    default:
-      drugInfor = [];
-      break;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataDrug, setDataDrug] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  // switch (location.pathname) {
+  //   case lungCancerPage:
+  //     drugInfor = lung_asia;
+  //     break;
+  //   case liverCancerPage:
+  //     drugInfor = breast_asia;
+  //     break;
+  //   case breastCancerPage:
+  //     drugInfor = thyroid_asia;
+  //     break;
+  //   case thyroidCancerPage:
+  //     drugInfor = large_intestine_asia;
+  //     break;
+  //   case colorectalCancerPage:
+  //     drugInfor = hepatocellular_carinom_asia;
+  //     break;
+  //   default:
+  //     drugInfor = [];
+  //     break;
+  // }
+  const getDrugInfor = async () => {
+    try {
+      const data = await CRUDService.getAllService(`http://localhost:3000/drugs-information/get-drug?page=${currentPage}&limit=5`);
+      setDataDrug(data.drugData);
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      console.log(error);
+    }
   }
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(()=>{
+    getDrugInfor()
+  },[currentPage])
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get('./data/lung_asia.json');
-  //     setData(response.data);
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //   }
-  //   console.log(response);
-  // };
-  // const filteredData = data1.filter((item) =>
-  //   Object.values(item).some((value) =>
-  //     String(value).toLowerCase().includes(searchText.toLowerCase()),
-  //   ),
-  // );
-  const drugInforConverted = Object.values(drugInfor);
-  const data = Array.from({ length: drugInforConverted.length }).map((_, i) => {
-    const pmid = drugInforConverted[i].pmid;
-    const geneName = drugInforConverted[i]['Gene name'];
-    const geneLocation = drugInforConverted[i]['Genomic Position'];
-    const nucleotitMutation = drugInforConverted[i]['CDS Mutation'];
-    const axitaminMutation = drugInforConverted[i]['AA Mutation'];
-    const rsValue = drugInforConverted[i]['rs value'];
-    const drugName = drugInforConverted[i]['Therapies'];
-    const drugResponce = drugInforConverted[i]['Response to Drug'];
-    const drugClassification = drugInforConverted[i]['therapy_rank'];
-    const diseaseName = drugInforConverted[i]['Disease'];
-    const description = drugInforConverted[i]['Description'];
+  const handleSearch = async (values: any) => {
+    const data = await CRUDService.searchService(`http://localhost:3000/drugs-information/get-drug?page=${currentPage}&limit=5`, values);
+    setDataDrug(data.dataDrug);
+    setTotalPages(data.totalPages);
+  };
+  const handleTableChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+  const data = Array.from({ length: dataDrug.length }).map((_, i) => {
+    const pmid = dataDrug[i]['pmid'];
+    const geneName = dataDrug[i]['gene_name'];
+    const geneLocation = dataDrug[i]['genomic_position'];
+    const nucleotitMutation = dataDrug[i]['cds_mutation'];
+    const axitaminMutation = dataDrug[i]['aa_mutation'];
+    const rsValue = dataDrug[i]['rs_value'];
+    const drugName = dataDrug[i]['therapies'];
+    const drugResponce = dataDrug[i]['response_to_drug'];
+    const drugClassification = dataDrug[i]['therapy_rank'];
+    const diseaseName = dataDrug[i]['disease'];
+    const description = dataDrug[i]['description'];
+    const pmidSplitArray = pmid.split(':');
     const href =
-      pmid && pmid.replace(/[^a-zA-Z]/g, '') === 'PubMed'
-        ? `https://pubmed.ncbi.nlm.nih.gov/${pmid.replace(/\D/g, '')}`
-        : '';
+      pmid && pmidSplitArray[0] === 'PubMed'
+        ? `https://pubmed.ncbi.nlm.nih.gov/${pmidSplitArray[1]}`
+        : `https://clinicaltrials.gov/ct2/show/${pmidSplitArray[1]}`;
     const classificationName =
       drugClassification === 1
         ? 'Việt Nam'
@@ -120,19 +121,43 @@ const DrugInformation = () => {
       <div>
         <h1>Thuốc điều trị đích</h1>
       </div>
-      {/* <Input.Search
-        placeholder="Search"
-        allowClear
-        onSearch={handleSearch}
-        style={{ width: 400 }}
-      /> */}
+      <Form onFinish={handleSearch}>
+        <Row>
+          <Col span={8}>
+            <Form.Item name='region' label='Khu vực'>
+              <Cascader
+                options={options}
+                expandTrigger="hover"
+                style={{ width: 100}}
+                defaultValue={'asia'} 
+                // onChange={onChange}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={8}>
+            <Form.Item name='geneName' >
+              <Input
+                placeholder="Nhập tên gene"
+                allowClear
+                // onSearch={handleSearch}
+                style={{ width: 300 }}
+              />
+            </Form.Item>
+          </Col>
+          <Button name="search" type="primary" htmlType="submit">
+              Tìm kiếm
+            </Button>
+        </Row>
+      </Form>
       <List
         itemLayout="vertical"
         size="large"
         pagination={{
           onChange: (page) => {
             console.log(page);
+            handleTableChange(page);
           },
+          total: totalPages,
           pageSize: 5,
           hideOnSinglePage: true,
         }}

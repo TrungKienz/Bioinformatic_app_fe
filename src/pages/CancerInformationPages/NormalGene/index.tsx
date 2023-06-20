@@ -2,51 +2,75 @@ import { server } from '@/pages/Api';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useEffect, useState } from 'react';
-
-const lungCancerPage = '/lung-cancer/overview';
-const liverCancerPage = '/liver-cancer/overview';
-const breastCancerPage = '/breast-cancer/overview';
-const thyroidCancerPage = '/thyroid-cancer/overview';
-const colorectalCancerPage = '/colorectal-cancer/overview';
+import { currentPage } from '@/shared/CurrentPage';
 
 const NormalGenes = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [totalPages, setTotalPages] = useState(1);
+  
+  let API = '';
+  const locationPage = currentPage(location.pathname);
 
-  let URL = '';
-
-  if (location.pathname === lungCancerPage) {
-    URL = `${server}/normal-lung-gene`;
-  } else if (location.pathname === liverCancerPage) {
-    URL = `${server}/normal-liver-gene`;
-  } else if (location.pathname === breastCancerPage) {
-    URL = `${server}/normal-breast-gene`;
-  } else if (location.pathname === thyroidCancerPage) {
-    URL = `${server}/normal-thyroid-gene`;
-  } else if (location.pathname === colorectalCancerPage) {
-    URL = `${server}/normal-colorectal-gene`;
-  } else {
-    URL = '';
+  switch (locationPage) {
+    case 'lungCancerPage':
+      API = `${server}/normal-lung-gene`;
+      break;
+    case 'liverCancerPage':
+      API = `${server}/normal-liver-gene`;
+      break;
+    case 'breastCancerPage':
+      API = `${server}/normal-breast-gene`;
+      break;
+    case 'thyroidCancerPage':
+      API = `${server}/normal-thyroid-gene`;
+      break;
+    case 'colorectalCancerPage':
+      API = `${server}/normal-colorectal-gene`;
+      break;
+    default:
+      API = '';
+      break;
   }
 
   useEffect(() => {
-    fetch(`${URL}?page=${pagination.current}&limit=${pagination.pageSize}`)
+    fetch(`${API}?page=${pagination.current}&limit=${pagination.pageSize}`)
       .then((response) => response.json())
       .then((data) => {
         setTotalPages(data.totalPages);
-        if (location.pathname === lungCancerPage) {
-          setData(data.normalLungGeneModels);
-        } else if (location.pathname === liverCancerPage) {
-          setData(data.normalLiverGeneModels);
-        } else if (location.pathname === breastCancerPage) {
-          setData(data.normalBreastGeneModels);
-        } else if (location.pathname === thyroidCancerPage) {
-          setData(data.normalThyroidGeneModels);
-        } else if (location.pathname === colorectalCancerPage) {
-          setData(data.normalColorectalGeneModels);
+        switch (locationPage) {
+          case 'lungCancerPage':
+            setData(data.normalLungGeneModels);
+            break;
+          case 'liverCancerPage':
+            setData(data.normalLiverGeneModels);
+            break;
+          case 'breastCancerPage':
+            setData(data.normalBreastGeneModels);
+            break;
+          case 'thyroidCancerPage':
+            setData(data.normalThyroidGeneModels);
+            break;
+          case 'colorectalCancerPage':
+            setData(data.normalColorectalGeneModels);
+            break;
+          default:
+            API = '';
+            break;
         }
+
+        // if (location.pathname === locationPage) {
+        //   setData(data.normalLungGeneModels);
+        // } else if (location.pathname === liverCancerPage) {
+        //   setData(data.normalLiverGeneModels);
+        // } else if (location.pathname === breastCancerPage) {
+        //   setData(data.normalBreastGeneModels);
+        // } else if (location.pathname === thyroidCancerPage) {
+        //   setData(data.normalThyroidGeneModels);
+        // } else if (location.pathname === colorectalCancerPage) {
+        //   setData(data.normalColorectalGeneModels);
+        // }
       });
   }, [pagination.current, pagination.pageSize]);
 

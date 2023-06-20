@@ -2,8 +2,8 @@ import { PageContainer } from '@ant-design/pro-components';
 import { Menu, MenuProps } from 'antd';
 import React, { useState } from 'react';
 import NoFoundPage from '../404';
-import PatientList from './component/patientList';
-import TestDetail from './component/testDetail';
+import PatientList from '@/components/DetailTest/patientList';
+import TestDetail from '@/components/DetailTest/testDetail';
 
 const items: MenuProps['items'] = [
   {

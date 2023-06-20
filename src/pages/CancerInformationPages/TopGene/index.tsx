@@ -7,32 +7,28 @@ import {
 } from '@/pages/EndPoint';
 import { Column } from '@ant-design/charts';
 import { useEffect, useState } from 'react';
-
-const lungCancerPage = '/lung-cancer/overview';
-const liverCancerPage = '/liver-cancer/overview';
-const breastCancerPage = '/breast-cancer/overview';
-const thyroidCancerPage = '/thyroid-cancer/overview';
-const colorectalCancerPage = '/colorectal-cancer/overview';
+import { currentPage } from '@/shared/CurrentPage';
 
 const TopGene = () => {
   const [data, setData] = useState([]);
-
+  
+  const locationPage = currentPage(location.pathname)
   let URL = '';
 
-  switch (location.pathname) {
-    case lungCancerPage:
+  switch (locationPage) {
+    case 'lungCancerPage':
       URL = mutationLung20GeneEp;
       break;
-    case liverCancerPage:
+    case 'liverCancerPage':
       URL = mutationLiver20GeneEp;
       break;
-    case breastCancerPage:
+    case 'breastCancerPage':
       URL = mutationBreast20GeneEp;
       break;
-    case thyroidCancerPage:
+    case 'thyroidCancerPage':
       URL = mutationThyroid20GeneEp;
       break;
-    case colorectalCancerPage:
+    case 'colorectalCancerPage':
       URL = mutationColorectal20GeneEp;
       break;
     default:

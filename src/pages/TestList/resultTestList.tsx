@@ -61,6 +61,26 @@ useEffect(() => {
   fetchTestData();
 }, []);
 
+  const handleFetchData = () => {
+
+  }
+
+  const extractAndSendData = (item) => {
+    const data = {
+      gene: item.Gene,
+      nucleotide: item.Nucleotide,
+      protein: item.Protein,
+      variationType: item.VariationType,
+      rsId: item.RS_ID,
+      position: item.Position,
+      drugResponse: item.DrugResponse,
+      variantRate: item.VariantRate,
+      readDepth: item.ReadDepth
+    };
+  
+    console.log(data);
+  };
+
   const dataList = Array.from({ length: data.length }).map((_, i) => {
     const RS_ID = data[i]['RS_ID'] === 'undefined' ? '-': data[i]['RS_ID'];
     const Gene = data[i]['Gene'];
@@ -92,16 +112,16 @@ useEffect(() => {
       {dataPatient.length > 0 && (
         <Descriptions title="Thông tin chi tiết giải trình tự" size="middle">
           <Descriptions.Item label="Mã xét nghiệm">
-            {dataPatient[0]?.patientID}
+            {dataPatient[0]['patientID']}
           </Descriptions.Item>
           <Descriptions.Item label="Tên bệnh nhân">
-            {dataPatient[0]?.patientName}
+            {dataPatient[0]['patientName']}
           </Descriptions.Item>
           <Descriptions.Item label="Mẫu mô">
-            {dataPatient[0]?.testName}
+            {dataPatient[0]['testName']}
           </Descriptions.Item>
           <Descriptions.Item label="Mãu bệnh phẩm">
-            {dataPatient[0]?.primaryTissue}
+            {dataPatient[0]['primaryTissue']}
           </Descriptions.Item>
           <Descriptions.Item label="Thông tin thuốc điều trị">
             <Button type="primary">Thông tin chi tiết</Button>
@@ -143,7 +163,7 @@ useEffect(() => {
               <Descriptions.Item label="Đáp ứng thuốc">{item.DrugResponse}</Descriptions.Item>
               <Descriptions.Item label="Variant Rate">{item.VariantRate}</Descriptions.Item>
               <Descriptions.Item label="Read Depth">{item.ReadDepth}</Descriptions.Item>
-              <Descriptions.Item label="Thông tin thuốc điều trị"><Button type="primary">Chi tiết</Button></Descriptions.Item>
+              <Descriptions.Item label="Thông tin thuốc điều trị"><Button type="primary" onClick={() => extractAndSendData(item)}>Chi tiết</Button></Descriptions.Item>
             </Descriptions>
           </List.Item>
         )}

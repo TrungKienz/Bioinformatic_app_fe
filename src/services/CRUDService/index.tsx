@@ -1,8 +1,8 @@
 import { request } from '@umijs/max';
 
 class CRUDService {
-  saveService = async (url: String, body: any, options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${url}`, {
+  saveService = async (api: String, body: any, options?: { [key: string]: any }) => {
+    return request(`${api}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -11,8 +11,8 @@ class CRUDService {
       ...(options || {}),
     });
   };
-  getService = async (url: String, body: any, options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${Url}`, {
+  getService = async (api: String, body: any, options?: { [key: string]: any }) => {
+    return request(`${api}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,8 +21,8 @@ class CRUDService {
       ...(options || {}),
     });
   };
-  deleteService = async (body: any, options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${Url}`, {
+  deleteService = async (api: String, body: any, options?: { [key: string]: any }) => {
+    return request(`${api}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,8 +31,8 @@ class CRUDService {
       ...(options || {}),
     });
   };
-  getAllService = async (options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${Url}`, {
+  getAllService = async (api: String, options?: { [key: string]: any }) => {
+    return request(`${api}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -40,8 +40,8 @@ class CRUDService {
       ...(options || {}),
     });
   };
-  searchService = async (Url: string, body: object, options?: { [key: string]: any }) => {
-    return request<ErrorResponse>(`${Url}`, {
+  searchService = async (api: string, body: object, options?: { [key: string]: any }) => {
+    return request(`${api}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,5 +50,16 @@ class CRUDService {
       ...(options || {}),
     });
   };
+  updateService = async (api: string, body: object, options?: { [key: string]: any }) => {
+    return request(`${api}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    });
+  };
+  
 }
 export default new CRUDService();
