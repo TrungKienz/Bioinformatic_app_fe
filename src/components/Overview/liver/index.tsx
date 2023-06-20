@@ -1,6 +1,7 @@
 import { PageContainer } from '@ant-design/pro-components';
 import React from 'react';
-import '../style.scss'
+import '../style-overview.css'
+
 
 const LiverOverview = () => {
   return (
@@ -29,7 +30,7 @@ const LiverOverview = () => {
       <p>
         <b>2.1. Phòng ngừa UTBMTBG </b>
       </p>
-        <ul>
+        <ul className='ul-class'>
           <li>
           - Nên sử dụng vaccin chủng ngừa HBV cho trẻ em, nhất là trẻ sơ sinh để ngăn ngừa việc nhiễm HBV. Nên điều trị lâu dài và hiệu quả cho các bệnh nhân nhiễm HBV mạn và có bệnh lý gan đang hoạt động.           
           </li>
@@ -47,7 +48,7 @@ const LiverOverview = () => {
       <p>
         <b>3.1. Khám lâm sàng và các xét nghiệm cận lâm sàng </b>
       </p>
-        <ul>
+        <ul className='ul-class'>
           <li>
             <b>- Tìm hiểu các yếu tố nguy cơ của bệnh nhân: </b> 
           </li>

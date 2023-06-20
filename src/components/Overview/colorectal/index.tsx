@@ -1,6 +1,6 @@
 import { PageContainer } from '@ant-design/pro-components';
 import React from 'react';
-import '../style.scss'
+import '../style-overview.css'
 
 const ColorectalOverview = () => {
   return (
@@ -59,7 +59,7 @@ const ColorectalOverview = () => {
       <p>
       Đóng vai trò quan trọng trong phát triển các bệnh UTĐTT, bao gồm gen liên quan đến việc xuất hiện bệnh và các hội chứng di truyền như Bệnh đa polyp đại trực tràng gia đình (Familial Adenomatous Polyposis - FAP) và hội chứng UTĐTT di truyền không có polyp (Hereditary nonpolyposis colorectal carcinoma - HNPCC). Các hội chứng di truyền liên quan đến UTĐTT bao gồm:
       </p>
-      <ul>
+      <ul className='ul-class'>
         <li>+ Hội chứng UTĐTT di truyền không polyp (hội chứng Lynch): Có tiền sử gia đình mắc UTĐTT ở nhiều thế hệ. Bệnh này có thể kết hợp với các loại ung thư khác như ung thư dạ dày, ruột non, thận và buồng trứng.</li>
         <li>+ Bệnh đa polyp đại trực tràng mang tính gia đình: Bệnh này có hàng trăm, hàng ngàn polyp, thường là nhỏ có đường kính khoảng 1cm, xuất hiện trước tuổi 30 và có nguy cơ ung thư cao.</li>
         <li>+ Hội chứng Peutz-Jeghers: Bệnh này được di truyền theo cách thể hiện của gen trội. Bệnh nhân có nhiều polyp trong toàn bộ hệ tiêu hoá, đặc biệt là trong ruột non, và có các vết sắc tố trên da và niêm mạc miệng.</li>
@@ -109,7 +109,7 @@ const ColorectalOverview = () => {
       <p>
       Độ nhạy của soi đại tràng phụ thuộc vào kinh nghiệm của người soi, tỉ lệ phát hiện khối u cao hơn nếu thời gian soi trung bình trên 6 phút, tỉ lệ bỏ sót tổn thương phụ thuộc vào kích thước khối u, nếu khối u lớn hơn 10 mm, tỉ lệ sót tổn thương 2%; nếu khối u 5-10 mm, tỉ lệ sót tổn thương 13%; nếu khối u nhỏ hơn 5 mm tỉ lệ sót tổn thương 25%. Hình ảnh tổn thương qua nội soi đại trực tràng:
       </p>
-      <ul>
+      <ul className='ul-class'>
         <li>Niêm mạc bình thường: Trơn nhẵn, màu hồng bóng.</li>
         <li>Niêm mạc bạc màu, niêm mạc xung huyết.</li>
         <li>Niêm mạc xuất huyết lấm tấm.</li>
@@ -122,7 +122,7 @@ const ColorectalOverview = () => {
       <p>
       Hình ảnh UTĐTT qua nội soi là thể sùi, loét, thâm nhiễm cứng. Các tổn thương này có thể xen lẫn nhau.
       </p>
-      <ul>
+      <ul className='ul-class'>
         <li>Thể sùi: Khối u sùi vào lòng trực tràng, nhiều múi.</li>
         <li>Thể loét: Tổn thương là ổ loét đáy sâu hoại tử ở giữa, bờ gồ cao.</li>
         <li>Thể thâm nhiễm: Ít gặp, tổn thương thâm nhiễm cứng quanh chu vi, mất nhu động, thường gây chít hẹp lòng đại trực tràng</li>
@@ -187,7 +187,7 @@ const ColorectalOverview = () => {
       <p>
       Phân loại của WHO 2002:
       </p>
-      <ul>
+      <ul className='ul-class'>
         <li>Ung thư biểu mô tuyến</li>
         <li>Ung thư biểu mô vẩy</li>
         <li>Ung thư biểu mô tuyến vẩy</li>

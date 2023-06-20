@@ -16,13 +16,11 @@ p {
     text-indent: 20px;
 }
 
-ul{
-    li {
-        line-height: 1.5;
-        font-size: 17px;
-        text-indent: 20px;
-    }  
-} 
+.ul-class li {
+    line-height: 1.5;
+    font-size: 17px;
+    text-indent: 20px;
+}  
 
 .hinh1-overview {
     width: 100%;

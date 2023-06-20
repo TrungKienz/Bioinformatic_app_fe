@@ -1,6 +1,6 @@
 import { PageContainer } from '@ant-design/pro-components';
 import React from 'react';
-import '../style.scss'
+import '../style-overview.css'
 
 const LungOverview = () => {
   return (
@@ -27,7 +27,7 @@ const LungOverview = () => {
       <p>
         <b>1. Thuốc lá:</b>
       </p>
-        <ul>
+        <ul className='ul-class'>
           <li>
             - Hút thuốc được xem là yếu tố nguy cơ chính gây ra ung thư phổi. Trong khói thuốc lá, có chứa nhiều hydrocarbon thơm, trong đó chất 3 - 4 Benzopyren là chất gây ung thư đã được chứng minh trên thực nghiệm.
           </li>
@@ -41,7 +41,7 @@ const LungOverview = () => {
       <p>
         <b>2. Amiăng</b>
       </p>
-        <ul>
+        <ul className='ul-class'>
           <li>
             - Amiăng là một chất gây ra nhiều bệnh phổi khác nhau, bao gồm ung thư phổi, thường gặp ở những công nhân sản xuất tấm lợp fibro xi măng. Hút thuốc lá và tiếp xúc với amiăng làm tăng nguy cơ mắc ung thư phổi [5]. Đối với những người hút thuốc và tiếp xúc với amiăng, nguy cơ mắc bệnh tăng từ 45 -90 lần so với người không tiếp xúc.[6] 
           </li>
@@ -49,7 +49,7 @@ const LungOverview = () => {
       <p>
         <b>3. Ô nhiễm không khí</b>
       </p>
-        <ul>
+        <ul className='ul-class'>
           <li>
           Khí quyển chứa nhiều chất gây ung thư như 3-4 benzopyren, hydrocarbon thơm đa vòng, các muối như thạch tín, arsen, niken và crom. Các hạt vật chất nhỏ (bụi PM2.5) và các chất độc có trong khí thải xe cộ, nhà máy,... liên quan đến tăng nguy cơ nhẹ mắc ung thư phổi[7]. Theo ước tính, ô nhiễm không khí ngoài trời là một trong những nguyên nhân gây ra một số trường hợp mắc ung thư phổi.
           </li>
@@ -73,7 +73,7 @@ const LungOverview = () => {
       <p>
         Giai đoạn muộn bệnh có triệu chứng lâm sàng rõ rệt:
       </p>
-        <ul>
+        <ul className='ul-class'>
           <li>
             <b>Triệu chứng hô hấp</b> 
           </li>
@@ -159,7 +159,7 @@ const LungOverview = () => {
       <p>
         - Tế bào học
       </p>
-        <ul>
+        <ul className='ul-class'>
           <li>+ Hạch thượng đòn</li>
           <li>+ Dịch màng phổi, màng tim</li>
           <li>+ Các vị trí di căn khác gần bề mặt da</li>
@@ -177,7 +177,7 @@ const LungOverview = () => {
       <p>- Các thăm dò chức năng: điện tâm đồ, siêu âm tim, đo chức năng hô hấp</p>
       <p>- XN gen: Xác định đột biến gen giúp chỉ định thuốc điều trị đích…</p>
       <h2>Tài liệu tham khảo: </h2>
-      <ul>
+      <ul className='ul-class'>
         <li>1.	Brown, K. and S. KeatsJJ, Chapter 8 Holland–Frei CancerMedicine . People’s Medical Publishing House USA. 2010.</li>
         <li>2.	Peto, R., J. Boreham, and A.D. Lopez, Mortality from smoking in developed countries. 1996: Oxford university press.</li>
         <li>3.	Ruano-Ravina, A., A. Figueiras, and J. Barros-Dios, Lung cancer and related risk factors: an update of the literature. Public health, 2003. 117(3): p. 149-156.</li>

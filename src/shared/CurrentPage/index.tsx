@@ -17,19 +17,29 @@ const colorectalDrugPage = '/colorectal-cancer/drug';
 export const currentPage = (currentLocation: string) => {
   let resultLocation;
   switch (currentLocation) {
-    case lungOverviewPage || lungCancerPage || lungDrugPage:
+    case lungOverviewPage:
+    case lungCancerPage:
+    case lungDrugPage:
       resultLocation = 'lungCancerPage';
       break;
-    case liverOverviewPage || liverCancerPage || liverDrugPage:
+    case liverOverviewPage:
+    case liverCancerPage:
+    case liverDrugPage:
       resultLocation = 'liverCancerPage';
       break;
-    case breastOverviewPage || breastCancerPage || breastDrugPage:
+    case breastOverviewPage:
+    case breastCancerPage:
+    case breastDrugPage:
       resultLocation = 'breastCancerPage';
       break;
-    case thyroidOverviewPage || thyroidCancerPage || thyroidDrugPage:
+    case thyroidOverviewPage:
+    case thyroidCancerPage:
+    case thyroidDrugPage:
       resultLocation = 'thyroidCancerPage';
       break;
-    case colorectalOverviewPage || colorectalCancerPage || colorectalDrugPage:
+    case colorectalOverviewPage:
+    case colorectalCancerPage:
+    case colorectalDrugPage:
       resultLocation = 'colorectalCancerPage';
       break;
     default:
@@ -39,3 +49,4 @@ export const currentPage = (currentLocation: string) => {
 
   return resultLocation;
 };
+

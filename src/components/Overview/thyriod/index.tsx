@@ -1,6 +1,6 @@
 import { PageContainer } from '@ant-design/pro-components';
 import React from 'react';
-import '../style.scss'
+import '../style-overview.css'
 
 const ThyroidOverview = () => {
   return (
@@ -18,7 +18,7 @@ const ThyroidOverview = () => {
       <p>
       Hiện nay chưa tìm thấy nguyên nhân rõ ràng sinh bệnh ung thư tuyến  giáp. Hầu hết các nghiên cứu đều chỉ đưa ra các yếu tố nguy cơ cao dễ mắc  bệnh. Hiệp hội các nhà ung thư Hoa Kỳ đã đưa ra 1 số yếu tố nguy cơ hay gặp như sau:
       </p>
-      <ul>
+      <ul className='ul-class'>
         <li>- Tiền sử xạ trị vùng cổ hoặc tiền sử tiếp xúc, chiếu tia X hay các tia phóng xạ.</li>
         <li>- Chế độ ăn thiếu Iodin làm tăng nguy cơ ung thư tuyến giáp thể nang.</li>
         <li>- Tiền sử mắc các bệnh tuyến giáp mạn tính như viêm tuyến giáp mạn  tính Hashimoto hoặc viêm tuyến giáp bán cấp De Quervain…tăng cao nguy cơ  mắc ung thư tuyến giáp. </li>
@@ -33,7 +33,7 @@ const ThyroidOverview = () => {
       <p>
       Một số triệu chứng khi bệnh ở giai đoạn muộn hoặc khối u đã xâm lấn rộng: 
       </p>
-      <ul>
+      <ul className='ul-class'>
         <li>- Khối u to, rắn, cố định trước cổ, đôi khi u to gây biến dạng cổ</li>
         <li>- Chèn ép, xâm lấn dây thần kinh quặt ngược gây nói khàn. </li>
         <li>- Chèn ép thực quản gây khó nuốt. </li>

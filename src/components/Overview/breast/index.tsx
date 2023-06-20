@@ -1,6 +1,6 @@
 import { PageContainer } from '@ant-design/pro-components';
 import React from 'react';
-import '../style.scss'
+import '../style-overview.css'
 
 const BreastOverview = () => {
   return (
@@ -21,7 +21,7 @@ const BreastOverview = () => {
       <p>
       Theo thống kê của WHO, có khoảng một nửa các phụ nữ mắc ung thư vú không có bất kỳ các yếu tố nguy cơ nào của bệnh ngoài yếu tố tuổi cao ( hơn 40 tuổi). Một vài yếu tố đã được chứng minh có liên hệ với ung thư vú bao gồm: 
       </p>
-      <ul>
+      <ul className='ul-class'>
         <li>- Do gen di truyền: các nhà khoa học tìm thấy sự liên quan giữa đột biến gen BRCA1 và BRCA2 với UTV. Các phụ nữ có tiền sử gia đình có người mắc UTV, đặc biệt có từ 2 người mắc trở lên ở lứa tuổi trẻ.. là những người có nguy cơ ung thư vú cao hơn hẳn các phụ nữ khác.</li>
         <li>- Những người phụ nữ độc thân, đẻ con muộn, không có khả năng sinh sản hoặc không cho con bú.</li>
         <li>- Có kinh nguyệt sớm hoặc mãn kinh muộn.</li>
@@ -38,7 +38,7 @@ const BreastOverview = () => {
       <p>
       Một số triệu chứng thường gặp của UTV: 
       </p>
-      <ul>
+      <ul className='ul-class'>
         <li>- Đau vùng vú: Bệnh nhân có thể có cảm giác đau dấm dứt không thường xuyên, đau kiểu kim châm.</li>
         <li>- Chảy dịch đầu núm vú: Một số bệnh nhân biểu hiện chảy dịch đầu núm vú, có thể chảy dịch máu.</li>
         <li>- Thay đổi về da: U phát triển có thể gây dính da, da trên u đỏ, dày lên hoặc sần như da cam.</li>
