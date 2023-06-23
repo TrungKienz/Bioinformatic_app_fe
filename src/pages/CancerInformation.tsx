@@ -12,11 +12,11 @@ const items: MenuProps['items'] = [
     key: 'topGene',
   },
   {
-    label: 'Gen đột biến',
+    label: 'Gen phát hiện đột biến',
     key: 'mutatedGenes',
   },
   {
-    label: 'Gen không đột biến',
+    label: 'Gen không phát hiện đột biến',
     key: 'normalGenes',
   },
 ];
