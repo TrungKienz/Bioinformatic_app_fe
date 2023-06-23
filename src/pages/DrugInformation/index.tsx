@@ -1,18 +1,8 @@
-import axios from 'axios';
 import { Button, Cascader, Col, Descriptions, Form, Input, List, Row, Tag } from 'antd';
-import * as breast_asia from './data/breast_asia.json';
-import * as hepatocellular_carinom_asia from './data/hepatocellular_carinom_asia.json';
-import * as large_intestine_asia from './data/large_intestine_asia.json';
-import * as lung_asia from './data/lung_asia.json';
-import * as thyroid_asia from './data/thyroid_asia.json';
 import { useEffect, useState } from 'react';
 import CRUDService from '@/services/CRUDService';
-
-const lungCancerPage = '/lung-cancer/drug';
-const liverCancerPage = '/liver-cancer/drug';
-const breastCancerPage = '/breast-cancer/drug';
-const thyroidCancerPage = '/thyroid-cancer/drug';
-const colorectalCancerPage = '/colorectal-cancer/drug';
+import { drugsInformationEp } from '../EndPoint';
+import { currentPage as crPage} from '@/shared/CurrentPage';
 
 interface Option {
   value: string;
@@ -33,31 +23,31 @@ const options: Option[] = [
 const DrugInformation = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [dataDrug, setDataDrug] = useState<any[]>([]);
+  const [dataFilter, setDataFilter] = useState<any[]>([]);
   const [totalPages, setTotalPages] = useState(1);
-  // switch (location.pathname) {
-  //   case lungCancerPage:
-  //     drugInfor = lung_asia;
-  //     break;
-  //   case liverCancerPage:
-  //     drugInfor = breast_asia;
-  //     break;
-  //   case breastCancerPage:
-  //     drugInfor = thyroid_asia;
-  //     break;
-  //   case thyroidCancerPage:
-  //     drugInfor = large_intestine_asia;
-  //     break;
-  //   case colorectalCancerPage:
-  //     drugInfor = hepatocellular_carinom_asia;
-  //     break;
-  //   default:
-  //     drugInfor = [];
-  //     break;
-  // }
+
+  const locationPg = crPage(location.pathname);
+
+  const isLocation = (locationPg: string) => {
+    const cancerCondition= [
+      { locationPage: 'lungCancerPage', typeCancer: 'lung' },
+      { locationPage: 'liverCancerPage', typeCancer: 'hepatocellular_carcinoma' },
+      { locationPage: 'breastCancerPage', typeCancer: 'breast' },
+      { locationPage: 'thyroidCancerPage', typeCancer: 'thyroid' },
+      { locationPage: 'colorectalCancerPage', typeCancer: 'large_intestine' },
+    ];
+
+    const matchedPg = cancerCondition.find(
+      (locationPage) => locationPage.locationPage === locationPg
+    );
+
+    return matchedPg?.typeCancer;
+  }
+
   const getDrugInfor = async () => {
     try {
-      const data = await CRUDService.getAllService(`http://localhost:3000/drugs-information/get-drug?page=${currentPage}&limit=5`);
-      setDataDrug(data.drugData);
+      const data = await CRUDService.getAllService(`${drugsInformationEp}/get-drug?page=${currentPage}&limit=5&typeCancer=${isLocation(locationPg)}`);
+      setDataDrug(data.dataDrug);
       setTotalPages(data.totalPages);
     } catch (error) {
       console.log(error);
@@ -68,20 +58,20 @@ const DrugInformation = () => {
   },[currentPage])
 
   const handleSearch = async (values: any) => {
-    const data = await CRUDService.searchService(`http://localhost:3000/drugs-information/get-drug?page=${currentPage}&limit=5`, values);
-    setDataDrug(data.dataDrug);
+    const data = await CRUDService.searchService(`${drugsInformationEp}/search-drug?limit=5&typeCancer=${isLocation(locationPg)}`, values);
+    // setDataFilter(data.drugData);
     setTotalPages(data.totalPages);
   };
   const handleTableChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
-  const data = Array.from({ length: dataDrug.length }).map((_, i) => {
+  const data = Array.from({ length: dataDrug?.length }).map((_, i) => {
     const pmid = dataDrug[i]['pmid'];
     const geneName = dataDrug[i]['Gene name'];
     const geneLocation = dataDrug[i]['Genomic Position'];
     const nucleotitMutation = dataDrug[i]['CDS Mutation'];
     const axitaminMutation = dataDrug[i]['AA Mutation'];
-    const rsValue = dataDrug[i]['rs valuesource_db'];
+    const rsValue = (dataDrug[i]['rs valuesource_db'] === undefined ? 'Không có':dataDrug[i]['rs valuesource_db']);
     const drugName = dataDrug[i]['Therapies'];
     const drugResponce = dataDrug[i]['Response to Drug'];
     const drugClassification = dataDrug[i]['therapy_rank'];
@@ -116,6 +106,7 @@ const DrugInformation = () => {
       diseaseName,
     };
   });
+
   return (
     <>
       <div>
@@ -180,14 +171,14 @@ const DrugInformation = () => {
               </Descriptions.Item>
               <Descriptions.Item label="Giá trị RS">{item.rsValue}</Descriptions.Item>
               <Descriptions.Item label="Thuốc đích">{item.drugName}</Descriptions.Item>
-              <Descriptions.Item label="Đáp ứng thuốc">{item.drugResponce}</Descriptions.Item>
+              {/* <Descriptions.Item label="Đáp ứng thuốc">{item.drugResponce}</Descriptions.Item> */}
               <Descriptions.Item label="Phân loại thuốc">
                 {item.classificationName}
               </Descriptions.Item>
               <Descriptions.Item label="Bệnh">{item.diseaseName}</Descriptions.Item>
               <Descriptions.Item label="Tài liệu tham khảo">
                 <Tag color="#108ee9">
-                  <a target="_blank" href={item.href}>
+                  <a target="_blank" href={item.href} >
                     Xem
                   </a>
                 </Tag>

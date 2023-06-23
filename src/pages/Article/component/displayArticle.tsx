@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-const LungArticle = ({ article }) => {
+const Article = ({ article }) => {
   let check = [];
   for (let i = 0; i < article.length; i++) {
     check[i] = false;
@@ -179,4 +179,4 @@ const LungArticle = ({ article }) => {
   );
 };
 
-export default LungArticle;
+export default Article;
