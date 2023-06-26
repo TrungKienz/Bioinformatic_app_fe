@@ -12,7 +12,7 @@ interface Option {
 const options: Option[] = [
   {
     value: 'asia',
-    label: 'Châu á',
+    label: 'Châu Á',
   },
   {
     value: 'world',
@@ -111,7 +111,7 @@ const DrugInformation = () => {
       <List.Item key={pmid}>
         <List.Item.Meta
           title={<Tag color="blue">{geneName}</Tag>}
-          description={description}
+          // description={description}
         />
         <Descriptions>
           <Descriptions.Item label="Tên gene">{geneName}</Descriptions.Item>

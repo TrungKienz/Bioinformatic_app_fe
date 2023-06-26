@@ -24,4 +24,6 @@ p {
 
 .hinh1-overview {
     width: 100%;
+    align-items: center;
+    display: block;
 }

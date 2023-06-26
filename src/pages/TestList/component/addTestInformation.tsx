@@ -3,7 +3,7 @@ import CRUDService from '@/services/CRUDService';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Modal, Select } from 'antd';
 import { useState } from 'react';
-import { history } from '@umijs/max';
+import './addTestInfor.css'
 
 const searchUrl = `${server}/test-case/add`;
 
@@ -64,7 +64,7 @@ const AddTestCase = () => {
         onOk={handleFinish}
         onCancel={handleCancel}
       >
-        <Form form={form}>
+        <Form form={form} className='add-test-case-form'>
           <Form.Item name="patientID" label="Mã bệnh nhân:">
             <Input allowClear placeholder="Nhập mã bệnh nhân" required={true} />
           </Form.Item>
@@ -77,7 +77,6 @@ const AddTestCase = () => {
           <Form.Item name="primaryTissue" label="Vị trí mô:">
             <Select
               defaultValue="Vị trí mô"
-              style={{ width: 300 }}
               onChange={handleChange}
               options={[
                 { value: 'breast', label: 'Vú (Breast)' },

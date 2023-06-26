@@ -32,7 +32,7 @@ export default [
     name: 'Giới thiệu',
     icon: '/icons/introduce-icon.png',
     component: './Welcome',
-    // access: ['canDoctor','canAdmin'],
+    access: ['canAdmin', 'canDoctor', 'canUser'],
   },
   {
     path: '/lung-cancer',
@@ -85,6 +85,7 @@ export default [
     path: '/liver-cancer',
     name: 'Ung thư gan',
     icon: '/icons/liver-icon.png',
+    access: ['canAdmin', 'canDoctor', 'canUser'],
     routes: [
       {
         path: '/liver-cancer',
@@ -131,6 +132,7 @@ export default [
     path: '/breast-cancer',
     name: 'Ung thư vú',
     icon: '/icons/breast-icon.png',
+    access: ['canAdmin', 'canDoctor', 'canUser'],
     routes: [
       {
         path: '/breast-cancer',
@@ -176,6 +178,7 @@ export default [
     path: '/thyroid-cancer',
     name: 'Ung thư tuyến giáp',
     icon: '/icons/thyroid-icon.png',
+    access: ['canAdmin', 'canDoctor', 'canUser'],
     routes: [
       {
         path: '/thyroid-cancer',
@@ -221,6 +224,7 @@ export default [
     path: '/colorectal-cancer',
     name: 'Ung thư trực tràng',
     icon: '/icons/colorectal-icon.png',
+    access: ['canAdmin', 'canDoctor', 'canUser'],
     routes: [
       {
         path: '/colorectal-cancer',
@@ -266,7 +270,7 @@ export default [
     path: '/tests',
     name: 'Xét nghiệm',
     icon: '/icons/tests_icon.jpg',
-    access: 'canAdmin',
+    access: ['canAdmin', 'canDoctor', 'canUser'],
     routes: [
       {
         path: '/tests',
@@ -299,18 +303,16 @@ export default [
     name: 'Quản lý bệnh nhân',
     icon: '/icons/patient_icon.png',
     path: '/patient-management',
-    access: 'canAdmin',
+    access: ['canAdmin', 'canDoctor', 'canUser'],
     routes: [
       {
         path: '/patient-management/patient-information',
         name: 'Thêm thông tin bệnh nhân',
-        access: 'canAdmin',
         component: './PatientManagement',
       },
       {
         path: '/patient-management/patient-list',
         name: 'Danh sách bệnh nhân',
-        access: 'canAdmin',
         component: '',
       },
     ],
@@ -371,20 +373,20 @@ export default [
     name: 'Thông tin chung',
     icon: '/icons/health-record.png',
     path: '/over-view',
-    access: 'canAdmin',
+    access: ['canAdmin', 'canDoctor', 'canUser'],
     routes: [
         {
-          name: 'ONCOKB - Thông tin gen đột biến',
+          name: 'Chuyên gia gen đột biến',
           path: '/over-view/gene-mutation',
           component: './GeneAndMutation/geneAndMutation.tsx',
         },
         {
-          name: 'ONCOKB - Thông tin thuốc điều trị',
+          name: 'Chuyên gia điều trị đích',
           path: '/over-view/drug',
           component: './DrugInformation/drugInfor.tsx',
         },
         {
-          name: 'Thông tin trị liệu',
+          name: 'Chuyên gia thuốc điều trị',
           path: '/over-view/drugtest',
           component: './PhamHuyHoang/ViewThuocTriLieu.js',
         },
@@ -394,7 +396,7 @@ export default [
     name: 'Thông tin nhóm phát triển',
     icon: '',
     path: '/dev-teams',
-    access: 'canAdmin',
+    access: ['canAdmin', 'canDoctor', 'canUser'],
     component: './Admin',
   },
   {

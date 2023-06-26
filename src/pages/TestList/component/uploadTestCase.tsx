@@ -59,7 +59,6 @@ const UploadTestCase: React.FC<UploadTestCaseProps> = ({ patientID }) => {
   return (
     <>
       <Button key="key" type="primary" onClick={showModal}>
-        <PlusOutlined />
         Thêm mẫu
       </Button>
 

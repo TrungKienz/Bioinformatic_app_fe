@@ -7,7 +7,8 @@ import { server } from '../Api';
 import { testCaseEp } from '../EndPoint';
 import AddTestCase from './component/addTestInformation';
 import UploadTestCase from './component/uploadTestCase';
-import { Link } from '@umijs/max';
+import { Link, useAccess } from '@umijs/max';
+import UpdateTestCase from './component/updateTestInformation';
 
 const { confirm } = Modal;
 export default () => {
@@ -18,10 +19,8 @@ export default () => {
   const [IDTestData, setIDTestData] = useState<any[]>([]);
   const [resultStatus, setResultStatus] = useState<any[]>([]);
   
-  // const handleID = (id: string) => {
-  //   SetId(id);
-  // }
-  
+  const access = useAccess();
+
   const urlData = `${testCaseEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
   useEffect(() => {
     fetch(urlData)
@@ -42,27 +41,6 @@ export default () => {
   const handleTableChange = (pagination: any) => {
     setPagination(pagination);
   };
-
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(`${testCaseEp}/detail/${IDArray}`);
-  //       if (!response.ok) {
-  //         throw new Error('Error fetching data');
-  //       }
-  //       const data = await response.json();
-  //       const IDTest = data.IDTest;
-  //       setIDTestData(IDTest);
-  //       console.log(IDTest);
-  //     } catch (error) {
-  //       console.log(error);
-  //       // Handle the error here
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
 
   const fetchData = async () => {
     try {
@@ -147,13 +125,6 @@ export default () => {
       key: 'testName',
       title: 'Mẫu bệnh phẩm',
       dataIndex: 'testName',
-      // render: (testName) => (
-      //   <>
-      //     {testName?.split(',').map((item: any, index: any) => (
-      //       <li>{item.trim()}</li>
-      //     ))}
-      //   </>
-      // ),
     },
     {
       key: 'option',
@@ -163,17 +134,18 @@ export default () => {
       align: 'left',
       render: (text, data) => (
         <>
-          <Space size={'large'}>
-            <UploadTestCase patientID={data.patientID} />
-            <Button type="primary" onClick={() => handleDelete(data.id, data.patientID)}>
-              Sửa
-            </Button>
-            <Button type="primary" danger onClick={() => handleDelete(data.id, data.patientID)}>
-              Xóa
-            </Button>
-          </Space>
+          {(access.canAdmin || access.canDoctor) ? (
+            <Space size="large">
+              <UploadTestCase patientID={data.patientID} />
+              <UpdateTestCase data={data}/>
+              <Button type="primary" danger onClick={() => handleDelete(data.id, data.patientID)}>
+                Xóa
+              </Button>
+            </Space>
+          ):(<Button type="primary" danger >Doctor and admin zone</Button>)}
         </>
       ),
+      
     },
     {
       key: 'status',
@@ -219,7 +191,7 @@ export default () => {
           onChange: (e) => setSearchTerm(e.target.value),
           style: { width: '350px' },
         },
-        actions: [<AddTestCase/>],
+        actions: [((access.canAdmin || access.canDoctor)?(<AddTestCase/>):(<></>))],
         settings: [],
       }}
       showSorterTooltip={false}
@@ -230,3 +202,4 @@ export default () => {
     />
   );
 };
+

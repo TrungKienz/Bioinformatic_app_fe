@@ -89,7 +89,7 @@ const Welcome: React.FC = () => {
   const { initialState } = useModel('@@initialState');
   const access = useAccess();
   return (
-    <PageContainer>
+
       <Card
         style={{
           borderRadius: 8,
@@ -106,8 +106,6 @@ const Welcome: React.FC = () => {
             backgroundPosition: '100% -30%',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '274px auto',
-            backgroundImage:
-              "url('https://gw.alipayobjects.com/mdn/rms_a9745b/afts/img/A*BuFmQqsB2iAAAAAAAAAAAAAAARQnAQ')",
           }}
         >
           <div
@@ -125,7 +123,7 @@ const Welcome: React.FC = () => {
               lineHeight: '22px',
               marginTop: 16,
               marginBottom: 32,
-              width: '65%',
+              width: '100%',
             }}
           >
             - Công nghệ y tế tiên tiến đã mang lại những đột phá trong chẩn đoán và điều trị ung thư. Trong số đó, phần mềm phát hiện đột biến gen đang thu hút sự quan tâm đặc biệt của các bác sĩ lâm sàng tại Việt Nam. Sử dụng công nghệ giải trình tự thế hệ tiếp theo (Next-Generation Sequencing - NGS), phần mềm này cung cấp một công cụ mạnh mẽ cho việc chẩn đoán và lựa chọn phương pháp điều trị cá nhân hóa cho bệnh nhân ung thư.
@@ -170,7 +168,6 @@ const Welcome: React.FC = () => {
           </div>
         </div>
       </Card>
-    </PageContainer>
   );
 };
 
