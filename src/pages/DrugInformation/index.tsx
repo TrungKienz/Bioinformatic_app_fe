@@ -86,7 +86,6 @@ const DrugInformation = () => {
     const aminoAcidMutation = item['AA Mutation'];
     const rsValue = item['rs valuesource_db'] || 'Không có';
     const drugName = item['Therapies'];
-    const drugResponse = item['Response to Drug'];
     const drugClassification = item['therapy_rank'];
     const diseaseName = item['Disease'];
     const description = item['Description'];
@@ -109,7 +108,7 @@ const DrugInformation = () => {
         : '';
 
     return (
-      <List.Item key={geneName}>
+      <List.Item key={pmid}>
         <List.Item.Meta
           title={<Tag color="blue">{geneName}</Tag>}
           description={description}

@@ -60,7 +60,7 @@ export default [
       {
         path: '/lung-cancer/article',
         name: 'Bài báo liên quan',
-        component: './Article',
+        component: './ArticleNewVersion/PaginationArticle.js',
       },
       {
         path: '/lung-cancer/drug',
@@ -107,7 +107,7 @@ export default [
       {
         path: '/liver-cancer/article',
         name: 'Bài báo liên quan',
-        component: './Article',
+        component: './ArticleNewVersion/PaginationArticle.js',
       },
       {
         path: '/liver-cancer/drug',
@@ -153,7 +153,7 @@ export default [
       {
         path: '/breast-cancer/article',
         name: 'Bài báo liên quan',
-        component: './Article',
+        component: './ArticleNewVersion/PaginationArticle.js',
       },
       {
         path: '/breast-cancer/drug',
@@ -198,7 +198,7 @@ export default [
       {
         path: '/thyroid-cancer/article',
         name: 'Bài báo liên quan',
-        component: './Article',
+        component: './ArticleNewVersion/PaginationArticle.js',
       },
       {
         path: '/thyroid-cancer/drug',
@@ -243,7 +243,7 @@ export default [
       {
         path: '/colorectal-cancer/article ',
         name: 'Bài báo liên quan',
-        component: './Article',
+        component: './ArticleNewVersion/PaginationArticle.js',
       },
       {
         path: '/colorectal-cancer/drug',

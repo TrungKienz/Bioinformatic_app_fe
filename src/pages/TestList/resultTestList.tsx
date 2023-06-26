@@ -1,18 +1,13 @@
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-import type { ProColumns } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
 import { Button, Descriptions, Divider, List, message, Modal, Space, Tag } from 'antd';
 import { useEffect, useState } from 'react';
-import { server } from '../Api';
-import { testCaseEp } from '../EndPoint';
+import CRUDService from '@/services/CRUDService';
+import { testCaseEp, drugsInformationEp } from '../EndPoint';
 
 const { confirm } = Modal;
 
 const ResultTest = () => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [dataPatient, setDataPatient] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
 
   const currentLocation = location.pathname;
   const id = currentLocation.replace('/tests/detail/', '');
@@ -34,9 +29,7 @@ const ResultTest = () => {
         VariantRate: obj.VariantRate,
         ReadDepth: obj.ReadDepth,
       }));
-      console.log(testCase);
       setData(testCase);
-      setTotalPages(data.totalPages);
     } catch (error) {
       console.log(error);
       // Handle error
@@ -61,24 +54,19 @@ useEffect(() => {
   fetchTestData();
 }, []);
 
-  const handleFetchData = () => {
-
-  }
-
-  const extractAndSendData = (item) => {
-    const data = {
+  const extractAndSendData = async (item: any) => {
+    const dataCancerInfor = {
       gene: item.Gene,
-      nucleotide: item.Nucleotide,
       protein: item.Protein,
-      variationType: item.VariationType,
-      rsId: item.RS_ID,
-      position: item.Position,
-      drugResponse: item.DrugResponse,
-      variantRate: item.VariantRate,
-      readDepth: item.ReadDepth
+      condition: 'lung',
     };
   
-    console.log(data);
+    try {
+      const data = await CRUDService.searchService(`${drugsInformationEp}/prediction/evidence`, dataCancerInfor);
+      console.log(data)
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const dataList = Array.from({ length: data.length }).map((_, i) => {
@@ -141,9 +129,6 @@ useEffect(() => {
         itemLayout="vertical"
         size="large"
         pagination={{
-          onChange: (page) => {
-            console.log(page);
-          },
           pageSize: 5,
           hideOnSinglePage: true,
         }}

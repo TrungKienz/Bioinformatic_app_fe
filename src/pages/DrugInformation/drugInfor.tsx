@@ -91,41 +91,42 @@ const NormalGenes = () => {
 
   return (
     <>
-      <Form onFinish={handleSearch}>
-        <Row>
-          <Col span={8}>
-            <Form.Item name="geneName" label="Tìm kiếm theo Gene:">
-              <Input allowClear placeholder="Nhập tên gene" style={{ width: 200 }} />
-            </Form.Item>
-          </Col>
-          <Col span={8}>
-            <Form.Item name="drugName" label="Tìm kiếm theo tên thuốc:">
-              <Input allowClear placeholder="Nhập tên thuốc" style={{ width: 200 }} />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={8}>
-            <Form.Item name="cancerMainType" label="Tìm kiếm loại ung thư (Main type):">
-              <Input
-                allowClear
-                placeholder="Nhập tên loại ung thư (Main type)"
-                style={{ width: 200 }}
-              />
-            </Form.Item>
-          </Col>
-          <Col span={8}>
-            <Form.Item name="cancerSubType" label="Tìm kiếm theo loại ung thư (Sub type):">
-              <Input allowClear placeholder="Nhập loại ung thư (Sub type)" style={{ width: 200 }} />
-            </Form.Item>
-          </Col>
-          <Col span={8}>
-            <Button name="search" type="primary" htmlType="submit">
-              Tìm kiếm
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+      <Form onFinish={handleSearch} style={{ marginBottom: '20px' }}>
+  <Row gutter={16}>
+    <Col span={8}>
+      <Form.Item name="geneName" label="Tên Gene:">
+        <Input allowClear placeholder="Nhập tên gene" style={{ width: '100%' }} />
+      </Form.Item>
+    </Col>
+    <Col span={8}>
+      <Form.Item name="drugName" label="Tên thuốc:">
+        <Input allowClear placeholder="Nhập tên thuốc" style={{ width: '100%' }} />
+      </Form.Item>
+    </Col>
+  </Row>
+  <Row gutter={16}>
+    <Col span={8}>
+      <Form.Item name="cancerMainType" label="Main type:">
+        <Input
+          allowClear
+          placeholder="Nhập tên loại ung thư (Main type)"
+          style={{ width: '100%' }}
+        />
+      </Form.Item>
+    </Col>
+    <Col span={8}>
+      <Form.Item name="cancerSubType" label="Sub type:">
+        <Input allowClear placeholder="Nhập loại ung thư (Sub type)" style={{ width: '100%' }} />
+      </Form.Item>
+    </Col>
+    <Col span={8}>
+      <Button name="search" type="primary" htmlType="submit" >
+        Tìm kiếm
+      </Button>
+    </Col>
+  </Row>
+</Form>
+
 
       <ProTable
         columns={columns}
