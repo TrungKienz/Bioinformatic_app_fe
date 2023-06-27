@@ -1,4 +1,7 @@
 import { request } from '@umijs/max';
+import token from '@/utils/token';
+
+const accessToken = token.get().accessToken
 
 class CRUDService {
   saveService = async (api: String, body: any, options?: { [key: string]: any }) => {
@@ -6,6 +9,7 @@ class CRUDService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       data: body,
       ...(options || {}),
@@ -26,6 +30,7 @@ class CRUDService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       data: { id: body },
       ...(options || {}),
@@ -55,6 +60,7 @@ class CRUDService {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       data: body,
       ...(options || {}),
