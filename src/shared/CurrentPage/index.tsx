@@ -13,6 +13,7 @@ const liverDrugPage = '/liver-cancer/drug';
 const breastDrugPage = '/breast-cancer/drug';
 const thyroidDrugPage = '/thyroid-cancer/drug';
 const colorectalDrugPage = '/colorectal-cancer/drug';
+const lungTreatmentPage = '/lung-cancer/other-treatment';
 
 export const currentPage = (currentLocation: string) => {
   let resultLocation;
@@ -20,6 +21,7 @@ export const currentPage = (currentLocation: string) => {
     case lungOverviewPage:
     case lungCancerPage:
     case lungDrugPage:
+    case lungTreatmentPage:
       resultLocation = 'lungCancerPage';
       break;
     case liverOverviewPage:

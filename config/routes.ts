@@ -70,7 +70,7 @@ export default [
       {
         path: '/lung-cancer/other-treatment',
         name: 'Các điều trị khác',
-        component: './Admin.tsx',
+        component: './OtherTreatment',
       },
       {
         name: 'Quản lý bệnh án',

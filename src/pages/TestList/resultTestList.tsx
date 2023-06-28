@@ -145,10 +145,10 @@ useEffect(() => {
               <Descriptions.Item label="Loại đột biến">{item.VariationType}</Descriptions.Item>
               <Descriptions.Item label="Giá trị RS">{item.RS_ID}</Descriptions.Item>
               <Descriptions.Item label="Vị trí">{item.Position}</Descriptions.Item>
-              <Descriptions.Item label="Đáp ứng thuốc">{item.DrugResponse}</Descriptions.Item>
+              {/* <Descriptions.Item label="Đáp ứng thuốc">{item.DrugResponse}</Descriptions.Item> */}
               <Descriptions.Item label="Variant Rate">{item.VariantRate}</Descriptions.Item>
               <Descriptions.Item label="Read Depth">{item.ReadDepth}</Descriptions.Item>
-              <Descriptions.Item label="Thông tin thuốc điều trị"><Button type="primary" onClick={() => extractAndSendData(item)}>Chi tiết</Button></Descriptions.Item>
+              {/* <Descriptions.Item label="Thông tin thuốc điều trị"><Button type="primary" onClick={() => extractAndSendData(item)}>Chi tiết</Button></Descriptions.Item> */}
             </Descriptions>
           </List.Item>
         )}

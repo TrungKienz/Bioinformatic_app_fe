@@ -1,8 +1,8 @@
 import { PageContainer } from '@ant-design/pro-components';
 import React from 'react';
-import '../style-overview.css'
+// import '../style-overview.css'
 
-const LungOverview = () => {
+const LungTreatment = () => {
   return (
     <>
       <h1>UNG THƯ PHỔI</h1>
@@ -193,4 +193,4 @@ const LungOverview = () => {
   );
 };
 
-export default LungOverview;
+export default LungTreatment;
