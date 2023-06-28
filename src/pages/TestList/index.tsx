@@ -9,6 +9,9 @@ import AddTestCase from './component/addTestInformation';
 import UploadTestCase from './component/uploadTestCase';
 import { Link, useAccess } from '@umijs/max';
 import UpdateTestCase from './component/updateTestInformation';
+import token from '@/utils/token';
+
+const accessToken = token.get().accessToken
 
 const { confirm } = Modal;
 export default () => {
