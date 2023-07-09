@@ -3,6 +3,13 @@
   "version": "6.0.0",
   "private": true,
   "description": "An out-of-box UI solution for enterprise applications",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
     "analyze": "cross-env ANALYZE=1 max build",
     "build": "max build",
@@ -61,10 +68,10 @@
     "omit.js": "^2.0.2",
     "rc-menu": "^9.6.4",
     "rc-util": "^5.24.4",
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "react-csv": "^2.2.2",
     "react-dev-inspector": "^1.8.1",
-    "react-dom": "^18.0.0",
+    "react-dom": "^18.2.0",
     "react-helmet-async": "^1.3.0"
   },
   "devDependencies": {

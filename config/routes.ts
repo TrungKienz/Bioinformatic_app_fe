@@ -79,7 +79,7 @@ export default [
 
         component: './HealthRecord/',
       },
-    ]
+    ],
   },
   {
     path: '/liver-cancer',
@@ -118,7 +118,7 @@ export default [
       {
         path: '/liver-cancer/other-treatment',
         name: 'Các điều trị khác',
-        component: './Admin.tsx',
+        component: './OtherTreatment',
       },
 
       {
@@ -126,7 +126,7 @@ export default [
         path: '/liver-cancer/health-record',
         component: './HealthRecord/',
       },
-    ]
+    ],
   },
   {
     path: '/breast-cancer',
@@ -165,14 +165,14 @@ export default [
       {
         path: '/breast-cancer/other-treatment',
         name: 'Các điều trị khác',
-        component: './Admin.tsx',
+        component: './OtherTreatment',
       },
       {
         name: 'Quản lý bệnh án',
         path: '/breast-cancer/health-record',
         component: './HealthRecord/',
       },
-    ]
+    ],
   },
   {
     path: '/thyroid-cancer',
@@ -211,14 +211,14 @@ export default [
       {
         path: '/thyroid-cancer/other-treatment',
         name: 'Các điều trị khác',
-        component: './Admin.tsx',
+        component: './OtherTreatment',
       },
       {
         name: 'Quản lý bệnh án',
         path: '/thyroid-cancer/health-record',
         component: './HealthRecord/',
       },
-    ]
+    ],
   },
   {
     path: '/colorectal-cancer',
@@ -257,14 +257,14 @@ export default [
       {
         path: '/colorectal-cancer/other-treatment',
         name: 'Các điều trị khác',
-        component: './Admin.tsx',
+        component: './OtherTreatment',
       },
       {
         name: 'Quản lý bệnh án',
         path: '/colorectal-cancer/health-record',
         component: './HealthRecord/',
       },
-    ]
+    ],
   },
   {
     path: '/tests',
@@ -324,7 +324,7 @@ export default [
     component: './HealthRecord/ColorectalCancer',
     hideInMenu: true,
     menuRender: false,
-    footerRender: false
+    footerRender: false,
   },
   {
     name: 'Bệnh án ung thư phổi',
@@ -333,8 +333,7 @@ export default [
     component: './HealthRecord/LungCancer',
     hideInMenu: true,
     menuRender: false,
-    footerRender: false
-
+    footerRender: false,
   },
   {
     name: 'Bệnh án ung thư gan',
@@ -343,7 +342,7 @@ export default [
     component: './HealthRecord/LiverCancer',
     hideInMenu: true,
     menuRender: false,
-    footerRender: false
+    footerRender: false,
   },
   {
     name: 'Bệnh án NC-K Giáp',
@@ -352,7 +351,7 @@ export default [
     component: './HealthRecord/ThyroidCancer',
     hideInMenu: true,
     menuRender: false,
-    footerRender: false
+    footerRender: false,
   },
   {
     name: 'Bệnh án NC-K Vú',
@@ -361,7 +360,7 @@ export default [
     component: './HealthRecord/BreastCancer',
     hideInMenu: true,
     menuRender: false,
-    footerRender: false
+    footerRender: false,
   },
   {
     path: '/gene-and-mutation/:id',
@@ -375,25 +374,25 @@ export default [
     path: '/over-view',
     access: ['canAdmin', 'canDoctor', 'canUser'],
     routes: [
-        {
-          name: 'Chuyên gia gen đột biến',
-          path: '/over-view/gene-mutation',
-          component: './GeneAndMutation/geneAndMutation.tsx',
-        },
-        {
-          name: 'Chuyên gia điều trị đích',
-          path: '/over-view/drug',
-          component: './DrugInformation/drugInfor.tsx',
-        },
-        {
-          name: 'Chuyên gia thuốc điều trị',
-          path: '/over-view/drugtest',
-          component: './PhamHuyHoang/ViewThuocTriLieu.js',
-        },
-      ],
+      {
+        name: 'Chuyên gia gen đột biến',
+        path: '/over-view/gene-mutation',
+        component: './GeneAndMutation/geneAndMutation.tsx',
+      },
+      {
+        name: 'Chuyên gia điều trị đích',
+        path: '/over-view/drug',
+        component: './DrugInformation/drugInfor.tsx',
+      },
+      {
+        name: 'Chuyên gia thuốc điều trị',
+        path: '/over-view/drugtest',
+        component: './PhamHuyHoang/ViewThuocTriLieu.js',
+      },
+    ],
   },
   {
-    name: 'Thông tin nhóm phát triển',
+    name: 'Nhóm phát triển',
     icon: '',
     path: '/dev-teams',
     access: ['canAdmin', 'canDoctor', 'canUser'],
