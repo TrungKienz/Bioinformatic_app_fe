@@ -1,8 +1,8 @@
 import HealthRecordService from '@/services/healthRecord';
-import { DeleteOutlined, EditOutlined, FileAddOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, EyeOutlined, FileAddOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { history } from '@umijs/max';
-import { Button, Form, Input, Popconfirm, Space, Table } from 'antd';
+import { Button, Form, Input, Popconfirm, Space, Table, Tooltip } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import { FilterValue } from 'antd/es/table/interface';
 import { useEffect, useState } from 'react';
@@ -14,22 +14,22 @@ interface DataType {
   typeHealthRecord: string;
   healthRecordId: string;
 }
-const handleCreateHealthRecord = (typeRecord: any, id = 0) => {
+const handleCreateHealthRecord = (typeRecord, id = 0, type) => {
   switch (typeRecord) {
     case 'colorectal-record':
-      history.push(`/health-record/colorectal-record/${id}`);
+      history.push(`/health-record/colorectal-record/${id}?type=${type}`);
       break;
     case 'lung-record':
-      history.push(`/health-record/lung-record/${id}`);
+      history.push(`/health-record/lung-record/${id}?type=${type}`);
       break;
     case 'liver-record':
-      history.push(`/health-record/liver-record/${id}`);
+      history.push(`/health-record/liver-record/${id}?type=${type}`);
       break;
     case 'thyroid-record':
-      history.push(`/health-record/thyroid-record/${id}`);
+      history.push(`/health-record/thyroid-record/${id}?type=${type}`);
       break;
     case 'breast-record':
-      history.push(`/health-record/breast-record/${id}`);
+      history.push(`/health-record/breast-record/${id}?type=${type}`);
       break;
     default:
       break;
@@ -66,7 +66,7 @@ export default () => {
   };
   const columns: ColumnsType<DataType> = [
     {
-      title: 'Mã bệnh án',
+      title: 'Mã hồ sơ',
       dataIndex: 'healthRecordId',
       key: 'healthRecordId',
     },
@@ -85,20 +85,31 @@ export default () => {
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <Button
-            type="primary"
-            icon={<EditOutlined />}
-            onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id)}
-          />
-          <Popconfirm
-            title="Xóa bệnh án"
-            description="Bạn có chắc muốn xóa bệnh án này?"
-            onConfirm={() => handleDeleteHealthRecord(record.typeHealthRecord, record.id)}
-            okText="Yes"
-            cancelText="No"
-          >
-            <Button danger icon={<DeleteOutlined />} />
-          </Popconfirm>
+          <Tooltip title="Sửa hồ sơ">
+            <Button
+              icon={<EditOutlined />}
+              onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id, 'edit')}
+            />
+          </Tooltip>
+          <Tooltip title="Xem hồ sơ">
+            <Button
+              type="primary"
+              ghost
+              icon={<EyeOutlined />}
+              onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id, 'view')}
+            />
+          </Tooltip>
+          <Tooltip title="Xóa hồ sơ">
+            <Popconfirm
+              title="Xóa hồ sơ"
+              description="Bạn có chắc muốn xóa hồ sơ này?"
+              onConfirm={() => handleDeleteHealthRecord(record.typeHealthRecord, record.id)}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button danger icon={<DeleteOutlined />} />
+            </Popconfirm>
+          </Tooltip>
         </Space>
       ),
     },
@@ -126,8 +137,8 @@ export default () => {
   return (
     <PageContainer>
       <Form {...layout} layout="inline" onFinish={handleSearch}>
-        <Form.Item label="Mã bệnh án" name="healthRecordId">
-          <Input placeholder="Hãy nhập mã bệnh án"></Input>
+        <Form.Item label="Mã hồ sơ" name="healthRecordId">
+          <Input placeholder="Hãy nhập mã hồ sơ"></Input>
         </Form.Item>
 
         <Form.Item>
@@ -137,9 +148,9 @@ export default () => {
       <Button
         icon={<FileAddOutlined />}
         style={{ margin: '20px 0' }}
-        onClick={() => handleCreateHealthRecord(typeHealthRecord)}
+        onClick={() => handleCreateHealthRecord(typeHealthRecord, 0, 'edit')}
       >
-        Thêm bệnh án
+        Thêm hồ sơ
       </Button>
       <Table columns={columns} dataSource={post} />
     </PageContainer>

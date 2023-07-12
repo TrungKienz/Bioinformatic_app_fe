@@ -23,11 +23,10 @@ export default ({ ques }) => {
     return (
       <>
         {ques?.listChoice?.map((choice, choiceId) => {
-          if (choice.includes('Khác (ghi rõ):'))
+          if (choice.includes('Khác (ghi rõ):') || choice === 'Loại thuốc')
             return (
               <div key={choiceId} className="sub-cell">
                 <Checkbox
-                  className={isView ? 'is-disabled' : ''}
                   disabled={isView}
                   defaultChecked={ques.answer[choiceId]}
                   onChange={(e) => {
@@ -35,10 +34,9 @@ export default ({ ques }) => {
                   }}
                 >
                   {choice}
-                </Checkbox>{' '}
+                </Checkbox>
                 <Input.TextArea
                   disabled={isView}
-                  autoSize={true}
                   defaultValue={ques?.otherValue}
                   onChange={(e) => handleOnChangeText(e.target.value, true)}
                 />
@@ -128,12 +126,12 @@ export default ({ ques }) => {
       >
         <Space direction={ques?.horizontal ? 'horizontal' : 'vertical'}>
           {ques?.listChoice?.map((choice, choiceId) => {
-              if (choice.includes('Khác (ghi rõ):'))
+            if (choice.includes('Khác (ghi rõ):'))
               return (
                 <div key={choiceId} className="sub-cell">
-                <Radio value={choice} key={choiceId} className='full-width'>
-                {choice}
-              </Radio>{' '}
+                  <Radio value={choice} key={choiceId} className="full-width">
+                    {choice}
+                  </Radio>{' '}
                   <Input.TextArea
                     disabled={isView}
                     autoSize={true}

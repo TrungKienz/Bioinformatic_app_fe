@@ -4,7 +4,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { FormattedMessage, Helmet, history, SelectLang, useIntl, useModel } from '@umijs/max';
-import { Alert, message, Tabs } from 'antd';
+import { Alert, ConfigProvider, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import Settings from '../../../../config/defaultSettings';
 import './style.css';
@@ -102,6 +102,12 @@ const Login: React.FC = () => {
   const { status, type: loginType } = userLoginState;
 
   return (
+    <ConfigProvider   theme={{
+      token: {
+        colorPrimary: '#15b9c6',
+      },
+    }}>
+
     <div className={containerClassName}>
       <Helmet>
         <title>
@@ -235,6 +241,7 @@ const Login: React.FC = () => {
       </div>
       <Footer />
     </div>
+    </ConfigProvider>
   );
 };
 

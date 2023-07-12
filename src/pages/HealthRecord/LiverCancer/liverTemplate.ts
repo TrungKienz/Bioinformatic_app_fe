@@ -956,6 +956,7 @@ const LUNG: any = {
     },
     {
         "name": "V>CẬN LÂM SÀNG (TRƯỚC ĐIỀU TRỊ HOÁ CHẤT)",
+        "key": "subclinical",
         "listQuestions": [
             [
                 [

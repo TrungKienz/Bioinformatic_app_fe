@@ -4,7 +4,7 @@ import type { Settings as LayoutSettings } from '@ant-design/pro-components';
 import { history, RunTimeLayoutConfig } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
-import { currentUser as queryCurrentUser } from './services/authService/api';
+import { currentUser1 as queryCurrentUser } from './services/authService/api';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -30,15 +30,15 @@ export async function getInitialState(): Promise<{
     return undefined;
   };
   // If it is not a login page, execute
-  const { location } = history;
-  if (location.pathname !== loginPath) {
-    const currentUser = await fetchUserInfo();
-    return {
-      fetchUserInfo,
-      currentUser,
-      settings: defaultSettings as Partial<LayoutSettings>,
-    };
-  }
+  // const { location } = history;
+  // if (location.pathname !== loginPath) {
+  //   const currentUser = await fetchUserInfo();
+  //   return {
+  //     fetchUserInfo,
+  //     currentUser,
+  //     settings: defaultSettings as Partial<LayoutSettings>,
+  //   };
+  // }
   return {
     fetchUserInfo,
     settings: defaultSettings as Partial<LayoutSettings>,

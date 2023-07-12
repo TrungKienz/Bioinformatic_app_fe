@@ -73,7 +73,7 @@ export default [
         component: './OtherTreatment',
       },
       {
-        name: 'Quản lý bệnh án',
+        name: 'Quản lý hồ sơ bệnh nhân',
         // icon: '/icons/health-record.png',
         path: '/lung-cancer/health-record',
 
@@ -122,7 +122,7 @@ export default [
       },
 
       {
-        name: 'Quản lý bệnh án',
+        name: 'Quản lý hồ sơ bệnh nhân',
         path: '/liver-cancer/health-record',
         component: './HealthRecord/',
       },
@@ -168,7 +168,7 @@ export default [
         component: './OtherTreatment',
       },
       {
-        name: 'Quản lý bệnh án',
+        name: 'Quản lý hồ sơ bệnh nhân',
         path: '/breast-cancer/health-record',
         component: './HealthRecord/',
       },
@@ -214,7 +214,7 @@ export default [
         component: './OtherTreatment',
       },
       {
-        name: 'Quản lý bệnh án',
+        name: 'Quản lý hồ sơ bệnh nhân',
         path: '/thyroid-cancer/health-record',
         component: './HealthRecord/',
       },
@@ -260,7 +260,7 @@ export default [
         component: './OtherTreatment',
       },
       {
-        name: 'Quản lý bệnh án',
+        name: 'Quản lý hồ sơ bệnh nhân',
         path: '/colorectal-cancer/health-record',
         component: './HealthRecord/',
       },
@@ -269,7 +269,7 @@ export default [
   {
     path: '/tests',
     name: 'Xét nghiệm',
-    icon: '/icons/tests_icon.jpg',
+    icon: '/icons/tests_icon.png',
     access: ['canAdmin', 'canDoctor', 'canUser'],
     routes: [
       {
@@ -317,6 +317,12 @@ export default [
       },
     ],
   },
+  // {
+  //   name: 'Quản lý hồ sơ bệnh nhân',
+  //   icon: '/icons/health-record.png',
+  //   path: '/health-record/:typeHealthRecord',
+  //   component: './HealthRecord/',
+  // },
   {
     name: 'Bệnh án ung thư trực tràng',
     icon: 'https://icon-library.com/images/ef4d093f9d.png',
@@ -362,6 +368,14 @@ export default [
     menuRender: false,
     footerRender: false,
   },
+
+  // {
+  //   name: 'Quản lý hồ sơ bệnh nhân',
+  //   icon: '/icons/health-record.png',
+  //   path: '/health-record',
+  //   component: './HealthRecord/',
+  // },
+
   {
     path: '/gene-and-mutation/:id',
     access: 'canAdmin',

@@ -1,6 +1,6 @@
 import HealthRecordService from '@/services/healthRecord';
 import { PageContainer, PageLoading } from '@ant-design/pro-components';
-import { useParams } from '@umijs/max';
+import { history, useModel, useParams } from '@umijs/max';
 import { Col, Form, Menu, MenuProps, Row } from 'antd';
 import { useEffect, useState } from 'react';
 import ControlButton from '../ControlButton';
@@ -15,6 +15,7 @@ import BREAST from './BreastTemplate';
 let CANCER = JSON.parse(JSON.stringify(BREAST));
 
 export default () => {
+  const { isView, toggleView } = useModel('viewPage');
   const [patientInfoForm] = Form.useForm();
   const [genTestForm] = Form.useForm();
   const [loading, setLoading] = useState(true);
@@ -49,6 +50,13 @@ export default () => {
       typeSample: '',
     });
 
+    const type = history.location.search.substring(6);
+    console.log('query param', type);
+    if (type === 'edit') {
+      toggleView(false);
+    } else {
+      toggleView(true);
+    }
     if (params.id !== '0') {
       getHealthRecord(params, CANCER.typeHealthRecord);
     } else {
@@ -308,7 +316,7 @@ export default () => {
             <GenTestForm form={genTestForm} cancer={CANCER} />
           </div>
 
-          <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />
+          {!isView && <ControlButton link={CANCER.typeHealthRecord} handleSubmit={handleSubmit} />}
         </PageContainer>
       </div>
     </div>

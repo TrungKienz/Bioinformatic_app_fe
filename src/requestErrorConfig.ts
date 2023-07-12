@@ -89,6 +89,10 @@ export const errorConfig: RequestConfig = {
     (config: RequestOptions) => {
       // 拦截请求配置，进行个性化处理。
       const url = config?.url;
+      config.headers = {
+        "Origin":"http://aicancer.vn",
+        "Referer": "http://aicancer.vn"
+      };
       return { ...config, url };
     },
   ],

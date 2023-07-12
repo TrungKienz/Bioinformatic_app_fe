@@ -8,7 +8,7 @@ const Settings: ProLayoutProps & {
   logo?: string;
 } = {
   navTheme: 'light',
-  colorPrimary: '#1890ff',
+  colorPrimary: '#15b9c6',
   layout: 'mix',
   contentWidth: 'Fluid',
   fixedHeader: true,
