@@ -218,8 +218,12 @@ export default () => {
           })}
           <div className={current !== 'assessment_response_treatment' ? 'none' : ''}>
             <h4>VII{'>'} ĐÁNH GIÁ ĐÁP ỨNG ĐIỀU TRỊ </h4>
-            <div>
-              42. Triệu chứng lâm sàng sau điều trị: Mức độ: 0. Không 1. Ít 2. Vừa 3. Nhiều
+            <div className='mt-4'>
+              42. Triệu chứng lâm sàng sau điều trị: 
+              
+              <div className='mt-8 mb-8'>
+                Mức độ: 0. Không 1. Ít 2. Vừa 3. Nhiều
+                </div>
               <table>
                 <thead>
                   <tr>

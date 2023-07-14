@@ -2431,6 +2431,8 @@ const LUNG: any = {
   },
 
   assessmentResponseTreatment: {
+    key:'assessment_response_treatment',
+
     listQuestions: [
       {
         question: 'Tử vong trong 05 năm theo dõi(kể từ ngày bắt đầu theo dõi)',

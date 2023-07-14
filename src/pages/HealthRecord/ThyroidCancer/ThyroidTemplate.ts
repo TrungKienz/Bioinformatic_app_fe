@@ -1774,6 +1774,8 @@ const THYROID: any = {
   ],
 
   assessmentResponseTreatment: {
+    key:'assessment_response_treatment',
+
     name: '40.Theo dõi đáp ứng điều trị',
     listQuestions: [
       {

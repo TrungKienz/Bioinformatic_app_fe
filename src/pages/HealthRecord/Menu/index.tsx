@@ -32,6 +32,11 @@ const listMenu = [
         icon: <Icon component={() => (<img className='icon' src="/icons/categories/hydrotherapy.png" />)} />,
     },
     {
+        label: 'Đánh giá đáp ứng điều trị',
+        key: 'assessment_response_treatment',
+        icon: <Icon component={() => (<img className='icon' src="/icons/categories/assessment.png" />)} />,
+    },
+    {
         label: 'Xét nghiệm di truyền',
         key: 'gen_test',
         icon: <Icon component={() => (<img className='icon' src="/icons/categories/test.png" />)} />,

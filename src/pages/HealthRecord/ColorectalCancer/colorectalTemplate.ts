@@ -1522,6 +1522,8 @@ const COLORECTAL: any = {
     }
 ],
   assessmentResponseTreatment: {
+    key:'assessment_response_treatment',
+
     listQuestions: [
       {
         question: '45. Tử vong trong 5 năm theo dõi ',
