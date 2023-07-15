@@ -269,7 +269,7 @@ export default [
   {
     path: '/tests',
     name: 'Xét nghiệm',
-    icon: '/icons/tests_icon.jpg',
+    icon: '/icons/tests_icon.png',
     access: ['canAdmin', 'canDoctor', 'canUser'],
     routes: [
       {
@@ -387,7 +387,7 @@ export default [
       {
         name: 'Chuyên gia thuốc điều trị',
         path: '/over-view/drugtest',
-        component: './PhamHuyHoang/ViewThuocTriLieu.js',
+        component: './PhamHuyHoang/ThuocTriLieu.js',
       },
     ],
   },

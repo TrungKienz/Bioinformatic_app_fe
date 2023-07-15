@@ -20,12 +20,11 @@ const { Panel } = Collapse;
 const { Meta } = Card;
 
 const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
-  console.log(datas);
   const [visible, setVisible] = useState(false);
   const [currentComponent, setCurrentComponent] = useState(null);
   const [visible2, setVisible2] = useState(false);
   const [visible4, setVisible4] = useState(false);
-  const [visible3, setVisible3] = useState(false);
+  const [visible5, setVisible5] = useState(false);
   const [currentMedicine, setCurrentMedicine] = useState(null);
   const [currentAdd, setCurrentAdd] = useState(null);
   const [currentPage1, setCurrentPage1] = useState(1);
@@ -34,6 +33,7 @@ const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
     setCurrentPage1(page);
     setCurentPage(page);
   };
+
   const handleEdit = (component) => {
     setCurrentMedicine(component);
     setVisible2(true);
@@ -53,8 +53,6 @@ const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
         medicineId: currentMedicine._id,
         dosage_form: values.dosage_form,
         company_name: values.company_name,
-        circulation_permit: values.circulation_permit,
-        approved: true,
       })
       .then((response) => {
         console.log(response.data);
@@ -70,9 +68,7 @@ const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
 
   const handleDelete = (medicine_Id) => {
     axios
-      .post('https://ut-project-be.vercel.app/api/delete-vn-medicine', {
-        medicineId: medicine_Id,
-      })
+      .post('https://ut-project-be.vercel.app/api/delete-vn-medicine', { medicineId: medicine_Id })
       .then((response) => {
         console.log(response.data);
       })
@@ -94,7 +90,7 @@ const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
   };
   const handleAddMedicine = (componentId) => {
     setCurrentAdd(componentId);
-    setVisible3(true);
+    setVisible5(true);
     console.log('Add medicine to component:', componentId);
   };
 
@@ -133,17 +129,17 @@ const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
     setCurrentComponent(null);
   };
   const handleModal3Cancel = () => {
-    setVisible3(false);
+    setVisible5(false);
   };
   const handleModal3Submit = (values) => {
     axios
-      .post('https://ut-project-be.vercel.app/api/vn-medicine-approved', {
+      .post('https://ut-project-be.vercel.app/api/vn-medicine-not-approved', {
         medicine_name: values.medicine_name,
         content: values.content,
         component: currentAdd,
         dosage_form: values.dosage_form,
         company_name: values.company_name,
-        circulation_permit: values.circulation_permit,
+        packing: values.packing,
       })
       .then((response) => {
         console.log('them thuoc thanh cong');
@@ -153,7 +149,7 @@ const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
       });
 
     console.log('add medicin:', 'with values:', values);
-    setVisible3(false);
+    setVisible5(false);
   };
 
   const handleModal4Cancel = () => {
@@ -165,7 +161,7 @@ const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
         cure: values.cure,
         component: values.component,
         gene: values.gene,
-        approved: true,
+        approved: false,
       })
       .then((response) => {
         console.log('them thanh cong hoat chat');
@@ -363,14 +359,7 @@ const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
           >
             <Input />
           </Form.Item>
-          <Form.Item
-            label="Circulation permit"
-            name="circulation_permit"
-            rules={[{ required: true, message: 'Vui lòng nhập circulation permit!' }]}
-            initialValue={currentMedicine?.circulation_permit}
-          >
-            <Input />
-          </Form.Item>
+
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Lưu
@@ -379,7 +368,7 @@ const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
         </Form>
       </Modal>
 
-      <Modal title="Thêm thuốc" visible={visible3} onCancel={handleModal3Cancel} footer={null}>
+      <Modal title="Thêm thuốc" visible={visible5} onCancel={handleModal3Cancel} footer={null}>
         <Form onFinish={handleModal3Submit} layout="vertical">
           <Form.Item
             label="Tên thuốc"
@@ -406,17 +395,17 @@ const ViewThuocTriLieu = ({ datas, setCurentPage, metadata, role }) => {
             <Input />
           </Form.Item>
           <Form.Item
-            label="Company name"
-            name="company_name"
-            rules={[{ required: true, message: 'Vui lòng nhập company name!' }]}
+            label="Packing"
+            name="packing"
+            rules={[{ required: true, message: 'Vui lòng nhập packing!' }]}
             initialValue=""
           >
             <Input />
           </Form.Item>
           <Form.Item
-            label="Circulation permit"
-            name="circulation_permit"
-            rules={[{ required: true, message: 'Vui lòng nhập circulation permit!' }]}
+            label="Company name"
+            name="company_name"
+            rules={[{ required: true, message: 'Vui lòng nhập company name!' }]}
             initialValue=""
           >
             <Input />
