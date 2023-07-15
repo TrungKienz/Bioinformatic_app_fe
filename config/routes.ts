@@ -24,6 +24,13 @@ export default [
     ],
   },
   {
+    path: '/user-manager',
+    name: 'Quản lý người dùng',
+    icon: '/icons/patient_icon.png',
+    component: './UserManager',
+    access: 'canAdmin',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
