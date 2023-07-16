@@ -1,9 +1,11 @@
 import AddAccount from '@/components/UserManager/AddAccount';
+import UpdateAccount from '@/components/UserManager/UpdateAccount';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Button, message, Modal, Space } from 'antd';
 import { useEffect, useState } from 'react';
+import { server } from '../Api';
 
 
 const { confirm } = Modal;
@@ -13,7 +15,7 @@ export default () => {
   
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/user/get-all-user`);
+      const response = await fetch(`${server}/user/get-all-user`);
       const data = await response.json();
       setData(data);
     } catch (error) {
@@ -26,15 +28,19 @@ export default () => {
     fetchData();
   }, []);
   
-  const handleDelete = (id: String, runID: String) => {
+  const handleAddAccountSuccess = () => {
+    fetchData();
+  };
+  
+  const handleDelete = (id: String, name: String) => {
     confirm({
-      title: `Bạn muốn xóa user :${runID} này?`,
+      title: `Bạn muốn xóa user :${name} này?`,
       icon: <ExclamationCircleOutlined />,
       cancelText: 'Hủy',
       okText: 'Xóa',
       okType: 'danger',
       onOk() {
-        fetch(``, {
+        fetch(`${server}/user/delete-user/${id}`, {
           method: 'DELETE',
         })
           .then((response) => {
@@ -42,7 +48,7 @@ export default () => {
               throw new Error('Lỗi khi xóa');
             }
             message.success('Xóa thành công');
-            setData((prevData) => prevData.filter((item) => item.id !== id));
+            fetchData();
           })
           .catch((error) => {
             message.error(error.message);
@@ -67,11 +73,6 @@ export default () => {
         return String(record.patientName).toLowerCase().includes(String(value).toLowerCase());
       },
     },
-    // {
-    //     key: 'password',
-    //     title: 'Mật khẩu',
-    //     dataIndex: 'password',
-    // },
     {
         key: 'access',
         title: 'Quyền truy cập',
@@ -105,14 +106,13 @@ export default () => {
       align: 'left',
       render: (text, data) => (
         <>
-            <Space size="large">
-                <Button type="primary" >
-                Sửa
-              </Button>
-              <Button type="primary" danger onClick={() => handleDelete(data.id, data.patientID)}>
+            {data.access === 'admin' ? <></> : 
+            (<Space size="large">
+              <UpdateAccount data={data} onSuccess={handleAddAccountSuccess}/>
+              <Button type="primary" danger onClick={() => handleDelete(data._id, data.name)}>
                 Xóa
               </Button>
-            </Space>
+            </Space>)}
         </>
       ),
       
@@ -131,7 +131,7 @@ export default () => {
           onChange: (e) => setSearchTerm(e.target.value),
           style: { width: '350px' },
         },
-        actions: [<AddAccount/>],
+        actions: [<AddAccount onSuccess={handleAddAccountSuccess}/>],
         settings: [],
       }}
       showSorterTooltip={false}

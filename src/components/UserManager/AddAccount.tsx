@@ -1,12 +1,13 @@
 import { server } from '@/pages/Api';
 import CRUDService from '@/services/CRUDService';
-import { Form, Input, message, Modal, Select } from 'antd';
+import { Button, Form, Input, message, Modal, Select } from 'antd';
 import { useState } from 'react';
-import './addAccount.css'
+import './addAccount.css';
+import { PlusOutlined } from '@ant-design/icons';
 
 const AddAPI = `${server}/user/register`;
 
-const AddAccount = () => {
+const AddAccount = ({ onSuccess }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
 
@@ -28,12 +29,19 @@ const AddAccount = () => {
     setIsModalOpen(false);
   };
 
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
   const handleFinish = async () => {
     try {
       const values = await form.validateFields();
       console.log(values);
       await CRUDService.saveService(AddAPI, values);
       success();
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
       console.error(error);
       warning();
@@ -48,13 +56,17 @@ const AddAccount = () => {
   return (
     <>
       {contextHolder}
+      <Button key="key" type="primary" onClick={showModal}>
+        <PlusOutlined />
+        Thêm người dùng mới
+      </Button>
       <Modal
         title="Thêm tài khoản người dùng mới"
         open={isModalOpen}
         onOk={handleFinish}
         onCancel={handleCancel}
       >
-        <Form form={form} className='add-account-form'>
+        <Form form={form} className="add-account-form">
           <Form.Item name="email" label="Tài khoản:">
             <Input allowClear placeholder="Tài khoản" required={true} />
           </Form.Item>
@@ -63,13 +75,13 @@ const AddAccount = () => {
           </Form.Item>
           <Form.Item name="access" label="Quyền truy cập:">
             <Select
-                defaultValue="user"
-                onChange={handleChange}
-                options={[
-                    { value: 'user', label: 'Người dùng phổ thông' },
-                    { value: 'doctor', label: 'Bác sĩ' },
-                ]}
-                />
+              defaultValue="user"
+              onChange={handleChange}
+              options={[
+                { value: 'user', label: 'Người dùng phổ thông' },
+                { value: 'doctor', label: 'Bác sĩ' },
+              ]}
+            />
           </Form.Item>
           <Form.Item name="name" label="Tên người dùng:">
             <Input allowClear placeholder="Tên người dùng" />
