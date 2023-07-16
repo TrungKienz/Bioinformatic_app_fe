@@ -7,7 +7,7 @@ import './addTestInfor.css';
 
 const searchUrl = `${server}/test-case/add`;
 
-const AddTestCase = ({ onSuccess}) => {
+const AddTestCase = ({ onSuccess }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
 

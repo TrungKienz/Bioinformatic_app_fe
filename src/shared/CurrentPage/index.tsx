@@ -56,7 +56,7 @@ export const currentPage = (currentLocation: string) => {
     case thyroidCancerPage:
     case thyroidDrugPage:
     case thyroidTreatmentPage:
-    case thyroidArticlePage: 
+    case thyroidArticlePage:
       resultLocation = 'thyroidCancerPage';
       break;
     case colorectalOverviewPage:

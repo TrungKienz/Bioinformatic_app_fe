@@ -4,7 +4,7 @@ import { Button, Form, Input, message, Modal, Select } from 'antd';
 import { useState } from 'react';
 import './updateTestInfor.css';
 
-const UpdateTestCase = ({data , onSuccess}) => {
+const UpdateTestCase = ({ data, onSuccess }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();

@@ -39,7 +39,7 @@ export default () => {
   //       setData(testCase);
   //       setTotalPages(data.totalPages);
   //     });
-  // }, [pagination.current, pagination.pageSize]);  
+  // }, [pagination.current, pagination.pageSize]);
 
   const getData = async () => {
     try {
@@ -53,9 +53,9 @@ export default () => {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  }, [pagination.current, pagination.pageSize])
+  }, [pagination.current, pagination.pageSize]);
 
   const handleTableChange = (pagination: any) => {
     setPagination(pagination);
@@ -114,7 +114,7 @@ export default () => {
 
   const handleCRUDSuccess = () => {
     getData();
-  }; 
+  };
   const columns: ProColumns[] = [
     {
       key: 'patientID',
@@ -143,12 +143,17 @@ export default () => {
       },
       render: (text, data) => (
         <>
-          {data.primaryTissue == 'lung' ? 'Phổi':
-          data.primaryTissue == 'breast' ? ' Vú':
-          data.primaryTissue == 'hepatocellular_carcinoma' ? 'Gan':
-          data.primaryTissue == 'large_intestine' ? 'Đại tràng' :
-          data.primaryTissue == 'thyroid' ? 'Tuyến giáp' :
-          'Không xác định'}
+          {data.primaryTissue == 'lung'
+            ? 'Phổi'
+            : data.primaryTissue == 'breast'
+            ? ' Vú'
+            : data.primaryTissue == 'hepatocellular_carcinoma'
+            ? 'Gan'
+            : data.primaryTissue == 'large_intestine'
+            ? 'Đại tràng'
+            : data.primaryTissue == 'thyroid'
+            ? 'Tuyến giáp'
+            : 'Không xác định'}
         </>
       ),
     },
@@ -168,7 +173,7 @@ export default () => {
           {access.canAdmin || access.canDoctor ? (
             <Space size="large">
               <UploadTestCase patientID={data.patientID} />
-              <UpdateTestCase data={data} onSuccess={handleCRUDSuccess}/>
+              <UpdateTestCase data={data} onSuccess={handleCRUDSuccess} />
               <Button type="primary" danger onClick={() => handleDelete(data.id, data.patientID)}>
                 Xóa
               </Button>
@@ -218,7 +223,13 @@ export default () => {
           onChange: (e) => setSearchTerm(e.target.value),
           style: { width: '350px' },
         },
-        actions: [access.canAdmin || access.canDoctor ? <AddTestCase onSuccess={handleCRUDSuccess} /> : <></>],
+        actions: [
+          access.canAdmin || access.canDoctor ? (
+            <AddTestCase onSuccess={handleCRUDSuccess} />
+          ) : (
+            <></>
+          ),
+        ],
         settings: [],
       }}
       showSorterTooltip={false}
