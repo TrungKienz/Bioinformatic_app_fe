@@ -141,6 +141,16 @@ export default () => {
       onFilter: (value, record) => {
         return String(record.patientName).toLowerCase().includes(String(value).toLowerCase());
       },
+      render: (text, data) => (
+        <>
+          {data.primaryTissue == 'lung' ? 'Phổi':
+          data.primaryTissue == 'breast' ? ' Vú':
+          data.primaryTissue == 'hepatocellular_carcinoma' ? 'Gan':
+          data.primaryTissue == 'large_intestine' ? 'Đại tràng' :
+          data.primaryTissue == 'thyroid' ? 'Tuyến giáp' :
+          'Không xác định'}
+        </>
+      ),
     },
     {
       key: 'testName',

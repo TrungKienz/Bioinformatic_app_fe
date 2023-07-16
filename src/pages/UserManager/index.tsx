@@ -76,6 +76,14 @@ export default () => {
       key: 'access',
       title: 'Quyền truy cập',
       dataIndex: 'access',
+      render: (text, data) => (
+        <>
+          {data.access == 'admin' ? 'Quản trị viên' :
+          data.access == 'user' ? 'Người dùng thông thường':
+          data.access == 'doctor' ? 'Bác sĩ' :
+          'Chưa cấp quyền truy cập'}
+        </>
+      ),
     },
     {
       key: 'name',
