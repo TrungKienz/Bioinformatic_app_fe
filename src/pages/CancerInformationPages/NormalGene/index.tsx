@@ -1,15 +1,15 @@
 import { server } from '@/pages/Api';
+import { currentPage } from '@/shared/CurrentPage';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useEffect, useState } from 'react';
-import { currentPage } from '@/shared/CurrentPage';
 
 const NormalGenes = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [totalPages, setTotalPages] = useState(1);
-  
+
   let API = '';
   const locationPage = currentPage(location.pathname);
 

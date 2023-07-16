@@ -1,17 +1,17 @@
+import token from '@/utils/token';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, message, Modal, Space, Spin, Tag } from 'antd';
+import { Link, useAccess } from '@umijs/max';
+import { Button, message, Modal, Space, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import { server } from '../Api';
 import { testCaseEp } from '../EndPoint';
 import AddTestCase from './component/addTestInformation';
-import UploadTestCase from './component/uploadTestCase';
-import { Link, useAccess } from '@umijs/max';
 import UpdateTestCase from './component/updateTestInformation';
-import token from '@/utils/token';
+import UploadTestCase from './component/uploadTestCase';
 
-const accessToken = token.get().accessToken
+const accessToken = token.get().accessToken;
 
 const { confirm } = Modal;
 export default () => {
@@ -21,7 +21,7 @@ export default () => {
   const [totalPages, setTotalPages] = useState(1);
   const [IDTestData, setIDTestData] = useState<any[]>([]);
   const [resultStatus, setResultStatus] = useState<any[]>([]);
-  
+
   const access = useAccess();
 
   const urlData = `${testCaseEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
@@ -65,12 +65,11 @@ export default () => {
       // Handle the error here
     }
   };
-  
+
   useEffect(() => {
     addResultStatus();
     fetchData();
   }, []);
-  
 
   const handleDelete = (id: String, runID: String) => {
     confirm({
@@ -137,18 +136,21 @@ export default () => {
       align: 'left',
       render: (text, data) => (
         <>
-          {(access.canAdmin || access.canDoctor) ? (
+          {access.canAdmin || access.canDoctor ? (
             <Space size="large">
               <UploadTestCase patientID={data.patientID} />
-              <UpdateTestCase data={data}/>
+              <UpdateTestCase data={data} />
               <Button type="primary" danger onClick={() => handleDelete(data.id, data.patientID)}>
                 Xóa
               </Button>
             </Space>
-          ):(<Button type="primary" danger >Doctor and admin zone</Button>)}
+          ) : (
+            <Button type="primary" danger>
+              Doctor and admin zone
+            </Button>
+          )}
         </>
       ),
-      
     },
     {
       key: 'status',
@@ -160,25 +162,18 @@ export default () => {
           <Space size={'large'}>
             {Array.from(IDTestData as any[]).includes(data.patientID) ? (
               <Tag color="success">
-                <Link
-                  key="showDetail"
-                  to={`/tests/detail/${data.patientID}`}
-                >
+                <Link key="showDetail" to={`/tests/detail/${data.patientID}`}>
                   Chi tiết
                 </Link>
               </Tag>
-            ) : (Array.isArray(resultStatus) && resultStatus.includes(data.patientID)) ? (
-              <Tag color='processing'>
-                Đang xử lý  ...
-              </Tag>
+            ) : Array.isArray(resultStatus) && resultStatus.includes(data.patientID) ? (
+              <Tag color="processing">Đang xử lý ...</Tag>
             ) : (
-              <Tag color='warning'> Chưa có dữ liệu ...</Tag>
+              <Tag color="warning"> Chưa có dữ liệu ...</Tag>
             )}
           </Space>
         </>
       ),
-      
-      
     },
   ];
 
@@ -194,7 +189,7 @@ export default () => {
           onChange: (e) => setSearchTerm(e.target.value),
           style: { width: '350px' },
         },
-        actions: [((access.canAdmin || access.canDoctor)?(<AddTestCase/>):(<></>))],
+        actions: [access.canAdmin || access.canDoctor ? <AddTestCase /> : <></>],
         settings: [],
       }}
       showSorterTooltip={false}
@@ -205,4 +200,3 @@ export default () => {
     />
   );
 };
-

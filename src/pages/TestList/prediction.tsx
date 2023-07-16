@@ -1,7 +1,6 @@
 import { Descriptions, List, Tag } from 'antd';
 
 const DrugInformation = (data: Array<any>) => {
-
   const dataResult = data.map((item: any) => {
     const pmid = item['pmid'];
     const geneName = item['Gene name'];
@@ -34,10 +33,7 @@ const DrugInformation = (data: Array<any>) => {
 
     return (
       <List.Item key={pmid}>
-        <List.Item.Meta
-          title={<Tag color="blue">{geneName}</Tag>}
-          description={description}
-        />
+        <List.Item.Meta title={<Tag color="blue">{geneName}</Tag>} description={description} />
         <Descriptions>
           <Descriptions.Item label="Tên gene">{geneName}</Descriptions.Item>
           <Descriptions.Item label="Vị trí gene">{geneLocation}</Descriptions.Item>

@@ -7,12 +7,11 @@ import { Button, message, Modal, Space } from 'antd';
 import { useEffect, useState } from 'react';
 import { server } from '../Api';
 
-
 const { confirm } = Modal;
 export default () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState<any[]>([]);
-  
+
   const fetchData = async () => {
     try {
       const response = await fetch(`${server}/user/get-all-user`);
@@ -23,15 +22,15 @@ export default () => {
       // Handle the error here
     }
   };
-  
+
   useEffect(() => {
     fetchData();
   }, []);
-  
+
   const handleAddAccountSuccess = () => {
     fetchData();
   };
-  
+
   const handleDelete = (id: string, name: string) => {
     confirm({
       title: `Bạn muốn xóa user :${name} này?`,
@@ -74,19 +73,19 @@ export default () => {
       },
     },
     {
-        key: 'access',
-        title: 'Quyền truy cập',
-        dataIndex: 'access',
+      key: 'access',
+      title: 'Quyền truy cập',
+      dataIndex: 'access',
     },
     {
-        key: 'name',
-        title: 'Tên người dùng',
-        dataIndex: 'name',
-        align: 'left',
-        filteredValue: [searchTerm],
-        onFilter: (value, record) => {
-          return String(record.patientName).toLowerCase().includes(String(value).toLowerCase());
-        },
+      key: 'name',
+      title: 'Tên người dùng',
+      dataIndex: 'name',
+      align: 'left',
+      filteredValue: [searchTerm],
+      onFilter: (value, record) => {
+        return String(record.patientName).toLowerCase().includes(String(value).toLowerCase());
+      },
     },
     {
       key: 'created_date',
@@ -94,9 +93,9 @@ export default () => {
       dataIndex: 'createAt',
     },
     {
-        key: 'modified_date',
-        title: 'Ngày cập nhật tài khoản',
-        dataIndex: 'updateAt',
+      key: 'modified_date',
+      title: 'Ngày cập nhật tài khoản',
+      dataIndex: 'updateAt',
     },
     {
       key: 'option',
@@ -106,16 +105,18 @@ export default () => {
       align: 'left',
       render: (text, data) => (
         <>
-            {data.access === 'admin' ? <></> : 
-            (<Space size="large">
-              <UpdateAccount data={data} onSuccess={handleAddAccountSuccess}/>
+          {data.access === 'admin' ? (
+            <></>
+          ) : (
+            <Space size="large">
+              <UpdateAccount data={data} onSuccess={handleAddAccountSuccess} />
               <Button type="primary" danger onClick={() => handleDelete(data._id, data.name)}>
                 Xóa
               </Button>
-            </Space>)}
+            </Space>
+          )}
         </>
       ),
-      
     },
   ];
 
@@ -131,7 +132,7 @@ export default () => {
           onChange: (e) => setSearchTerm(e.target.value),
           style: { width: '350px' },
         },
-        actions: [<AddAccount onSuccess={handleAddAccountSuccess}/>],
+        actions: [<AddAccount onSuccess={handleAddAccountSuccess} />],
         settings: [],
       }}
       showSorterTooltip={false}
@@ -141,4 +142,3 @@ export default () => {
     />
   );
 };
-

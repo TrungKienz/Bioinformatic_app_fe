@@ -549,7 +549,7 @@ const BREAST: any = {
     },
     {
       name: 'IV> KHÁM LÂM SÀNG (*ngay trước điều trị hoá chất)',
-key:'clinical_examination',
+      key: 'clinical_examination',
       listQuestions: [
         [
           [
@@ -647,27 +647,15 @@ key:'clinical_examination',
             },
             {
               question: 'Vị trí: Vú T',
-              listChoice: [
-                'Trung tâm',
-                'Trên ngoài',
-                'Trên trong',
-                'Dưới trong',
-                'Dưới ngoài',
-              ],
+              listChoice: ['Trung tâm', 'Trên ngoài', 'Trên trong', 'Dưới trong', 'Dưới ngoài'],
               key: 'vi_tri',
-              type:'radio'
+              type: 'radio',
             },
             {
               question: 'Vị trí: Vú P',
-              listChoice: [
-                'Trung tâm',
-                'Trên ngoài',
-                'Trên trong',
-                'Dưới trong',
-                'Dưới ngoài',
-              ],
+              listChoice: ['Trung tâm', 'Trên ngoài', 'Trên trong', 'Dưới trong', 'Dưới ngoài'],
               key: 'vi_tri',
-              type:'radio'
+              type: 'radio',
             },
             {
               prefix: 'Kích thước lớn nhất',
@@ -781,7 +769,7 @@ key:'clinical_examination',
     },
     {
       name: 'V>CẬN LÂM SÀNG',
-key:'subclinical',
+      key: 'subclinical',
       listQuestions: [
         [
           [
@@ -1506,7 +1494,7 @@ key:'subclinical',
     },
     {
       name: 'VI> PHƯƠNG PHÁP ĐIỀU TRỊ (*tính từ ngày bắt đầu theo dõi)',
-key:'treatments',
+      key: 'treatments',
       listQuestions: [
         [
           [

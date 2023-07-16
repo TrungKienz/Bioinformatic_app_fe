@@ -1,8 +1,8 @@
+import CRUDService from '@/services/CRUDService';
+import { currentPage as crPage } from '@/shared/CurrentPage';
 import { Button, Cascader, Col, Descriptions, Form, Input, List, Row, Tag } from 'antd';
 import { useEffect, useState } from 'react';
-import CRUDService from '@/services/CRUDService';
 import { drugsInformationEp } from '../EndPoint';
-import { currentPage as crPage } from '@/shared/CurrentPage';
 
 interface Option {
   value: string;
@@ -38,7 +38,7 @@ const DrugInformation = () => {
     ];
 
     const matchedPg = cancerCondition.find(
-      (locationPage) => locationPage.locationPage === locationPg
+      (locationPage) => locationPage.locationPage === locationPg,
     );
 
     return matchedPg?.typeCancer || '';
@@ -46,9 +46,11 @@ const DrugInformation = () => {
 
   const getDrugInfo = async () => {
     try {
-      const data = await CRUDService.getAllService(`${drugsInformationEp}/get-drug?page=${currentPage}&limit=5&typeCancer=${isLocation(
-        locationPg
-      )}`);
+      const data = await CRUDService.getAllService(
+        `${drugsInformationEp}/get-drug?page=${currentPage}&limit=5&typeCancer=${isLocation(
+          locationPg,
+        )}`,
+      );
       setDataDrug(data.dataDrug);
       setTotalPages(data.totalPages);
     } catch (error) {
@@ -62,9 +64,10 @@ const DrugInformation = () => {
 
   const handleSearch = async (values: any) => {
     try {
-      const data = await CRUDService.searchService(`${drugsInformationEp}/search-drug?limit=5&typeCancer=${isLocation(
-        locationPg
-      )}`, values);
+      const data = await CRUDService.searchService(
+        `${drugsInformationEp}/search-drug?limit=5&typeCancer=${isLocation(locationPg)}`,
+        values,
+      );
       setDataFilter(data.dataDrug);
       setTotalPages(data.totalPages);
     } catch (error) {

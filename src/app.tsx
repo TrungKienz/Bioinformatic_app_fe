@@ -2,10 +2,10 @@ import Footer from '@/components/Footer';
 import RightContent from '@/components/RightContent';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
 import { history, RunTimeLayoutConfig } from '@umijs/max';
+import dotenv from 'dotenv';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
 import { currentUser as queryCurrentUser } from './services/authService/api';
-import dotenv from 'dotenv';
 dotenv.config();
 
 const loginPath = '/user/login';

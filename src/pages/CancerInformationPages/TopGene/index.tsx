@@ -5,13 +5,13 @@ import {
   mutationLung20GeneEp,
   mutationThyroid20GeneEp,
 } from '@/pages/EndPoint';
+import { currentPage } from '@/shared/CurrentPage';
 import { Column } from '@ant-design/charts';
 import { useEffect, useState } from 'react';
-import { currentPage } from '@/shared/CurrentPage';
 
 const TopGene = () => {
   const [data, setData] = useState([]);
-  
+
   const locationPage = currentPage(location.pathname);
   let URL = '';
 

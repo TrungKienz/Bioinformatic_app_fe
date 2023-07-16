@@ -1,4 +1,4 @@
-import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { UploadOutlined } from '@ant-design/icons';
 import { Button, message, Modal, Upload, UploadFile } from 'antd';
 import { useState } from 'react';
 import { addTestCaseEp } from '../../EndPoint';

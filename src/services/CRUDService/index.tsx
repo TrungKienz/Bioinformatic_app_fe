@@ -65,6 +65,5 @@ class CRUDService {
       ...(options || {}),
     });
   };
-  
 }
 export default new CRUDService();

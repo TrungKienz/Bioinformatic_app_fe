@@ -1,17 +1,14 @@
 import { server } from '@/pages/Api';
 import CRUDService from '@/services/CRUDService';
-import { PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Modal, Select } from 'antd';
 import { useState } from 'react';
 import './updateTestInfor.css';
-
-
 
 const UpdateTestCase = (data: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
-  console.log(data)
+  console.log(data);
   const api = `${server}/test-case/update-test?id=${data.data.id}`;
   const success = () => {
     messageApi.open({

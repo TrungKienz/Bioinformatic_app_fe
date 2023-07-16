@@ -1,4 +1,3 @@
-import { QuestionCircleOutlined } from '@ant-design/icons';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { SelectLang, useModel } from '@umijs/max';
 import React from 'react';

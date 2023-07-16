@@ -1,9 +1,9 @@
 import { server } from '@/pages/Api';
 import CRUDService from '@/services/CRUDService';
+import { PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Modal, Select } from 'antd';
 import { useState } from 'react';
 import './addAccount.css';
-import { PlusOutlined } from '@ant-design/icons';
 
 const AddAPI = `${server}/user/register`;
 
