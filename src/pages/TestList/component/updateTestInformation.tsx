@@ -9,7 +9,7 @@ const UpdateTestCase = ({data , onSuccess}) => {
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   console.log(data);
-  const api = `${server}/test-case/update-test?id=${data.data.id}`;
+  const api = `${server}/test-case/update-test`;
   const success = () => {
     messageApi.open({
       type: 'success',
@@ -65,18 +65,17 @@ const UpdateTestCase = ({data , onSuccess}) => {
         onCancel={handleCancel}
       >
         <Form form={form} className="update-test-case-form">
-          <Form.Item name="patientID" label="Mã bệnh nhân:" initialValue={data.data.patientID}>
+          <Form.Item name="patientID" label="Mã bệnh nhân:" initialValue={data.patientID}>
             <Input allowClear placeholder="Nhập mã bệnh nhân" required={true} />
           </Form.Item>
-          <Form.Item name="patientName" label="Tên bệnh nhân:" initialValue={data.data.patientName}>
+          <Form.Item name="patientName" label="Tên bệnh nhân:" initialValue={data.patientName}>
             <Input allowClear placeholder="Nhập tên bệnh nhân" required={true} />
           </Form.Item>
-          <Form.Item name="testName" label="Mẫu bệnh phẩm:" initialValue={data.data.testName}>
+          <Form.Item name="testName" label="Mẫu bệnh phẩm:" initialValue={data.testName}>
             <Input allowClear placeholder="Nhập mẫu bệnh phẩm" />
           </Form.Item>
-          <Form.Item name="primaryTissue" label="Vị trí mô:">
+          <Form.Item name="primaryTissue" label="Vị trí mô:" initialValue={data.primaryTissue}>
             <Select
-              defaultValue={data.data.primaryTissue}
               style={{ width: '100%' }}
               onChange={handleChange}
               options={[
