@@ -32,7 +32,7 @@ export default () => {
     fetchData();
   };
   
-  const handleDelete = (id: String, name: String) => {
+  const handleDelete = (id: string, name: string) => {
     confirm({
       title: `Bạn muốn xóa user :${name} này?`,
       icon: <ExclamationCircleOutlined />,
