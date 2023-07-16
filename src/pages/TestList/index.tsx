@@ -96,6 +96,9 @@ export default () => {
     });
   };
 
+  const handleCRUDSuccess = () => {
+    fetchData();
+  }; 
   const columns: ProColumns[] = [
     {
       key: 'patientID',
@@ -139,7 +142,7 @@ export default () => {
           {access.canAdmin || access.canDoctor ? (
             <Space size="large">
               <UploadTestCase patientID={data.patientID} />
-              <UpdateTestCase data={data} />
+              <UpdateTestCase data={data} onSuccess={handleCRUDSuccess}/>
               <Button type="primary" danger onClick={() => handleDelete(data.id, data.patientID)}>
                 Xóa
               </Button>
@@ -189,7 +192,7 @@ export default () => {
           onChange: (e) => setSearchTerm(e.target.value),
           style: { width: '350px' },
         },
-        actions: [access.canAdmin || access.canDoctor ? <AddTestCase /> : <></>],
+        actions: [access.canAdmin || access.canDoctor ? <AddTestCase onSuccess={handleCRUDSuccess} /> : <></>],
         settings: [],
       }}
       showSorterTooltip={false}

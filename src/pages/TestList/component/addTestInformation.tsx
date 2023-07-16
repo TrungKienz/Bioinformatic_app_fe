@@ -7,7 +7,7 @@ import './addTestInfor.css';
 
 const searchUrl = `${server}/test-case/add`;
 
-const AddTestCase = () => {
+const AddTestCase = ({ onSuccess}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
 
@@ -38,6 +38,9 @@ const AddTestCase = () => {
       console.log(values);
       await CRUDService.saveService(searchUrl, values);
       success();
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
       console.error(error);
       warning();

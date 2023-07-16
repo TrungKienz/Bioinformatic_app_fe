@@ -1,20 +1,53 @@
 import { Pagination, Select } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as lung_article from './data/lung_article_.json';
+import * as breast_article from './data/breast_article_.json';
+import * as colorectal_article from './data/colorectal_article_.json';
+import * as hepatocellular_article from './data/hepatocellular_article_.json';
+import * as thyroid_article from './data/thyroid_article_.json';
 import LungArticle from './LungArticle';
 import SeachArticle from './search/SeachArticle';
-const { Option } = Select;
+import { currentPage as crPage } from '@/shared/CurrentPage';
 
+const { Option } = Select;
 let articleData = lung_article;
-const articleConverted = Object.values(articleData);
+let articleConverted = Object.values(articleData);
+
 function PaginationArticle() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterValue, setFilterValue] = useState('All');
-  const [searchData, setSearchData] = useState(articleConverted);
+  const [searchData, setSearchData] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
 
   const pageSize = 5;
+  const locationPage = crPage(location.pathname);
+  
 
+  // useEffect(() => {
+  //   switch (locationPage) {
+  //     case 'lungCancerPage':
+  //       articleData = lung_article;
+  //       break;
+  //     case 'liverCancerPage':
+  //       articleData = hepatocellular_article;
+  //       break;
+  //     case 'breastCancerPage':
+  //       articleData = breast_article;
+  //       break;
+  //     case 'thyroidCancerPage':
+  //       articleData = thyroid_article;
+  //       break;
+  //     case 'colorectalCancerPage':
+  //       articleData = colorectal_article;
+  //       break;
+  //     default:
+  //       articleData = null;
+  //       break;
+  //   }
+  
+  //   articleConverted = articleData ? Object.values(articleData) : [];
+  //   setSearchData(articleConverted);
+  // }, [locationPage]);
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };

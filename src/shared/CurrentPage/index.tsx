@@ -22,6 +22,12 @@ const breastTreatmentPage = '/breast-cancer/other-treatment';
 const thyroidTreatmentPage = '/thyroid-cancer/other-treatment';
 const colorectalTreatmentPage = '/colorectal-cancer/other-treatment';
 
+const lungArticlePage = '/lung-cancer/article';
+const liverArticlePage = '/liver-cancer/article';
+const breastArticlePage = '/breast-cancert/article';
+const thyroidArticlePage = '/thyroid-cancer/article';
+const colorectalArticlePage = '/colorectal-cancer/article';
+
 export const currentPage = (currentLocation: string) => {
   let resultLocation;
   switch (currentLocation) {
@@ -29,30 +35,35 @@ export const currentPage = (currentLocation: string) => {
     case lungCancerPage:
     case lungDrugPage:
     case lungTreatmentPage:
+    case lungArticlePage:
       resultLocation = 'lungCancerPage';
       break;
     case liverOverviewPage:
     case liverCancerPage:
     case liverDrugPage:
     case liverTreatmentPage:
+    case liverArticlePage:
       resultLocation = 'liverCancerPage';
       break;
     case breastOverviewPage:
     case breastCancerPage:
     case breastDrugPage:
     case breastTreatmentPage:
+    case breastArticlePage:
       resultLocation = 'breastCancerPage';
       break;
     case thyroidOverviewPage:
     case thyroidCancerPage:
     case thyroidDrugPage:
     case thyroidTreatmentPage:
+    case thyroidArticlePage: 
       resultLocation = 'thyroidCancerPage';
       break;
     case colorectalOverviewPage:
     case colorectalCancerPage:
     case colorectalDrugPage:
     case colorectalTreatmentPage:
+    case colorectalArticlePage:
       resultLocation = 'colorectalCancerPage';
       break;
     default:
