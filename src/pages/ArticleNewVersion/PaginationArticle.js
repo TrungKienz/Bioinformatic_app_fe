@@ -13,22 +13,14 @@ import SeachArticle from './search/SeachArticle';
 
 const { Option } = Select;
 
-// let articleData = lung_article;
-
-// let articleConverted = Object.values(articleData);
-
 function PaginationArticle() {
   const [currentPage, setCurrentPage] = useState(1);
-
   const [filterValue, setFilterValue] = useState('All');
-
   const [searchData, setSearchData] = useState([]);
   const [articleConverted, setArticleConverted] = useState([]);
-
   const [isSearch, setIsSearch] = useState(false);
-
+  
   const pageSize = 5;
-
   const locationPage = crPage(location.pathname);
 
   let articleData;
@@ -39,40 +31,26 @@ function PaginationArticle() {
     switch (locationPage) {
       case 'lungCancerPage':
         articleData = lung_article;
-
         break;
-
       case 'liverCancerPage':
         articleData = hepatocellular_article;
-
         break;
-
       case 'breastCancerPage':
         articleData = breast_article;
-
         break;
-
       case 'thyroidCancerPage':
         articleData = thyroid_article;
-
         break;
-
       case 'colorectalCancerPage':
         articleData = colorectal_article;
-
         break;
-
       default:
         articleData = null;
-
         break;
     }
 
     articleDataDC = articleData ? Object.values(articleData) : [];
     setArticleConverted(articleDataDC);
-    // console.log(articleConverted);
-    // console.log(locationPage);
-    // console.log(articleData);
     setSearchData(articleDataDC);
   }, []);
 
@@ -96,8 +74,6 @@ function PaginationArticle() {
     setCurrentPage(1);
   };
 
-  
-  // console.log(searchData);
 
   const filteredArticles = articleConverted ? articleConverted.filter((article) => {
         if (filterValue === 'All') {

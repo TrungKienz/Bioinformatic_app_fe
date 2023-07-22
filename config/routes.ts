@@ -332,6 +332,7 @@ export default [
     hideInMenu: true,
     menuRender: false,
     footerRender: false,
+    access: ['canAdmin', 'canDoctor'],
   },
   {
     name: 'Bệnh án ung thư phổi',
@@ -341,6 +342,7 @@ export default [
     hideInMenu: true,
     menuRender: false,
     footerRender: false,
+    access: ['canAdmin', 'canDoctor'],
   },
   {
     name: 'Bệnh án ung thư gan',
@@ -350,6 +352,7 @@ export default [
     hideInMenu: true,
     menuRender: false,
     footerRender: false,
+    access: ['canAdmin', 'canDoctor'],
   },
   {
     name: 'Bệnh án NC-K Giáp',
@@ -358,6 +361,7 @@ export default [
     component: './HealthRecord/ThyroidCancer',
     hideInMenu: true,
     menuRender: false,
+    access: ['canAdmin', 'canDoctor'],
     footerRender: false,
   },
   {
@@ -367,6 +371,7 @@ export default [
     component: './HealthRecord/BreastCancer',
     hideInMenu: true,
     menuRender: false,
+    access: ['canAdmin', 'canDoctor'],
     footerRender: false,
   },
   {

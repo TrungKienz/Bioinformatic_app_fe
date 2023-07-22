@@ -1,7 +1,7 @@
 import HealthRecordService from '@/services/healthRecord';
 import { DeleteOutlined, EditOutlined, FileAddOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
-import { history } from '@umijs/max';
+import { history, useAccess } from '@umijs/max';
 import { Button, Form, Input, Popconfirm, Space, Table } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import { FilterValue } from 'antd/es/table/interface';
@@ -56,6 +56,7 @@ export default () => {
   const [post, setData] = useState([]);
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const [reload, setReload] = useState('');
+  const access = useAccess();
   const handleDeleteHealthRecord = async (typeHealthRecord: string, id: string) => {
     try {
       await HealthRecordService.deleteHealthRecord(typeHealthRecord, id);
@@ -84,22 +85,26 @@ export default () => {
       title: 'Thao tác',
       key: 'action',
       render: (_, record) => (
-        <Space size="middle">
-          <Button
-            type="primary"
-            icon={<EditOutlined />}
-            onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id)}
-          />
-          <Popconfirm
-            title="Xóa bệnh án"
-            description="Bạn có chắc muốn xóa bệnh án này?"
-            onConfirm={() => handleDeleteHealthRecord(record.typeHealthRecord, record.id)}
-            okText="Yes"
-            cancelText="No"
-          >
-            <Button danger icon={<DeleteOutlined />} />
-          </Popconfirm>
-        </Space>
+        <>
+          {access.canAdmin || access.canDoctor ? 
+          (<Space size="middle">
+            <Button
+              type="primary"
+              icon={<EditOutlined />}
+              onClick={() => handleCreateHealthRecord(record.typeHealthRecord, record.id)}
+            />
+            <Popconfirm
+              title="Xóa bệnh án"
+              description="Bạn có chắc muốn xóa bệnh án này?"
+              onConfirm={() => handleDeleteHealthRecord(record.typeHealthRecord, record.id)}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button danger icon={<DeleteOutlined />} />
+            </Popconfirm>
+          </Space>)
+        :(<Button type="primary" danger>Admin and doctor zone</Button>)}
+        </>
       ),
     },
   ];
@@ -134,13 +139,15 @@ export default () => {
           <Button htmlType="submit">Tìm kiếm</Button>
         </Form.Item>
       </Form>
-      <Button
+      {access.canAdmin || access.canDoctor ? 
+      (<Button
         icon={<FileAddOutlined />}
         style={{ margin: '20px 0' }}
         onClick={() => handleCreateHealthRecord(typeHealthRecord)}
       >
         Thêm bệnh án
-      </Button>
+      </Button>):
+      (<></>)}
       <Table columns={columns} dataSource={post} />
     </PageContainer>
   );

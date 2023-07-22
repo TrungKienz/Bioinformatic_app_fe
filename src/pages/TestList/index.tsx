@@ -25,21 +25,6 @@ export default () => {
   const access = useAccess();
 
   const urlData = `${testCaseEp}?page=${pagination.current}&limit=${pagination.pageSize}`;
-  // useEffect(() => {
-  //   fetch(urlData)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       const testCase = data.testCaseModels.map((obj: any) => ({
-  //         id: obj._id,
-  //         patientID: obj.patientID,
-  //         patientName: obj.patientName,
-  //         testName: obj.testName,
-  //         primaryTissue: obj.primaryTissue,
-  //       }));
-  //       setData(testCase);
-  //       setTotalPages(data.totalPages);
-  //     });
-  // }, [pagination.current, pagination.pageSize]);
 
   const getData = async () => {
     try {

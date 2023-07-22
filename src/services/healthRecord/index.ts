@@ -1,5 +1,6 @@
 import { server } from '@/pages/Api';
 import { request } from '@umijs/max';
+const accessToken = localStorage.getItem('accessToken');
 const baseUrl = server;
 class HealthRecordService {
   saveHealthRecord = async (body: any, options?: { [key: string]: any }) => {
@@ -7,6 +8,7 @@ class HealthRecordService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
       },
       data: body,
       ...(options || {}),
@@ -21,6 +23,7 @@ class HealthRecordService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
       },
       data: body,
       ...(options || {}),
@@ -35,6 +38,7 @@ class HealthRecordService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
       },
       data: { id: id },
       ...(options || {}),
@@ -50,6 +54,7 @@ class HealthRecordService {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
       },
       ...(options || {}),
     });
@@ -59,6 +64,7 @@ class HealthRecordService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
       },
       data: body,
       ...(options || {}),

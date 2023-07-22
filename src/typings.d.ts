@@ -18,3 +18,5 @@ declare module 'react-fittext';
 declare module 'bizcharts-plugin-slider';
 
 declare const REACT_APP_ENV: 'test' | 'dev' | 'pre' | false;
+declare const REACT_APP_SERVER_URL: 'http://localhost:3000' | 'http://103.124.93.57:3000' | false;
+
