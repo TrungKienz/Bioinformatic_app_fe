@@ -1,21 +1,14 @@
 import { currentPage as crPage } from '@/shared/CurrentPage';
-
 import { Pagination, Select } from 'antd';
 
 import { useEffect, useState } from 'react';
 
 import * as lung_article from './data/lung_article_.json';
-
 import * as colorectal_article from './data/colorectal_article_.json';
-
 import * as hepatocellular_article from './data/hepatocellular_article_.json';
-
 import * as breast_article from './data/breast_article_.json';
-
 import * as thyroid_article from './data/thyroid_article_.json';
-
 import LungArticle from './LungArticle';
-
 import SeachArticle from './search/SeachArticle';
 
 const { Option } = Select;
