@@ -1,6 +1,10 @@
 import { Descriptions, List, Tag } from 'antd';
 
-const DrugInformation = (data: Array<any>) => {
+interface DrugInformationProps {
+  data: Array<any>;
+}
+
+const DrugInformation = ({ data }: DrugInformationProps) => {
   const dataResult = data.map((item: any) => {
     const pmid = item['pmid'];
     const geneName = item['Gene name'];

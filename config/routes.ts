@@ -295,6 +295,12 @@ export default [
     ],
   },
   {
+    path: '/perdict-drug/:id',
+    access: ['canAdmin', 'canDoctor'],
+    component: './TestList/predictionDrugDetail',
+    hideInMenu: true,
+  },
+  {
     path: '/tests/:id',
     access: 'canAdmin',
     component: './DetailTest',

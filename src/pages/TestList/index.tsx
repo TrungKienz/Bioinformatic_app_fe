@@ -7,9 +7,9 @@ import { Button, message, Modal, Space, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import { server } from '../Api';
 import { testCaseEp } from '../EndPoint';
-import AddTestCase from './component/addTestInformation';
-import UpdateTestCase from './component/updateTestInformation';
-import UploadTestCase from './component/uploadTestCase';
+import AddTestCase from '@/components/TestList/addTestInformation';
+import UpdateTestCase from '@/components/TestList/updateTestInformation';
+import UploadTestCase from '@/components/TestList/uploadTestCase';
 
 const accessToken = token.get().accessToken;
 

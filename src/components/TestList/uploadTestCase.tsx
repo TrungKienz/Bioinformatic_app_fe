@@ -1,7 +1,7 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, message, Modal, Upload, UploadFile } from 'antd';
 import { useState } from 'react';
-import { addTestCaseEp } from '../../EndPoint';
+import { addTestCaseEp } from '@/pages/EndPoint';
 
 type UploadTestCaseProps = {
   patientID: string;

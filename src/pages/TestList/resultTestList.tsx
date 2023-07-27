@@ -2,6 +2,7 @@ import CRUDService from '@/services/CRUDService';
 import { Button, Descriptions, List, Modal, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import { drugsInformationEp, testCaseEp } from '../EndPoint';
+import { Link } from '@umijs/max';
 
 const { confirm } = Modal;
 
@@ -111,7 +112,9 @@ const ResultTest = () => {
               {dataPatient[0]['primaryTissue']}
             </Descriptions.Item>
             <Descriptions.Item label="Thông tin thuốc điều trị">
-              <Button type="primary">Thông tin chi tiết</Button>
+              <Link key="showDetail" style={{ textDecoration: 'none' }} to={`/perdict-drug/${dataPatient[0]['patientID']}`}>
+                <Button type="primary">Thông tin chi tiết</Button>
+              </Link>
             </Descriptions.Item>
           </Descriptions>
         )}
