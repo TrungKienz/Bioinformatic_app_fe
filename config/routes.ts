@@ -407,6 +407,11 @@ export default [
         path: '/over-view/drugtest',
         component: './PhamHuyHoang/ThuocTriLieu.js',
       },
+      {
+        name: 'Thuốc điều trị đích',
+        path: '/over-view/Medicine',
+        component: './Medicine',
+      },
     ],
   },
   {
