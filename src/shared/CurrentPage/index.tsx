@@ -24,10 +24,15 @@ const colorectalTreatmentPage = '/colorectal-cancer/other-treatment';
 
 const lungArticlePage = '/lung-cancer/article';
 const liverArticlePage = '/liver-cancer/article';
-const breastArticlePage = '/breast-cancert/article';
+const breastArticlePage = '/breast-cancer/article';
 const thyroidArticlePage = '/thyroid-cancer/article';
 const colorectalArticlePage = '/colorectal-cancer/article';
 
+const lungMedicinePage = '/lung-cancer/Medicine';
+const liverMedicinePage = '/liver-cancer/Medicine';
+const breastMedicinePage = '/breast-cancer/Medicine';
+const thyroidMedicinePage = '/thyroid-cancer/Medicine';
+const colorectalMedicinePage = '/colorectal-cancer/Medicine';
 export const currentPage = (currentLocation: string) => {
   let resultLocation;
   switch (currentLocation) {
@@ -36,6 +41,7 @@ export const currentPage = (currentLocation: string) => {
     case lungDrugPage:
     case lungTreatmentPage:
     case lungArticlePage:
+    case lungMedicinePage:
       resultLocation = 'lungCancerPage';
       break;
     case liverOverviewPage:
@@ -43,6 +49,7 @@ export const currentPage = (currentLocation: string) => {
     case liverDrugPage:
     case liverTreatmentPage:
     case liverArticlePage:
+    case liverMedicinePage:
       resultLocation = 'liverCancerPage';
       break;
     case breastOverviewPage:
@@ -50,6 +57,7 @@ export const currentPage = (currentLocation: string) => {
     case breastDrugPage:
     case breastTreatmentPage:
     case breastArticlePage:
+    case breastMedicinePage:
       resultLocation = 'breastCancerPage';
       break;
     case thyroidOverviewPage:
@@ -57,6 +65,7 @@ export const currentPage = (currentLocation: string) => {
     case thyroidDrugPage:
     case thyroidTreatmentPage:
     case thyroidArticlePage:
+    case thyroidMedicinePage:
       resultLocation = 'thyroidCancerPage';
       break;
     case colorectalOverviewPage:
@@ -64,6 +73,7 @@ export const currentPage = (currentLocation: string) => {
     case colorectalDrugPage:
     case colorectalTreatmentPage:
     case colorectalArticlePage:
+    case colorectalMedicinePage:
       resultLocation = 'colorectalCancerPage';
       break;
     default:

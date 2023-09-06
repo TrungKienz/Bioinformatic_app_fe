@@ -83,8 +83,12 @@ export default [
         name: 'Quản lý bệnh án',
         // icon: '/icons/health-record.png',
         path: '/lung-cancer/health-record',
-
         component: './HealthRecord/',
+      },
+      {
+        name: 'Thuốc điều trị đích',
+        path: '/lung-cancer/Medicine',
+        component: './Medicine',
       },
     ],
   },
@@ -133,6 +137,11 @@ export default [
         path: '/liver-cancer/health-record',
         component: './HealthRecord/',
       },
+      {
+        name: 'Thuốc điều trị đích',
+        path: '/liver-cancer/Medicine',
+        component: './Medicine',
+      },
     ],
   },
   {
@@ -178,6 +187,11 @@ export default [
         name: 'Quản lý bệnh án',
         path: '/breast-cancer/health-record',
         component: './HealthRecord/',
+      },
+      {
+        name: 'Thuốc điều trị đích',
+        path: '/breast-cancer/Medicine',
+        component: './Medicine',
       },
     ],
   },
@@ -225,6 +239,11 @@ export default [
         path: '/thyroid-cancer/health-record',
         component: './HealthRecord/',
       },
+      {
+        name: 'Thuốc điều trị đích',
+        path: '/thyroid-cancer/Medicine',
+        component: './Medicine',
+      },
     ],
   },
   {
@@ -270,6 +289,11 @@ export default [
         name: 'Quản lý bệnh án',
         path: '/colorectal-cancer/health-record',
         component: './HealthRecord/',
+      },
+      {
+        name: 'Thuốc điều trị đích',
+        path: '/colorectal-cancer/Medicine',
+        component: './Medicine',
       },
     ],
   },
@@ -406,11 +430,6 @@ export default [
         name: 'Chuyên gia thuốc điều trị',
         path: '/over-view/drugtest',
         component: './PhamHuyHoang/ThuocTriLieu.js',
-      },
-      {
-        name: 'Thuốc điều trị đích',
-        path: '/over-view/Medicine',
-        component: './Medicine',
       },
     ],
   },
